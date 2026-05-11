@@ -1,0 +1,31 @@
+# =============================================================
+# Currently in use
+# =============================================================
+
+# Web framework (api/routes/health.py, main.py)
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+
+# Data validation & settings (config.py, models/, api/schemas.py)
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
+
+# LangChain core (graph/nodes/preprocess.py - BaseChatModel, messages)
+langchain-core>=0.3.0
+
+# LLM provider - OpenAI (core/llm.py, core/search.py)
+openai>=2.0.0
+langchain-openai>=0.2.0
+
+# =============================================================
+# Used in upcoming steps (install now for smoother integration)
+# =============================================================
+
+# LangGraph (graph/builder.py - StateGraph assembly)
+langgraph>=0.2.0
+
+# Tavily search (core/search.py - optional search provider)
+tavily-python>=0.5.0
+
+# HTTP client (used by source check node for URL HEAD requests)
+httpx>=0.27.0

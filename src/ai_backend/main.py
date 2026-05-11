@@ -1,0 +1,26 @@
+from fastapi import FastAPI
+
+from ai_backend.api.routes import health, verify
+from ai_backend.config import get_settings
+from ai_backend.logging_config import configure_logging
+
+settings = get_settings()
+configure_logging(settings.log_level)
+
+app = FastAPI(
+    title="AI Backend — 자료 검증 워크플로우",
+    description="LangGraph 기반 자료 검증 (사실/출처/최신성/수치)",
+    version="0.1.0",
+)
+
+app.include_router(health.router)
+app.include_router(verify.router)
+
+
+@app.get("/")
+async def root() -> dict[str, str]:
+    return {
+        "service": "ai-backend",
+        "version": "0.1.0",
+        "env": settings.app_env,
+    }
