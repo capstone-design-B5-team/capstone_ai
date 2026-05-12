@@ -867,26 +867,6 @@ OPENAI_SEARCH_MODEL=gpt-5-mini
 TAVILY_MAX_RESULTS=5
 ```
 
-## 테스트와 품질 확인
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest tests\unit -q
-.\.venv\Scripts\python.exe -m pytest tests\integration -q
-.\.venv\Scripts\ruff.exe check src tests
-.\.venv\Scripts\python.exe -m mypy .
-```
-
-현재 테스트는 외부 OpenAI/Tavily 호출 없이 mock 기반으로 동작합니다.
-
-최근 확인 결과:
-
-```text
-unit tests: 88 passed
-integration tests: 2 passed
-ruff: All checks passed
-mypy: no issues found
-```
-
 ## 주요 파일
 
 ```text
