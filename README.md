@@ -310,6 +310,160 @@ accepted | processing | completed | failed
 
 ## 노드별 구현
 
+현재 그래프는 `src/ai_backend/graph/builder.py`에서 다음 순서로 조립됩니다.
+
+```text
+START
+  -> preprocess
+  -> fact_check ┐
+  -> source_check ├─> aggregate
+  -> recency_check│
+  -> numeric_check┘
+  -> END
+```
+
+`preprocess`가 원문 텍스트를 claim 목록으로 바꾸면, 네 검증 노드는 같은 `claims`를 입력으로 받아 자기 타입에 해당하는 claim만 골라 처리합니다. LangGraph 레벨에서는 네 검증 노드가 fan-out/fan-in 구조로 연결되어 있고, 각 검증 노드 내부에서도 claim 단위로 `ThreadPoolExecutor`를 사용해 병렬 처리합니다.
+
+전체 처리 흐름은 다음과 같습니다.
+
+```text
+POST /verify
+  -> VerifyRequest 검증
+  -> BackgroundTasks에 run_verify_job 등록
+  -> GraphState 초기화
+       raw_text = request.text
+       document_id = request.document_id
+       document_citations = request.document_citations
+  -> verification_graph.ainvoke(...)
+  -> preprocess_node
+       text -> LLM claim extraction -> Claim[]
+  -> fact_check_node / source_check_node / recency_check_node / numeric_check_node
+       Claim[] -> 타입별 필터링 -> 검색/LLM/출처 fetch -> VerificationResult[]
+  -> aggregate_node
+       VerificationResult[] -> final_grade + final_report
+  -> save_verify_job_result(...)
+```
+
+### 현재 구현 상세 흐름
+
+#### `preprocess_node`: text를 claim으로 바꾸는 단계
+
+```text
+GraphState.raw_text
+  -> CLAIM_EXTRACTION_SYSTEM / CLAIM_EXTRACTION_USER
+  -> get_llm("extraction").invoke(...)
+  -> parse_json_with_fallback(...)
+  -> _validate_and_build_claim(...)
+  -> make_claim(...)
+  -> GraphState.claims
+```
+
+이 노드는 원문 전체를 LLM에 보내 검증 가능한 문장 단위 claim 목록을 JSON으로 받습니다. 응답이 JSON 그대로 오지 않아도 `parse_json_with_fallback()`이 코드블록/주변 텍스트를 어느 정도 복구해서 파싱합니다. 파싱 결과가 list가 아니거나 복구가 실패하면 빈 claim 목록을 반환합니다.
+
+각 claim 후보는 `_validate_and_build_claim()`에서 다시 걸러집니다. `text`가 비어 있거나 `type`이 list가 아니면 버리고, `type` 값 중 `FACT`, `NUMERIC`, `SOURCE`, `RECENCY`에 없는 값은 제거합니다. 한두 항목이 잘못돼도 전체를 버리지 않고 유효한 항목만 남깁니다.
+
+출처 타입도 여기서 보정합니다. LLM이 `SOURCE` 타입을 붙였지만 citations가 없으면 `SOURCE`를 제거하고, citations가 있는데 `SOURCE`가 빠져 있으면 `SOURCE`를 추가합니다. 최종 Claim 객체의 UUID, `content_hash`, `document_id`, `extracted_at` 같은 메타 필드는 LLM이 아니라 `make_claim()`이 코드에서 부여합니다.
+
+#### `fact_check_node`: 일반 사실관계 검증
+
+```text
+Claim[] 중 "FACT" claim만 필터링
+  -> get_llm("verification")
+  -> get_search_client()
+  -> claim별 ThreadPoolExecutor 병렬 처리
+  -> GraphState.fact_results
+```
+
+Tavily provider일 때의 claim 1개 처리 순서:
+
+```text
+claim
+  -> FACT_QUERY_USER로 LLM 검색 계획 생성
+  -> search_queries 추출, 없으면 claim.text 사용
+  -> search_verification_evidence(...)
+       -> Tavily search
+       -> URL/content 기준 중복 제거
+       -> SearchProfile 생성
+       -> 공식 도메인/한국어/저품질 도메인 기준 rerank
+       -> 필요 시 site: 공식 도메인 보강 검색
+  -> format_evidence(...)
+  -> FACT_JUDGMENT_USER로 LLM 판정
+  -> normalize_judgment(...)
+  -> make_verification_result(verifier="fact")
+```
+
+OpenAI provider일 때는 검색 쿼리 생성 LLM과 별도 judgment LLM을 나누지 않고 `OpenAIWebSearchClient.verify_claim_once()`를 호출합니다. 이 함수가 OpenAI Responses API의 `web_search`를 한 번 사용하고, 반환 JSON의 `"fact"` section을 `VerificationResult`로 바꿉니다.
+
+검색 client 초기화 실패나 개별 claim 예외는 전체 job 실패로 올리지 않고 해당 claim의 `UNVERIFIABLE` 결과로 남깁니다.
+
+#### `numeric_check_node`: 수치/비율/비교 검증
+
+```text
+Claim[] 중 "NUMERIC" claim만 필터링
+  -> get_llm("verification")
+  -> get_search_client()
+  -> claim별 ThreadPoolExecutor 병렬 처리
+  -> GraphState.numeric_results
+```
+
+Tavily provider에서는 fact 노드와 같은 2단계 구조를 씁니다. `NUMERIC_QUERY_USER`로 수치 검증용 검색어를 만들고, `search_verification_evidence()`가 검색/중복 제거/공식 도메인 보강/rerank를 수행합니다. 이후 `NUMERIC_JUDGMENT_USER`가 evidence를 보고 claim의 숫자, 단위, 기준연도, 비교 표현이 맞는지 판정합니다.
+
+OpenAI provider에서는 `verify_claim_once()` 결과의 `"numeric"` section을 사용합니다. 결과 metadata에는 `numeric_type`, `suggestion`, `search_queries`, 검색 정책 정보가 들어갑니다.
+
+현재 구현은 수치 자체의 일치 여부에 집중합니다. 그래서 “현재 3.5%” 같은 claim에서 과거 자료의 3.5%를 근거로 numeric은 `PASS`를 낼 수 있고, 최신 시점 불일치는 recency가 `FAIL`로 잡을 수 있습니다. 이런 경우 aggregate에서 같은 claim의 노드 간 판정 충돌로 묶입니다.
+
+#### `recency_check_node`: 최신성/시점 표현 검증
+
+```text
+Claim[] 중 "RECENCY" claim만 필터링
+  -> get_llm("verification")
+  -> get_search_client()
+  -> claim별 ThreadPoolExecutor 병렬 처리
+  -> GraphState.recency_results
+```
+
+Tavily provider에서는 먼저 `build_search_profile(claim)`로 claim의 언어, 한국 지역명, 기관명, 연도/최근/현재 같은 시간 표현을 추출합니다. 한국어 + 한국 대상 claim이면 한국 공식/공공 도메인과 한국어 evidence에 가산점을 주고, 유튜브/나무위키/위키/블로그/티스토리는 낮은 점수를 줍니다.
+
+그 다음 `RECENCY_QUERY_USER`로 LLM 검색 계획을 만들고, 검색어가 없으면 `fallback_queries(..., latest=True)`로 최신성 중심 fallback 검색어를 생성합니다. 검색에는 기본 `recent_days=730`이 `days`로 전달됩니다. 수집된 evidence는 `RECENCY_JUDGMENT_USER`에 들어가며, LLM은 claim의 “최근/현재/올해/목표연도” 표현이 최신 근거와 맞는지 판정합니다.
+
+OpenAI provider에서는 `verify_claim_once(..., recent_days=730)`를 호출하고 `"recency"` section을 사용합니다. 결과 metadata에는 `time_indicators`, `recency_profile`, `expanded_queries`, `official_retry`, `filtered_domains`, `ranking` 등이 남습니다.
+
+#### `source_check_node`: 인용/출처 왜곡 검증
+
+```text
+Claim[] 중 "SOURCE" claim만 필터링
+  -> get_llm("verification")
+  -> claim별 ThreadPoolExecutor 병렬 처리
+  -> claim.citations + GraphState.document_citations 병합
+  -> citation별 fetch_source_context(...)
+  -> SOURCE_CHECK_USER로 LLM 판정
+  -> GraphState.source_results
+```
+
+`_claim_sources()`는 claim 내부 citations와 문서 전체 `document_citations`를 합친 뒤 `citation_type:raw_text` 키로 중복을 제거합니다. 검증할 citation이 없으면 해당 claim은 `UNVERIFIABLE`입니다.
+
+URL citation은 `httpx.Client(follow_redirects=True, timeout=10.0)`로 직접 GET 요청을 합니다. 정상 응답이면 HTML 텍스트를 공백 기준으로 압축해 앞 4000자를 source context로 쓰고, HTTP 오류나 400 이상 status는 `ERROR (...)` 접근성으로 기록합니다. `reference` citation은 외부 fetch 없이 raw text 자체를 context로 넘기며 `accessibility="REFERENCE"`로 표시합니다.
+
+LLM 응답에서는 `distortion_check`를 읽어 `PASS`, `WARNING`, `FAIL`로 정규화합니다. 알 수 없는 값은 `WARNING`으로 처리합니다. URL 접근 실패나 fetch 예외는 사실관계 실패가 아니라 source 검증의 `UNVERIFIABLE` 또는 접근성 issue로 남습니다.
+
+#### `aggregate_node`: 노드별 결과를 사용자용 판정으로 묶는 단계
+
+```text
+fact_results + source_results + recency_results + numeric_results
+  -> 결과가 없으면 "확인 필요"
+  -> 기본은 _heuristic_aggregate(...)
+  -> claim_id별 결과 grouping
+  -> PASS가 아닌 결과를 issue 후보로 선택
+  -> claim별 대표 result 선택
+  -> final_grade / final_report 생성
+```
+
+기본 실행 경로에서는 LLM을 호출하지 않습니다. `aggregate_node(state)`처럼 호출하면 rule-based `_heuristic_aggregate()`가 최종 등급과 issue를 만듭니다. 테스트나 디버그에서 `llm`을 명시 주입하면 `AGGREGATE_SYSTEM`, `AGGREGATE_USER`를 사용한 LLM aggregate 경로를 시도하고, 실패하면 heuristic fallback을 사용합니다.
+
+최종 등급은 전체 `VerificationResult` 중 하나라도 `FAIL` 또는 `UNVERIFIABLE`이면 `확인 필요`, 그렇지 않고 `WARNING`이 있으면 `주의`, 모두 `PASS`면 `통과`입니다. `final_report.issues`는 claim 단위로 묶이며, 대표 판정 우선순위는 `FAIL > UNVERIFIABLE > WARNING > PASS`입니다. 같은 우선순위 안에서는 confidence가 높은 결과가 대표 issue의 기준이 됩니다.
+
+API 응답의 `results`에는 모든 노드별 원본 결과가 유지되고, `final_report.issues`에는 사용자에게 보여줄 대표 문제만 남습니다.
+
 ### 1. `preprocess_node`
 
 파일: `src/ai_backend/graph/nodes/preprocess.py`
@@ -691,8 +845,6 @@ http://127.0.0.1:8000/docs
 http://127.0.0.1:8000/redoc
 ```
 
-`0.0.0.0`은 서버 bind 주소입니다. 브라우저에서는 `127.0.0.1` 또는 `localhost`로 접속합니다.
-
 ## 환경 변수
 
 `.env` 예:
@@ -714,8 +866,6 @@ LLM_REQUEST_TIMEOUT=60
 OPENAI_SEARCH_MODEL=gpt-5-mini
 TAVILY_MAX_RESULTS=5
 ```
-
-`.env`는 GitHub에 커밋하지 마세요. 공개 레포에는 `.env.example`만 두는 것이 좋습니다.
 
 ## 테스트와 품질 확인
 
@@ -766,7 +916,6 @@ src/ai_backend/models/claim.py              Pydantic 모델
 ## 남은 작업
 
 - `storage.py`를 실제 공유 DB 저장으로 구현
-- Django `ProjectFile.ai_status` 필드 확정
 - `source_check`에서 루트 URL/reference citation 처리 정책 정리
 - `document_citations`가 있을 때 SOURCE claim이 없어도 출처 검증할지 결정
 - numeric/fact 노드의 시점 민감도 개선
