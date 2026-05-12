@@ -654,18 +654,8 @@ tests/unit/test_search_policy.py
 - fact/numeric judgment prompt에 “과거에 맞았던 수치가 현재 claim을 입증하지는 않는다”는 기준을 명시한다.
 - aggregate 전 단계에서 같은 claim의 recency `FAIL`이 있으면 fact/numeric `PASS`를 보조 결과로 낮춰 표시할지 검토한다.
 
-### 3. source_check 입력 품질 개선
 
-환경 정책 테스트에서 `https://www.me.go.kr` 루트 URL 접근이 실패했고, `"환경부 보도자료"` reference는 너무 포괄적이라 `WARNING`이 발생했다.
-
-개선 방향:
-
-- Django가 가능하면 보도자료 상세 URL을 넘기도록 요청
-- 루트 도메인만 들어온 경우 source_check에서 직접 검증하지 않고 search verifier 쪽 evidence로 보조 사용
-- `reference` citation은 구체 제목/발행일/기관명이 없으면 source verifier의 강한 판정에 쓰지 않기
-- URL 접근 실패만으로 claim 자체를 `FAIL`로 만들지 않고 `UNVERIFIABLE` 또는 source-only issue로 분리할지 검토
-
-### 4. document_citations와 source_check 정책 정리
+### 3. document_citations와 source_check 정책 정리
 
 현재 SOURCE claim이 0개이면 source_check가 실행되지 않는다.
 
@@ -679,7 +669,7 @@ tests/unit/test_search_policy.py
 - citation이 있는 claim만 SOURCE로 강제할지
 - 출처 검증 결과를 final_report에 얼마나 반영할지
 
-### 5. recency 검색 고도화
+### 4. recency 검색 고도화
 
 1차 개선은 완료했지만, 현재 profile 추출은 규칙 기반이다.
 
@@ -692,7 +682,7 @@ tests/unit/test_search_policy.py
 - 한국어 + 한국 대상 claim에서 해외 evidence만 반환되면 공식 도메인 보강 검색을 재시도한다.
 - 검색 결과 후보 중 claim 대상 국가/지역과 맞지 않는 evidence 비율이 높으면 `WARNING` 또는 `UNVERIFIABLE` 쪽으로 보수적으로 처리한다.
 
-### 6. 실제 공유 DB 저장 구현
+### 5. 실제 공유 DB 저장 구현
 
 현재 `storage.py`는 in-memory 저장소다. DB 규격이 확정되면 다음 함수 내부를 구현한다.
 
