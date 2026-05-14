@@ -23,7 +23,8 @@ SOURCE_CHECK_SYSTEM = """당신은 AI 자료 검증 플랫폼의 'Node 2: 출처
       "source_url": "입력된 출처 URL 또는 문서 식별자",
       "accessibility": "OK | ERROR (404 Not Found 등) | REFERENCE",
       "distortion_check": "PASS | WARNING | FAIL",
-      "reason": "접근성 및 내용 왜곡 여부에 대한 구체적인 판정 근거"
+      "reason": "접근성 및 내용 왜곡 여부에 대한 구체적인 판정 근거",
+      "suggestion": "PASS면 빈 문자열, 그 외엔 원문을 어떻게 수정해야 하는지 구체적인 제안"
     }
   ]
 }"""

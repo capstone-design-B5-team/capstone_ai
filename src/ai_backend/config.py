@@ -57,6 +57,9 @@ class Settings(BaseSettings):
     openai_search_model: str = "gpt-5-mini"
     """OpenAI Responses API web_search tool에 사용할 모델."""
 
+    # --- DB ---
+    database_url: str | None = None
+
 
 @lru_cache
 def get_settings() -> Settings:

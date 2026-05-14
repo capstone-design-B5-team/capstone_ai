@@ -127,9 +127,9 @@ class FinalIssueModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     node: str
-    original_text: str
+    highlighted_text: str
     judgment: Verdict
-    reason: str
+    problem: str
     suggestion: str = ""
 
     @classmethod
@@ -139,9 +139,9 @@ class FinalIssueModel(BaseModel):
     def to_typed_dict(self) -> FinalIssueDict:
         return FinalIssueDict(
             node=self.node,
-            original_text=self.original_text,
+            highlighted_text=self.highlighted_text,
             judgment=self.judgment,
-            reason=self.reason,
+            problem=self.problem,
             suggestion=self.suggestion,
         )
 
