@@ -69,9 +69,9 @@ class FinalIssue(TypedDict):
     """Issue item in the final report."""
 
     node: str
-    original_text: str
+    highlighted_text: str
     judgment: Verdict
-    reason: str
+    problem: str
     suggestion: str
 
 

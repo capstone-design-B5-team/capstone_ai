@@ -268,6 +268,7 @@ def _format_reasoning(
 ) -> str:
     accessibility = str(result.get("accessibility") or source_context.accessibility)
     reason = str(result.get("reason") or "").strip()
+    suggestion = str(result.get("suggestion") or "").strip()
     parts = [
         f"source={result.get('source_url') or source_context.source}",
         f"accessibility={accessibility}",
@@ -275,6 +276,8 @@ def _format_reasoning(
     ]
     if reason:
         parts.append(f"reason={reason}")
+    if suggestion:
+        parts.append(f"suggestion={suggestion}")
     return "\n".join(parts)
 
 

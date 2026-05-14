@@ -274,6 +274,7 @@ def _format_reasoning(result: dict[str, Any]) -> str:
     queries = result.get("search_queries") if isinstance(result.get("search_queries"), list) else []
     judgment = normalize_judgment(result.get("judgment"))
     reason = str(result.get("reason") or "").strip()
+    suggestion = str(result.get("suggestion") or "").strip()
 
     parts = [
         f"type={fact_type}",
@@ -282,6 +283,8 @@ def _format_reasoning(result: dict[str, Any]) -> str:
     ]
     if reason:
         parts.append(f"reason={reason}")
+    if suggestion:
+        parts.append(f"suggestion={suggestion}")
     return "\n".join(parts)
 
 

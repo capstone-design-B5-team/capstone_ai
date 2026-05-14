@@ -1,13 +1,26 @@
+from contextlib import asynccontextmanager
+from typing import AsyncGenerator
+
 from fastapi import FastAPI
 
 from ai_backend.api.routes import health, verify
 from ai_backend.config import get_settings
+from ai_backend.db import check_connection, dispose_engine
 from ai_backend.logging_config import configure_logging
 
 settings = get_settings()
 configure_logging(settings.log_level)
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    await check_connection()
+    yield
+    await dispose_engine()
+
+
 app = FastAPI(
+    lifespan=lifespan,
     title="AI Backend — 자료 검증 워크플로우",
     description="LangGraph 기반 자료 검증 (사실/출처/최신성/수치)",
     version="0.1.0",

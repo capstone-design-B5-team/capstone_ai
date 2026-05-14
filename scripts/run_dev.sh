@@ -12,4 +12,4 @@ else
   PYTHON="python"
 fi
 
-exec "$PYTHON" -m uvicorn ai_backend.main:app --reload --host 0.0.0.0 --port 8000
+exec "$PYTHON" -m uvicorn ai_backend.main:app --reload --host 0.0.0.0 --port 8001

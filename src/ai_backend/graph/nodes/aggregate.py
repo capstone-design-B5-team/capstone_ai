@@ -171,9 +171,9 @@ def _issues_from_results(
         issues.append(
             FinalIssue(
                 node=_issue_node_label(issue_results),
-                original_text=claim["text"] if claim else claim_id,
+                highlighted_text=claim["text"] if claim else claim_id,
                 judgment=primary_result["verdict"],
-                reason=_issue_reason(claim_results),
+                problem=_issue_reason(claim_results),
                 suggestion=_issue_suggestion(primary_result),
             )
         )
@@ -199,20 +199,38 @@ def _issue_node_label(results: list[VerificationResult]) -> str:
     return ", ".join(labels)
 
 
+_TERM_REPLACEMENTS = [
+    ("Claim", "자료"),
+    ("claim", "자료"),
+    ("Evidence", "AI검증"),
+    ("evidence", "AI검증"),
+]
+
+
+def _replace_terms(text: str) -> str:
+    for old, new in _TERM_REPLACEMENTS:
+        text = text.replace(old, new)
+    return text
+
+
+def _extract_human_reason(reasoning: str) -> str:
+    """reasoning 문자열에서 사람이 읽을 수 있는 reason= 부분만 추출."""
+    for line in reasoning.splitlines():
+        if line.startswith("reason="):
+            return line[len("reason="):].strip()
+    return reasoning.strip()
+
+
 def _issue_reason(results: list[VerificationResult]) -> str:
-    verdicts = [
-        f"{_VERIFIER_LABELS.get(result['verifier'], result['verifier'])}={result['verdict']}"
-        for result in results
-    ]
-    reasons = [
-        f"{_VERIFIER_LABELS.get(result['verifier'], result['verifier'])}: {result['reasoning']}"
-        for result in results
-        if result["verdict"] != "PASS" and result["reasoning"].strip()
-    ]
-    prefix = f"노드별 판정: {', '.join(verdicts)}."
-    if _has_conflicting_verdicts(results):
-        prefix = f"노드 간 판정 충돌 감지. {prefix}"
-    return f"{prefix} {' / '.join(reasons)}".strip()
+    reasons = []
+    for result in results:
+        if result["verdict"] == "PASS":
+            continue
+        reason = _extract_human_reason(result["reasoning"])
+        if reason:
+            reasons.append(reason)
+    combined = " ".join(reasons) if reasons else "검증 오류가 발견되었습니다."
+    return _replace_terms(combined)
 
 
 def _has_conflicting_verdicts(results: list[VerificationResult]) -> bool:
@@ -220,7 +238,18 @@ def _has_conflicting_verdicts(results: list[VerificationResult]) -> bool:
     return "PASS" in verdicts and any(verdict != "PASS" for verdict in verdicts)
 
 
+def _extract_suggestion(reasoning: str) -> str:
+    """reasoning 문자열에서 suggestion= 부분만 추출."""
+    for line in reasoning.splitlines():
+        if line.startswith("suggestion="):
+            return line[len("suggestion="):].strip()
+    return ""
+
+
 def _issue_suggestion(result: VerificationResult) -> str:
+    suggestion = _extract_suggestion(result["reasoning"])
+    if suggestion:
+        return _replace_terms(suggestion)
     if result["verifier"] == "numeric":
         return "수치, 기준연도, 계산식을 근거 자료와 다시 대조하세요."
     if result["verifier"] == "source":
@@ -289,9 +318,9 @@ def _normalize_issues(value: Any) -> list[FinalIssue]:
         issues.append(
             FinalIssue(
                 node=str(item.get("node") or ""),
-                original_text=str(item.get("original_text") or ""),
+                highlighted_text=str(item.get("highlighted_text") or ""),
                 judgment=normalize_issue_judgment(item.get("judgment")),
-                reason=str(item.get("reason") or ""),
+                problem=str(item.get("problem") or ""),
                 suggestion=str(item.get("suggestion") or ""),
             )
         )

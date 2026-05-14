@@ -6,6 +6,7 @@ __pycache__/
 .Python
 
 # Virtual envs
+myvenv/
 .venv/
 venv/
 env/

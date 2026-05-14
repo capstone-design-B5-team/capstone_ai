@@ -29,3 +29,11 @@ tavily-python>=0.5.0
 
 # HTTP client (used by source check node for URL HEAD requests)
 httpx>=0.27.0
+
+# Database
+sqlalchemy>=2.0.0
+aiomysql>=0.2.0
+
+# Database (storage.py - MySQL async connection)
+sqlalchemy>=2.0.0
+aiomysql>=0.2.0
