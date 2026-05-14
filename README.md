@@ -803,21 +803,6 @@ https://your-domain.com        -> Django
 http://ai-backend:8000         -> 내부 네트워크 전용
 ```
 
-Django 환경 변수:
-
-```dotenv
-DATABASE_URL=postgresql://...
-AI_BACKEND_URL=http://ai-backend:8000
-```
-
-AI 백엔드 환경 변수:
-
-```dotenv
-DATABASE_URL=postgresql://...
-OPENAI_API_KEY=...
-TAVILY_API_KEY=...
-SEARCH_PROVIDER=tavily
-```
 
 ## 로컬 실행
 
@@ -850,21 +835,10 @@ http://127.0.0.1:8000/redoc
 `.env` 예:
 
 ```dotenv
-APP_ENV=development
-LOG_LEVEL=INFO
-
-OPENAI_API_KEY=
-TAVILY_API_KEY=
 SEARCH_PROVIDER=tavily
-
-LLM_MODEL_EXTRACTION=gpt-4o-mini
-LLM_MODEL_VERIFICATION=gpt-4o-mini
-LLM_MODEL_AGGREGATION=gpt-4o-mini
-LLM_TEMPERATURE=0
-LLM_REQUEST_TIMEOUT=60
-
+TAVILY_API_KEY=
+OPENAI_API_KEY=
 OPENAI_SEARCH_MODEL=gpt-5-mini
-TAVILY_MAX_RESULTS=5
 ```
 
 ## 주요 파일
