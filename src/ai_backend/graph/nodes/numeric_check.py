@@ -147,7 +147,12 @@ def _verify_numeric_claim(
     evidence_results = evidence_bundle.results
     evidence_text = format_evidence(evidence_results)
 
-    judgment = _request_numeric_judgment(claim, evidence_text=evidence_text, llm=llm)
+    judgment = _request_numeric_judgment(
+        claim,
+        evidence_text=evidence_text,
+        numeric_type=plan.get("type", "Unknown"),
+        llm=llm,
+    )
     merged = {**plan, **judgment}
     if "search_queries" not in merged or not merged["search_queries"]:
         merged["search_queries"] = queries
@@ -237,6 +242,7 @@ def _request_numeric_judgment(
     claim: Claim,
     *,
     evidence_text: str,
+    numeric_type: str,
     llm: BaseChatModel,
 ) -> dict[str, Any]:
     response = llm.invoke(
@@ -246,6 +252,7 @@ def _request_numeric_judgment(
                 content=NUMERIC_JUDGMENT_USER.format(
                     claim=claim["text"],
                     context=claim.get("context", ""),
+                    numeric_type=numeric_type,
                     evidence=evidence_text or "(검색 증거 없음)",
                 )
             ),
