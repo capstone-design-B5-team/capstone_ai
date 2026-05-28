@@ -127,6 +127,8 @@ def _request_aggregate(
 
 
 def _heuristic_aggregate(
+    # 이거를 최종 판단과정에서 약간의 로직을 변경해야 할 것으로 보임.
+    # Fail이 없을 경우 통과 시킨다던지... (수정된 코드에 따르면 기준이 매우 엄격함 -> 거의 모든 자료에서 확인 필요...)
     claims: list[Claim],
     verification_results: list[VerificationResult],
 ) -> FinalReport:
@@ -157,26 +159,24 @@ def _issues_from_results(
     issues: list[FinalIssue] = []
     results_by_claim = _results_grouped_by_claim(claims, verification_results)
     for claim_id, claim_results in results_by_claim.items():
-        issue_results = [result for result in claim_results if result["verdict"] != "PASS"]
-        if not issue_results:
-            continue
         claim = claim_by_id.get(claim_id)
-        primary_result = max(
-            issue_results,
-            key=lambda result: (
-                _VERDICT_PRIORITY[result["verdict"]],
-                result["confidence"],
-            ),
+        sorted_results = sorted(
+            claim_results,
+            key=lambda r: (_VERDICT_PRIORITY[r["verdict"]], r["confidence"]),
+            reverse=True,
         )
-        issues.append(
-            FinalIssue(
-                node=_issue_node_label(issue_results),
-                highlighted_text=claim["text"] if claim else claim_id,
-                judgment=primary_result["verdict"],
-                problem=_issue_reason(claim_results),
-                suggestion=_issue_suggestion(primary_result),
+        for result in sorted_results:
+            if result["verdict"] not in {"WARNING", "FAIL"}:
+                continue
+            issues.append(
+                FinalIssue(
+                    node=_VERIFIER_LABELS.get(result["verifier"], result["verifier"]),
+                    highlighted_text=claim["text"] if claim else claim_id,
+                    judgment=result["verdict"],
+                    problem=_extract_human_reason(result["reasoning"]),
+                    suggestion=_issue_suggestion(result),
+                )
             )
-        )
     return issues
 
 
@@ -188,15 +188,6 @@ def _results_grouped_by_claim(
     for result in verification_results:
         grouped.setdefault(result["claim_id"], []).append(result)
     return {claim_id: results for claim_id, results in grouped.items() if results}
-
-
-def _issue_node_label(results: list[VerificationResult]) -> str:
-    labels: list[str] = []
-    for result in results:
-        label = _VERIFIER_LABELS.get(result["verifier"], result["verifier"])
-        if label not in labels:
-            labels.append(label)
-    return ", ".join(labels)
 
 
 _TERM_REPLACEMENTS = [
@@ -219,23 +210,6 @@ def _extract_human_reason(reasoning: str) -> str:
         if line.startswith("reason="):
             return line[len("reason="):].strip()
     return reasoning.strip()
-
-
-def _issue_reason(results: list[VerificationResult]) -> str:
-    reasons = []
-    for result in results:
-        if result["verdict"] == "PASS":
-            continue
-        reason = _extract_human_reason(result["reasoning"])
-        if reason:
-            reasons.append(reason)
-    combined = " ".join(reasons) if reasons else "검증 오류가 발견되었습니다."
-    return _replace_terms(combined)
-
-
-def _has_conflicting_verdicts(results: list[VerificationResult]) -> bool:
-    verdicts = {result["verdict"] for result in results}
-    return "PASS" in verdicts and any(verdict != "PASS" for verdict in verdicts)
 
 
 def _extract_suggestion(reasoning: str) -> str:
@@ -299,7 +273,8 @@ def _results_payload(results: list[VerificationResult]) -> list[dict[str, Any]]:
 def _normalize_final_report(value: dict[str, Any], *, fallback: FinalReport) -> FinalReport:
     final_grade = _normalize_final_grade(value.get("final_grade"), fallback["final_grade"])
     summary = str(value.get("summary") or fallback["summary"])
-    issues = _normalize_issues(value.get("issues"))
+    # LLM이 요약한 issues 대신 raw results에서 직접 추출한 WARNING/FAIL 항목을 사용
+    issues = fallback["issues"]
     return FinalReport(final_grade=final_grade, summary=summary, issues=issues)
 
 

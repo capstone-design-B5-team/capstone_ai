@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from time import perf_counter
 from typing import Any, get_args
 
@@ -33,6 +34,13 @@ from ai_backend.graph.state import Citation, CitationType, Claim, ClaimType, Gra
 logger = logging.getLogger(__name__)
 
 VALID_CLAIM_TYPES: frozenset[str] = frozenset(get_args(ClaimType))
+
+_PAST_YEAR_RE = re.compile(r"(?:19|20)\d{2}년\s*(?:기준|당시|의)?")
+_PRESENT_IMPLICATION_TERMS = (
+    "여전히", "아직도", "지금도", "지금까지도", "현재까지도", "오늘날까지도", "변함없이",
+    "고착화", "만성화", "만성적", "지속적으로", "계속",
+    "OECD 최고", "OECD 최하", "가장 높은", "가장 낮은", "심각한", "최악",
+)
 """state.py의 ClaimType Literal에서 자동으로 유효 type 집합을 추출.
 
 타입 추가 시 한 곳만 수정하면 검증 로직이 자동 반영된다.
@@ -115,6 +123,7 @@ def preprocess_node(
         if claim is not None:
             claims.append(claim)
 
+    claims = [_add_recency_if_missing(c) for c in claims]
     logger.info("preprocess_node: %d개 항목 중 %d개 Claim 추출", len(parsed), len(claims))
     logger.info(
         "preprocess_node finished document_id=%s elapsed=%.2fs parsed_items=%d claims=%d",
@@ -256,3 +265,27 @@ def _extract_citations(
         )
 
     return citations
+
+
+def _add_recency_if_missing(claim: Claim) -> Claim:
+    """과거 시점 + 현재 함의 패턴이 있는데 RECENCY 타입이 누락됐으면 보정한다.
+
+    claim_extraction LLM이 RECENCY 조건을 충족하는 claim에 타입을 부여하지 않은 경우
+    cherry-picking 탐지(recency_check_node)가 아예 실행되지 않는다. 이를 방지하기 위해
+    패턴 매칭으로 한 번 더 확인하고 누락된 경우에만 추가한다.
+    """
+    if "RECENCY" in claim["type"]:
+        return claim
+
+    text = f"{claim['text']} {claim.get('context', '')}"
+    has_past = bool(_PAST_YEAR_RE.search(text))
+    has_present = any(term in text for term in _PRESENT_IMPLICATION_TERMS)
+
+    if has_past and has_present:
+        claim["type"].append("RECENCY")
+        logger.info(
+            "preprocess_node RECENCY 보정 claim_id=%s text=%r",
+            claim["id"],
+            claim["text"][:80],
+        )
+    return claim

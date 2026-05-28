@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
@@ -10,6 +11,11 @@ from ai_backend.logging_config import configure_logging
 
 settings = get_settings()
 configure_logging(settings.log_level)
+
+if settings.langchain_tracing_v2 and settings.langchain_api_key:
+    os.environ["LANGCHAIN_TRACING_V2"] = "true"
+    os.environ["LANGCHAIN_API_KEY"] = settings.langchain_api_key
+    os.environ["LANGCHAIN_PROJECT"] = settings.langchain_project
 
 
 @asynccontextmanager

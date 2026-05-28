@@ -57,6 +57,11 @@ class Settings(BaseSettings):
     openai_search_model: str = "gpt-5-mini"
     """OpenAI Responses API web_search tool에 사용할 모델."""
 
+    # --- LangSmith ---
+    langchain_tracing_v2: bool = False
+    langchain_api_key: str | None = None
+    langchain_project: str = "capstone-ai"
+
     # --- DB ---
     database_url: str | None = None
 

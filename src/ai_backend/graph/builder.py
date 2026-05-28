@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+from functools import partial
+
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 
+from ai_backend.core.llm import get_llm
 from ai_backend.graph.nodes.aggregate import aggregate_node
 from ai_backend.graph.nodes.fact_check import fact_check_node
 from ai_backend.graph.nodes.numeric_check import numeric_check_node
@@ -30,7 +33,7 @@ def build_graph() -> CompiledStateGraph[GraphState, None, GraphState, GraphState
     graph.add_node("source_check", source_check_node)
     graph.add_node("recency_check", recency_check_node)
     graph.add_node("numeric_check", numeric_check_node)
-    graph.add_node("aggregate", aggregate_node)
+    graph.add_node("aggregate", partial(aggregate_node, llm=get_llm("aggregation")))
 
     graph.add_edge(START, "preprocess")
     graph.add_edge("preprocess", "fact_check")
