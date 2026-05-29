@@ -1,0 +1,221 @@
+[
+  {
+    "label": "Not Enough Evidence",
+    "questions": [],
+    "justification": "검증 결과가 없어 종합 판정을 수행할 수 없습니다."
+  },
+  {
+    "label": "Refuted",
+    "questions": [
+      {
+        "question": "Trump Administration Billie Eilish 주장",
+        "answers": [
+          {
+            "answer": "An erroneous report from The Washington Post held that the Trump administration described Billie Eilish as someone who is \"destroying our country and",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.complex.com/music/a/tracewilliamcowen/leaked-trump-admin-document-billie-eilish-destroying-our-country"
+          },
+          {
+            "answer": "Billie Eilish has criticised the Trump administration while accepting the 2026 MLK Jr. Beloved Community Environmental Justice Award.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.facebook.com/pinknews/videos/billie-eilish-has-criticised-the-trump-administration-while-accepting-the-2026-m/916372244152829"
+          },
+          {
+            "answer": "#BillieEilish defended her public political statements against the Trump administration, ICE and billionaires like Elon Musk, explaining she was",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.instagram.com/p/DXrv0NlFNAe"
+          },
+          {
+            "answer": "우리 국민으로서 우리 모두에게 영향을 미치는 고통스러운 문제에 직면해 있어. ... Billie Eilish가 ICE랑 미국 이민 정책 관련해서 '훔친 땅에는",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.reddit.com/r/popculturechat/comments/1qtjnzk/billie_eillish_at_the_grammys_no_one_is_illegal?tl=ko"
+          },
+          {
+            "answer": "... 영향력을 가진 사람들이 목소리를 내지 않는다는 건 정말 실망스러워. 빌리는 절대 말하는 걸 두려워하지 않고, 항상 진실했어. 목소리를 내던 연예인",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.reddit.com/r/billieeilish/comments/1qn9sml/billie_eilish_urges_other_celebs_to_speak_up?tl=ko"
+          },
+          {
+            "answer": "곡에 반영시켰습니다. 미국에서도 우울증과 고민 등을 가사로 다루는. 래퍼들이 증가하는 가운데, 그녀의 속삭이는 듯한. 나지막한 목소리와 어두운",
+            "answer_type": "Abstractive",
+            "source_url": "https://m.blog.naver.com/nickykim156423/221597693754"
+          }
+        ]
+      }
+    ],
+    "justification": "The QA evidence indicates that an erroneous report from The Washington Post claimed the Trump administration described Billie Eilish as someone who is 'destroying our country.' This suggests that the claim made by the Trump administration is not accurate."
+  },
+  {
+    "label": "Supported",
+    "questions": [
+      {
+        "question": "프랑스 183명 파키스탄 시민 비자 취소",
+        "answers": [
+          {
+            "answer": "파키스탄 정부는 그러나 프랑스 대사 추방과 관련한 결의안을 하원에 제출해 논의한다는 약속만 했을 뿐이라고 말하고 있다. ◎공감언론 뉴시스 dbtpwls@",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.newsis.com/view/NISX20210421_0001413867"
+          },
+          {
+            "answer": "... 프랑스, 反정부 성격의 대규모 시위가 발생했으며, TLP 지지자 수천 명이 파키스탄 곳곳에서 도로와 철도 등을 점거하고 격렬한 시위를 벌였다.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.emerics.org:446/aif/issueDetail.es?brdctsNo=315422&mid=a30200000000&search_option=ALL&search_keyword=&search_year=&search_month=&search_tagkeyword=&systemcode=02&search_region=&search_area=2&currentPage=67&pageCnt=10"
+          },
+          {
+            "answer": "파키스탄 정부는 그러나 프랑스 대사 추방과 관련한 결의안을 하원에 제출해 논의한다는 약속만 했을 뿐이라고 말하고 있다. ... 음성재생 설정 이동 통신망",
+            "answer_type": "Abstractive",
+            "source_url": "https://v.daum.net/v/cENy0iy99x"
+          },
+          {
+            "answer": "난민신청자의 국적을 살펴보면, 파키스탄(734명),. 네팔(397명), 중국(356명) ... 캐나다의 시민ᆞ이민부, 호주의 이민ᆞ시민부, 프랑스의 이민ᆞ통합ᆞ국가정체성.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.nabo.go.kr/board/file/bulkDown.do?idx=4001&bid=19"
+          },
+          {
+            "answer": "... 파키스탄 방문을 취소하면서 이란과의 대화 기대가 꺾였습니다. 이란 외무장관 압바스 아라그치는 파키스탄 방문을 마쳤지만 돌파구를 만들지 못했습니다.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.instagram.com/p/DLjsQXnhsUD"
+          },
+          {
+            "answer": "France Rejects 183 Pak Visitor Visas | Pakistan Consulate Reveals Crackdown | Pakistan Visitor Visa France has rejected 183 Pakistan visitor",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.youtube.com/watch?v=Ii50GqhYNEg"
+          }
+        ]
+      },
+      {
+        "question": "프랑스 파키스탄 시민 비자 취소 2023",
+        "answers": [
+          {
+            "answer": "이런 우려에도 파키스탄 정부는 예고대로 내달 1일부터 단속을 통해 서류 미비자나 미등록 외국인을 체포해 본국으로 강제 추방하겠다는 입장이다.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.yna.co.kr/view/AKR20231029039000104"
+          },
+          {
+            "answer": "8일 로이터통신에 따르면 파키스탄 내무부는 이날 성명에서 다음 달 1일부터 모든 불법체류자와 아프간 시민권 카드(ACC) 소지자를 추방하겠다고 밝혔다.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.yna.co.kr/view/AKR20250308043500076"
+          },
+          {
+            "answer": "프랑스. 관광업. 파키스탄 여권 여권을 소지하신 경우 프랑스 대사관 비자 비자가 필요합니다. 프랑스에 대한 비자 옵션. 대사관 비자. 솅겐 비자. 출장이나 관광 으로",
+            "answer_type": "Abstractive",
+            "source_url": "https://apply.joinsherpa.com/visa/france/pakistani-citizens?language=ko-KR"
+          },
+          {
+            "answer": "어떤 사람들은 아직도 되던데, 공식 웹사이트 pak id \"에서 비자를 받을 수 있는지 확인해 보세요. VPA 비자는 보통 24-48시간 정도 걸려요. 저는 2025년",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.reddit.com/r/pakistan/comments/1q1br5s/pakistan_tourist_visa_got_cancelled?tl=ko"
+          },
+          {
+            "answer": "... 파키스탄 경찰이 밤에 우리를 급습했고, 제 두 아들은 아직 감옥에 있습니다. 증거를 가지고 있습니다. ] 파키스탄 정부는 지난 2023년부터 단계적",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.youtube.com/watch?v=qnU2vd0yqSY"
+          },
+          {
+            "answer": "France Rejects 183 Pak Visitor Visas | Pakistan Consulate Reveals Crackdown | Pakistan Visitor Visa France has rejected 183 Pakistan visitor",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.youtube.com/watch?v=Ii50GqhYNEg"
+          }
+        ]
+      }
+    ],
+    "justification": "The QA evidence confirms that France rejected 183 visitor visas for Pakistani citizens, which supports the claim."
+  },
+  {
+    "label": "Not Enough Evidence",
+    "questions": [
+      {
+        "question": "Nadar community most ancient race UNESCO declaration",
+        "answers": [
+          {
+            "answer": "Over the last three decades, archaeologists have discovered various historical documents relevant to the history of ancient Nadars.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.sanrorhistoricalresearch.com/en/published-studies/ancient-nadar-documents"
+          },
+          {
+            "answer": "www.ijcrt.org © 2023 IJCRT | Volume 11, Issue 7 July 2023 | ISSN: 2320-2882 IJCRT2307473 International Journal of Creative Research Thoughts (IJCRT) www.ijcrt.org e89 SOCIO-RELIGIOUS AWAKENING OF NADAR COMMUNITY IN TRAVANCORE Dr.Rajesh.T (Associate Professor of History, Christian College, Kattakada) Absract:-In the ancient time, Nadars were landlords; but later, after their migration to Travancore, they were pushed into the dungeon of slavery and considered as polluted class. Encouraged by the examples of Nadar Christian women, the Hindus of the same caste also began to cover their bosoms and wear upper clothes32.Also, a good number of Nadars, both Hindu and Christian, were in the habit of visiting Tinnevelly to take wives and in search of employment, where the Nadars at large wore upper www.ijcrt.org © 2023 IJCRT | Volume 11, Issue 7 July 2023 | ISSN: 2320-2882 IJCRT2307473 International Journal of Creative Research Thoughts (IJCRT) www.ijcrt.org e91 clothes.",
+            "answer_type": "Abstractive",
+            "source_url": "https://ijcrt.org/papers/IJCRT2307473.pdf"
+          },
+          {
+            "answer": "# Nadar (caste). Caste in South India and Sri Lanka. **Nadar** (also referred to as *Nadan*, *Shanar* and *Shanan*) is a Tamil caste of India. Nadars are predominant in the Tamil Nadu districts of Kanyakumari, Thoothukudi, Tirunelveli, Tenkasi and Virudhunagar. The Nadar community was not a single caste, but developed from an assortment of related subcastes, which in course of time came under the single banner Nadar. A few subsects of the Nadar community, such as the Nelamaikkarars \"Nadan (Nadar subcaste)\"), were traditionally wealthy landlords and money lenders. Historically, most Nadars were cultivators of palmyra trees and jaggery and a few were also involved in the toddy trade. Nadars claim that the original name of the community was *Shantror* or *Shandrar* (noble one) which, in course of time, was corrupted to Shanar. This belief, that the Nadars had been the kings of Tamil Nadu, became the dogma of the Nadar community in the 19th century.",
+            "answer_type": "Abstractive",
+            "source_url": "https://en.wikipedia.org/wiki/Nadar_(caste)"
+          }
+        ]
+      }
+    ],
+    "justification": "The QA evidence does not provide a direct confirmation or citation from UNESCO regarding the declaration of the Nadar community as the most ancient race in the world. The information provided discusses the history and status of the Nadar community but does not substantiate the specific claim made."
+  },
+  {
+    "label": "Supported",
+    "questions": [
+      {
+        "question": "Matt Gaetz hospice fraud 사건",
+        "answers": [
+          {
+            "answer": "... millions of dollars in fraudulent Medicare claims for more than a decad ... Gaetz was vice chairman of the board. Vitas Hospice and Vitas",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.gainesville.com/story/news/politics/2013/05/09/largest-us-hospice-company-sued/31199121007"
+          },
+          {
+            "answer": "Gaetz was part of a company that engaged in hospice fraud and embezzled 75 million dollars from terminally ill patients. However, upon",
+            "answer_type": "Abstractive",
+            "source_url": "https://arxiv.org/pdf/2506.21745"
+          },
+          {
+            "answer": "Posts about Rep. Matt Gaetz circulating on social media in recent days bend the facts to argue that the Florida Republican is part of the so-called “swamp.”. “Republican Matt Gaetz has had numerous DUIs and his dad got him off each time,” read the Facebook posts, accompanied by a mugshot of Gaetz. “He was part of a company that had to pay 75 million in hospice fraud. The posts offer no evidence that Gaetz has “had numerous DUIs,” or that his father, Don, a Florida state senator from 2006 to 2016, “got him off each time.”. Here’s what we know about the 2008 case: Gaetz, 26 at the time, was arrested in October 2008 while driving home from a nightclub — ironically, called the Swamp — on Florida’s Okaloosa Island, according to the *Tampa Bay Times*. Following the unsubstantiated claim of “numerous DUIs,” the social media posts continue: “He was part of a company that had to pay 75 million in hospice fraud.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.factcheck.org/2019/10/misleading-posts-target-gop-rep-matt-gaetz"
+          },
+          {
+            "answer": "The U.S. Department of Justice is suing the hospice company founded by Senate President Don Gaetz, accusing it of Medicare fraud,",
+            "answer_type": "Abstractive",
+            "source_url": "https://news.wfsu.org/politics/2013-05-10/firm-started-by-sen-president-gaetz-accused-of-medicare-fraud"
+          },
+          {
+            "answer": "The US Department of Justice has sued the hospice company founded by Florida Senate President Don Gaetz, accusing the company of engaging in Medicare fraud for",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.tampabay.com/news/politics/legislature/senate-president-don-gaetzs-former-company-sued-for-medicaid-fraud/2120026"
+          }
+        ]
+      },
+      {
+        "question": "Matt Gaetz hospice fraud 75 million",
+        "answers": [
+          {
+            "answer": "In addition to resolving the lawsuit filed by the United States, the settlement ... Healthcare Fraud. Components. Civil Division · USAO - Missouri",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.justice.gov/archives/opa/pr/chemed-corp-and-vitas-hospice-services-agree-pay-75-million-resolve-false-claims-act"
+          },
+          {
+            "answer": "Since that time, the attorneys of Frohsin Barger & Walthall have been involved in nearly every major False Claims Act hospice fraud case,",
+            "answer_type": "Abstractive",
+            "source_url": "https://frohsinbarger.com/frohsin-barger-the-largest-false-claims-act-hospice-settlement-in-history"
+          },
+          {
+            "answer": "**MBG Represents Whistleblower in Largest False Claims Act Hospice Settlement in History**. On October 30, 2017, the Department of Justice announced that Chemed Corporation and its wholly-owned subsidiaries Vitas Hospice Services LLC and Vitas Healthcare Corporation (“Vitas”) agreed to pay $75 million to resolve allegations that they violated the False Claims Act (FCA) by submitting false claims for hospice services to Medicare. In 2007, Ms. Spottiswood filed a complaint in the Northern District of Illinois alleging that Vitas had submitted false claims to the Medicare and Medicaid Programs for “continuous home care” hospice services in violation of the FCA and the Illinois False Claims Act. Chemed Corporation, et al.*, Case No. 07-cv-4566 (N.D.Ill.))  Two other whistleblowers (Barbara Urick and Dr. Charles Gonzales) subsequently filed lawsuits against Vitas under the FCA. The settlement resolved Ms. Spottiswood’s allegations that between 2002 and 2013 Vitas knowingly submitted or caused to be submitted false claims to Medicare for continuous home care—one of four levels of hospice care covered by Medicaid services—that were not necessary, not actually provided, or not performed in accordance with Medicare requirements.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.lawmbg.com/cases/mbg-represents-whistleblower-in-largest-false-claims-act-hospice-settlement-in-history"
+          },
+          {
+            "answer": "Posts about Rep. Matt Gaetz circulating on social media in recent days bend the facts to argue that the Florida Republican is part of the so-called “swamp.”. “Republican Matt Gaetz has had numerous DUIs and his dad got him off each time,” read the Facebook posts, accompanied by a mugshot of Gaetz. “He was part of a company that had to pay 75 million in hospice fraud. The posts offer no evidence that Gaetz has “had numerous DUIs,” or that his father, Don, a Florida state senator from 2006 to 2016, “got him off each time.”. Here’s what we know about the 2008 case: Gaetz, 26 at the time, was arrested in October 2008 while driving home from a nightclub — ironically, called the Swamp — on Florida’s Okaloosa Island, according to the *Tampa Bay Times*. Following the unsubstantiated claim of “numerous DUIs,” the social media posts continue: “He was part of a company that had to pay 75 million in hospice fraud.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.factcheck.org/2019/10/misleading-posts-target-gop-rep-matt-gaetz"
+          },
+          {
+            "answer": "... $75 million to resolve allegations of Medicare fraud...\" Document 3: \"Matt Gaetz's Involvement in a Company Accused of Hospice Fraud. Rep. Matt.",
+            "answer_type": "Abstractive",
+            "source_url": "https://arxiv.org/pdf/2506.21745"
+          },
+          {
+            "answer": "... millions of dollars in fraudulent Medicare claims for more than a decade, including while Don Gaetz was vice chairman of the board. Vitas Hospice and Vitas",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.healthleadersmedia.com/strategy/largest-us-hospice-company-sued-medicare-fraud"
+          }
+        ]
+      }
+    ],
+    "justification": "The evidence confirms that Matt Gaetz was part of a company that had to pay $75 million in hospice fraud, specifically mentioning his involvement and the amount paid to resolve allegations of Medicare fraud."
+  }
+]

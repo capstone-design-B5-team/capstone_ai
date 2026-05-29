@@ -6,11 +6,12 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ai_backend.graph.state import FinalGrade, VerifierName
+from ai_backend.graph.state import FinalGrade, Label, VerifierName
 from ai_backend.models.claim import (
     CitationModel,
     ClaimModel,
     FinalReportModel,
+    QuestionModel,
     VerificationResultModel,
 )
 
@@ -72,6 +73,24 @@ class VerifyResponse(BaseModel):
     results: list[VerificationResultModel]
     final_grade: FinalGrade
     final_report: FinalReportModel
+
+
+class AveritecPrediction(BaseModel):
+    """Prediction shape consumed by the AVeriTeC evaluator."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    label: Label
+    questions: list[QuestionModel]
+    justification: str
+
+
+class AveritecVerifyResponse(AveritecPrediction):
+    """Internal/evaluation response with document metadata included."""
+
+    project_file_id: int | None = None
+    document_id: str
+    claims: list[ClaimModel]
 
 
 class RecheckRequest(BaseModel):

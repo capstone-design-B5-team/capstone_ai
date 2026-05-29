@@ -27,6 +27,7 @@ from ai_backend.core.verification import (
     judgment_confidence,
     message_content,
     normalize_judgment,
+    question_from_evidence,
     search_verification_evidence,
     string_list,
 )
@@ -38,7 +39,7 @@ from ai_backend.graph.prompts.fact_check import (
     FACT_JUDGMENT_USER,
     FACT_QUERY_USER,
 )
-from ai_backend.graph.state import Claim, GraphState, VerificationResult
+from ai_backend.graph.state import Claim, GraphState, Question, VerificationResult
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,7 @@ def fact_check_node(
     search_client: SearchClient | None = None,
     max_results_per_query: int = 3,
     max_workers: int = 4,
-) -> dict[str, list[VerificationResult]]:
+) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify FACT claims and return a LangGraph partial update."""
     started = perf_counter()
     fact_claims = [claim for claim in state["claims"] if "FACT" in claim["type"]]
@@ -59,6 +60,7 @@ def fact_check_node(
         len(state["claims"]),
         len(fact_claims),
     )
+    include_questions = state.get("run_mode") == "averitec"
     if not fact_claims:
         logger.info("fact_check_node skipped no FACT claims")
         return {"fact_results": []}
@@ -69,14 +71,23 @@ def fact_check_node(
         search_client = search_client if search_client is not None else get_search_client()
     except Exception as exc:
         logger.exception("fact_check_node: search client initialization failed")
-        return {
+        update: dict[str, list[VerificationResult] | list[Question]] = {
             "fact_results": [
                 _make_unverifiable_result(claim, f"검색 클라이언트 초기화 실패: {exc}")
                 for claim in fact_claims
-            ]
+            ],
         }
+        if include_questions:
+            update["questions"] = [
+                _make_unanswerable_question(
+                    claim,
+                    f"검색 클라이언트 초기화 실패: {exc}",
+                )
+                for claim in fact_claims
+            ]
+        return update
 
-    def verify_one(index: int, claim: Claim) -> VerificationResult:
+    def verify_one(index: int, claim: Claim) -> tuple[VerificationResult, Question]:
         claim_started = perf_counter()
         logger.info(
             "fact_check_node claim started %d/%d claim_id=%s text=%r",
@@ -102,9 +113,13 @@ def fact_check_node(
             return result
         except Exception as exc:
             logger.exception("fact_check_node: claim verification failed (%s)", claim["id"])
-            return _make_unverifiable_result(claim, f"사실관계 검증 실패: {exc}")
+            reason = f"사실관계 검증 실패: {exc}"
+            return _make_unverifiable_result(claim, reason), _make_unanswerable_question(
+                claim,
+                reason,
+            )
 
-    results: list[VerificationResult | None] = [None] * len(fact_claims)
+    results: list[tuple[VerificationResult, Question] | None] = [None] * len(fact_claims)
     worker_count = max(1, min(max_workers, len(fact_claims)))
     logger.info("fact_check_node running claim workers=%d", worker_count)
     with ThreadPoolExecutor(max_workers=worker_count) as executor:
@@ -120,7 +135,13 @@ def fact_check_node(
         perf_counter() - started,
         len(fact_claims),
     )
-    return {"fact_results": [result for result in results if result is not None]}
+    completed = [result for result in results if result is not None]
+    update = {
+        "fact_results": [result for result, _question in completed],
+    }
+    if include_questions:
+        update["questions"] = [question for _result, question in completed]
+    return update
 
 
 def _verify_fact_claim(
@@ -129,7 +150,7 @@ def _verify_fact_claim(
     llm: BaseChatModel,
     search_client: SearchClient,
     max_results_per_query: int,
-) -> VerificationResult:
+) -> tuple[VerificationResult, Question]:
     if isinstance(search_client, OpenAIWebSearchClient):
         return _verify_fact_claim_openai_direct(claim, search_client=search_client)
 
@@ -156,7 +177,7 @@ def _verify_fact_claim(
     verdict = judgment_value
     confidence = judgment_confidence(judgment_value)
 
-    return make_verification_result(
+    result = make_verification_result(
         claim_id=claim["id"],
         verifier="fact",
         verdict=verdict,
@@ -171,13 +192,14 @@ def _verify_fact_claim(
             **evidence_bundle.metadata,
         },
     )
+    return result, question_from_evidence(_question_text(claim, queries), evidence_results)
 
 
 def _verify_fact_claim_openai_direct(
     claim: Claim,
     *,
     search_client: OpenAIWebSearchClient,
-) -> VerificationResult:
+) -> tuple[VerificationResult, Question]:
     verified = search_client.verify_claim_once(
         claim_text=claim["text"],
         context=claim.get("context", ""),
@@ -190,7 +212,7 @@ def _verify_fact_claim_openai_direct(
     sources = string_list(result.get("sources"))
     queries = string_list(result.get("search_queries")) or [claim["text"]]
 
-    return make_verification_result(
+    result_obj = make_verification_result(
         claim_id=claim["id"],
         verifier="fact",
         verdict=judgment_value,
@@ -212,6 +234,7 @@ def _verify_fact_claim_openai_direct(
             "direct_openai_web_search": True,
         },
     )
+    return result_obj, _question_from_direct_result(claim, queries, evidence, sources)
 def _request_fact_plan(claim: Claim, *, llm: BaseChatModel) -> dict[str, Any]:
     response = llm.invoke(
         [
@@ -290,4 +313,41 @@ def _format_reasoning(result: dict[str, Any]) -> str:
 
 def _make_unverifiable_result(claim: Claim, reason: str) -> VerificationResult:
     return build_unverifiable_result(claim, verifier="fact", reason=reason)
+
+
+def _make_unanswerable_question(claim: Claim, reason: str) -> Question:
+    return Question(
+        question=_question_text(claim, []),
+        answers=[
+            {
+                "answer": reason,
+                "answer_type": "Unanswerable",
+                "source_url": "",
+            }
+        ],
+    )
+
+
+def _question_text(claim: Claim, queries: list[str]) -> str:
+    return queries[0] if queries else f"What evidence verifies this claim: {claim['text']}?"
+
+
+def _question_from_direct_result(
+    claim: Claim,
+    queries: list[str],
+    evidence: list[str],
+    sources: list[str],
+) -> Question:
+    answers = [
+        {
+            "answer": item,
+            "answer_type": "Abstractive",
+            "source_url": sources[index] if index < len(sources) else "",
+        }
+        for index, item in enumerate(evidence)
+        if item
+    ]
+    if not answers:
+        return _make_unanswerable_question(claim, "No sufficient evidence was found.")
+    return Question(question=_question_text(claim, queries), answers=answers)
 

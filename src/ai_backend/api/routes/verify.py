@@ -36,12 +36,16 @@ def _initial_state(request: VerifyRequest) -> GraphState:
     return GraphState(
         raw_text=request.text,
         document_id=_document_id(request),
+        run_mode="service",
         document_citations=[citation.to_typed_dict() for citation in request.document_citations],
         claims=[],
+        questions=[],
         fact_results=[],
         source_results=[],
         recency_results=[],
         numeric_results=[],
+        label="Not Enough Evidence",
+        justification="",
         final_grade="확인 필요",
         final_report=FinalReport(final_grade="확인 필요", summary="", issues=[]),
     )

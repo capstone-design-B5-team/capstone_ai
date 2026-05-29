@@ -19,6 +19,8 @@ from ai_backend.graph.state import (
     FinalIssue,
     FinalReport,
     GraphState,
+    Label,
+    Question,
     VerificationResult,
 )
 
@@ -38,19 +40,132 @@ _VERDICT_PRIORITY = {
     "FAIL": 3,
 }
 
+_AVERITEC_AGGREGATE_SYSTEM = """You are an AVeriTeC-style fact-checking judge.
+Given extracted sub-claims and QA evidence, predict exactly one veracity label.
+
+Allowed labels:
+- Supported
+- Refuted
+- Not Enough Evidence
+- Conflicting Evidence/Cherrypicking
+
+Use only the QA evidence. If the QA evidence is missing, unanswerable, or too weak
+to decide the claim, choose "Not Enough Evidence". Return only JSON:
+{"label": "...", "justification": "..."}"""
+
+_AVERITEC_AGGREGATE_USER = """Claims:
+{claims}
+
+QA evidence:
+{questions}
+"""
+
+_LABELS: set[Label] = {
+    "Supported",
+    "Refuted",
+    "Not Enough Evidence",
+    "Conflicting Evidence/Cherrypicking",
+}
+
+
+def _label_from_report(final_report: FinalReport) -> Label:
+    """Map the legacy final report to an AVeriTeC label without changing the API."""
+    issues = final_report["issues"]
+    if any(issue["judgment"] == "FAIL" for issue in issues):
+        return "Refuted"
+    if issues:
+        return "Conflicting Evidence/Cherrypicking"
+    return "Supported"
+
+
+def _predict_averitec_label(
+    claims: list[Claim],
+    questions: list[Question],
+    *,
+    llm: BaseChatModel,
+    fallback: tuple[Label, str],
+) -> tuple[Label, str]:
+    """Predict AVeriTeC label from QA evidence, with a conservative fallback."""
+    if not _has_answered_evidence(questions):
+        return (
+            "Not Enough Evidence",
+            "No answerable QA evidence was collected for the claim.",
+        )
+
+    try:
+        response = llm.invoke(
+            [
+                SystemMessage(content=_AVERITEC_AGGREGATE_SYSTEM),
+                HumanMessage(
+                    content=_AVERITEC_AGGREGATE_USER.format(
+                        claims=json.dumps(_claims_payload(claims), ensure_ascii=False, indent=2),
+                        questions=json.dumps(
+                            _questions_payload(questions),
+                            ensure_ascii=False,
+                            indent=2,
+                        ),
+                    )
+                ),
+            ]
+        )
+        parsed = parse_json_with_fallback(message_content(response.content))
+    except Exception:
+        logger.exception("aggregate_node: AVeriTeC label prediction failed")
+        return fallback
+
+    if not isinstance(parsed, dict):
+        return fallback
+    return _normalize_averitec_prediction(parsed, fallback=fallback)
+
+
+def _heuristic_label_from_questions(
+    questions: list[Question],
+    *,
+    fallback: FinalReport,
+) -> tuple[Label, str]:
+    """Fallback label when no AVeriTeC judge LLM is available."""
+    if not _has_answered_evidence(questions):
+        return (
+            "Not Enough Evidence",
+            "No answerable QA evidence was collected for the claim.",
+        )
+    return _label_from_report(fallback), fallback["summary"]
+
+
+def _has_answered_evidence(questions: list[Question]) -> bool:
+    return any(
+        answer["answer_type"] != "Unanswerable" and answer["answer"].strip()
+        for question in questions
+        for answer in question["answers"]
+    )
+
+
+def _normalize_averitec_prediction(
+    value: dict[str, Any],
+    *,
+    fallback: tuple[Label, str],
+) -> tuple[Label, str]:
+    raw_label = str(value.get("label") or "").strip()
+    label = cast(Label, raw_label) if raw_label in _LABELS else fallback[0]
+    justification = str(value.get("justification") or "").strip() or fallback[1]
+    return label, justification
+
 
 def aggregate_node(
     state: GraphState,
     *,
     llm: BaseChatModel | None = None,
-) -> dict[str, FinalGrade | FinalReport]:
-    """Aggregate all verifier outputs into a structured final report."""
+) -> dict[str, FinalGrade | FinalReport | Label | str]:
+    """Aggregate outputs for both legacy service UI and AVeriTeC evaluation."""
     started = perf_counter()
     verification_results = _all_verification_results(state)
+    questions = state.get("questions", [])
+    is_averitec = state.get("run_mode") == "averitec"
     logger.info(
-        "aggregate_node started claims=%d results=%d",
+        "aggregate_node started claims=%d results=%d questions=%d",
         len(state["claims"]),
         len(verification_results),
+        len(questions),
     )
     if not verification_results:
         logger.warning(
@@ -62,19 +177,33 @@ def aggregate_node(
             summary="검증 결과가 없어 종합 판정을 수행할 수 없습니다.",
             issues=[],
         )
-        return {"final_grade": "확인 필요", "final_report": final_report}
+        return {
+            "label": "Not Enough Evidence",
+            "justification": final_report["summary"],
+            "final_grade": final_report["final_grade"],
+            "final_report": final_report,
+        }
 
     fallback = _heuristic_aggregate(state["claims"], verification_results)
+    label_fallback = (
+        _heuristic_label_from_questions(questions, fallback=fallback)
+        if is_averitec
+        else (state.get("label", "Not Enough Evidence"), state.get("justification", ""))
+    )
     if llm is None:
         logger.info("aggregate_node using heuristic aggregate without LLM")
         final_report = fallback
+        label, justification = label_fallback
         logger.info(
-            "aggregate_node finished elapsed=%.2fs final_grade=%s issues=%d",
+            "aggregate_node finished elapsed=%.2fs label=%s final_grade=%s issues=%d",
             perf_counter() - started,
+            label,
             final_report["final_grade"],
             len(final_report["issues"]),
         )
         return {
+            "label": label,
+            "justification": justification,
             "final_grade": final_report["final_grade"],
             "final_report": final_report,
         }
@@ -89,13 +218,24 @@ def aggregate_node(
 
     aggregate_payload = aggregate if aggregate else dict(fallback)
     final_report = _normalize_final_report(aggregate_payload, fallback=fallback)
+    label, justification = label_fallback
+    if is_averitec:
+        label, justification = _predict_averitec_label(
+            state["claims"],
+            questions,
+            llm=llm,
+            fallback=label_fallback,
+        )
     logger.info(
-        "aggregate_node finished elapsed=%.2fs final_grade=%s issues=%d",
+        "aggregate_node finished elapsed=%.2fs label=%s final_grade=%s issues=%d",
         perf_counter() - started,
+        label,
         final_report["final_grade"],
         len(final_report["issues"]),
     )
     return {
+        "label": label,
+        "justification": justification,
         "final_grade": final_report["final_grade"],
         "final_report": final_report,
     }
@@ -267,6 +407,23 @@ def _results_payload(results: list[VerificationResult]) -> list[dict[str, Any]]:
             "sources": result["sources"],
         }
         for result in results
+    ]
+
+
+def _questions_payload(questions: list[Question]) -> list[dict[str, Any]]:
+    return [
+        {
+            "question": question["question"],
+            "answers": [
+                {
+                    "answer": answer["answer"],
+                    "answer_type": answer["answer_type"],
+                    "source_url": answer["source_url"],
+                }
+                for answer in question["answers"]
+            ],
+        }
+        for question in questions
     ]
 
 

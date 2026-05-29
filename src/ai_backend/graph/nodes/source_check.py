@@ -3,17 +3,16 @@
 from __future__ import annotations
 
 import logging
+import re
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from time import perf_counter
 from typing import Any, Literal, cast
-
-import re
+from urllib.parse import urlparse
 
 import httpx
 from langchain_core.language_models import BaseChatModel
-from urllib.parse import urlparse
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from ai_backend.core.ids import make_verification_result
@@ -21,7 +20,14 @@ from ai_backend.core.llm import get_llm
 from ai_backend.core.parsing import parse_json_with_fallback
 from ai_backend.core.search import SearchClient, get_search_client
 from ai_backend.graph.prompts.source_check import SOURCE_CHECK_SYSTEM, SOURCE_CHECK_USER
-from ai_backend.graph.state import Citation, Claim, GraphState, Verdict, VerificationResult
+from ai_backend.graph.state import (
+    Citation,
+    Claim,
+    GraphState,
+    Question,
+    Verdict,
+    VerificationResult,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -100,7 +106,7 @@ def source_check_node(
     source_context_provider: SourceContextProvider | None = None,
     search_client: SearchClient | None = None,
     max_workers: int = 4,
-) -> dict[str, list[VerificationResult]]:
+) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify SOURCE claims and return a LangGraph partial update."""
     started = perf_counter()
     source_claims = [claim for claim in state["claims"] if "SOURCE" in claim["type"]]
@@ -109,6 +115,7 @@ def source_check_node(
         len(state["claims"]),
         len(source_claims),
     )
+    include_questions = state.get("run_mode") == "averitec"
     if not source_claims:
         logger.info("source_check_node skipped no SOURCE claims")
         return {"source_results": []}
@@ -118,7 +125,7 @@ def source_check_node(
         source_context_provider if source_context_provider is not None else fetch_source_context
     )
 
-    def verify_one(index: int, claim: Claim) -> list[VerificationResult]:
+    def verify_one(index: int, claim: Claim) -> tuple[list[VerificationResult], list[Question]]:
         claim_started = perf_counter()
         logger.info(
             "source_check_node claim started %d/%d claim_id=%s text=%r",
@@ -134,9 +141,13 @@ def source_check_node(
             len(citations),
         )
         if not citations:
-            return [_make_unverifiable_result(claim, "SOURCE Claim에 검증할 출처가 없습니다.")]
+            reason = "SOURCE Claim에 검증할 출처가 없습니다."
+            return [_make_unverifiable_result(claim, reason)], [
+                _make_unanswerable_question(claim, reason)
+            ]
 
         claim_results: list[VerificationResult] = []
+        claim_questions: list[Question] = []
         for citation in citations:
             try:
                 fetch_started = perf_counter()
@@ -172,9 +183,12 @@ def source_check_node(
                 claim_results.append(
                     _verify_source_claim(claim, context, credibility=credibility, llm=llm)
                 )
+                claim_questions.append(_question_from_source_context(claim, context))
             except Exception as exc:
                 logger.exception("source_check_node: source verification failed (%s)", claim["id"])
-                claim_results.append(_make_unverifiable_result(claim, f"출처 검증 실패: {exc}"))
+                reason = f"출처 검증 실패: {exc}"
+                claim_results.append(_make_unverifiable_result(claim, reason))
+                claim_questions.append(_make_unanswerable_question(claim, reason))
         logger.info(
             "source_check_node claim finished %d/%d claim_id=%s elapsed=%.2fs",
             index,
@@ -182,9 +196,11 @@ def source_check_node(
             claim["id"],
             perf_counter() - claim_started,
         )
-        return claim_results
+        return claim_results, claim_questions
 
-    ordered_results: list[list[VerificationResult] | None] = [None] * len(source_claims)
+    ordered_results: list[tuple[list[VerificationResult], list[Question]] | None] = [
+        None
+    ] * len(source_claims)
     worker_count = max(1, min(max_workers, len(source_claims)))
     logger.info("source_check_node running claim workers=%d", worker_count)
     with ThreadPoolExecutor(max_workers=worker_count) as executor:
@@ -197,9 +213,15 @@ def source_check_node(
 
     results = [
         result
-        for claim_results in ordered_results
-        if claim_results is not None
-        for result in claim_results
+        for claim_output in ordered_results
+        if claim_output is not None
+        for result in claim_output[0]
+    ]
+    questions = [
+        question
+        for claim_output in ordered_results
+        if claim_output is not None
+        for question in claim_output[1]
     ]
 
     logger.info(
@@ -207,7 +229,10 @@ def source_check_node(
         perf_counter() - started,
         len(results),
     )
-    return {"source_results": results}
+    update: dict[str, list[VerificationResult] | list[Question]] = {"source_results": results}
+    if include_questions:
+        update["questions"] = questions
+    return update
 
 
 _JS_REDIRECT_MAX_WORDS = 30
@@ -522,4 +547,37 @@ def _make_unverifiable_result(claim: Claim, reason: str) -> VerificationResult:
         sources=[],
         metadata={"error": reason},
     )
+
+
+def _make_unanswerable_question(claim: Claim, reason: str) -> Question:
+    return Question(
+        question=_question_text(claim),
+        answers=[
+            {
+                "answer": reason,
+                "answer_type": "Unanswerable",
+                "source_url": "",
+            }
+        ],
+    )
+
+
+def _question_from_source_context(claim: Claim, source_context: SourceContext) -> Question:
+    context = source_context.context.strip()
+    if not context or source_context.accessibility.startswith("ERROR"):
+        return _make_unanswerable_question(claim, context or source_context.accessibility)
+    return Question(
+        question=_question_text(claim),
+        answers=[
+            {
+                "answer": context,
+                "answer_type": "Extractive",
+                "source_url": source_context.url or source_context.source,
+            }
+        ],
+    )
+
+
+def _question_text(claim: Claim) -> str:
+    return f"Does the cited source support this claim: {claim['text']}?"
 

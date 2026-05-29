@@ -8,14 +8,18 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field
 
 from ai_backend.graph.state import (
-    Citation as CitationDict,
+    Answer as AnswerDict,
 )
 from ai_backend.graph.state import (
+    AnswerType,
     CitationType,
     ClaimType,
     FinalGrade,
     Verdict,
     VerifierName,
+)
+from ai_backend.graph.state import (
+    Citation as CitationDict,
 )
 from ai_backend.graph.state import (
     Claim as ClaimDict,
@@ -25,6 +29,9 @@ from ai_backend.graph.state import (
 )
 from ai_backend.graph.state import (
     FinalReport as FinalReportDict,
+)
+from ai_backend.graph.state import (
+    Question as QuestionDict,
 )
 from ai_backend.graph.state import (
     VerificationResult as VerificationResultDict,
@@ -118,6 +125,46 @@ class VerificationResultModel(BaseModel):
             metadata=self.metadata,
             verified_at=self.verified_at.isoformat(),
             parent_result_id=self.parent_result_id,
+        )
+
+
+class AnswerModel(BaseModel):
+    """AVeriTeC-style answer model."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    answer: str = Field(min_length=1)
+    answer_type: AnswerType
+    source_url: str = ""
+
+    @classmethod
+    def from_typed_dict(cls, answer: AnswerDict) -> AnswerModel:
+        return cls.model_validate(dict(answer))
+
+    def to_typed_dict(self) -> AnswerDict:
+        return AnswerDict(
+            answer=self.answer,
+            answer_type=self.answer_type,
+            source_url=self.source_url,
+        )
+
+
+class QuestionModel(BaseModel):
+    """AVeriTeC-style QA evidence model."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    question: str = Field(min_length=1)
+    answers: list[AnswerModel] = Field(default_factory=list)
+
+    @classmethod
+    def from_typed_dict(cls, question: QuestionDict) -> QuestionModel:
+        return cls.model_validate(dict(question))
+
+    def to_typed_dict(self) -> QuestionDict:
+        return QuestionDict(
+            question=self.question,
+            answers=[answer.to_typed_dict() for answer in self.answers],
         )
 
 

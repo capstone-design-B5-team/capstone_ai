@@ -8,6 +8,9 @@ from typing import Annotated, Any, Literal, TypedDict
 ClaimType = Literal["FACT", "NUMERIC", "SOURCE", "RECENCY"]
 """Claim classification. A claim can have multiple types."""
 
+RunMode = Literal["service", "averitec"]
+"""Pipeline mode. Service mode skips AVeriTeC-only QA outputs."""
+
 Verdict = Literal["PASS", "WARNING", "FAIL", "UNVERIFIABLE"]
 """Verifier judgment, aligned with all node prompts."""
 
@@ -16,6 +19,17 @@ VerifierName = Literal["fact", "source", "recency", "numeric"]
 
 CitationType = Literal["url", "reference"]
 """Citation kind."""
+
+AnswerType = Literal["Abstractive", "Extractive", "Boolean", "Unanswerable"]
+"""AVeriTeC answer type for QA evidence."""
+
+Label = Literal[
+    "Supported",
+    "Refuted",
+    "Not Enough Evidence",
+    "Conflicting Evidence/Cherrypicking",
+]
+"""AVeriTeC veracity label."""
 
 FinalGrade = Literal["통과", "주의", "확인 필요"]
 """Final aggregate grade exposed to users."""
@@ -65,6 +79,21 @@ class VerificationResult(TypedDict):
     parent_result_id: str | None
 
 
+class Answer(TypedDict):
+    """Single answer for an AVeriTeC-style evidence question."""
+
+    answer: str
+    answer_type: AnswerType
+    source_url: str
+
+
+class Question(TypedDict):
+    """AVeriTeC-style QA evidence item."""
+
+    question: str
+    answers: list[Answer]
+
+
 class FinalIssue(TypedDict):
     """Issue item in the final report."""
 
@@ -88,14 +117,20 @@ class GraphState(TypedDict):
 
     raw_text: str
     document_id: str
+    run_mode: RunMode
     document_citations: list[Citation]
 
     claims: list[Claim]
+
+    questions: Annotated[list[Question], add]
 
     fact_results: Annotated[list[VerificationResult], add]
     source_results: Annotated[list[VerificationResult], add]
     recency_results: Annotated[list[VerificationResult], add]
     numeric_results: Annotated[list[VerificationResult], add]
+
+    label: Label
+    justification: str
 
     final_grade: FinalGrade
     final_report: FinalReport

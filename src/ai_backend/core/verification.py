@@ -14,7 +14,7 @@ from ai_backend.core.search_policy import (
     rank_search_results,
     search_policy_metadata,
 )
-from ai_backend.graph.state import Claim, Verdict, VerificationResult, VerifierName
+from ai_backend.graph.state import Claim, Question, Verdict, VerificationResult, VerifierName
 
 PASSING_JUDGMENTS = {"PASS", "WARNING", "FAIL"}
 ALL_VERDICTS = {"PASS", "WARNING", "FAIL", "UNVERIFIABLE"}
@@ -188,6 +188,40 @@ def evidence_summary(item: SearchResult) -> str:
     if len(content) > 240:
         content = content[:237] + "..."
     return f"{title}: {content}" if title else content
+
+
+def evidence_answer(item: SearchResult) -> str:
+    """Create an AVeriTeC-style answer from one search result."""
+    content = item.content.strip()
+    if content:
+        return content
+    title = item.title.strip()
+    return title or "No answer could be extracted from the source."
+
+
+def question_from_evidence(
+    question: str,
+    results: list[SearchResult],
+) -> Question:
+    """Build a QA evidence item from ranked search results."""
+    answers = [
+        {
+            "answer": evidence_answer(item),
+            "answer_type": "Abstractive",
+            "source_url": item.url,
+        }
+        for item in results
+        if item.url and evidence_answer(item)
+    ]
+    if not answers:
+        answers = [
+            {
+                "answer": "No sufficient evidence was found.",
+                "answer_type": "Unanswerable",
+                "source_url": "",
+            }
+        ]
+    return Question(question=question, answers=answers)
 
 
 def make_unverifiable_result(
