@@ -1,3 +1,4 @@
+import logging
 import os
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
@@ -11,6 +12,7 @@ from ai_backend.logging_config import configure_logging
 
 settings = get_settings()
 configure_logging(settings.log_level)
+logger = logging.getLogger(__name__)
 
 if settings.langchain_tracing_v2 and settings.langchain_api_key:
     os.environ["LANGCHAIN_TRACING_V2"] = "true"
@@ -20,7 +22,11 @@ if settings.langchain_tracing_v2 and settings.langchain_api_key:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    await check_connection()
+    if settings.database_url:
+        try:
+            await check_connection()
+        except Exception as exc:
+            logger.warning("DB connection check failed, continuing: %s", exc)
     yield
     await dispose_engine()
 
