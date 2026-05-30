@@ -1,0 +1,91 @@
+name: Manage deployment (wake/sleep)
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: '서버 켜기(wake) 또는 끄기(sleep)'
+        required: true
+        default: 'wake'
+        type: choice
+        options:
+          - wake
+          - sleep
+  schedule:
+    # 매일 02:00 KST (17:00 UTC) 자동 sleep
+    - cron: '0 17 * * *'
+
+jobs:
+  manage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Determine action
+        id: act
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "action=sleep" >> "$GITHUB_OUTPUT"
+          else
+            echo "action=${{ inputs.action }}" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Resolved action: ${{ github.event_name == 'schedule' && 'sleep' || inputs.action }}"
+
+      - name: Wake
+        if: steps.act.outputs.action == 'wake'
+        run: |
+          echo "::group::MySQL start"
+          az mysql flexible-server start -n capstone-mysql-b5 -g capstone_design 2>&1 || echo "(already running)"
+          echo "::endgroup::"
+
+          echo "::group::Container Apps scale up"
+          az containerapp update -n capstone-demo -g capstone_design --min-replicas 1 --max-replicas 1 --query "name" -o tsv
+          az containerapp update -n capstone-ai   -g capstone_design --min-replicas 1 --max-replicas 1 --query "name" -o tsv
+          echo "::endgroup::"
+
+          echo "60초 워밍업 대기..."
+          sleep 60
+
+          echo "::group::헬스 체크"
+          curl -sSf -o /dev/null -w "Demo /accounts/login/  HTTP %{http_code}\n" \
+            https://capstone-demo.greenhill-c0ae3c47.koreacentral.azurecontainerapps.io/accounts/login/
+          curl -sSf -o /dev/null -w "AI   /health           HTTP %{http_code}\n" \
+            https://capstone-ai.greenhill-c0ae3c47.koreacentral.azurecontainerapps.io/health
+          echo "::endgroup::"
+
+          {
+            echo "## ✅ 서버 깨어남"
+            echo ""
+            echo "| 서비스 | URL |"
+            echo "|---|---|"
+            echo "| Demo | https://capstone-demo.greenhill-c0ae3c47.koreacentral.azurecontainerapps.io |"
+            echo "| AI   | https://capstone-ai.greenhill-c0ae3c47.koreacentral.azurecontainerapps.io |"
+            echo ""
+            echo "### 로그인 (시드 계정)"
+            echo "- ID: \`minjun\` / \`seoyeon\` / \`jiho\` / \`yuna\`"
+            echo "- 비번: \`test1234\`"
+            echo "- 프로젝트 코드: \`247813\`"
+            echo ""
+            echo "> 매일 02:00 KST 자동 sleep. 필요시 다시 wake."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Sleep
+        if: steps.act.outputs.action == 'sleep'
+        run: |
+          echo "::group::Container Apps scale down"
+          az containerapp update -n capstone-demo -g capstone_design --min-replicas 0 --max-replicas 1 --query "name" -o tsv
+          az containerapp update -n capstone-ai   -g capstone_design --min-replicas 0 --max-replicas 1 --query "name" -o tsv
+          echo "::endgroup::"
+
+          echo "::group::MySQL stop"
+          az mysql flexible-server stop -n capstone-mysql-b5 -g capstone_design 2>&1 || echo "(already stopped)"
+          echo "::endgroup::"
+
+          {
+            echo "## 💤 서버 잠듦"
+            echo ""
+            echo "다시 켜려면 위 **Run workflow** 버튼 → \`action=wake\` 선택."
+          } >> "$GITHUB_STEP_SUMMARY"
