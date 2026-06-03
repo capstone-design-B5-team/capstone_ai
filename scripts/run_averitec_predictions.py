@@ -46,6 +46,7 @@ def initial_state(item: dict[str, Any], index: int) -> dict[str, Any]:
         "raw_text": claim,
         "document_id": str(item.get("id") or item.get("claim_id") or index),
         "run_mode": "averitec",
+        "averitec_claim_types": item.get("claim_types", []),
         "document_citations": [],
         "claims": [],
         "questions": [],
@@ -64,11 +65,34 @@ def initial_state(item: dict[str, Any], index: int) -> dict[str, Any]:
     }
 
 
-def prediction_from_state(state: dict[str, Any]) -> dict[str, Any]:
+def prediction_from_state(
+    item: dict[str, Any],
+    index: int,
+    state: dict[str, Any],
+) -> dict[str, Any]:
+    all_results = [
+        *state.get("fact_results", []),
+        *state.get("source_results", []),
+        *state.get("recency_results", []),
+        *state.get("numeric_results", []),
+    ]
+    node_results = [
+        {
+            "verifier": r["verifier"],
+            "search_queries": r.get("metadata", {}).get("search_queries", []),
+            "evidence": r.get("evidence", []),
+            "sources": r.get("sources", []),
+            "reasoning": r.get("reasoning", ""),
+        }
+        for r in all_results
+    ]
     return {
+        "eval_id": f"AVT-DEV-{index:04d}",
+        "claim": item.get("claim", ""),
         "label": state.get("label", "Not Enough Evidence"),
         "questions": state.get("questions", []),
         "justification": state.get("justification", ""),
+        "node_results": node_results,
     }
 
 
@@ -89,21 +113,40 @@ async def run_predictions(
         raise ValueError("--limit must be non-negative")
 
     selected = data[start:] if limit is None else data[start : start + limit]
+
+    # 기존 출력 파일이 있으면 이어쓰기 (중단 후 재시작 지원)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     predictions: list[dict[str, Any]] = []
+    done_ids: set[str] = set()
+    if output_path.exists():
+        try:
+            with output_path.open("r", encoding="utf-8") as f:
+                predictions = json.load(f)
+            done_ids = {p["eval_id"] for p in predictions if p.get("eval_id")}
+            print(
+                f"Resume: {len(done_ids)} items already done, skipping.",
+                file=sys.stderr,
+            )
+        except Exception:
+            predictions = []
 
     total = len(selected)
     for offset, item in enumerate(selected):
         index = start + offset
         if not isinstance(item, dict):
             raise TypeError(f"item[{index}] must be an object")
+        eid = f"AVT-DEV-{index:04d}"
+        if eid in done_ids:
+            print(f"[{offset + 1}/{total}] skip index={index} (already done)", file=sys.stderr, flush=True)
+            continue
         print(f"[{offset + 1}/{total}] claim index={index}", file=sys.stderr, flush=True)
         result = await verification_graph.ainvoke(initial_state(item, index))
-        predictions.append(prediction_from_state(dict(result)))
+        predictions.append(prediction_from_state(item, index, dict(result)))
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", encoding="utf-8") as f:
-        json.dump(predictions, f, ensure_ascii=False, indent=2)
-        f.write("\n")
+        # 항목마다 즉시 저장 — 중단돼도 완료된 항목은 보존됨
+        with output_path.open("w", encoding="utf-8") as f:
+            json.dump(predictions, f, ensure_ascii=False, indent=2)
+            f.write("\n")
 
     print(f"Wrote {len(predictions)} predictions to {output_path}", file=sys.stderr)
 

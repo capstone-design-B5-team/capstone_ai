@@ -48,6 +48,25 @@ _PRESENT_IMPLICATION_TERMS = (
 
 VALID_CITATION_TYPES: frozenset[str] = frozenset(get_args(CitationType))
 
+_AVERITEC_TYPE_MAP: dict[str, list[ClaimType]] = {
+    "Event/Property Claim": ["FACT"],
+    "Causal Claim":         ["FACT"],
+    "Numerical Claim":      ["FACT", "NUMERIC"],
+    "Position Statement":   ["SOURCE"],
+    "Quote Verification":   ["SOURCE"],
+}
+
+
+def _map_averitec_types(averitec_types: list[str]) -> list[ClaimType]:
+    types: list[ClaimType] = []
+    seen: set[str] = set()
+    for t in averitec_types:
+        for mapped in _AVERITEC_TYPE_MAP.get(t, ["FACT"]):
+            if mapped not in seen:
+                types.append(mapped)
+                seen.add(mapped)
+    return types or ["FACT"]
+
 
 def preprocess_node(
     state: GraphState,
@@ -78,6 +97,24 @@ def preprocess_node(
     if not raw_text or not raw_text.strip():
         logger.warning("preprocess_node: 입력 텍스트가 비어있음")
         return {"claims": []}
+
+    # averitec 모드: raw_text 자체가 검증 대상 claim이므로 LLM 추출 건너뜀
+    if state.get("run_mode") == "averitec":
+        averitec_types = state.get("averitec_claim_types", [])
+        internal_types = _map_averitec_types(averitec_types)
+        claim = make_claim(
+            text=raw_text.strip(),
+            type_=internal_types,
+            context="",
+            document_id=document_id,
+        )
+        logger.info(
+            "preprocess_node averitec mode: raw_text → claim types=%s document_id=%s elapsed=%.2fs",
+            internal_types,
+            document_id,
+            perf_counter() - started,
+        )
+        return {"claims": [claim]}
 
     # 1. LLM 호출
     llm = llm if llm is not None else get_llm("extraction")
