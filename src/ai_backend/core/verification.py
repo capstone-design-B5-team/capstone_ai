@@ -2,8 +2,15 @@
 
 from __future__ import annotations
 
+import logging
+import re as _re
 from dataclasses import dataclass
 from typing import Any, cast
+
+from langchain_core.language_models import BaseChatModel
+from langchain_core.messages import HumanMessage
+
+_KOREAN_RE = _re.compile(r"[가-힣]")
 
 from ai_backend.core.ids import make_verification_result
 from ai_backend.core.search import SearchClient, SearchResult
@@ -15,6 +22,32 @@ from ai_backend.core.search_policy import (
     search_policy_metadata,
 )
 from ai_backend.graph.state import Claim, Question, Verdict, VerificationResult, VerifierName
+
+logger = logging.getLogger(__name__)
+
+_QUESTION_STARTERS = frozenset((
+    "what", "who", "when", "where", "why", "how",
+    "did", "does", "is", "are", "was", "were",
+    "has", "have", "had", "can", "could", "would",
+))
+
+
+_QUESTION_GEN_PROMPT = (
+    "Given a fact-checking claim and the evidence found, "
+    "generate one concise question (in English) that this evidence answers. "
+    'The question should be in natural language like "Did X happen?" or "What is Y?".\n\n'
+    "Claim: {claim}\n"
+    "Evidence summary: {evidence}\n\n"
+    "Return only the question, no explanation."
+)
+
+def lang_instruction(claim: "Claim") -> str:
+    """Return an English-query instruction for non-Korean claims, empty string otherwise."""
+    text = f"{claim['text']} {claim.get('context', '')}"
+    if _KOREAN_RE.search(text):
+        return ""
+    return "\n\nIMPORTANT: This claim is in English. You MUST generate all search_queries in English."
+
 
 PASSING_JUDGMENTS = {"PASS", "WARNING", "FAIL"}
 ALL_VERDICTS = {"PASS", "WARNING", "FAIL", "UNVERIFIABLE"}
@@ -241,3 +274,78 @@ def make_unverifiable_result(
         sources=[],
         metadata={"error": reason},
     )
+
+
+def rule_based_question(claim: Claim, queries: list[str]) -> str:
+    """Option A: 검색 쿼리를 자연어 의문문으로 변환.
+
+    의문사로 시작하면 "?" 추가, 그렇지 않으면 "What does the evidence say about ..." 형태로 래핑.
+    queries가 없으면 claim 텍스트 기반 기본 의문문 반환.
+    """
+    if not queries:
+        return f"What evidence verifies this claim: {claim['text']}?"
+    q = queries[0].strip().rstrip("?")
+    if not q:
+        return f"What evidence verifies this claim: {claim['text']}?"
+    if q.lower().split()[0] in _QUESTION_STARTERS:
+        return q + "?"
+    return f"What does the evidence say about {q}?"
+
+
+def generate_question(
+    claim: Claim,
+    evidence_results: list[SearchResult],
+    queries: list[str],
+    *,
+    llm: BaseChatModel,
+) -> str:
+    """Option B (LLM 기반 의문문 생성) + Option A (규칙 기반) fallback.
+
+    증거를 바탕으로 LLM이 자연어 의문문을 생성. 실패 시 rule_based_question으로 대체.
+    averitec 모드에서만 호출되므로 추가 LLM 비용은 averitec 평가 시에만 발생.
+    """
+    evidence_text = " ".join(r.content[:200] for r in evidence_results[:2])
+    try:
+        response = llm.invoke(
+            [HumanMessage(content=_QUESTION_GEN_PROMPT.format(
+                claim=claim["text"],
+                evidence=evidence_text or "No evidence found.",
+            ))]
+        )
+        result = message_content(response.content).strip().strip('"')
+        if result:
+            return result
+    except Exception:
+        logger.warning("generate_question LLM call failed; falling back to rule_based_question")
+    return rule_based_question(claim, queries)
+
+
+_NUMERIC_ANSWER_PROMPT = (
+    "From the evidence below, extract ONE concise sentence (under 30 words) "
+    "that directly states the key number or statistic relevant to the claim.\n"
+    "If no specific number is found, write 'No specific number found in evidence.'\n\n"
+    "Claim: {claim}\n"
+    "Evidence: {evidence}\n\n"
+    "Return only the sentence, no explanation."
+)
+
+
+def extract_numeric_answer(
+    claim: Claim,
+    evidence_results: list[SearchResult],
+    *,
+    llm: BaseChatModel,
+) -> str:
+    """AVeriTeC NC 평가용 핵심 수치 한 문장 추출. averitec 모드에서만 호출된다."""
+    evidence_text = " ".join(r.content[:300] for r in evidence_results[:3])
+    try:
+        response = llm.invoke([HumanMessage(content=_NUMERIC_ANSWER_PROMPT.format(
+            claim=claim["text"],
+            evidence=evidence_text or "No evidence found.",
+        ))])
+        result = message_content(response.content).strip()
+        if result:
+            return result
+    except Exception:
+        logger.warning("extract_numeric_answer LLM call failed; falling back to evidence content")
+    return evidence_results[0].content if evidence_results else "No evidence found."
