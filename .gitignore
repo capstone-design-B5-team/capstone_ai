@@ -27,7 +27,7 @@ dist/
 .coverage.*
 htmlcov/
 .tox/
-capstone_ai/scripts/local_run_test.sh
+
 # Type checking & linting
 .mypy_cache/
 .ruff_cache/

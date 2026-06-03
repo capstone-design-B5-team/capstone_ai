@@ -41,32 +41,17 @@ _VERDICT_PRIORITY = {
 }
 
 _AVERITEC_AGGREGATE_SYSTEM = """You are an AVeriTeC-style fact-checking judge.
-Given a claim and QA evidence, predict exactly one veracity label.
+Given extracted sub-claims and QA evidence, predict exactly one veracity label.
 
-Label definitions and decision rules:
+Allowed labels:
+- Supported
+- Refuted
+- Not Enough Evidence
+- Conflicting Evidence/Cherrypicking
 
-- Supported: The evidence clearly confirms the claim as stated.
-
-- Refuted: The evidence clearly contradicts or disproves the claim.
-  Use this when the claim is factually wrong, the event did not happen,
-  the person did not say it, or the number is demonstrably incorrect.
-  If the evidence consistently points in one direction against the claim, use Refuted.
-
-- Conflicting Evidence/Cherrypicking: Use ONLY when:
-  (a) different credible sources genuinely contradict each other (not just one source raising doubts),
-  (b) the claim selectively uses outdated data while more recent data tells a different story,
-  (c) the claim is technically true but deliberately omits context that reverses its meaning.
-
-- Not Enough Evidence: Use ONLY when QA answers are truly irrelevant or unanswerable.
-  Do NOT use this label if the answers contain any relevant information about the claim topic.
-
-Key distinctions:
-  Refuted vs CE — consistent evidence against the claim → Refuted.
-                  genuinely split credible sources, or deliberate cherry-picking → CE.
-  NEE vs others — if the answer addresses the claim topic at all, pick a verdict.
-                  Reserve NEE for genuinely off-topic or empty answers.
-
-Return only JSON: {"label": "...", "justification": "..."}"""
+Use only the QA evidence. If the QA evidence is missing, unanswerable, or too weak
+to decide the claim, choose "Not Enough Evidence". Return only JSON:
+{"label": "...", "justification": "..."}"""
 
 _AVERITEC_AGGREGATE_USER = """Claims:
 {claims}

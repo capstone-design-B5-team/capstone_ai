@@ -33,15 +33,6 @@ logger = logging.getLogger(__name__)
 
 SourceContextProvider = Callable[[Citation], "SourceContext"]
 
-# averitec QV: LLM 기반 question 생성 프롬프트 (Plan 1)
-_SOURCE_QUESTION_PROMPT = (
-    "Given a fact-checking claim, generate one concise natural-language question "
-    "(in English) that a fact-checker would ask to verify this claim.\n"
-    'Example: "Did X say Y?" or "Did institution Z announce policy W?"\n\n'
-    "Claim: {claim}\n\n"
-    "Return only the question, no explanation."
-)
-
 
 _DISTORTION_CONFIDENCE: dict[str, float] = {
     "PASS": 0.85,
@@ -150,31 +141,10 @@ def source_check_node(
             len(citations),
         )
         if not citations:
-            if state.get("run_mode") == "averitec":
-                # PS/QV claim: 명시적 출처 없이 들어오는 것이 정상이므로
-                # Tavily로 원문 출처를 검색한 뒤 기존 검증 흐름에 합류
-                context = _search_and_build_context(claim, search_client)
-                credibility = CredibilityResult(
-                    trust_level="UNKNOWN",
-                    reason="출처 명시 없이 검색으로 수집한 출처입니다.",
-                    is_whitelisted=False,
-                )
-                result = _verify_source_claim(claim, context, credibility=credibility, llm=llm)
-                # averitec QV: LLM 기반 question 생성 (Plan 1)
-                q_text = _generate_source_question(claim, llm=llm)
-                questions = [_question_from_source_context(claim, context, question_text=q_text)]
-                # averitec QV: 출처 위치 질문 추가 (gold의 "Where was this published?" 패턴 대응)
-                provenance_q = _source_provenance_question(context)
-                if provenance_q:
-                    questions.append(provenance_q)
-                return [result], questions
             reason = "SOURCE Claim에 검증할 출처가 없습니다."
             return [_make_unverifiable_result(claim, reason)], [
                 _make_unanswerable_question(claim, reason)
             ]
-
-        # averitec: claim당 한 번만 LLM 호출해 question text 생성 (Plan 1)
-        source_q_text = _generate_source_question(claim, llm=llm) if include_questions else None
 
         claim_results: list[VerificationResult] = []
         claim_questions: list[Question] = []
@@ -213,7 +183,7 @@ def source_check_node(
                 claim_results.append(
                     _verify_source_claim(claim, context, credibility=credibility, llm=llm)
                 )
-                claim_questions.append(_question_from_source_context(claim, context, question_text=source_q_text))
+                claim_questions.append(_question_from_source_context(claim, context))
             except Exception as exc:
                 logger.exception("source_check_node: source verification failed (%s)", claim["id"])
                 reason = f"출처 검증 실패: {exc}"
@@ -566,44 +536,6 @@ def _message_content(content: Any) -> str:
     return content if isinstance(content, str) else str(content)
 
 
-# averitec QV: 인용구 추출 정규식 (Plan 2)
-_QUOTE_RE = re.compile(
-    r'["“”\'‘’]([\w\s,.!?]{10,})["“”\'‘’]'
-)
-
-
-def _extract_quote_query(claim_text: str) -> str | None:
-    """QV claim 텍스트에서 인용구를 추출해 검색 쿼리로 반환. 없으면 None. (Plan 2)"""
-    match = _QUOTE_RE.search(claim_text)
-    return match.group(1).strip() if match else None
-
-
-def _search_and_build_context(
-    claim: Claim,
-    search_client: SearchClient | None,
-) -> SourceContext:
-    """출처가 명시되지 않은 PS/QV claim을 위해 Tavily로 원문 출처를 검색한다."""
-    client = search_client or get_search_client()
-    # averitec QV: 인용구가 있으면 인용구만 추출해 검색 (Plan 2)
-    quote = _extract_quote_query(claim["text"])
-    query = quote if quote else claim["text"]
-    results = client.search(query, max_results=3)
-    if not results:
-        return SourceContext(
-            source=claim["text"],
-            accessibility="NO_RESULTS",
-            context="검색 결과를 찾을 수 없습니다.",
-        )
-    top = results[0]
-    combined = "\n".join(f"[{r.title}] {r.content}" for r in results)
-    return SourceContext(
-        source=top.url,
-        accessibility=f"SEARCH_OK ({len(results)} results)",
-        context=_extract_text_preview(combined),
-        url=top.url,
-    )
-
-
 def _make_unverifiable_result(claim: Claim, reason: str) -> VerificationResult:
     return make_verification_result(
         claim_id=claim["id"],
@@ -630,18 +562,12 @@ def _make_unanswerable_question(claim: Claim, reason: str) -> Question:
     )
 
 
-def _question_from_source_context(
-    claim: Claim,
-    source_context: SourceContext,
-    *,
-    question_text: str | None = None,
-) -> Question:
+def _question_from_source_context(claim: Claim, source_context: SourceContext) -> Question:
     context = source_context.context.strip()
     if not context or source_context.accessibility.startswith("ERROR"):
         return _make_unanswerable_question(claim, context or source_context.accessibility)
-    q = question_text if question_text is not None else _question_text(claim)
     return Question(
-        question=q,
+        question=_question_text(claim),
         answers=[
             {
                 "answer": context,
@@ -654,34 +580,4 @@ def _question_from_source_context(
 
 def _question_text(claim: Claim) -> str:
     return f"Does the cited source support this claim: {claim['text']}?"
-
-
-def _source_provenance_question(source_context: SourceContext) -> Question | None:
-    """averitec QV/PS용 출처 위치 질문. 추가 Tavily 호출 없이 기존 context에서 생성."""
-    url = source_context.url or source_context.source
-    if not url or source_context.accessibility.startswith("ERROR"):
-        return None
-    domain = urlparse(url.lower()).netloc or url
-    return Question(
-        question="Where was this claim originally published or found?",
-        answers=[{
-            "answer": domain,
-            "answer_type": "Extractive",
-            "source_url": url,
-        }],
-    )
-
-
-def _generate_source_question(claim: Claim, *, llm: BaseChatModel) -> str:
-    """averitec QV용 LLM 기반 question 생성. 실패 시 고정 문자열로 fallback. (Plan 1)"""
-    try:
-        response = llm.invoke([HumanMessage(content=_SOURCE_QUESTION_PROMPT.format(
-            claim=claim["text"],
-        ))])
-        result = _message_content(response.content).strip().strip('"')
-        if result:
-            return result
-    except Exception:
-        pass
-    return _question_text(claim)
 

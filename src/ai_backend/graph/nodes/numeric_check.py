@@ -21,17 +21,13 @@ from ai_backend.core.search import (
 from ai_backend.core.verification import (
     SearchEvidenceBundle,
     evidence_summary,
-    extract_numeric_answer,
     extract_queries,
     first_result,
     format_evidence,
-    generate_question,
     judgment_confidence,
-    lang_instruction,
     message_content,
     normalize_judgment,
     question_from_evidence,
-    rule_based_question,
     search_verification_evidence,
     string_list,
 )
@@ -106,7 +102,6 @@ def numeric_check_node(
                 llm=llm,
                 search_client=search_client,
                 max_results_per_query=max_results_per_query,
-                include_questions=include_questions,
             )
             logger.info(
                 "numeric_check_node claim finished %d/%d claim_id=%s elapsed=%.2fs",
@@ -155,7 +150,6 @@ def _verify_numeric_claim(
     llm: BaseChatModel,
     search_client: SearchClient,
     max_results_per_query: int,
-    include_questions: bool = False,
 ) -> tuple[VerificationResult, Question]:
     if isinstance(search_client, OpenAIWebSearchClient):
         return _verify_numeric_claim_openai_direct(claim, search_client=search_client)
@@ -205,22 +199,7 @@ def _verify_numeric_claim(
             **evidence_bundle.metadata,
         },
     )
-    if include_questions:
-        question_text = generate_question(claim, evidence_results, queries, llm=llm)
-        # averitec NC: 수치 한 문장 추출로 METEOR precision 향상 (Plan 3)
-        numeric_answer = extract_numeric_answer(claim, evidence_results, llm=llm)
-        question: Question = Question(
-            question=question_text,
-            answers=[{
-                "answer": numeric_answer,
-                "answer_type": "Abstractive",
-                "source_url": evidence_results[0].url if evidence_results else "",
-            }],
-        )
-    else:
-        question_text = _question_text(claim, queries)
-        question = question_from_evidence(question_text, evidence_results)
-    return result, question
+    return result, question_from_evidence(_question_text(claim, queries), evidence_results)
 
 
 def _verify_numeric_claim_openai_direct(
@@ -274,7 +253,7 @@ def _request_numeric_plan(claim: Claim, *, llm: BaseChatModel) -> dict[str, Any]
                 content=NUMERIC_QUERY_USER.format(
                     claim=claim["text"],
                     context=claim.get("context", ""),
-                ) + lang_instruction(claim)
+                )
             ),
         ]
     )
@@ -298,7 +277,7 @@ def _request_numeric_judgment(
                     context=claim.get("context", ""),
                     numeric_type=numeric_type,
                     evidence=evidence_text or "(검색 증거 없음)",
-                ) + lang_instruction(claim)
+                )
             ),
         ]
     )
@@ -362,7 +341,7 @@ def _make_unanswerable_question(claim: Claim, reason: str) -> Question:
 
 
 def _question_text(claim: Claim, queries: list[str]) -> str:
-    return rule_based_question(claim, queries)
+    return queries[0] if queries else f"What numeric evidence verifies this claim: {claim['text']}?"
 
 
 def _question_from_direct_result(
