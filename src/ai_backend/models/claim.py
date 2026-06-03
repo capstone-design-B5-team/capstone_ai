@@ -14,8 +14,7 @@ from ai_backend.graph.state import (
     AnswerType,
     CitationType,
     ClaimType,
-    FinalGrade,
-    Verdict,
+    Label,
     VerifierName,
 )
 from ai_backend.graph.state import (
@@ -25,10 +24,7 @@ from ai_backend.graph.state import (
     Claim as ClaimDict,
 )
 from ai_backend.graph.state import (
-    FinalIssue as FinalIssueDict,
-)
-from ai_backend.graph.state import (
-    FinalReport as FinalReportDict,
+    ClaimLabel as ClaimLabelDict,
 )
 from ai_backend.graph.state import (
     Question as QuestionDict,
@@ -98,8 +94,6 @@ class VerificationResultModel(BaseModel):
     claim_id: str
     verifier: VerifierName
 
-    verdict: Verdict
-    confidence: float = Field(ge=0.0, le=1.0)
     evidence: list[str] = Field(default_factory=list)
     reasoning: str
     sources: list[str] = Field(default_factory=list)
@@ -117,8 +111,6 @@ class VerificationResultModel(BaseModel):
             id=self.id,
             claim_id=self.claim_id,
             verifier=self.verifier,
-            verdict=self.verdict,
-            confidence=self.confidence,
             evidence=self.evidence,
             reasoning=self.reasoning,
             sources=self.sources,
@@ -136,17 +128,21 @@ class AnswerModel(BaseModel):
     answer: str = Field(min_length=1)
     answer_type: AnswerType
     source_url: str = ""
+    boolean_explanation: str = ""
 
     @classmethod
     def from_typed_dict(cls, answer: AnswerDict) -> AnswerModel:
         return cls.model_validate(dict(answer))
 
     def to_typed_dict(self) -> AnswerDict:
-        return AnswerDict(
+        result = AnswerDict(
             answer=self.answer,
             answer_type=self.answer_type,
             source_url=self.source_url,
         )
+        if self.boolean_explanation:
+            result["boolean_explanation"] = self.boolean_explanation
+        return result
 
 
 class QuestionModel(BaseModel):
@@ -156,59 +152,33 @@ class QuestionModel(BaseModel):
 
     question: str = Field(min_length=1)
     answers: list[AnswerModel] = Field(default_factory=list)
+    claim_id: str = ""
 
     @classmethod
     def from_typed_dict(cls, question: QuestionDict) -> QuestionModel:
         return cls.model_validate(dict(question))
 
     def to_typed_dict(self) -> QuestionDict:
-        return QuestionDict(
+        result = QuestionDict(
             question=self.question,
             answers=[answer.to_typed_dict() for answer in self.answers],
         )
+        if self.claim_id:
+            result["claim_id"] = self.claim_id
+        return result
 
 
-class FinalIssueModel(BaseModel):
-    """Final report issue model."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    node: str
-    highlighted_text: str
-    judgment: Verdict
-    problem: str
-    suggestion: str = ""
-
-    @classmethod
-    def from_typed_dict(cls, issue: FinalIssueDict) -> FinalIssueModel:
-        return cls.model_validate(dict(issue))
-
-    def to_typed_dict(self) -> FinalIssueDict:
-        return FinalIssueDict(
-            node=self.node,
-            highlighted_text=self.highlighted_text,
-            judgment=self.judgment,
-            problem=self.problem,
-            suggestion=self.suggestion,
-        )
-
-
-class FinalReportModel(BaseModel):
-    """Structured final report model."""
+class ClaimLabelModel(BaseModel):
+    """Per-claim aggregate label model."""
 
     model_config = ConfigDict(extra="forbid")
 
-    final_grade: FinalGrade
-    summary: str
-    issues: list[FinalIssueModel] = Field(default_factory=list)
+    claim_id: str
+    label: Label
+    justification: str
 
     @classmethod
-    def from_typed_dict(cls, report: FinalReportDict) -> FinalReportModel:
-        return cls.model_validate(dict(report))
+    def from_typed_dict(cls, claim_label: ClaimLabelDict) -> ClaimLabelModel:
+        return cls.model_validate(dict(claim_label))
 
-    def to_typed_dict(self) -> FinalReportDict:
-        return FinalReportDict(
-            final_grade=self.final_grade,
-            summary=self.summary,
-            issues=[issue.to_typed_dict() for issue in self.issues],
-        )
+

@@ -5,16 +5,24 @@
 """
 
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_ENV_FILE = Path(__file__).resolve().parent.parent / ".env"
+
+# pydantic-settings보다 먼저 환경변수에 주입
+if _ENV_FILE.exists():
+    load_dotenv(_ENV_FILE, override=False)
 
 
 class Settings(BaseSettings):
     """앱 설정. 환경변수 또는 .env 파일에서 로드."""
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=str(_ENV_FILE),
         env_file_encoding="utf-8",
         case_sensitive=False,
         extra="ignore",
@@ -28,7 +36,6 @@ class Settings(BaseSettings):
     # provider는 OpenAI로 결정. 노드별로 다른 모델을 쓸 수 있게 분리.
     # 비용 실험 시 환경변수만 바꿔서 조정 가능.
     openai_api_key: str | None = None
-    anthropic_api_key: str | None = None  # 보존: 나중에 변경 가능성
 
     llm_model_extraction: str = "gpt-4o-mini"
     """전처리 노드(Claim 추출)용 모델."""

@@ -3,61 +3,77 @@
 """Fact verification prompts."""
 
 FACT_CHECK_SYSTEM = """당신은 AI 자료 검증 플랫폼의 'Node 1: 사실관계 확인 에이전트'입니다.
-당신의 임무는 입력된 '주장(Claim)'을 4가지 유형으로 분류하고, 유형별 전략에 맞춘 최적의 검색 쿼리를 생성하며, 원문과 대조하여 최종 판정(PASS/WARNING/FAIL)을 내리는 것입니다.
-
-[적용 범위]
 이 노드는 사건·제도·인과관계·개념의 '존재 및 발생 여부'를 검증합니다.
 주장에서 수치(%, 배, 억 원 등)를 제거해도 핵심 검증이 가능한 경우에만 이 노드가 담당합니다.
-수치 자체가 검증 대상인 주장(수치를 빼면 의미를 잃는 주장)은 수치 검증 노드(Node 4)로 넘어갑니다.
+수치 자체가 검증 대상인 주장(수치를 빼면 의미를 잃는 주장)은 수치 검증 노드(Node 4)로 넘어갑니다."""
 
-[유형별 분류 및 쿼리 전략]
-1. 역사적 사실: 연도 + 사건명 포함 (예: "1995년 스웨덴 남성 육아휴직")
-2. 제도/법령: 발표기관 + 연도 포함 (예: "보건복지부 2024년 육아휴직법")
-3. 인과관계: 주장을 원인과 결과로 분해하여 각각 검색 (예: "금리 인상 부동산 영향", "2024 금리 동향")
-4. 정의/개념: 개념명 직접 검색 (예: "의무 육아휴직제 정의")
+FACT_QUESTION_USER = """다음 Claim을 분석하여 유형 분류, 검증용 자연어 질문 5~7개, 각 질문별 검색 쿼리를 생성하십시오.
 
-[판정 기준]
-- PASS: 검색 evidence와 Claim의 핵심 사실이 일치합니다.
-- WARNING: 핵심 사실 일부는 맞지만 표현이 과장되었거나 맥락/조건이 빠져 보완이 필요합니다.
-- FAIL: 검색 evidence와 Claim이 명백히 충돌하거나, Claim의 핵심 사실을 뒷받침하지 못합니다.
+[유형 분류]
+- EPC (Empirical/Process/Causal): 역사적 사실, 제도·법령, 인과관계 등 사건·현상의 발생 및 존재 여부를 다루는 주장
+- CC (Conceptual/Categorical): 정의·개념, 분류 등 어떤 대상이 무엇인지를 다루는 주장
 
-[출력 형식 JSON]
-반드시 아래 JSON 형식으로만 깔끔하게 출력하십시오.
-{
-  "results": [
-    {
-      "claim": "원문 문장",
-      "type": "역사적 사실 | 제도·법령 | 인과관계 | 정의·개념",
-      "search_queries": [
-        "전략에 맞춰 생성된 검색어 1",
-        "전략에 맞춰 생성된 검색어 2"
-      ],
-      "judgment": "PASS | WARNING | FAIL",
-      "reason": "검색된 사실과 대조한 결과 및 판정 근거",
-      "suggestion": "PASS면 빈 문자열, 그 외엔 원문을 어떻게 수정해야 하는지 구체적인 제안"
-    }
-  ]
-}"""
-
-FACT_QUERY_USER = """다음 Claim을 사실관계 유형으로 분류하고, 검증 검색 쿼리만 먼저 설계하십시오.
-아직 Evidence가 없으므로 judgment는 "WARNING", reason은 "검색 전 사실관계 확인 쿼리 설계"로 두십시오.
+[자연어 질문 생성 지침]
+- 다각도로 검증하기 위해 서로 다른 관점의 질문을 5~7개 생성하십시오. 질문이 많을수록 증거 수집 기회가 늘어납니다.
+- 질문은 가능한 한 40~70자 이내의 간결한 형태로 작성하십시오.
+- Claim date ({claim_date})를 기준 시점으로 활용하여, 해당 시점에 유효한 사실과 맥락을 확인하는 질문을 포함하십시오. 검색 쿼리에는 주장 시점의 연도를 포함하십시오.
+- Q1: 핵심 사실 확인 (사건 발생·존재 여부, 예: "스웨덴이 1995년에 남성 육아휴직 의무화를 도입했나요?")
+- Q2: 구체적 수치·시점·주체·조건 확인 (예: "스웨덴 남성 의무 육아휴직 도입 시점은 언제인가요?")
+- Q3: 인과·맥락 확인 (예: "Did X cause Y?", "What effect did X have on Y?")
+- Q4: 배경·전제 확인 (예: "Claim의 배경이 된 정책·제도·상황은 무엇인가요?", "What was the context leading to X?")
+- Q5: 반례·예외 확인 (예: "X가 아닌 경우 또는 예외가 있나요?", "Are there any exceptions or counterexamples to X?")
+- Q6: Claim date ({claim_date}) 시점 유효성 확인 (예: "이 사실은 Claim date 당시에도 유효했나요?")
+- Q7(선택): 대안적 관점 또는 반론 (예: "이 주장에 대한 다른 해석이나 반론이 있나요?")
+- CC 유형: 개념 정의를 묻는 형태도 포함하십시오 (예: "의무 육아휴직제는 어떻게 정의되나요?")
+- 질문은 Claim과 동일한 언어로 자연어 질문 형태로 작성하십시오.
 
 Claim:
 {claim}
 
 Context:
 {context}
-"""
 
-FACT_JUDGMENT_USER = """다음 Claim을 주어진 Evidence와 대조하여 사실관계를 검증하십시오.
-Claim의 핵심 사실이 evidence와 일치하는지 보고 judgment를 PASS/WARNING/FAIL 중 하나로 내리십시오.
+Claim date:
+{claim_date}
+
+반드시 아래 JSON 형식으로만 출력하십시오:
+{{"claim_type": "EPC|CC", "questions": [
+  {{"question": "...", "search_queries": ["쿼리1", "쿼리2"]}},
+  {{"question": "...", "search_queries": ["쿼리3"]}},
+  {{"question": "...", "search_queries": ["쿼리4"]}},
+  {{"question": "...", "search_queries": ["쿼리5"]}},
+  {{"question": "...", "search_queries": ["쿼리6"]}},
+  {{"question": "...", "search_queries": ["쿼리7"]}},
+  {{"question": "...", "search_queries": ["쿼리8"]}}
+]}}"""
+
+FACT_ANSWER_USER = """다음 질문에 대해 Evidence를 바탕으로 사실에 근거한 답변을 생성하십시오.
+
+Claim Type: {claim_type}
+[Claim Type별 답변 지침]
+- EPC (사실·프로세스·인과관계): 사건 발생 여부를 명확히 답하십시오.
+- CC (개념·분류): 개념의 정의나 분류를 설명하십시오.
+
+[답변 유형 — 우선순위 순]
+- Extractive (최우선): Evidence에서 핵심 문장을 직접 추출하여 답변하십시오.
+- Boolean: Yes/No로 명확히 답할 수 있는 경우에만 사용하십시오. answer는 반드시 "Yes" 또는 "No"로만 작성하고, boolean_explanation에 판단 근거를 상세히 서술하십시오.
+- Abstractive: Evidence를 직접 인용할 수 없는 경우에만 사용하십시오. Evidence를 종합·요약하여 답변하십시오.
+- Evidence가 없거나 불충분하면 answer_type을 "Unanswerable"로 하십시오.
+
+Evidence에서 직접 인용(Extractive)을 최우선으로 선택하십시오. Abstractive는 Evidence를 직접 인용할 수 없는 경우에만 사용하십시오.
+
+답변은 Claim과 동일한 언어로 작성하십시오.
 
 Claim:
 {claim}
 
-Context:
-{context}
+Question:
+{question}
 
 Evidence:
 {evidence}
-"""
+
+반드시 아래 JSON 형식으로만 출력하십시오 (answer_type은 Boolean, Extractive, Abstractive, Unanswerable 중 하나):
+Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...상세 근거..."}}
+Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Abstractive|Unanswerable"}}"""
+

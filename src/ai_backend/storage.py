@@ -52,14 +52,8 @@ async def save_verify_job_result(job_id: str, result: VerifyResponse) -> None:
     """Persist completed verification output to the shared DB.
 
     The current implementation intentionally does not choose a DB schema. When
-    the contract is fixed, map ``result.final_report.issues`` to Django's
-    ``core_filereviewitem`` rows:
-
-    - ``project_file_id``: ``result.project_file_id``
-    - ``highlighted_text``: issue original text
-    - ``problem``: issue reason
-    - ``suggestion``: issue suggestion
-    - ``order``: issue index
+    the contract is fixed, map ``result.claim_labels`` /
+    ``result.questions`` to the Django shared-DB rows.
     """
     _job_statuses[job_id] = "completed"
     _job_results[job_id] = result
@@ -71,7 +65,7 @@ async def save_verify_job_result(job_id: str, result: VerifyResponse) -> None:
             "project_file_id": result.project_file_id,
             "claim_count": len(result.claims),
             "result_count": len(result.results),
-            "final_grade": result.final_grade,
+            "claim_label_count": len(result.claim_labels),
         },
     )
 

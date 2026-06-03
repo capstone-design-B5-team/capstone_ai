@@ -1,4 +1,4 @@
-﻿"""Recency verification node."""
+"""Recency verification node."""
 
 from __future__ import annotations
 
@@ -14,39 +14,26 @@ from ai_backend.core.ids import make_verification_result
 from ai_backend.core.llm import get_llm
 from ai_backend.core.parsing import parse_json_with_fallback
 from ai_backend.core.search import (
-    OpenAIWebSearchClient,
     SearchClient,
-    SearchResult,
     get_search_client,
-)
-from ai_backend.core.search_policy import (
-    SearchProfile as RecencyProfile,
-)
-from ai_backend.core.search_policy import (
-    build_search_profile,
-    fallback_queries,
-    rank_search_results,
 )
 from ai_backend.core.verification import (
     SearchEvidenceBundle,
     evidence_summary,
-    extract_queries,
     first_result,
     format_evidence,
-    judgment_confidence,
+    lang_instruction,
     message_content,
-    normalize_judgment,
-    question_from_evidence,
+    rule_based_question,
     search_verification_evidence,
-    string_list,
 )
 from ai_backend.core.verification import (
     make_unverifiable_result as build_unverifiable_result,
 )
 from ai_backend.graph.prompts.recency_check import (
+    RECENCY_ANSWER_USER,
     RECENCY_CHECK_SYSTEM,
-    RECENCY_JUDGMENT_USER,
-    RECENCY_QUERY_USER,
+    RECENCY_QUESTION_USER,
 )
 from ai_backend.graph.state import Claim, GraphState, Question, VerificationResult
 
@@ -70,34 +57,29 @@ def recency_check_node(
         len(state["claims"]),
         len(recency_claims),
     )
-    include_questions = state.get("run_mode") == "averitec"
     if not recency_claims:
         logger.info("recency_check_node skipped no RECENCY claims")
         return {"recency_results": []}
 
+    claim_date = state.get("claim_date", "")
     llm = llm if llm is not None else get_llm("verification")
 
     try:
         search_client = search_client if search_client is not None else get_search_client()
     except Exception as exc:
         logger.exception("recency_check_node: search client initialization failed")
-        update: dict[str, list[VerificationResult] | list[Question]] = {
+        return {
             "recency_results": [
                 _make_unverifiable_result(claim, f"검색 클라이언트 초기화 실패: {exc}")
                 for claim in recency_claims
             ],
-        }
-        if include_questions:
-            update["questions"] = [
-                _make_unanswerable_question(
-                    claim,
-                    f"검색 클라이언트 초기화 실패: {exc}",
-                )
+            "questions": [
+                _make_unanswerable_question(claim, f"검색 클라이언트 초기화 실패: {exc}")
                 for claim in recency_claims
-            ]
-        return update
+            ],
+        }
 
-    def verify_one(index: int, claim: Claim) -> tuple[VerificationResult, Question]:
+    def verify_one(index: int, claim: Claim) -> tuple[VerificationResult, list[Question]]:
         claim_started = perf_counter()
         logger.info(
             "recency_check_node claim started %d/%d claim_id=%s text=%r",
@@ -113,6 +95,7 @@ def recency_check_node(
                 search_client=search_client,
                 max_results_per_query=max_results_per_query,
                 recent_days=recent_days,
+                claim_date=claim_date,
             )
             logger.info(
                 "recency_check_node claim finished %d/%d claim_id=%s elapsed=%.2fs",
@@ -125,12 +108,11 @@ def recency_check_node(
         except Exception as exc:
             logger.exception("recency_check_node: claim verification failed (%s)", claim["id"])
             reason = f"최신성 검증 실패: {exc}"
-            return _make_unverifiable_result(claim, reason), _make_unanswerable_question(
-                claim,
-                reason,
-            )
+            return _make_unverifiable_result(claim, reason), [
+                _make_unanswerable_question(claim, reason)
+            ]
 
-    results: list[tuple[VerificationResult, Question] | None] = [None] * len(recency_claims)
+    results: list[tuple[VerificationResult, list[Question]] | None] = [None] * len(recency_claims)
     worker_count = max(1, min(max_workers, len(recency_claims)))
     logger.info("recency_check_node running claim workers=%d", worker_count)
     with ThreadPoolExecutor(max_workers=worker_count) as executor:
@@ -147,12 +129,10 @@ def recency_check_node(
         len(recency_claims),
     )
     completed = [result for result in results if result is not None]
-    update = {
-        "recency_results": [result for result, _question in completed],
+    return {
+        "recency_results": [result for result, _questions in completed],
+        "questions": [q for _result, qs in completed for q in qs],
     }
-    if include_questions:
-        update["questions"] = [question for _result, question in completed]
-    return update
 
 
 def _verify_recency_claim(
@@ -162,23 +142,26 @@ def _verify_recency_claim(
     search_client: SearchClient,
     max_results_per_query: int,
     recent_days: int,
-) -> tuple[VerificationResult, Question]:
-    if isinstance(search_client, OpenAIWebSearchClient):
-        return _verify_recency_claim_openai_direct(
-            claim,
-            search_client=search_client,
-            recent_days=recent_days,
-        )
+    claim_date: str = "",
+) -> tuple[VerificationResult, list[Question]]:
+    # Step 1: Time indicator extraction + multi NL questions + search queries
+    q_data = _request_recency_questions(claim, llm=llm, claim_date=claim_date)
+    q_items = q_data.get("questions", [])
+    time_indicators = q_data.get("time_indicators", [])
+    cherry_pick_direction = q_data.get("cherry_pick_direction", "해당없음")
 
-    profile = build_search_profile(claim)
-    plan = _request_recency_plan(claim, llm=llm)
-    queries = extract_queries(plan)
-    if not queries:
-        queries = fallback_queries(claim, profile, latest=True)
+    if not q_items:
+        q_items = [{"question": _question_text(claim, [claim["text"]]), "search_queries": [claim["text"]]}]
 
+    # Deduplicate search queries across all questions
+    all_queries: list[str] = (list(dict.fromkeys(
+        q for qi in q_items for q in qi.get("search_queries", [])
+    )) or [claim["text"]])[:3]
+
+    # Step 2: Search evidence
     evidence_bundle = _search_evidence(
         claim,
-        queries,
+        all_queries,
         search_client=search_client,
         max_results_per_query=max_results_per_query,
         recent_days=recent_days,
@@ -186,114 +169,67 @@ def _verify_recency_claim(
     evidence_results = evidence_bundle.results
     evidence_text = format_evidence(evidence_results)
 
-    judgment = _request_recency_judgment(claim, evidence_text=evidence_text, llm=llm)
-    merged = {**plan, **judgment}
-    if "search_queries" not in merged or not merged["search_queries"]:
-        merged["search_queries"] = queries
-
-    judgment_value = normalize_judgment(merged.get("judgment"))
-    verdict = judgment_value
-    confidence = judgment_confidence(judgment_value)
-
     result = make_verification_result(
         claim_id=claim["id"],
         verifier="recency",
-        verdict=verdict,
-        confidence=confidence,
         evidence=[evidence_summary(item) for item in evidence_results],
-        reasoning=_format_reasoning(merged),
+        reasoning=(
+            f"time_indicators={time_indicators}\n"
+            f"cherry_pick_direction={cherry_pick_direction}\n"
+            f"search_queries={all_queries}"
+        ),
         sources=[item.url for item in evidence_results if item.url],
         metadata={
-            "node_result": merged,
-            "search_queries": merged.get("search_queries", queries),
-            "raw_judgment": judgment_value,
-            "time_indicators": merged.get("time_indicators", []),
+            "search_queries": all_queries,
+            "time_indicators": time_indicators,
+            "cherry_pick_direction": cherry_pick_direction,
             **evidence_bundle.metadata,
-            "recency_profile": evidence_bundle.metadata.get("search_profile", {}),
         },
     )
-    return result, question_from_evidence(_question_text(claim, queries), evidence_results)
+
+    # Step 3: Per-question answer generation
+    source_url = evidence_results[0].url if evidence_results else ""
+    questions: list[Question] = []
+    for qi in q_items:
+        q_text = qi.get("question", "") or _question_text(claim, all_queries)
+        a_result = _request_recency_answer(claim, question=q_text, evidence_text=evidence_text, llm=llm)
+        answer = a_result.get("answer", "")
+        answer_type = a_result.get("answer_type", "Abstractive")
+        boolean_explanation = a_result.get("boolean_explanation", "")
+        if answer:
+            answer_dict: dict = {"answer": answer, "answer_type": answer_type, "source_url": source_url}
+            if answer_type == "Boolean":
+                answer_dict["boolean_explanation"] = boolean_explanation
+            questions.append(Question(question=q_text, answers=[answer_dict], claim_id=claim["id"]))
+
+    if not questions:
+        return result, [_make_unanswerable_question(claim, "No sufficient evidence was found.")]
+    return result, questions
 
 
-def _verify_recency_claim_openai_direct(
-    claim: Claim,
-    *,
-    search_client: OpenAIWebSearchClient,
-    recent_days: int,
-) -> tuple[VerificationResult, Question]:
-    verified = search_client.verify_claim_once(
-        claim_text=claim["text"],
-        context=claim.get("context", ""),
-        claim_types=list(claim["type"]),
-        recent_days=recent_days,
-    )
-    recency_result = verified.get("recency")
-    result: dict[str, Any] = recency_result if isinstance(recency_result, dict) else {}
-    judgment_value = normalize_judgment(result.get("judgment"))
-    evidence = string_list(result.get("evidence"))
-    sources = string_list(result.get("sources"))
-    queries = string_list(result.get("search_queries")) or [f"{claim['text']} 최신"]
-
-    result_obj = make_verification_result(
-        claim_id=claim["id"],
-        verifier="recency",
-        verdict=judgment_value,
-        confidence=judgment_confidence(judgment_value),
-        evidence=evidence,
-        reasoning=_format_reasoning(
-            {
-                "time_indicators": result.get("time_indicators", []),
-                "judgment": judgment_value,
-                "search_queries": queries,
-                "reason": result.get("reason", ""),
-            }
-        ),
-        sources=sources,
-        metadata={
-            "node_result": result,
-            "search_queries": queries,
-            "raw_judgment": judgment_value,
-            "time_indicators": result.get("time_indicators", []),
-            "direct_openai_web_search": True,
-        },
-    )
-    return result_obj, _question_from_direct_result(claim, queries, evidence, sources)
-
-
-def _request_recency_plan(claim: Claim, *, llm: BaseChatModel) -> dict[str, Any]:
+def _request_recency_questions(claim: Claim, *, llm: BaseChatModel, claim_date: str = "") -> dict[str, Any]:
     response = llm.invoke(
         [
             SystemMessage(content=RECENCY_CHECK_SYSTEM),
             HumanMessage(
-                content=RECENCY_QUERY_USER.format(
+                content=RECENCY_QUESTION_USER.format(
                     claim=claim["text"],
                     context=claim.get("context", ""),
-                )
+                    claim_date=claim_date or "(정보 없음)",
+                ) + lang_instruction(claim)
             ),
         ]
     )
     parsed = parse_json_with_fallback(message_content(response.content))
-    return first_result(parsed, marker_keys={"search_queries", "judgment"}) or {}
+    if isinstance(parsed, dict):
+        return parsed
+    return {}
 
 
-def _build_recency_profile(claim: Claim) -> RecencyProfile:
-    return build_search_profile(claim)
-
-
-def _fallback_recency_queries(claim: Claim, profile: RecencyProfile) -> list[str]:
-    return fallback_queries(claim, profile, latest=True)
-
-
-def _rank_recency_evidence(
-    profile: RecencyProfile,
-    results: list[SearchResult],
-) -> list[SearchResult]:
-    return [item.result for item in rank_search_results(profile, results)]
-
-
-def _request_recency_judgment(
+def _request_recency_answer(
     claim: Claim,
     *,
+    question: str,
     evidence_text: str,
     llm: BaseChatModel,
 ) -> dict[str, Any]:
@@ -301,16 +237,16 @@ def _request_recency_judgment(
         [
             SystemMessage(content=RECENCY_CHECK_SYSTEM),
             HumanMessage(
-                content=RECENCY_JUDGMENT_USER.format(
+                content=RECENCY_ANSWER_USER.format(
                     claim=claim["text"],
-                    context=claim.get("context", ""),
+                    question=question,
                     evidence=evidence_text or "(검색 증거 없음)",
                 )
             ),
         ]
     )
     parsed = parse_json_with_fallback(message_content(response.content))
-    return first_result(parsed, marker_keys={"search_queries", "judgment"}) or {}
+    return first_result(parsed, marker_keys={"answer", "answer_type"}) or {}
 
 
 def _search_evidence(
@@ -334,27 +270,6 @@ def _search_evidence(
         return SearchEvidenceBundle(results=[], metadata={})
 
 
-def _format_reasoning(result: dict[str, Any]) -> str:
-    indicators = result.get("time_indicators")
-    if not isinstance(indicators, list):
-        indicators = []
-    queries = result.get("search_queries") if isinstance(result.get("search_queries"), list) else []
-    judgment = normalize_judgment(result.get("judgment"))
-    reason = str(result.get("reason") or "").strip()
-    suggestion = str(result.get("suggestion") or "").strip()
-
-    parts = [
-        f"time_indicators={indicators}",
-        f"judgment={judgment}",
-        f"search_queries={queries}",
-    ]
-    if reason:
-        parts.append(f"reason={reason}")
-    if suggestion:
-        parts.append(f"suggestion={suggestion}")
-    return "\n".join(parts)
-
-
 def _make_unverifiable_result(claim: Claim, reason: str) -> VerificationResult:
     return build_unverifiable_result(claim, verifier="recency", reason=reason)
 
@@ -369,29 +284,9 @@ def _make_unanswerable_question(claim: Claim, reason: str) -> Question:
                 "source_url": "",
             }
         ],
+        claim_id=claim["id"],
     )
 
 
 def _question_text(claim: Claim, queries: list[str]) -> str:
-    return queries[0] if queries else f"What recent evidence verifies this claim: {claim['text']}?"
-
-
-def _question_from_direct_result(
-    claim: Claim,
-    queries: list[str],
-    evidence: list[str],
-    sources: list[str],
-) -> Question:
-    answers = [
-        {
-            "answer": item,
-            "answer_type": "Abstractive",
-            "source_url": sources[index] if index < len(sources) else "",
-        }
-        for index, item in enumerate(evidence)
-        if item
-    ]
-    if not answers:
-        return _make_unanswerable_question(claim, "No sufficient evidence was found.")
-    return Question(question=_question_text(claim, queries), answers=answers)
-
+    return rule_based_question(claim, queries)
