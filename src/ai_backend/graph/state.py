@@ -118,6 +118,7 @@ class GraphState(TypedDict):
     raw_text: str
     document_id: str
     run_mode: RunMode
+    averitec_claim_types: list[str]
     document_citations: list[Citation]
 
     claims: list[Claim]

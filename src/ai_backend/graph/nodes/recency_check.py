@@ -33,10 +33,13 @@ from ai_backend.core.verification import (
     extract_queries,
     first_result,
     format_evidence,
+    generate_question,
     judgment_confidence,
+    lang_instruction,
     message_content,
     normalize_judgment,
     question_from_evidence,
+    rule_based_question,
     search_verification_evidence,
     string_list,
 )
@@ -113,6 +116,7 @@ def recency_check_node(
                 search_client=search_client,
                 max_results_per_query=max_results_per_query,
                 recent_days=recent_days,
+                include_questions=include_questions,
             )
             logger.info(
                 "recency_check_node claim finished %d/%d claim_id=%s elapsed=%.2fs",
@@ -162,6 +166,7 @@ def _verify_recency_claim(
     search_client: SearchClient,
     max_results_per_query: int,
     recent_days: int,
+    include_questions: bool = False,
 ) -> tuple[VerificationResult, Question]:
     if isinstance(search_client, OpenAIWebSearchClient):
         return _verify_recency_claim_openai_direct(
@@ -212,7 +217,11 @@ def _verify_recency_claim(
             "recency_profile": evidence_bundle.metadata.get("search_profile", {}),
         },
     )
-    return result, question_from_evidence(_question_text(claim, queries), evidence_results)
+    if include_questions:
+        question_text = generate_question(claim, evidence_results, queries, llm=llm)
+    else:
+        question_text = _question_text(claim, queries)
+    return result, question_from_evidence(question_text, evidence_results)
 
 
 def _verify_recency_claim_openai_direct(
@@ -268,7 +277,7 @@ def _request_recency_plan(claim: Claim, *, llm: BaseChatModel) -> dict[str, Any]
                 content=RECENCY_QUERY_USER.format(
                     claim=claim["text"],
                     context=claim.get("context", ""),
-                )
+                ) + lang_instruction(claim)
             ),
         ]
     )
@@ -305,7 +314,7 @@ def _request_recency_judgment(
                     claim=claim["text"],
                     context=claim.get("context", ""),
                     evidence=evidence_text or "(검색 증거 없음)",
-                )
+                ) + lang_instruction(claim)
             ),
         ]
     )
@@ -373,7 +382,7 @@ def _make_unanswerable_question(claim: Claim, reason: str) -> Question:
 
 
 def _question_text(claim: Claim, queries: list[str]) -> str:
-    return queries[0] if queries else f"What recent evidence verifies this claim: {claim['text']}?"
+    return rule_based_question(claim, queries)
 
 
 def _question_from_direct_result(
