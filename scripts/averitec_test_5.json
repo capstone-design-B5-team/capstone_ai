@@ -1,0 +1,722 @@
+[
+  {
+    "eval_id": "AVT-DEV-0000",
+    "claim": "In a letter to Steve Jobs, Sean Connery refused to appear in an apple commercial.",
+    "label": "Refuted",
+    "questions": [
+      {
+        "question": "Did Sean Connery refuse to appear in an apple commercial in a letter to Steve Jobs?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.dailymotion.com/video/x7x75j5",
+            "boolean_explanation": "The claim that Sean Connery refused to appear in an apple commercial in a letter to Steve Jobs is false. Multiple sources confirm that the letter is a hoax and did not actually occur. For instance, a report from Times of India states that the letter is fake and claims that Connery insulted Jobs is not true."
+          }
+        ]
+      },
+      {
+        "question": "What was the date of Sean Connery's letter to Steve Jobs regarding the apple commercial?",
+        "answers": [
+          {
+            "answer": "Unanswerable",
+            "answer_type": "Unanswerable",
+            "source_url": "https://www.dailymotion.com/video/x7x75j5"
+          }
+        ]
+      },
+      {
+        "question": "What reasons did Sean Connery provide for refusing to appear in the apple commercial?",
+        "answers": [
+          {
+            "answer": "Sean Connery purportedly claimed, 'I do not sell my soul for Apple or any other company,' and expressed no interest in 'changing the world' as suggested by Jobs.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.dailymotion.com/video/x7x75j5"
+          }
+        ]
+      },
+      {
+        "question": "What was the context of Sean Connery's decision to refuse the apple commercial?",
+        "answers": [
+          {
+            "answer": "The letter purportedly contains a caustic rejection of the offer, where Connery refers to Jobs as a mere 'computer salesman' and expresses disdain for the idea of selling his soul for Apple.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.dailymotion.com/video/x7x75j5"
+          }
+        ]
+      },
+      {
+        "question": "Are there any other instances where Sean Connery declined commercial offers?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.dailymotion.com/video/x7x75j5",
+            "boolean_explanation": "Sean Connery declined an offer to portray Gandalf in the Lord of the Rings series, stating he couldn't understand the novels and wasn't keen on the role."
+          }
+        ]
+      }
+    ],
+    "justification": "The evidence clearly states that the claim about Sean Connery refusing to appear in an apple commercial in a letter to Steve Jobs is false, as multiple sources confirm that the letter is a hoax and did not actually occur.",
+    "node_results": [
+      {
+        "verifier": "fact",
+        "search_queries": [
+          "Sean Connery letter to Steve Jobs apple commercial refusal",
+          "Sean Connery letter date to Steve Jobs apple commercial",
+          "Sean Connery reasons refusal apple commercial",
+          "context Sean Connery apple commercial refusal",
+          "Sean Connery declined commercial offers"
+        ],
+        "evidence": [
+          "James Bond, Sean Connery Writes To Steve Jobs Refusing To Be In ...: The letter calls Steve Jobs a mere \"computer salesmen\" compared with Sean Connery. It also contains a little 007 at the low-right corner. The",
+          "Did Sean Connery Send a Letter to Apple Rejecting a Pitchman Offer?: A purported letter from Sean Connery caustically rejects an offer for him to become a pitchman for Apple Computers.",
+          "Hoax Sean Connery letter to Steve Jobs resurfaces following his death: In the letter, the James Bond star purportedly rejects an offer to appear in an Apple commercial in 1998. Examples of posts sharing the letter",
+          "We did make an offer to Connery but he said no. We never got an ...: Sean Connery turned down an offer to portray Gandalf in the Lord of the Rings series claiming he couldn't understand the novels and wasn't keen",
+          "Sean Connery didn't turn down the chance to be in an Apple ad ...: # Sean Connery didn't turn down the chance to be in an Apple ad despite what Twitter might tell you. Despite what everyone on Twitter might think, the late Sean Connery never sent a letter ripping Steve Jobs a new one following another f...",
+          "Ooops ! Kinda So rude . | Sean Connery responds to Steve Job…: Sean Connery responds to Steve Jobs request to be in Apple commercial...Really very Rude..All of U have to Check It Guys.",
+          "Dataset Viewer - Fact Extraction and VERification: In a letter to Steve Jobs, Sean Connery refused to appear in an apple commercial. Details. ID: 0; Claim Date: 31-10-2020; Speaker: None; Original Claim URL: N/A",
+          "No, ‘James Bond’ did not write this letter to Apple co-founder Steve Jobs - Times of India: Soon after the death of Connery on October 31, a fake letter is doing the rounds on social media in which Connery is said to be rejecting an offer made by Steve Jobs to appear in an Apple commercial. Soon after the death of Connery on Oc...",
+          "Benda - When Sean Connery was James Bond, its said he refused ...: When Sean Connery was James Bond, its said he refused to be Apple ambassador in an advert because it was a new product that he didn't",
+          "Sean Connery did not insult Steve Jobs by calling him salesman, viral letter is fake: ### Download App. NewsTechnologyNewsSean Connery did not insult Steve Jobs by calling him salesman, viral letter is fake. # Sean Connery did not insult Steve Jobs by calling him salesman, viral letter is fake. ## There is a viral letter ...",
+          "No, Sean Connery didn't turn down an offer from Steve Jobs | Cult of Mac: Over the weekend, the first (and arguably best) actor to play James Bond in a movie, Sean Connery, passed away at the age of 90. Almost immediately, a story began doing the rounds online about the time, in 1998, when Connery told Steve J...",
+          "Sean ConneryThe REAL Reason Sean Connery REFUSED to ...: They offered him millions but he said no! Sean Connery walked away from James Bond forever after a secret battle that almost destroyed him."
+        ],
+        "sources": [
+          "https://www.dailymotion.com/video/x7x75j5",
+          "https://www.snopes.com/fact-check/false-sean-connery-letter-to-apple",
+          "https://www.reuters.com/article/world/fact-check-hoax-sean-connery-letter-to-steve-jobs-resurfaces-following-his-deat-idUSKBN27I276",
+          "https://www.facebook.com/movieandes/posts/what-veteran-actor-rejected-a-role-that-became-a-classicthere-are-a-few-cases-bu/374944021759070",
+          "https://www.imore.com/sean-connery-didnt-turn-down-chance-be-apple-ad-despite-what-twitter-might-tell-you",
+          "https://www.flickr.com/photos/abee5/5989446435",
+          "https://fever.ai/dataset_viewer/averitec/0.html",
+          "https://timesofindia.indiatimes.com/gadgets-news/no-james-bond-did-not-write-this-letter-to-apple-co-founder-steve-jobs/articleshow/78991762.cms",
+          "https://www.facebook.com/BendaBookings/photos/when-sean-connery-was-james-bond-its-said-he-refused-to-be-apple-ambassador-in-a/3547989255239485",
+          "https://www.indiatoday.in/technology/news/story/sean-connery-did-not-insult-steve-jobs-by-calling-him-salesman-viral-letter-is-fake-1737178-2020-11-02",
+          "https://www.cultofmac.com/news/no-sean-connery-didnt-turn-down-an-offer-from-steve-jobs",
+          "https://www.youtube.com/watch?v=AT8sJd51MWE"
+        ],
+        "reasoning": "claim_type=EPC\nsearch_queries=['Sean Connery letter to Steve Jobs apple commercial refusal', 'Sean Connery letter date to Steve Jobs apple commercial', 'Sean Connery reasons refusal apple commercial', 'context Sean Connery apple commercial refusal', 'Sean Connery declined commercial offers']"
+      }
+    ]
+  },
+  {
+    "eval_id": "AVT-DEV-0001",
+    "claim": "Trump Administration claimed songwriter Billie Eilish Is Destroying Our Country In Leaked Documents",
+    "label": "Refuted",
+    "questions": [
+      {
+        "question": "Did the Trump Administration claim that songwriter Billie Eilish is destroying our country in leaked documents?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.audacy.com/mix1051fm/music/alternative/trump-admin-doc-calls-billie-eilish-everything-wrong",
+            "boolean_explanation": "The evidence from the leaked document indicates that the Trump administration claimed Billie Eilish was 'destroying our country and everything we care about', confirming the assertion made in the claim."
+          }
+        ]
+      },
+      {
+        "question": "What specific statements were made by the Trump Administration regarding Billie Eilish?",
+        "answers": [
+          {
+            "answer": "The Trump administration claimed in a leaked document that Billie Eilish was 'destroying our country and everything we care about'.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.audacy.com/mix1051fm/music/alternative/trump-admin-doc-calls-billie-eilish-everything-wrong"
+          }
+        ]
+      },
+      {
+        "question": "What impact did the Trump Administration's claims about Billie Eilish have on public opinion?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.audacy.com/mix1051fm/music/alternative/trump-admin-doc-calls-billie-eilish-everything-wrong",
+            "boolean_explanation": "The Trump Administration's claims about Billie Eilish being 'destroying our country' were part of a politically motivated campaign that aimed to counteract negative public sentiment and boost Trump's re-election chances. This indicates that the claims had a significant impact on public opinion, as they were used to frame Eilish's criticism in a negative light."
+          }
+        ]
+      },
+      {
+        "question": "What was the context of the claims made by the Trump Administration about Billie Eilish?",
+        "answers": [
+          {
+            "answer": "The Trump Administration claimed that Billie Eilish was 'destroying our country and everything we care about' in a leaked document, which also noted her previous criticism of Trump during the Democratic National Convention.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.audacy.com/mix1051fm/music/alternative/trump-admin-doc-calls-billie-eilish-everything-wrong"
+          }
+        ]
+      },
+      {
+        "question": "Are there any notable reactions or counterclaims regarding the Trump Administration's statements about Billie Eilish?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.audacy.com/mix1051fm/music/alternative/trump-admin-doc-calls-billie-eilish-everything-wrong",
+            "boolean_explanation": "Billie Eilish has publicly criticized the Trump administration multiple times, including during her acceptance speech at the 2026 Grammy Awards where she made bold political statements against ICE and the administration's policies. Additionally, she has expressed her views on civil rights violations and the administration's handling of various issues, indicating notable reactions to the claims made by the Trump administration."
+          }
+        ]
+      },
+      {
+        "question": "트럼프 행정부가 실제로 '빌리 아일리시가 우리나라를 파괴하고 있다'고 말했나요?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.tiktok.com/@pinknews/video/7597420781802409238",
+            "boolean_explanation": "트럼프 행정부는 실제로 빌리 아일리시가 '우리나라를 파괴하고 있다'고 직접적으로 언급하지 않았습니다. 오히려, 이 주장은 잘못된 인용에서 비롯된 것으로, 아일리시가 민주당 전당대회에서 한 발언을 인용한 것입니다. 문서에서는 아일리시가 '우리나라와 우리가 소중히 여기는 모든 것을 파괴하고 있다'고 말한 것이 아니라, 그녀의 발언을 인용한 것입니다."
+          }
+        ]
+      },
+      {
+        "question": "이 발언이 이루어진 상황이나 맥락은 무엇인가요?",
+        "answers": [
+          {
+            "answer": "Billie Eilish criticized the Trump administration while accepting the 2026 MLK Jr. Beloved Community Environmental Justice Award.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.tiktok.com/@pinknews/video/7597420781802409238"
+          }
+        ]
+      },
+      {
+        "question": "이 내용이 공식적으로 발표되거나 보고된 적이 있나요?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.tiktok.com/@pinknews/video/7597420781802409238",
+            "boolean_explanation": "The claim that the Trump Administration accused Billie Eilish of 'destroying our country' is supported by leaked documents that were reported by various sources, including The Washington Post and Complex. These documents indicated that the administration had concerns about Eilish's political stance and included a statement reflecting that sentiment."
+          }
+        ]
+      },
+      {
+        "question": "이에 대한 다른 기관이나 전문가의 입장은 무엇인가요?",
+        "answers": [
+          {
+            "answer": "Billie Eilish at the DNC: 'Trump is destroying our country and everything we care about'",
+            "answer_type": "Extractive",
+            "source_url": "https://www.tiktok.com/@pinknews/video/7597420781802409238"
+          }
+        ]
+      },
+      {
+        "question": "이 발언이 현재도 유효한가요?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.tiktok.com/@pinknews/video/7597420781802409238",
+            "boolean_explanation": "현재의 발언은 유효하지 않습니다. 트럼프 행정부가 빌리 아일리시를 '우리 나라를 파괴하고 있다'고 주장한 것은 잘못된 인용으로 밝혀졌습니다. 이 인용은 아일리시가 민주당 전당대회에서 한 발언을 잘못 해석한 것으로, 실제로는 그녀가 트럼프를 비판하는 내용을 담고 있었습니다."
+          }
+        ]
+      }
+    ],
+    "justification": "The evidence indicates that the Trump Administration did not directly claim that Billie Eilish was 'destroying our country.' Instead, the claim is based on a misinterpretation of her statements made during the Democratic National Convention. Therefore, the assertion in the claim is factually incorrect.",
+    "node_results": [
+      {
+        "verifier": "fact",
+        "search_queries": [
+          "Trump Administration Billie Eilish leaked documents claim",
+          "Trump Administration statements Billie Eilish",
+          "Trump Administration Billie Eilish public opinion impact",
+          "context Trump Administration Billie Eilish claims",
+          "reactions Trump Administration Billie Eilish claims"
+        ],
+        "evidence": [
+          "Leaked document says Billie Eilish 'destroying our country' | Mix 105.1: The Washington Post has uncovered a $250 million campaign aimed at “defeating despair” and boosting Trump's re-election chances in a series",
+          "Trump admin says Billie Eilish is \"destroying our country ... - Reddit: ... leaked document that Billie Eilish was “destroying our country and everything we care about”. The document had actually quoted Eilish's own",
+          "Billie Eilish among celebrities blocked by Trump administration from COVID campaign over previous criticism: That's according to a new leaked document. *Editor’s Note: A previous version of this story stated that the Trump administration said in a leaked document that Billie Eilish was “destroying our country and everything we care about”. A le...",
+          "“That statement is so dumb.” @cwillcain reacts after pop star Billie ...: Billie Eilish and other celebrities criticize the Trump administration and ICE at Sunday's Grammy Awards. \"No one is illegal on stolen land,\"",
+          "Billie Eilish Slams Trump Administration Over ICE Violence - Variety: # Billie Eilish Slams Trump Administration Over ICE Violence: ‘We No Longer Feel Safe in Our Own Homes or in Our Streets’. Billie Eilish delivered a pointed critique of the Trump administration’s approach to civil rights and immigration ...",
+          "Billie Eilish Slams Donald Trump’s Administration During Grammys Speech: # Billie Eilish Slams Donald Trump’s Administration During Grammys Speech. * Billie Eilish makes a bold political statement against ICE during her acceptance speech at the 2026 Grammy Awards. * Eilish declares \"No one is illegal on stole...",
+          "Billie Eilish Calls Out ICE, Trump Administration Response to Protests: Billie Eilish calls out ICE-inflicted violence and civil rights violations perpetuated by Donald Trump's administration while accepting MLK",
+          "Billie Eilish has criticised the Trump administration while accepting ...: Billie Eilish has criticised the Trump administration while accepting the 2026 MLK Jr. Beloved Community Environmental Justice Award.",
+          "Could Billie Eilish's political remarks at the Grammys have ... - Quora: Should celebrities like Billie Eilish use award show speeches to voice political opinions, such as her criticism of the Trump administration's",
+          "Billie Eilish has criticised the Trump administration while accepting ...: Billie Eilish has criticised the Trump administration while accepting the 2026 MLK Jr. Beloved Community Environmental Justice Award. The award"
+        ],
+        "sources": [
+          "https://www.audacy.com/mix1051fm/music/alternative/trump-admin-doc-calls-billie-eilish-everything-wrong",
+          "https://www.reddit.com/r/popheads/comments/jkdyi8/trump_admin_says_billie_eilish_is_destroying_our",
+          "https://www.nme.com/news/music/trump-admin-says-billie-eilish-is-destroying-our-country-and-everything-we-care-about-2803852",
+          "https://www.instagram.com/reel/DURnY4skTOG?hl=en",
+          "https://variety.com/2026/music/news/billie-eilish-slams-trump-administration-ice-violence-1236635118",
+          "https://www.yahoo.com/entertainment/music/articles/billie-eilish-slams-donald-trump-122200947.html",
+          "https://www.rollingstone.com/music/music-news/billie-eilish-calls-out-ice-trump-administration-1235501562",
+          "https://www.tiktok.com/@pinknews/video/7597420781802409238",
+          "https://www.quora.com/Could-Billie-Eilish-s-political-remarks-at-the-Grammys-have-the-paradoxical-effect-of-ramifying-support-for-Trump",
+          "https://www.facebook.com/pinknews/posts/billie-eilish-has-criticised-the-trump-administration-while-accepting-the-2026-m/1315175703987481"
+        ],
+        "reasoning": "claim_type=EPC\nsearch_queries=['Trump Administration Billie Eilish leaked documents claim', 'Trump Administration statements Billie Eilish', 'Trump Administration Billie Eilish public opinion impact', 'context Trump Administration Billie Eilish claims', 'reactions Trump Administration Billie Eilish claims']"
+      },
+      {
+        "verifier": "source",
+        "search_queries": [
+          "Trump Administration Billie Eilish quote",
+          "Trump Administration leaked documents Billie Eilish",
+          "Trump Administration Billie Eilish context",
+          "Billie Eilish criticism Trump Administration",
+          "Trump Administration official statement Billie Eilish",
+          "Billie Eilish Trump Administration documents",
+          "Billie Eilish response Trump Administration",
+          "experts opinion Billie Eilish Trump",
+          "Billie Eilish Trump Administration relevance 2023",
+          "current opinion on Billie Eilish Trump"
+        ],
+        "evidence": [
+          "Billie Eilish has criticised the Trump administration while accepting ...: 114.6K Likes, 746 Comments. TikTok video from PinkNews 🏳️‍ 🏳️‍⚧️ (@pinknews): “Billie Eilish has criticised the Trump administration while",
+          "Billie Eilish has criticised the Trump administration while accepting ...: Billie Eilish has criticised the Trump administration while accepting the 2026 MLK Jr. Beloved Community Environmental Justice Award.",
+          "Billie Eilish has criticised the Trump administration while accepting ...: Billie Eilish has criticised the Trump administration while accepting the 2026 MLK Jr. Beloved Community Environmental Justice Award.",
+          "Trump Administration Wrongly Quoted as Saying Billie Eilish Is ...: ## What was supposed to be a public health campaign about the COVID-19 pandemic apparently turned into more of an attempted boost of Trumpism. ***UPDATED 10/30, 10:15 p.m. ET:*** An erroneous report from *The Washington Post*held that th...",
+          "#BillieEilish slams the Trump administration over ICE violence while ...: It is very clear that protecting our planet and our communities is not a priority for this administration. And it’s really hard to celebrate [this award] when we no longer feel safe in our own homes or in our streets.”. “It is very clear...",
+          "These White House documents DRAGGED Billie Eilish! | Clevver: # These White House documents DRAGGED Billie Eilish! # Video. Billie Eilish DRAGGED By Leaked White House Documents. ## **Clevver**. ## Comments. Excuse me Trumpoid, you are the only one destroying America... Got rot in hell Trump. ## Re...",
+          "Billie Eilish among celebrities blocked by Trump administration from ...: That's according to a new leaked document. *Editor’s Note: A previous version of this story stated that the Trump administration said in a leaked document that Billie Eilish was “destroying our country and everything we care about”. A le...",
+          "Billie Eilish Calls Out ICE, Trump Administration Response to Protests: Billie Eilish calls out ICE-inflicted violence and civil rights violations perpetuated by Donald Trump's administration while accepting MLK",
+          "Billie Eilish Slams Trump Administration Over ICE Violence - Variety: # Billie Eilish Slams Trump Administration Over ICE Violence: ‘We No Longer Feel Safe in Our Own Homes or in Our Streets’. Billie Eilish delivered a pointed critique of the Trump administration’s approach to civil rights and immigration ...",
+          "Billie Eilish just said it ALL about the Trump administration. - Facebook: # Billie Eilish just said it ALL about... ## Occupy Democrats's Post. ### **Occupy Democrats**. Billie Eilish just said it ALL about the Trump administration. Image 1: No photo description available. Image 8: 🤯Image 9: 😖Image 10: 😭. Bill...",
+          "No, the Trump administration didn't accuse Billie Eilish of “destroying ...: # No, the Trump administration didn’t accuse Billie Eilish of “destroying our country” | by Eric Langberg | Everything’s Interesting | Medium. ## Everything’s Interesting. Image 2: Everything’s Interesting. # No, the Trump administration...",
+          "Trump admin says Billie Eilish is \"destroying our country ... - Reddit: Billie Eilish slams ICE and Trump administration in award acceptance speech: \"People's access to food and healthcare becoming a privilege for",
+          "'ICE out'? Bad Bunny, Billie Eilish should stick to singing | Opinion: You are famous because of your talents as musicians, not because of your idiotic views on politics and President Donald Trump. As is often the",
+          "Billie Eilish at the DNC: 'Trump is destroying our country and everything we care about' – video | Billie Eilish | The Guardian: The 18-year old singer, who will be a first-time voter in 2020, made an impassioned plea for people to get out and cast their ballot in November's election. impassioned plea for people to get out and cast their ballot in. # Billie Eilish...",
+          "Billie Eilish DRAGGED By Leaked White House Documents - YouTube: Billie Eilish DRAGGED By Leaked White House Documents\nClevver News\n4720000 subscribers\n5753 likes\n189327 views\n30 Oct 2020\nLeaked documents from the Trump Administration are reportedly dragging celebs who are deemed as a “threat” to the ..."
+        ],
+        "sources": [
+          "https://www.tiktok.com/@pinknews/video/7597420781802409238",
+          "https://www.facebook.com/pinknews/videos/billie-eilish-has-criticised-the-trump-administration-while-accepting-the-2026-m/916372244152829",
+          "https://www.facebook.com/pinknews/posts/billie-eilish-has-criticised-the-trump-administration-while-accepting-the-2026-m/1315175703987481",
+          "https://www.complex.com/music/a/tracewilliamcowen/leaked-trump-admin-document-billie-eilish-destroying-our-country",
+          "https://www.instagram.com/p/DTvD_rxAD68?hl=en",
+          "https://www.facebook.com/clevver/videos/billie-eilish-dragged-by-leaked-white-house-documents/1036612156761416",
+          "https://www.nme.com/news/music/trump-admin-says-billie-eilish-is-destroying-our-country-and-everything-we-care-about-2803852",
+          "https://www.rollingstone.com/music/music-news/billie-eilish-calls-out-ice-trump-administration-1235501562",
+          "https://variety.com/2026/music/news/billie-eilish-slams-trump-administration-ice-violence-1236635118",
+          "https://www.facebook.com/OccupyDemocrats/posts/billie-eilish-just-said-it-all-about-the-trump-administration/1406711008227136",
+          "https://medium.com/everythings-interesting/no-the-trump-administration-didnt-accuse-billie-eilish-of-destroying-our-country-3771ad9361b6",
+          "https://www.reddit.com/r/popheads/comments/jkdyi8/trump_admin_says_billie_eilish_is_destroying_our",
+          "https://www.usatoday.com/story/opinion/columnist/2026/02/03/grammys-bad-bunny-acceptance-speech-ice/88475385007",
+          "https://www.theguardian.com/music/video/2020/aug/20/billie-eilish-dnc-trump-is-destroying-our-country-video",
+          "https://www.youtube.com/watch?v=YZwtDJHA9uc"
+        ],
+        "reasoning": "citation_type=QV\nsearch_queries=['Trump Administration Billie Eilish quote', 'Trump Administration leaked documents Billie Eilish', 'Trump Administration Billie Eilish context', 'Billie Eilish criticism Trump Administration', 'Trump Administration official statement Billie Eilish', 'Billie Eilish Trump Administration documents', 'Billie Eilish response Trump Administration', 'experts opinion Billie Eilish Trump', 'Billie Eilish Trump Administration relevance 2023', 'current opinion on Billie Eilish Trump']"
+      }
+    ]
+  },
+  {
+    "eval_id": "AVT-DEV-0002",
+    "claim": "Due to Imran Khan's criticism of Macron's comments on Islam, French authorities cancelled the visas of 183 Pakistani citizens and deported 118 from the country.",
+    "label": "Refuted",
+    "questions": [
+      {
+        "question": "Did French authorities cancel the visas of 183 Pakistani citizens due to Imran Khan's criticism of Macron's comments on Islam?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.dw.com/en/pakistans-imran-khan-slams-french-president-macrons-views-on-islam/a-55394035",
+            "boolean_explanation": "The evidence indicates that the claim regarding the cancellation of 183 Pakistani visas and the deportation of 118 Pakistani citizens due to Imran Khan's criticism of Macron is false. The Pakistani embassy in France stated that the Twitter account claiming these actions was fake, and there is no official confirmation of such visa cancellations or deportations linked to Khan's remarks."
+          }
+        ]
+      },
+      {
+        "question": "How many Pakistani citizens were deported from France following Imran Khan's comments?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.dw.com/en/pakistans-imran-khan-slams-french-president-macrons-views-on-islam/a-55394035",
+            "boolean_explanation": "The evidence indicates that the claim regarding the deportation of 118 Pakistani citizens from France following Imran Khan's comments is false. The Pakistani embassy in France has stated that the account claiming these deportations is from a fake Twitter account, and there is no verified information supporting the deportation of any Pakistani citizens in relation to Khan's remarks."
+          }
+        ]
+      },
+      {
+        "question": "What was the impact of Imran Khan's criticism on the relationship between France and Pakistan?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.dw.com/en/pakistans-imran-khan-slams-french-president-macrons-views-on-islam/a-55394035",
+            "boolean_explanation": "The claim that French authorities cancelled the visas of 183 Pakistani citizens and deported 118 from the country due to Imran Khan's criticism is false. The Pakistani embassy in France confirmed that the reports of deportations and visa cancellations were based on a fake Twitter account, and they stated that no such actions were taken by the French authorities following Khan's remarks."
+          }
+        ]
+      },
+      {
+        "question": "What comments did Macron make about Islam that led to Imran Khan's criticism?",
+        "answers": [
+          {
+            "answer": "Macron made comments criticizing Islamists and defended the publication of cartoons depicting the Prophet Muhammad, stating that 'Islam is a religion that is in crisis all over the world.'",
+            "answer_type": "Extractive",
+            "source_url": "https://www.dw.com/en/pakistans-imran-khan-slams-french-president-macrons-views-on-islam/a-55394035"
+          }
+        ]
+      },
+      {
+        "question": "Were there any other instances of visa cancellations or deportations related to political criticism in France?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.dw.com/en/pakistans-imran-khan-slams-french-president-macrons-views-on-islam/a-55394035",
+            "boolean_explanation": "The evidence indicates that the claims regarding the cancellation of visas and deportations of Pakistani citizens in France following Imran Khan's criticism of Macron are based on false information from an imposter Twitter account. The Pakistani embassy in France confirmed that these claims are not true, stating that no such deportations occurred."
+          }
+        ]
+      }
+    ],
+    "justification": "The evidence clearly indicates that the claim regarding the cancellation of 183 Pakistani visas and the deportation of 118 Pakistani citizens due to Imran Khan's criticism of Macron is false. The Pakistani embassy in France confirmed that these reports were based on a fake Twitter account and that no such actions were taken by French authorities.",
+    "node_results": [
+      {
+        "verifier": "fact",
+        "search_queries": [
+          "French authorities cancel visas 183 Pakistani citizens Imran Khan Macron Islam",
+          "118 Pakistani citizens deported France Imran Khan",
+          "Imran Khan criticism impact France Pakistan relations",
+          "Macron comments on Islam Imran Khan criticism",
+          "France visa cancellations deportations political criticism"
+        ],
+        "evidence": [
+          "Pakistan's Khan slams Macron's views on Islam - DW.com: # Pakistan's Khan slams Macron's views on Islam. The Pakistani prime minister has also sought a ban on \"Islamophobic content\" on Facebook. Imran Khan's criticism of Emmanuel Macron comes at a time when he is under scrutiny for rising rel...",
+          "Imran Khan: Macron's Islamophobic rhetoric stoking 'cycle of ...: French President Emmanuel Macron's deployment of anti-Muslim rhetoric and policies in his fight with the extreme right for re-election continues to rile Khan.",
+          "Pakistan's PM Khan accuses Macron of 'attacking Islam' - France 24: # Pakistan's PM Khan accuses Macron of 'attacking Islam'. Pakistani Prime Minister Imran Khan accused French President Emmanuel Macron on Sunday of \"attacking Islam\", after the European leader criticised Islamists and defended the public...",
+          "France did not deport Pakistanis after PM Imran Khan's remarks on ...: # Fact check: France did not deport Pakistanis after PM Imran Khan's remarks on Macron. Pakistan embassy issues fake news alert after false account @PakConsulateFr claims 118 Pakistanis were deported. Embassy of Pakistan in France said t...",
+          "183 Pakistanis living illegally in France, including Ex ISI chief Shuja Pasha's close relative: Paris [France], November 1 (ANI): Consulate General Of Pakistan France has requested the French authorities to allow a temporary stay of Lt General Ahmad Shuja Pasha's sister, who is in the country to see her ailing mother-in-law. Taking...",
+          "Indian media outlets fall for impostor account claiming France revoked 183 Pakistani visas - Alt News: # Indian media outlets fall for impostor account claiming France revoked 183 Pakistani visas. “French authorities have rejected 183 visitor visas following Prime Minister Imran Khan’s remarks on French President Emmanuel Macron,” reporte...",
+          "Fact Check: Fake tweet on France deporting Pakistanis go viral after Imran slams Macron - India Today: ### Download App. NewsFact CheckFact Check: Fake tweet on France deporting Pakistanis go viral after Imran slams Macron. # Fact Check: Fake tweet on France deporting Pakistanis go viral after Imran slams Macron. ## Many media reports hav...",
+          "Tribune Fact Check: Ayaz Sadiq seeks asylum in France?: A twitter handle @PakConsulateFr, claimed that 118 Pakistani nationals were deported after PM Imran's comments. \"183 visitor visas provided to our citizens[have]",
+          "France-Pakistan Antagonistic Relations and Role of Public ...: Another reason is possibly the fact that Imran Khan, the Prime Minister of Pakistan, has criticized Emmanuel Macron, the President of France, as the French",
+          "Pakistan PM pushes back against anti-French protests - POLITICO: Pakistani Prime Minister Imran Khan warned in a televised address on Monday that cutting off relations with France could endanger Pakistan's exports to the",
+          "'I was actually depressed': France tries to deport immigrant students: ## Al Jazeera English's Post. ### **Al Jazeera English**. '/%3E%3Cpath d='M16.0001 7.9996c0 4.418-3.5815 7.9996-7.9995 7.9996S.001 12.4176.001 7.9996 3.5825 0 8.0006 0C12.4186 0 16 3.5815 16 7.9996Z' fill='url(%23paint1_radial_15251_6361...",
+          "France: Rise in deportations and stricter migration controls by ...: France's Interior Ministry announced that deportations of migrants living irregularly in the country increased by nearly 27 percent in 2024.",
+          "Gravitas: Imran Khan's anti-France rant triggers chaos in Pakistan: Pakistani Prime Minister Imran Khan's anti-France rant has triggered chaos in Pakistan. More ... analysis. We provide much more than the news of",
+          "French lawmaker wants to deport dangerous illegal migrants overseas: FRANCE 24's French politics editor, Marc Perelman answers to this question. #immigration #france #migrants Subscribe to France 24 now"
+        ],
+        "sources": [
+          "https://www.dw.com/en/pakistans-imran-khan-slams-french-president-macrons-views-on-islam/a-55394035",
+          "https://www.middleeasteye.net/news/imran-khan-pakistan-france-macron-islamophobia-rhetoric-stoking-violence",
+          "https://www.france24.com/en/live-news/20201025-pakistan-s-pm-khan-accuses-macron-of-attacking-islam",
+          "https://www.geo.tv/latest/316317-fact-check-france-cancellation-of-pakistani-nationals-visa-pm-imran-khans-remarks-fake",
+          "https://www.aninews.in/news/world/europe/183-pakistanis-living-illegally-in-france-including-ex-isi-chief-shuja-pashas-close-relative20201101081701",
+          "https://www.altnews.in/indian-media-outlets-fall-for-impostor-account-claiming-france-revoked-183-pakistani-visas",
+          "https://www.indiatoday.in/fact-check/story/fact-check-fake-tweet-france-deporting-pakistanis-go-viral-imran-slams-macron-1737276-2020-11-02",
+          "https://tribune.com.pk/story/2271495/tribune-fact-check-ayaz-sadiq-seeks-asylum-in-france",
+          "https://www.gfprjournal.com/article/francepakistan-antagonistic-relations-and-role-of-public-diplomacy",
+          "https://www.politico.eu/article/pakistan-france-protests-imran-khan",
+          "https://www.facebook.com/aljazeera/posts/i-was-actually-depressed-france-tries-to-deport-immigrant-students/1453044593536557",
+          "https://www.infomigrants.net/en/post/62684/france-rise-in-deportations-and-stricter-migration-controls-by-government",
+          "https://www.youtube.com/watch?v=Ye8iTlH6cdo",
+          "https://www.youtube.com/watch?v=45g1AMWXQ48"
+        ],
+        "reasoning": "claim_type=EPC\nsearch_queries=['French authorities cancel visas 183 Pakistani citizens Imran Khan Macron Islam', '118 Pakistani citizens deported France Imran Khan', 'Imran Khan criticism impact France Pakistan relations', 'Macron comments on Islam Imran Khan criticism', 'France visa cancellations deportations political criticism']"
+      }
+    ]
+  },
+  {
+    "eval_id": "AVT-DEV-0003",
+    "claim": "UNESCO declared Nadar community as the most ancient race in the world.",
+    "label": "Refuted",
+    "questions": [
+      {
+        "question": "Did UNESCO declare the Nadar community as the most ancient race in the world?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://books.google.com/books/about/The_History_of_Nadar_Community.html?id=f8_ozgEACAAJ",
+            "boolean_explanation": "Evidence from multiple sources, including fact-checking articles, confirms that UNESCO did not declare the Nadar community as the most ancient race in the world. Specifically, a fact check from Vishvas News states, 'UNESCO did not declare Nadar community as ancient race in the world, viral claim is fake.'"
+          }
+        ]
+      },
+      {
+        "question": "When did UNESCO declare the Nadar community as the most ancient race?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://books.google.com/books/about/The_History_of_Nadar_Community.html?id=f8_ozgEACAAJ",
+            "boolean_explanation": "Evidence from multiple sources, including fact-checking articles, confirms that UNESCO did not declare the Nadar community as the most ancient race in the world. Specifically, a fact check from Vishvas News states that the claim is false and that no such declaration has been made by UNESCO."
+          }
+        ]
+      },
+      {
+        "question": "What evidence supports the claim that the Nadar community is the most ancient race?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://books.google.com/books/about/The_History_of_Nadar_Community.html?id=f8_ozgEACAAJ",
+            "boolean_explanation": "Evidence from multiple sources, including fact-checking articles, confirms that UNESCO did not declare the Nadar community as the most ancient race in the world. Specifically, sources [5] and [6] state that the claim is false and that no such declaration has been made by UNESCO."
+          }
+        ]
+      },
+      {
+        "question": "What was the context or reason behind UNESCO's declaration of the Nadar community?",
+        "answers": [
+          {
+            "answer": "Unanswerable",
+            "answer_type": "Unanswerable",
+            "source_url": "https://books.google.com/books/about/The_History_of_Nadar_Community.html?id=f8_ozgEACAAJ"
+          }
+        ]
+      },
+      {
+        "question": "Are there any other communities that UNESCO has recognized as ancient races?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://books.google.com/books/about/The_History_of_Nadar_Community.html?id=f8_ozgEACAAJ",
+            "boolean_explanation": "UNESCO has not recognized the Nadar community as the most ancient race in the world, nor has it declared any other communities as ancient races. This is confirmed by multiple sources stating that the claim regarding UNESCO's declaration about the Nadar community is false."
+          }
+        ]
+      }
+    ],
+    "justification": "Multiple sources confirm that UNESCO did not declare the Nadar community as the most ancient race in the world, directly contradicting the claim.",
+    "node_results": [
+      {
+        "verifier": "fact",
+        "search_queries": [
+          "UNESCO Nadar community most ancient race declaration",
+          "UNESCO Nadar community declaration date 31-10-2020",
+          "Nadar community ancient race evidence UNESCO",
+          "UNESCO Nadar community declaration context",
+          "UNESCO ancient races declarations"
+        ],
+        "evidence": [
+          "The History of Nadar Community - Renjith K, 1st - Google Books: In ancient India chaturvarnya (Four castes) existed based on their particular professions. Brahmanas were considered the suoperior caste and sudra of the lowest",
+          "From oblivion to light: Reconstructing Nadar community's history through recently discovered ancient documents.: Articles > Published Studies > From oblivion to light: Reconstructing Nadar community's history through recently discovered ancient documents. # From oblivion to light: Reconstructing Nadar community's history through recently discovered...",
+          "Item - UNESCO Statement on Race - University of Sussex - Figshare: # UNESCO Statement on Race. <p>Since 1949, UNESCO has issued several statements addressing the complex issues surrounding race, including the Statement on Race (1950), the Statement on the Nature of Race and Race Differences (1951), the ...",
+          "Declarations | UNESCO: - Rules of Procedure of the General Conference. - Resolutions and documents of the General Conference. - Rules of Procedure of the Executive Board. - Decisions and documents of the Executive Board. - Rules of Procedure for recommendation...",
+          "FACT CHECK: உலகின் தொன்மையான இனமாக நாடார் ...: ... 2020 அக்டோபர் 31ம் தேதி பகிர்ந்திருப்பது தெரிந்தது. ... Title:உலகின் தொன்மையான இனமாக நாடார் சமூகத்தை அறிவித்ததா யுனெஸ்கோ? Fact Check By: Chendur Pandian. Result: False. Tagged Nadar",
+          "Fact Check: UNESCO did not declare Nadar community as ancient ...: # Fact Check: UNESCO did not declare Nadar community as ancient race in the world, viral claim is fake. UNESCO has not declared Nadar Community as the most ancient race in the world. **New Delhi (Vishvas News).** A viral poster on social...",
+          "Scholarship Programme for Diaspora ...: ✓ UNESCO Scholarship Prize 2023 2024 Bahrain The United Nations ... Date: 31 Oct 2020 https://scholarships.unimelb.edu. au/awards",
+          "The Race question - UNESCO Digital Library: In organizing the meeting of experts which produced this authoritative declaration on the race problem, Unesco took up again, after a lapse of fifteen years",
+          "Declaration on Race and Racial Prejudice - Legal Affairs: *Whereas* it is stated in the Preamble to the Constitution of UNESCO, adopted on 16 November 1945, that 'the great and terrible war which has now ended was a war made possible by the denial of the democratic principles of the dignity, eq...",
+          "UNESCO statements on race - Wikipedia: # UNESCO statements on race. Other statements include the Declaration on the Elimination of All Forms of Racial Discrimination (1963), the \"Declaration on Race and Racial Prejudice\" (1978) and the \"Declaration of Principles on Tolerance\"...",
+          "Nadar (caste) - Wikipedia: # Nadar (caste). **Nadar** (also referred to as *Nadan*, *Shanar* and *Shanan*) is a Tamil caste of India. Nadars are predominant in the Tamil Nadu districts of Kanyakumari, Thoothukudi, Tirunelveli, Tenkasi and Virudhunagar. The Nadar c..."
+        ],
+        "sources": [
+          "https://books.google.com/books/about/The_History_of_Nadar_Community.html?id=f8_ozgEACAAJ",
+          "https://www.sanrorhistoricalresearch.com/en/published-studies/ancient-nadar-documents",
+          "https://sussex.figshare.com/articles/figure/UNESCO_Statement_on_Race/22887548",
+          "https://www.unesco.org/en/legal-affairs/standard-setting/declarations",
+          "https://tamil.factcrescendo.com/unesco-not-announced-anything-on-nadar-community",
+          "https://www.vishvasnews.com/english/viral/fact-check-unesco-did-not-declare-nadar-community-as-ancient-race-in-the-world-viral-claim-is-fake",
+          "https://www.facebook.com/IndiaInBahrain/posts/%F0%9D%90%92%F0%9D%90%9C%F0%9D%90%A1%F0%9D%90%A8%F0%9D%90%A5%F0%9D%90%9A%F0%9D%90%AB%F0%9D%90%AC%F0%9D%90%A1%F0%9D%90%A2%F0%9D%90%A9-%F0%9D%90%8F%F0%9D%90%AB%F0%9D%90%A8%F0%9D%90%A0%F0%9D%90%AB%F0%9D%90%9A%F0%9D%90%A6%F0%9D%90%A6%F0%9D%90%9E-%F0%9D%90%9F%F0%9D%90%A8%F0%9D%90%AB-%F0%9D%90%83%F0%9D%90%A2%F0%9D%90%9A%F0%9D%90%AC%F0%9D%90%A9%F0%9D%90%A8%F0%9D%90%AB%F0%9D%90%9A-%F0%9D%90%82%F0%9D%90%A1%F0%9D%90%A2%F0%9D%90%A5%F0%9D%90%9D%F0%9D%90%AB%F0%9D%90%9E%F0%9D%90%A7-%F0%9D%90%9F%F0%9D%90%A8%F0%9D%90%AB-%F0%9D%90%AD%F0%9D%90%A1%F0%9D%90%9E-%F0%9D%90%9A%F0%9D%90%9C%F0%9D%90%9A%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%A6%F0%9D%90%A2%F0%9D%90%9C-%F0%9D%90%B2%F0%9D%90%9E%F0%9D%90%9A%F0%9D%90%AB-%F0%9D%9F%90%F0%9D%9F%8E%F0%9D%9F%90%F0%9D%9F%8F-%F0%9D%9F%90%F0%9D%9F%90%F0%9D%90%83%F0%9D%90%9E%F0%9D%90%AD%F0%9D%90%9A%F0%9D%90%A2%F0%9D%90%A5%F0%9D%90%AC/4139235116155739",
+          "https://unesdoc.unesco.org/ark:/48223/pf0000128291",
+          "https://www.unesco.org/en/legal-affairs/declaration-race-and-racial-prejudice",
+          "https://en.wikipedia.org/wiki/UNESCO_statements_on_race",
+          "https://en.wikipedia.org/wiki/Nadar_(caste)"
+        ],
+        "reasoning": "claim_type=EPC\nsearch_queries=['UNESCO Nadar community most ancient race declaration', 'UNESCO Nadar community declaration date 31-10-2020', 'Nadar community ancient race evidence UNESCO', 'UNESCO Nadar community declaration context', 'UNESCO ancient races declarations']"
+      }
+    ]
+  },
+  {
+    "eval_id": "AVT-DEV-0004",
+    "claim": "Republican Matt Gaetz was part of a company that had to pay 75 million in hospice fraud. They stole from dying people.",
+    "label": "Refuted",
+    "questions": [
+      {
+        "question": "Did Republican Matt Gaetz participate in a company that was involved in hospice fraud?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-dismantles-los-angeles-hospice-fraud-ring-responsible-267",
+            "boolean_explanation": "Matt Gaetz was not directly involved in the hospice fraud case. While he served as vice chairman of the board of a company that was implicated in fraudulent activities, he stated that he had no role in the alleged fraud and was not a party to the lawsuit filed against the company. The claims about his involvement in hospice fraud are misleading."
+          }
+        ]
+      },
+      {
+        "question": "What was the amount that the company associated with Matt Gaetz had to pay in hospice fraud?",
+        "answers": [
+          {
+            "answer": "75 million",
+            "answer_type": "Extractive",
+            "source_url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-dismantles-los-angeles-hospice-fraud-ring-responsible-267"
+          }
+        ]
+      },
+      {
+        "question": "What were the allegations against the company associated with Matt Gaetz regarding hospice fraud?",
+        "answers": [
+          {
+            "answer": "The allegations against the company associated with Matt Gaetz regarding hospice fraud include submitting fraudulent bills for Medicare payment, billing for ineligible patients, and inflating levels of care, which violated the False Claims Act and resulted in tens of millions of taxpayer dollars being misspent.",
+            "answer_type": "Extractive",
+            "source_url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-dismantles-los-angeles-hospice-fraud-ring-responsible-267"
+          }
+        ]
+      },
+      {
+        "question": "What is the context surrounding the hospice fraud case involving Matt Gaetz?",
+        "answers": [
+          {
+            "answer": "The hospice fraud case involving Matt Gaetz pertains to a company co-founded by his father, Don Gaetz, which was accused of submitting fraudulent Medicare claims. The U.S. Department of Justice filed a lawsuit against Vitas Hospice Services, alleging that the company violated the False Claims Act and misappropriated tens of millions of taxpayer dollars by billing for ineligible patients and inflated levels of care. Although Matt Gaetz was vice chairman of the board during part of the time the fraud allegedly occurred, he has stated that he had no direct role in the fraud and was not a party to the lawsuit.",
+            "answer_type": "Abstractive",
+            "source_url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-dismantles-los-angeles-hospice-fraud-ring-responsible-267"
+          }
+        ]
+      },
+      {
+        "question": "Are there any other notable cases of hospice fraud similar to the one involving Matt Gaetz?",
+        "answers": [
+          {
+            "answer": "Yes, there are notable cases of hospice fraud similar to the one involving Matt Gaetz, including a major scheme in California that defrauded $267 million from Medi-Cal and involved 21 suspects being charged.",
+            "answer_type": "Extractive",
+            "source_url": "https://oag.ca.gov/news/press-releases/attorney-general-bonta-dismantles-los-angeles-hospice-fraud-ring-responsible-267"
+          }
+        ]
+      },
+      {
+        "question": "What was the amount paid in hospice fraud by the company associated with Republican Matt Gaetz?",
+        "answers": [
+          {
+            "answer": "75 million",
+            "answer_type": "Extractive",
+            "source_url": "https://oag.ca.gov/dmfea/hospicefraud"
+          }
+        ]
+      },
+      {
+        "question": "What is the official source for the figure of 75 million in hospice fraud?",
+        "answers": [
+          {
+            "answer": "The official source for the figure of 75 million in hospice fraud is the U.S. Department of Justice, which reported that Chemed Corp. and Vitas Hospice Services agreed to pay $75 million to resolve allegations of submitting false claims to Medicare for hospice services.",
+            "answer_type": "Extractive",
+            "source_url": "https://oag.ca.gov/dmfea/hospicefraud"
+          }
+        ]
+      },
+      {
+        "question": "What is the unit of measurement for the 75 million in hospice fraud?",
+        "answers": [
+          {
+            "answer": "75 million",
+            "answer_type": "Extractive",
+            "source_url": "https://oag.ca.gov/dmfea/hospicefraud"
+          }
+        ]
+      },
+      {
+        "question": "Has this figure of 75 million changed significantly in recent years?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://oag.ca.gov/dmfea/hospicefraud",
+            "boolean_explanation": "The figure of 75 million has remained consistent as it refers to the settlement amount agreed upon by Chemed Corp. and Vitas Hospice Services to resolve allegations of hospice fraud."
+          }
+        ]
+      }
+    ],
+    "justification": "The evidence indicates that while Matt Gaetz was vice chairman of the board of a company implicated in hospice fraud, he was not directly involved in the fraud and stated he had no role in it. Therefore, the claim that he was part of a company that 'stole from dying people' is misleading and factually incorrect.",
+    "node_results": [
+      {
+        "verifier": "fact",
+        "search_queries": [
+          "Matt Gaetz hospice fraud involvement",
+          "Matt Gaetz company hospice fraud",
+          "75 million hospice fraud payment Matt Gaetz",
+          "Matt Gaetz company fraud settlement amount",
+          "Matt Gaetz hospice fraud allegations",
+          "hospice fraud company stealing from patients",
+          "Matt Gaetz hospice fraud case background",
+          "hospice fraud case details Matt Gaetz",
+          "hospice fraud cases",
+          "notable hospice fraud incidents"
+        ],
+        "evidence": [
+          "Attorney General Bonta Dismantles Los Angeles Hospice Fraud …: Calfifornia Department of Justice - Office of the Attorney General. The Office of the Attorney General is unable to guarantee the accuracy of this translation and is therefore not liable for any inaccurate information resulting from the ...",
+          "Enforcement Actions - OIG - HHS.gov: ## Forefront Living Hospice Agreed to Pay $1.9 Million for Allegedly Violating the Civil Monetary Penalties Law by Submitting Claims for Services that Identified the Incorrect Provider or Were Performed by Non-enrolled or Incorrect Provi...",
+          "Two Men Sentenced for Role in $9M Hospice Fraud Scheme - OIG: An official website of the United States government. Here’s how you know. A **.gov** website belongs to an official government organization in the United States. **Secure .gov websites use HTTPS**. A **lock** ( LockA locked padlock ) or ...",
+          "Hospice Owner Sentenced to More Than 14 Years in Prison in Multi-Million-Dollar Health Care Fraud Scheme — FBI: # Hospice Owner Sentenced to More Than 14 Years in Prison in Multi-Million-Dollar Health Care Fraud Scheme — FBI. An official website of the United States government. A **.gov** website belongs to an official government organization in t...",
+          "[PDF] in the matter of allegations relating to representative matt gaetz ...: The record overwhelmingly suggests that Representative Gaetz had sex with multiple women at the party, including the then-17-year-old, for which they were paid.94 Mr. Dorworth testified that Representative Gaetz was a frequent guest at h...",
+          "Justice Department sues hospice care service co-founded by Don Gaetz: The Northwest Florida Daily News. TOM McLAUGHLIN / Daily News  |  Northwest Florida Daily News. A lawsuit filed by the U.S. Department of Justice asserts that Vitas Hospice Services, a company founded in 1983 by a group that included sta...",
+          "Misleading Posts Target GOP Rep. Matt Gaetz - FactCheck.org: Posts about Rep. Matt Gaetz circulating on social media in recent days bend the facts to argue that the Florida Republican is part of the so-called “swamp.”. “Republican Matt Gaetz has had numerous DUIs and his dad got him off each time,...",
+          "Largest US hospice company sued for Medicare fraud: Gaetz was vice chairman of the board during part of the time that federal investigators allege the fraud took place, but he said he had no \"role",
+          "[PDF] (Fact) Check Your Bias - ACL Anthology: Also, the hospice fraud case pertains to a company that was once owned by Matt Gaetz's father Don Gaetz, who wasn't named as a defendant in that case. Q4: Did",
+          "Matt Gaetz sent over $10K in Venmo payments to 2 women who testified in House probe, records suggest - ABC7 San Francisco: WASHINGTON -- The House Ethics Committee obtained records, including a check and records of Venmo payments, that appear to show that then-Rep. Matt Gaetz paid more than $10,000 to two women who were later witnesses in sexual misconduct p...",
+          "CLC Files FEC Complaint Alleging Rep. Matt Gaetz's Campaign ...: Gaetz's campaign reportedly spent about $6.28 million in the 2024 cycle, which means roughly one out of every six dollars the Gaetz campaign",
+          "Hospice Fraud Casts Lengthening Shadow Over Future of Industry: This problem has become so severe that it has become one of the defining issues facing the hospice industry, with providers and other industry stakeholders expressing concern about significant impacts to future payment, access, sustainab...",
+          "We've arrested and charged 7 individuals for hospice fraud in ...: ## Attorney General Rob Bonta's Post. ### **Attorney General Rob Bonta**. Attorney General Bonta Announces Seven Arrests for Hospice Fraud: My Office is On It! '%3E%3Cpath d='M15.9953 7.9996c0 4.418-3.5816 7.9996-7.9996 7.9996S-.004 12.4...",
+          "A deep dive into alleged hospice fraud in California - YouTube: A CBS News investigation found the California hospice industry is ripe for fraud. Here's what we uncovered looking at state records and",
+          "Alleged hospice fraud ring stole $267 million from taxpayers, AG says: Alleged hospice fraud ring stole $267 million from taxpayers, AG says\nKTLA 5\n1460000 subscribers\n34 likes\n5183 views\n10 Apr 2026\nA major hospice fraud operation in California, believed to have stolen $267 million from Medi-Cal, has been ...",
+          "Inside Matt Gaetz's Family Fortune - YouTube: Former Congressman Matt Gaetz, who is President-elect Donald Trump's controversial nominee for Attorney General and currently is under"
+        ],
+        "sources": [
+          "https://oag.ca.gov/news/press-releases/attorney-general-bonta-dismantles-los-angeles-hospice-fraud-ring-responsible-267",
+          "https://oig.hhs.gov/fraud/enforcement?text=hospice",
+          "https://oig.hhs.gov/fraud/enforcement/two-men-sentenced-for-role-in-9m-hospice-fraud-scheme",
+          "https://www.fbi.gov/contact-us/field-offices/philadelphia/news/press-releases/hospice-owner-sentenced-to-more-than-14-years-in-prison-in-multi-million-dollar-health-care-fraud-scheme",
+          "https://ethics.house.gov/wp-content/uploads/2024/12/Committee-Report.pdf",
+          "https://www.nwfdailynews.com/story/news/2013/05/09/1-140289/33978181007",
+          "https://www.factcheck.org/2019/10/misleading-posts-target-gop-rep-matt-gaetz",
+          "https://www.gainesville.com/story/news/politics/2013/05/09/largest-us-hospice-company-sued/31199121007",
+          "https://aclanthology.org/2025.fever-1.12.pdf",
+          "https://abc7news.com/post/matt-gaetz-sent-10k-venmo-payments-2-women-testified-house-probe-records-suggest/15561721",
+          "https://campaignlegal.org/update/clc-files-fec-complaint-alleging-rep-matt-gaetzs-campaign-misreported-payments",
+          "https://hospicenews.com/2024/10/11/hospice-fraud-casts-lengthening-shadow-over-future-of-industry",
+          "https://www.facebook.com/AGRobBonta/posts/weve-arrested-and-charged-7-individuals-for-hospice-fraud-in-monterey-county-abu/1411083000810107",
+          "https://www.youtube.com/watch?v=p7Jl1S57QqI",
+          "https://www.youtube.com/watch?v=XCtGfAclyVw",
+          "https://www.youtube.com/watch?v=dBg6FWr3uzg"
+        ],
+        "reasoning": "claim_type=EPC\nsearch_queries=['Matt Gaetz hospice fraud involvement', 'Matt Gaetz company hospice fraud', '75 million hospice fraud payment Matt Gaetz', 'Matt Gaetz company fraud settlement amount', 'Matt Gaetz hospice fraud allegations', 'hospice fraud company stealing from patients', 'Matt Gaetz hospice fraud case background', 'hospice fraud case details Matt Gaetz', 'hospice fraud cases', 'notable hospice fraud incidents']"
+      },
+      {
+        "verifier": "numeric",
+        "search_queries": [
+          "Matt Gaetz hospice fraud amount",
+          "hospice fraud company payment 75 million",
+          "source for 75 million hospice fraud",
+          "hospice fraud payment official report",
+          "75 million hospice fraud unit of measurement",
+          "hospice fraud payment details",
+          "hospice fraud payment history",
+          "changes in hospice fraud amounts over years"
+        ],
+        "evidence": [
+          "Hospice Fraud | State of California - Department of Justice: Calfifornia Department of Justice - Office of the Attorney General. The Office of the Attorney General is unable to guarantee the accuracy of this translation and is therefore not liable for any inaccurate information resulting from the ...",
+          "Chemed Corp. and Vitas Hospice Services Agree to Pay $75 Million ...: The settlement resolves allegations that between 2002 and 2013 Vitas knowingly submitted or caused to be submitted false claims to Medicare for services to",
+          "Chemed Corp. and Vitas Hospice Services Agree to Pay $75 Million to Resolve False Claims Act Allegations Relating to Billing for Ineligible Patients and Inflated Levels of Care | Office of Inspector General | Government Oversight | U.S. Department of Health and Human Services: An official website of the United States government. A **.gov** website belongs to an official government organization in the United States. **Secure .gov websites use HTTPS**. A **lock** ( LockA locked padlock ) or **https://** means yo...",
+          "California stops major hospice fraud scheme in LA, brings criminal ...: **What you need to know:** Continuing California’s crackdown on hospice fraud following President Trump’s pardon of the man behind the biggest health care fraud in U.S. history, Governor Newsom and Attorney General Bonta today announced ...",
+          "Two Men Sentenced for Role in $9M Hospice Fraud Scheme - OIG: An official website of the United States government. Here’s how you know. A **.gov** website belongs to an official government organization in the United States. **Secure .gov websites use HTTPS**. A **lock** ( LockA locked padlock ) or ...",
+          "Chairmen Guthrie, Joyce, Griffith, Smith, Schweikert, and Buchanan ...: (PA-13), Chairman of the Energy and Commerce Subcommittee on Oversight and Investigations, Congressman Morgan Griffith (VA-09), Chairman of the Energy and Commerce Subcommittee on Health, Congressman Jason Smith (MO-08), Chairman of the ...",
+          "Hospice Fraud - Senior Medicare Patrol: # Hospice Fraud. Hospice is an important benefit for the Medicare population. Hospice fraud threatens this benefit for all beneficiaries. Scammers are getting beneficiaries to agree to hospice care even though they do not qualify for the...",
+          "How to Identify, Avoid, and Report Hospice Fraud - CaringInfo: Learn how to avoid hospice Medicare scams, a type of fraud that targets vulnerable individuals and is costing taxpayers billions of dollars.",
+          "Hospice Fraud Casts Lengthening Shadow Over Future of Industry - Hospice News: This problem has become so severe that it has become one of the defining issues facing the hospice industry, with providers and other industry stakeholders expressing concern about significant impacts to future payment, access, sustainab...",
+          "[PDF] Hospice Care in the Crosshairs: The Growing Fraud and Abuse ...: If the beneficiary’s attending physician is not an employee of or under contract with the hospice, the physician must bill Medicare Part B directly for services rendered to the hospice patient.25 Compliance Risk Areas Hospice compliance ...",
+          "Justice Department sues hospice care service co-founded by Don ...: The Northwest Florida Daily News. TOM McLAUGHLIN / Daily News  |  Northwest Florida Daily News. A lawsuit filed by the U.S. Department of Justice asserts that Vitas Hospice Services, a company founded in 1983 by a group that included sta...",
+          "Misleading Posts Target GOP Rep. Matt Gaetz - FactCheck.org: Posts about Rep. Matt Gaetz circulating on social media in recent days bend the facts to argue that the Florida Republican is part of the so-called “swamp.”. “Republican Matt Gaetz has had numerous DUIs and his dad got him off each time,...",
+          "$267M hospice fraud crackdown in California - Facebook: # $267M hospice fraud crackdown in California - California’s attorney general charges 21 suspects in a $267 million hospice fraud case as Republican lawmakers call for a special session for more oversight. حساب را فراموش کرده‌اید؟. ## وی...",
+          "Chemed Corp. and Vitas Hospice Services settle FCA allegations for ...: Chemed and Vitas settle for $75M over False Claims Act allegations of billing Medicare for ineligible hospice services.",
+          "CBS News Investigation: Hundreds of LA hospices have multiple ...: A CBS News analysis of records for every hospice operating in Los Angeles County finds indications of fraud are growing.",
+          "40K views · 1.7K reactions | 🤯 Shocking from CMS Administrator Dr. Oz: Hospice fraud is rampant in Los Angeles.\n\n“1/3 of all hospices…in the entire country are in Los Angeles.”\n\n“We believe that at least half of the hospices in the entire area around Los Angeles are fraudulent.”\n\n“800 of those hospices have been suspended…that last year charged the taxpayer $1.4 billion will no longer be paid.” | U.S. Department of Health and Human Services: # 🤯 Shocking from CMS Administrator Dr. Oz: Hospice fraud is rampant in Los Angeles. “1/3 of all hospices…in the entire country are in Los Angeles.” “We believe that at least half of the hospices in the entire area around Los Angeles are...",
+          "The Lawyer Taking on Hospice Fraud - American Bar Association: The Vitas case, which our firm handled with colleagues, resulted in the largest hospice fraud settlement after AseraCare. It settled for $75",
+          "An owner of a Louisiana hospice facility was convicted of health ...: ## HHS Office of Inspector General's Post. ### **HHS Office of Inspector General**. An owner of a Louisiana hospice facility was convicted of health care fraud related to fraudulent claims billed to #Medicare for approximately $62 millio...",
+          "A deep dive into alleged hospice fraud in California - YouTube: A CBS News investigation found the California hospice industry is ripe for fraud. Here's what we uncovered looking at state records and"
+        ],
+        "sources": [
+          "https://oag.ca.gov/dmfea/hospicefraud",
+          "https://www.justice.gov/archives/opa/pr/chemed-corp-and-vitas-hospice-services-agree-pay-75-million-resolve-false-claims-act",
+          "https://oig.hhs.gov/fraud/enforcement/chemed-corp-and-vitas-hospice-services-agree-to-pay-75-million-to-resolve-false-claims-act-allegations-relating-to-billing-for-ineligible-patients-and-inflated-levels-of-care",
+          "https://www.gov.ca.gov/2026/04/09/california-stops-major-hospice-fraud-scheme-in-la-brings-criminal-charges-to-hold-fraudsters-accountable",
+          "https://oig.hhs.gov/fraud/enforcement/two-men-sentenced-for-role-in-9m-hospice-fraud-scheme",
+          "https://energycommerce.house.gov/posts/chairmen-guthrie-joyce-griffith-smith-schweikert-and-buchanan-ask-hhs-oig-about-ongoing-hha-and-hospice-fraud-in-los-angeles-county-1",
+          "https://smpresource.org/medicare-fraud/fraud-schemes/hospice-fraud",
+          "https://www.caringinfo.org/blog/how-to-identify-avoid-and-report-hospice-fraud",
+          "https://hospicenews.com/2024/10/11/hospice-fraud-casts-lengthening-shadow-over-future-of-industry",
+          "https://www.faegredrinker.com/webfiles/drinkerbiddlefiles/Templates/media/files/publications/Linder_HospiceCare.pdf",
+          "https://www.nwfdailynews.com/story/news/2013/05/09/1-140289/33978181007",
+          "https://www.factcheck.org/2019/10/misleading-posts-target-gop-rep-matt-gaetz",
+          "https://www.facebook.com/ABC10tv/posts/267m-hospice-fraud-crackdown-in-california-californias-attorney-general-charges-/1478049724365208?locale=fa_IR",
+          "https://www.whistleblowersattorneys.com/blog/chemed-corp-and-vitas-hospice-services-settle-fca-allegations-for-75-million",
+          "https://www.cbsnews.com/projects/2026/hospice-fraud",
+          "https://www.facebook.com/HHS/posts/-shocking-from-cms-administrator-dr-oz-hospice-fraud-is-rampant-in-los-angeles13/1430096849156234",
+          "https://www.americanbar.org/groups/senior_lawyers/resources/experience/2023-july-august/lawyer-taking-hospice-fraud",
+          "https://www.facebook.com/OIGatHHS/posts/an-owner-of-a-louisiana-hospice-facility-was-convicted-of-health-care-fraud-rela/644526244525920",
+          "https://www.youtube.com/watch?v=p7Jl1S57QqI"
+        ],
+        "reasoning": "numeric_type=Statistical\nsearch_queries=['Matt Gaetz hospice fraud amount', 'hospice fraud company payment 75 million', 'source for 75 million hospice fraud', 'hospice fraud payment official report', '75 million hospice fraud unit of measurement', 'hospice fraud payment details', 'hospice fraud payment history', 'changes in hospice fraud amounts over years']"
+      }
+    ]
+  }
+]
