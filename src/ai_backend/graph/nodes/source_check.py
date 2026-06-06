@@ -19,6 +19,7 @@ from ai_backend.core.verification import (
     evidence_summary,
     first_result,
     format_evidence,
+    lang_instruction,
     message_content,
     rule_based_question,
     search_verification_evidence,
@@ -41,7 +42,7 @@ def source_check_node(
     *,
     llm: BaseChatModel | None = None,
     search_client: SearchClient | None = None,
-    max_results_per_query: int = 3,
+    max_results_per_query: int = 5,
     max_workers: int = 4,
 ) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify SOURCE claims and return a LangGraph partial update."""
@@ -201,7 +202,7 @@ def _request_source_questions(
                     claim=claim["text"],
                     citation=citation_text or claim["text"],
                     claim_date=claim_date or "(정보 없음)",
-                )
+                ) + lang_instruction(claim)
             ),
         ]
     )
@@ -236,7 +237,7 @@ def _request_source_answer(
                     question=question,
                     evidence=evidence_text or "(검색 증거 없음)",
                     citation_type=citation_type,
-                )
+                ) + lang_instruction(claim)
             ),
         ]
     )
