@@ -19,9 +19,11 @@ from ai_backend.core.verification import (
     evidence_summary,
     first_result,
     format_evidence,
+    lang_instruction,
     message_content,
     rule_based_question,
     search_verification_evidence,
+    select_answer_source_url,
 )
 from ai_backend.core.verification import (
     make_unverifiable_result as build_unverifiable_result,
@@ -41,7 +43,7 @@ def source_check_node(
     *,
     llm: BaseChatModel | None = None,
     search_client: SearchClient | None = None,
-    max_results_per_query: int = 3,
+    max_results_per_query: int = 5,
     max_workers: int = 4,
 ) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify SOURCE claims and return a LangGraph partial update."""
@@ -105,7 +107,9 @@ def source_check_node(
         except Exception as exc:
             logger.exception("source_check_node: claim verification failed (%s)", claim["id"])
             reason = f"출처 검증 실패: {exc}"
-            return _make_unverifiable_result(claim, reason), [_make_unanswerable_question(claim, reason)]
+            return _make_unverifiable_result(claim, reason), [
+                _make_unanswerable_question(claim, reason)
+            ]
 
     results: list[tuple[VerificationResult, list[Question]] | None] = [None] * len(source_claims)
     worker_count = max(1, min(max_workers, len(source_claims)))
@@ -140,9 +144,19 @@ def _verify_source_claim(
     claim_date: str = "",
 ) -> tuple[VerificationResult, list[Question]]:
     # Step 1: PS/QV classification + multi NL questions + search queries
-    citation_type, q_items = _request_source_questions(claim, citation_text=citation_text, llm=llm, claim_date=claim_date)
+    citation_type, q_items = _request_source_questions(
+        claim,
+        citation_text=citation_text,
+        llm=llm,
+        claim_date=claim_date,
+    )
     if not q_items:
-        q_items = [{"question": rule_based_question(claim, [claim["text"]]), "search_queries": [claim["text"]]}]
+        q_items = [
+            {
+                "question": rule_based_question(claim, [claim["text"]]),
+                "search_queries": [claim["text"]],
+            }
+        ]
 
     # Step 2: Search evidence (1 search shared by all questions)
     all_queries: list[str] = (list(dict.fromkeys(
@@ -169,18 +183,31 @@ def _verify_source_claim(
     )
 
     # Step 3: Per-question answer generation
-    source_url = evidence_results[0].url if evidence_results else ""
     questions: list[Question] = []
     for qi in q_items:
         q_text = qi.get("question", "") or rule_based_question(claim, all_queries)
         a_result = _request_source_answer(
-            claim, question=q_text, evidence_text=evidence_text, citation_type=citation_type, llm=llm
+            claim,
+            question=q_text,
+            evidence_text=evidence_text,
+            citation_type=citation_type,
+            llm=llm,
         )
         answer = a_result.get("answer", "")
         answer_type = a_result.get("answer_type", "Abstractive")
         boolean_explanation = a_result.get("boolean_explanation", "")
         if answer:
-            answer_dict: dict = {"answer": answer, "answer_type": answer_type, "source_url": source_url}
+            source_url = "" if answer_type == "Unanswerable" else select_answer_source_url(
+                answer,
+                evidence_results,
+                question=q_text,
+                boolean_explanation=boolean_explanation,
+            )
+            answer_dict: dict = {
+                "answer": answer,
+                "answer_type": answer_type,
+                "source_url": source_url,
+            }
             if answer_type == "Boolean":
                 answer_dict["boolean_explanation"] = boolean_explanation
             questions.append(Question(question=q_text, answers=[answer_dict], claim_id=claim["id"]))
@@ -201,7 +228,7 @@ def _request_source_questions(
                     claim=claim["text"],
                     citation=citation_text or claim["text"],
                     claim_date=claim_date or "(정보 없음)",
-                )
+                ) + lang_instruction(claim)
             ),
         ]
     )
@@ -253,7 +280,11 @@ def _search_evidence(
 ) -> SearchEvidenceBundle:
     try:
         return search_verification_evidence(
-            claim, queries, search_client=search_client, max_results_per_query=max_results_per_query
+            claim,
+            queries,
+            search_client=search_client,
+            max_results_per_query=max_results_per_query,
+            verifier="source",
         )
     except Exception:
         logger.exception("source_check_node: search failed")

@@ -26,6 +26,7 @@ from ai_backend.core.verification import (
     message_content,
     rule_based_question,
     search_verification_evidence,
+    select_answer_source_url,
 )
 from ai_backend.core.verification import (
     make_unverifiable_result as build_unverifiable_result,
@@ -45,7 +46,7 @@ def numeric_check_node(
     *,
     llm: BaseChatModel | None = None,
     search_client: SearchClient | None = None,
-    max_results_per_query: int = 3,
+    max_results_per_query: int = 5,
     max_workers: int = 4,
 ) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify NUMERIC claims and return a LangGraph partial update."""
@@ -144,9 +145,14 @@ def _verify_numeric_claim(
     # Step 1: Multi NL questions + search queries
     q_items = _request_numeric_questions(claim, llm=llm, claim_date=claim_date)
     if not q_items:
-        q_items = [{"question": _question_text(claim, [claim["text"]]), "search_queries": [claim["text"]]}]
+        q_items = [
+            {
+                "question": _question_text(claim, [claim["text"]]),
+                "search_queries": [claim["text"]],
+            }
+        ]
 
-    # Deduplicate search queries across all questions
+    # Deduplicate search queries across all questions.
     all_queries: list[str] = (list(dict.fromkeys(
         q for qi in q_items for q in qi.get("search_queries", [])
     )) or [claim["text"]])[:3]
@@ -174,7 +180,6 @@ def _verify_numeric_claim(
     )
 
     # Step 3: Per-question answer generation
-    source_url = evidence_results[0].url if evidence_results else ""
     questions: list[Question] = []
     for qi in q_items:
         q_text = qi.get("question", "") or _question_text(claim, all_queries)
@@ -185,7 +190,17 @@ def _verify_numeric_claim(
         answer_type = a_result.get("answer_type", "Extractive")
         boolean_explanation = a_result.get("boolean_explanation", "")
         if answer:
-            answer_dict: dict = {"answer": answer, "answer_type": answer_type, "source_url": source_url}
+            source_url = "" if answer_type == "Unanswerable" else select_answer_source_url(
+                answer,
+                evidence_results,
+                question=q_text,
+                boolean_explanation=boolean_explanation,
+            )
+            answer_dict: dict = {
+                "answer": answer,
+                "answer_type": answer_type,
+                "source_url": source_url,
+            }
             if answer_type == "Boolean":
                 answer_dict["boolean_explanation"] = boolean_explanation
             questions.append(Question(question=q_text, answers=[answer_dict], claim_id=claim["id"]))
@@ -195,7 +210,12 @@ def _verify_numeric_claim(
     return result, questions
 
 
-def _request_numeric_questions(claim: Claim, *, llm: BaseChatModel, claim_date: str = "") -> list[dict]:
+def _request_numeric_questions(
+    claim: Claim,
+    *,
+    llm: BaseChatModel,
+    claim_date: str = "",
+) -> list[dict]:
     response = llm.invoke(
         [
             SystemMessage(content=NUMERIC_CHECK_SYSTEM),
@@ -257,6 +277,7 @@ def _search_evidence(
             queries,
             search_client=search_client,
             max_results_per_query=max_results_per_query,
+            verifier="numeric",
         )
     except Exception:
         logger.exception("numeric_check_node: search failed")

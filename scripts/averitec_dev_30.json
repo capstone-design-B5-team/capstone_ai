@@ -1,0 +1,1486 @@
+[
+    {
+        "claim":  "In a letter to Steve Jobs, Sean Connery refused to appear in an apple commercial.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The answer and sources show that the claim was published in a fake news site so the claim is refuted.",
+        "claim_date":  "31-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201130144023/https://checkyourfact.com/2020/11/03/fact-check-sean-connery-letter-steve-jobs-apple-1998/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  null,
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Where was the claim first published",
+                              "answers":  [
+                                              {
+                                                  "answer":  "It was first published on Sccopertino",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201129141238/https://scoopertino.com/exposed-the-imac-disaster-that-almost-was/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201129141238/https://scoopertino.com/exposed-the-imac-disaster-that-almost-was/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What kind of website is Scoopertino",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Scoopertino is an imaginary news organization devoted to ferreting out the most relevant stories in the world of Apple, whether or not they actually occurred - says their about page",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201202085933/https://scoopertino.com/about-scoopertino/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201202085933/https://scoopertino.com/about-scoopertino/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Trump Administration claimed songwriter Billie Eilish Is Destroying Our Country In Leaked Documents",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Seems that the Wzshington post accused the singer wrong lyrics. Therefore the claim is refuted",
+        "claim_date":  "31-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201103001419/https://leadstories.com/hoax-alert/2020/11/fact-check-trump-administration-did-not-claim-songwriter-billie-eilish-was-destroying-country-in-leaked-documents.html",
+        "reporting_source":  "Instagram",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Position Statement",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Has the Trump administration voiced that Billie Eilish was destroying the country",
+                              "answers":  [
+                                              {
+                                                  "answer":  "A Washington Post story wrongly claimed the Trump administration accused Billie Eilish of “destroying our country",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201101145631/https://nypost.com/2020/10/30/washington-post-wrongly-claims-trump-officials-criticized-billie-eilish/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101145631/https://nypost.com/2020/10/30/washington-post-wrongly-claims-trump-officials-criticized-billie-eilish/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Due to Imran Khan\u0027s criticism of Macron\u0027s comments on Islam, French authorities cancelled the visas of 183 Pakistani citizens and deported 118 from the country.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The tweet was not the official government page and there is no evidence that visas were cancelled so the claim is refuted.",
+        "claim_date":  "31-10-2020",
+        "speaker":  "Consulate General Of Pakistan France",
+        "original_claim_url":  "https://web.archive.org/web/20201113115127/https://twitter.com/pakconsulatefr/status/1322495811993903104",
+        "fact_checking_article":  "https://web.archive.org/web/20210629013122/https://www.indiatoday.in/fact-check/story/fact-check-fake-tweet-france-deporting-pakistanis-go-viral-imran-slams-macron-1737276-2020-11-02",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "FR",
+        "claim_types":  [
+                            "Causal Claim",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "How did Macron criticise Islam?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Macron described Islam as a religion “in crisis” worldwide and vowed to present a bill in December to strengthen a law that officially separated church and state in France.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.aljazeera.com/news/2020/10/26/french-president-comments-over-islam-keep-sparking-outrage",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324112738/https://www.aljazeera.com/news/2020/10/26/french-president-comments-over-islam-keep-sparking-outrage"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "How did Imran Khan criticise Macron?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "It is unfortunate that he has chosen to encourage Islamophobia by attacking Islam rather than the terrorists who carry out violence, be it Muslims, White Supremacists or Nazi ideologists. Sadly, President Macron has chosen to deliberately provoke Muslims, incl his own citizens, through encouraging the display of blasphemous cartoons targeting Islam \u0026 our Prophet PBUH. By attacking Islam,   clearly without having any understanding of it, President Macron has attacked \u0026 hurt the sentiments of millions of Muslims in Europe \u0026 across the world",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20210905081440/https://twitter.com/ImranKhanPTI/status/1320286665785704448",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210905081440/https://twitter.com/ImranKhanPTI/status/1320286665785704448"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has France cancelled Pakistani citizens\u0027 visas?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No answer could be found.",
+                                                  "answer_type":  "Unanswerable",
+                                                  "source_url":  "",
+                                                  "source_medium":  ""
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has France deported any Pakistanis due to Khan\u0027s comments?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No answer could be found.",
+                                                  "answer_type":  "Unanswerable",
+                                                  "source_url":  "",
+                                                  "source_medium":  ""
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Who tweeted the original claim?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "They were tweeted by @PakConsulateFr, which is not Pakistani Consulate of France official Twitter account.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210629013122/https://twitter.com/PakConsulateFr/status/1322495811993903104",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210629013122/https://twitter.com/PakConsulateFr/status/1322495811993903104"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20201113115127/https://twitter.com/pakconsulatefr/status/1322495811993903104"
+    },
+    {
+        "claim":  "UNESCO declared Nadar community as the most ancient race in the world.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "This claim is refuted. According to the QA pairs, UNESCO have never declared a \"most ancient race\", and for those who have analysed this question, they have theorised that the San people of southern Africa may be the most \"ancient race\"- no the Nadar community. Therefore, this claim is refuted.",
+        "claim_date":  "31-10-2020",
+        "speaker":  "Kumar Shankar",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210225110220/https://www.vishvasnews.com/english/viral/fact-check-unesco-did-not-declare-nadar-community-as-ancient-race-in-the-world-viral-claim-is-fake/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "IN",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is Nadar?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Nadar (also referred as Nadan, Shanar) is a caste of Tamil Nadu \u0026 Kerala, South India. The Nadars are an entrepreneurial south Indian caste] and constitute 12% of Tamil Nadu\u0027s population. The Nadar community was not a singular caste, but an assortment of sub-castes and classes of different origins, which in course of time, came under the single banner Nadar. Nadars are predominant in the southern districts of Tuticorin, Kaniyakumari, Tirunelveli and Virudhunagar.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.familytreedna.com/groups/nadar/about/background",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324135958/https://www.familytreedna.com/groups/nadar/about/background"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What is the world\u0027s most ancient race according to UNESCO?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No answer could be found.",
+                                                  "answer_type":  "Unanswerable",
+                                                  "source_url":  "",
+                                                  "source_medium":  ""
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What is the world\u0027s most ancient race?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The San people of southern Africa, who have lived as hunter-gatherers for thousands of years, are likely to be the oldest population of humans on Earth, according to the biggest and most detailed analysis of African DNA.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.independent.co.uk/news/science/world-s-most-ancient-race-traced-in-dna-study-1677113.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327112418/https://www.independent.co.uk/news/science/world-s-most-ancient-race-traced-in-dna-study-1677113.html"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Republican Matt Gaetz was part of a company that had to pay 75 million in hospice fraud. They stole from dying people.",
+        "required_reannotation":  true,
+        "label":  "Refuted",
+        "justification":  "The company was sold in 2004 and the law suit was filed in 2013",
+        "claim_date":  "31-10-2020",
+        "speaker":  "",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210713185816/https://www.factcheck.org/2019/10/misleading-posts-target-gop-rep-matt-gaetz/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Numerical Claim",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did Matt Gaetz work for Chemed Corporation, Vitas Hospice Services LLC or Vitas Healthcare Corporation?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No answer could be found.",
+                                                  "answer_type":  "Unanswerable",
+                                                  "source_url":  "",
+                                                  "source_medium":  ""
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did Matt Gaetz\u0027s father Don Gaetz co-found Vitas?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Gaetz is the retired co-founder of VITAS Healthcare Corp., a hospice care provider that comforts patients and their families and preserves their dignity in the face of terminal illness. He was also president of the National Hospice Organization.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://erau.edu/gaetz-aerospace-institute/about/don-gaetz",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324140142/https://erau.edu/gaetz-aerospace-institute/about/don-gaetz"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What year did Don Gaetz sell Vitas to Chemed?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "In 2004, VITAS was acquired by Roto Rooter\u0027s parent company Chemed for $400 million.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.celebritynetworth.com/richest-politicians/republicans/don-gaetz-net-worth/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324140208/https://www.celebritynetworth.com/richest-politicians/republicans/don-gaetz-net-worth/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Was Chemed Corporation involved in a $75m Fraud charge?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes :\nThe lawsuit against the company was filed in 2013 — nine years after Don Gaetz sold the company to Chemed in 2004. It’s true that at least some of the instances were alleged to have occurred before that sale date (dating back to 2002), but it’s worth noting that Don Gaetz was not a party to the lawsuit. At the time of the lawsuit’s filing, he denied that the matters in the complaint related to his work with Vitas.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210713185816/http://ir.chemed.com/news-releases/news-release-details/roto-rooter-inc-completes-merger-vitas-healthcare-corporation",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210713185816/http://ir.chemed.com/news-releases/news-release-details/roto-rooter-inc-completes-merger-vitas-healthcare-corporation"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "The United States of America and its Western allies have been using their media outlets to publish articles based on fabricated information under allegations of non-compliance with the Chemical Weapons Convention.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Refuted by answer/source.",
+        "claim_date":  "30-10-2020",
+        "speaker":  "Syrian Arab News Agency (SANA)",
+        "original_claim_url":  "https://web.archive.org/web/20210415103410/https://sana.sy/en/?p=208083",
+        "fact_checking_article":  "https://web.archive.org/web/20210304003724/https://www.polygraph.info/a/assad-regime-groundlessly-claims-us-and-allies-are-lying-about-chemical-attacks/30938689.html",
+        "reporting_source":  "Syrian state media outlet",
+        "location_ISO_code":  "SY",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Has Syria complied with the Chemical Weapons Convention?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210302193538/https://www.theguardian.com/world/2020/apr/06/report-set-to-blame-syria-chemical-attacks-on-bashar-al-assad",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "“Our research shows what Syrians on the ground have known for years: that chemical weapons have become a completely normalised component of the Syrian regime arsenal used for years in full view of the international community with near impunity,”",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210302193538/https://www.theguardian.com/world/2020/apr/06/report-set-to-blame-syria-chemical-attacks-on-bashar-al-assad"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20210415103410/https://sana.sy/en/?p=208083"
+    },
+    {
+        "claim":  "More than 225,000 people dead, 225,000. The estimates are, if we’d have acted responsibly, there’d be 160,000 fewer dead than there are today, because of covid-19.",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "It seems that indeed the  umbers are true therefore the claim is supported ",
+        "claim_date":  "30-10-2020",
+        "speaker":  "Joe Biden",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210212055748/https://www.washingtonpost.com/politics/2020/11/02/fact-checking-final-arguments-biden-trump/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Numerical Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "How many deaths were recorded in the US on October 31, 2020",
+                              "answers":  [
+                                              {
+                                                  "answer":  "230,512",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://injuryfacts.nsc.org/home-and-community/safety-topics/covid-19-cases-in-the-united-states/",
+                                                  "source_medium":  "Image/graphic",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150310/https://injuryfacts.nsc.org/home-and-community/safety-topics/covid-19-cases-in-the-united-states/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Would a faster COVID response in the US reduced the death toll",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Due to exponential viral spread, our delay in action was devastating. In the wake of the U.S. response, 117,858 Americans died in the four months following the first 15 confirmed cases. After an equivalent period, Germany suffered only 8,863 casualties. Scaling up the German population of 83.7 million to America’s 331 million, a U.S.-sized Germany would have suffered 35,049 Covid-19 deaths. So if the U.S. had acted as effectively as Germany, 70% of U.S. coronavirus deaths might have been prevented.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.statnews.com/2020/06/19/faster-response-prevented-most-us-covid-19-deaths/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324140630/https://www.statnews.com/2020/06/19/faster-response-prevented-most-us-covid-19-deaths/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What is 70% of 230,512",
+                              "answers":  [
+                                              {
+                                                  "answer":  "161,358",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.calculator.net/",
+                                                  "source_medium":  "Other",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230326161218/https://www.calculator.net/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Why should you pay more taxes than Donald Trump pays? And that’s a fact. $750. Remember what he said when that was raised a while ago, how he only pays … He said, ‘Because I’m smart. I know how to game the system.’",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "True, question mark required (?) ",
+        "claim_date":  "30-10-2020",
+        "speaker":  "Joe Biden",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210212055748/https://www.washingtonpost.com/politics/2020/11/02/fact-checking-final-arguments-biden-trump/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What was Trump\u0027s tax return in 2017",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Trump Paid $750 in Federal Income Taxes in 2017",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20210212182804/https://www.nytimes.com/2020/09/29/us/trump-750-taxes.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210212182804/https://www.nytimes.com/2020/09/29/us/trump-750-taxes.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When did Trump say he was smart for not paying taxes",
+                              "answers":  [
+                                              {
+                                                  "answer":  "He made the boast during the 2016 electoral debate with Hilary Clinton",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210212190344/https://www.cnbc.com/2016/09/26/trump-brags-about-not-paying-taxes-that-makes-me-smart.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210212190344/https://www.cnbc.com/2016/09/26/trump-brags-about-not-paying-taxes-that-makes-me-smart.html"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "You’re watching the cheaters and all those people that send in the phony ballots. … They want to have the count weeks after November 3.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The mail in ballots have to be counted no later than 7 days after election day. so that it would be weeks later is refuted. ",
+        "claim_date":  "30-10-2020",
+        "speaker":  "Donald Trump",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210212055748/https://www.washingtonpost.com/politics/2020/11/02/fact-checking-final-arguments-biden-trump/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "When are mail-in ballots counted?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Vote-by-mail ballots that are mailed must be postmarked on or before Election Day and received by your county elections office no later than 7 days after Election Day.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.sos.ca.gov/elections/voter-registration/vote-mail",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324140705/https://www.sos.ca.gov/elections/voter-registration/vote-mail"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "are all non-mail ballots counted by election day?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://calmatters.org/politics/california-election-2020/2020/03/california-primary-election-results-delayed/",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "The counting will take time and is not done by the end of election day.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324140839/https://calmatters.org/politics/california-election-2020/2020/03/california-primary-election-results-delayed/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "You see the number today? 33.1 GDP. The biggest in the history of our country by almost triple, right? Almost triple. Now it’s very much bigger than any GDP we’ve ever had. You have to go back to the 1950s, and then it’s less than half. This is the greatest number, 33.1 percent.",
+        "required_reannotation":  true,
+        "label":  "Not Enough Evidence",
+        "justification":  "There is only one question and that is unanswerable. There is no evidence about the GDP in 2020 when the claim was made. Therefore there is not enough evidence to refute or support the claim.",
+        "claim_date":  "30-10-2020",
+        "speaker":  "Donald Trump",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210212055748/https://www.washingtonpost.com/politics/2020/11/02/fact-checking-final-arguments-biden-trump/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Numerical Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Was 1950\u0027s U.S GDP less than half of 2020\u0027s GDP of 33.1?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.stlouisfed.org/on-the-economy/2017/april/us-manufacturing-really-declining",
+                                                  "source_medium":  "Image/graphic",
+                                                  "boolean_explanation":  "28.1 percent in 1953",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327113019/https://www.stlouisfed.org/on-the-economy/2017/april/us-manufacturing-really-declining"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What was the USA\u0027s GDP in the 1950s?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No answer could be found.",
+                                                  "answer_type":  "Unanswerable",
+                                                  "source_url":  "",
+                                                  "source_medium":  ""
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Donald Trump, when he thinks of climate change, he says hoax. Well, guess what? Speaking of hoaxes, remember what he said about these increasing violent hurricanes and the frequency? He actually said, maybe we should detonate a nuclear bomb over the Atlantic. By the way, the same stable genius who said the biggest problem we had in the Revolutionary War is we didn’t have enough airports.",
+        "required_reannotation":  true,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "There is a few too many claims in this claim, so while one is true, he did say we should detonate a nuclear bomb, i cannot confirm all are true ",
+        "claim_date":  "30-10-2020",
+        "speaker":  "Joe Biden",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210212055748/https://www.washingtonpost.com/politics/2020/11/02/fact-checking-final-arguments-biden-trump/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did Trump ever suggest bombing hurricanes to prevent them from reaching the US",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Trump suggested nuking hurricanes to stop them from hitting U.S",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20210212183744/https://www.axios.com/trump-nuclear-bombs-hurricanes-97231f38-2394-4120-a3fa-8c9cf0e3f51c.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210212183744/https://www.axios.com/trump-nuclear-bombs-hurricanes-97231f38-2394-4120-a3fa-8c9cf0e3f51c.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did Donald J. Trump say; \u0027\u0027biggest problem we had in the Revolutionary War is we didn’t have enough airports\u0027\u0027?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "He did speak of the congressional army taking all of the airports over, however there were no airports at the time. However he blamed his teleprompter.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://www.nbcnews.com/politics/donald-trump/trump-blames-teleprompter-revolutionary-war-airports-flub-n1026931",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324140950/https://www.nbcnews.com/politics/donald-trump/trump-blames-teleprompter-revolutionary-war-airports-flub-n1026931"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "The U.S. surgeon general and the Centers for Disease Control both previously said that ‘masks are not effective in preventing [the] general public from catching coronavirus.’",
+        "required_reannotation":  false,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "There is a 79% reduction made in certain situations. But not effective in certain other situations. ",
+        "claim_date":  "29-10-2020",
+        "speaker":  "Yinon Weiss",
+        "original_claim_url":  "https://thefederalist.com/2020/10/29/these-12-graphs-show-mask-mandates-do-nothing-to-stop-covid/",
+        "fact_checking_article":  "https://web.archive.org/web/20210711073635/https://healthfeedback.org/claimreview/wearing-face-masks-helps-reduce-the-spread-of-covid-19-but-it-only-confers-partial-protection-and-should-be-combined-with-additional-public-health-measures/",
+        "reporting_source":  "The Federalist",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Quote Verification"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Are masks effective in preventing people from catching coronavirus?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The effectiveness of face masks is dependent on how they are used. Face mask use was 79% effective in reducing transmission in certain situations. But not effective in certain other situations.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://dx.doi.org/10.1136/bmjgh-2020-002794",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327113235/https://gh.bmj.com/content/5/5/e002794"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327113113/https://thefederalist.com/2020/10/29/these-12-graphs-show-mask-mandates-do-nothing-to-stop-covid/"
+    },
+    {
+        "claim":  "New Zealand’s new Food Bill bans gardening",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The bill is not into legislation for now. I see claim as false. ",
+        "claim_date":  "29-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210415103231/https://www.aap.com.au/new-zealands-new-food-bill-doesnt-ban-gardening/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "NZ",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Which Food Bill does the claim refer to?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The claim refers to the Food Act 2014, first read in New Zealand Parliament in May 2010.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://www.parliament.nz/en/pb/bills-and-laws/bills-proposed-laws/document/00DBHOH_BILL9974_1/food-bill",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324141553/https://bills.parliament.nz/v/6/56275ad2-bbfc-428a-8102-4062c823904d"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Does the blog post imply that this Food Bill\nis already legislation?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://archive.ph/jqW1g#selection-1753.196-1753.231",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "The blog text uses future terminology like \"...the bill is being brought in...\" and \"...this NZ food bill will pave the way...\".",
+                                                  "cached_source_url":  "https://archive.ph/jqW1g#selection-1753.196-1753.231"
+                                              },
+                                              {
+                                                  "answer":  "The title of the blog refers to the Food Bill as \"New Food Bill in New Zealand...\"",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://archive.ph/jqW1g#selection-1541.0-1541.28",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://archive.ph/jqW1g#selection-1541.0-1541.28"
+                                              },
+                                              {
+                                                  "answer":  "This bill would on commencement replace the Food Act 1981 and over time the Food Hygiene Regulations 1974 and the Food (Safety) Regulations 2002.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://archive.ph/jqW1g#selection-1931.0-1931.145",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://archive.ph/jqW1g#selection-1931.0-1931.145"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What is the date of the blog post?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The date on the post is October 29, 2020",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://archive.ph/jqW1g#selection-1541.0-1541.28",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://archive.ph/jqW1g#selection-1541.0-1541.28"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What amendments have been made to the Act up to the claim date?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Public Service Act 2020 (2020 No 40): section 135\nEducation and Training Act 2020 (2020 No 38): section 668\nPrivacy Act 2020 (2020 No 31): section 217\nCOVID-19 Response (Further Management Measures) Legislation Act 2020 (2020 No 13): section 3\nStatutes Amendment Act 2019 (2019 No 56): Part 18\nCustoms and Excise Act 2018 (2018 No 4): section 443(3)\nFood Safety Law Reform Act 2018 (2018 No 3): Part 1\nDistrict Court Act 2016 (2016 No 49): section 261\nSenior Courts Act 2016 (2016 No 48): section 183(b), (c)\nFood Regulations 2015 (LI 2015/310): Schedule 1 clause 7\nLegislation (Confirmable Instruments) Amendment Act 2015 (2015 No 120): section 14",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "http://www.nzlii.org/nz/legis/consol_act/fa201457/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324144400/http://www.nzlii.org/nz/legis/consol_act/fa201457/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What did the New Zealand Food Safety Minister say about the Bill on 12 October, 2011?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The new Food Bill is about modernising legislation that is now 30 years old. It is about ensuring that people who sell and prepare food do so safely.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.beehive.govt.nz/release/greens-wrong-food-bill",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324144427/https://www.beehive.govt.nz/release/greens-wrong-food-bill"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Wearing face masks will stop the spread of covid 19",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "From the question and answer pair it does indeed seem that face masks are useful in stopping the spread of covid19. Therefore, the claim is supported.",
+        "claim_date":  "29-10-2020",
+        "speaker":  "Yinon Weiss",
+        "original_claim_url":  "https://thefederalist.com/2020/10/29/these-12-graphs-show-mask-mandates-do-nothing-to-stop-covid/",
+        "fact_checking_article":  "https://web.archive.org/web/20210711073635/https://healthfeedback.org/claimreview/wearing-face-masks-helps-reduce-the-spread-of-covid-19-but-it-only-confers-partial-protection-and-should-be-combined-with-additional-public-health-measures/",
+        "reporting_source":  "The Federalist",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Does a face mask prevent the spread of Covid 19?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Cloth face coverings, even homemade masks made of the correct material, are effective in reducing the spread of COVID-19 - for the wearer and those around them - according to a new study from Oxford’s Leverhulme Centre for Demographic Science.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.ox.ac.uk/news/2020-07-08-oxford-covid-19-study-face-masks-and-coverings-work-act-now",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324154557/https://www.ox.ac.uk/news/2020-07-08-oxford-covid-19-study-face-masks-and-coverings-work-act-now"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327113113/https://thefederalist.com/2020/10/29/these-12-graphs-show-mask-mandates-do-nothing-to-stop-covid/"
+    },
+    {
+        "claim":  "Jammu and Kashmir (J\u0026K) in Pakistan/India was removed from the United Nations (UN) list of “unresolved disputes”.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The answer and source show that they were never on the list so the claim is refuted.",
+        "claim_date":  "29-10-2020",
+        "speaker":  "Paresh Rawal ‏",
+        "original_claim_url":  "https://archive.ph/3oBfZ",
+        "fact_checking_article":  "https://web.archive.org/web/20210608054144/https://www.altnews.in/old-unfounded-reports-of-removal-of-jk-from-un-list-of-disputes-viral-again/",
+        "reporting_source":  "Twitter/Latest laws",
+        "location_ISO_code":  "PK",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is the dispute in Jammu and Kasmir about?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The first Indo-Pakistan war, in 1947-1948, split Jammu and Kashmir in two, with both countries since claiming ownership over the entire territory. As such, Kashmir is both the cause and consequence of war and hostilities between the two nuclear-armed states",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.crisisgroup.org/asia/south-asia/kashmir/310-raising-stakes-jammu-and-kashmir",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324144857/https://www.crisisgroup.org/asia/south-asia/kashmir/310-raising-stakes-jammu-and-kashmir"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Was Jammu and Kashmir an item on the agenda of the Security Council?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "“However, the point is Jammu \u0026 Kashmir has never been an item on the agenda of the Security Council. It has always been “India-Pakistan question”. Further, since the last formal meeting of the Council on this agenda item also took place in November 1965, even this is listed in a separate category by the Secretary-General in his regular report on the list of items seized by the Council. The India/Pakistan question is listed in a separate category of items which have not been considered in the last 3 years",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210608054144/https://www.undocs.org/en/S/2020/10/Add.40",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210608054144/https://www.undocs.org/en/S/2020/10/Add.40"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://archive.ph/3oBfZ"
+    },
+    {
+        "claim":  "Illegal drug, border crossings, and human smuggling activities have decreased in areas where barriers are deployed in the United States.",
+        "required_reannotation":  false,
+        "label":  "Not Enough Evidence",
+        "justification":  "15 miles of new barriers seems unlikely to account for the halving of illegal crossing from 2019 to 2020. Particularly as 2019 is the outlier in the period 2018 to 2020.\n\nHowever the claim isn\u0027t about causation, only the fact that numbers have decreased in these areas. The 2018-2020 figures are for the whole border so it\u0027s impossible to assess if this trend is true in areas with barriers (which make up around half of the land border).",
+        "claim_date":  "29-10-2020",
+        "speaker":  "Chase Jennings",
+        "original_claim_url":  "https://twitter.com/spoxdhs/status/1322031666739748864?s=21",
+        "fact_checking_article":  "https://web.archive.org/web/20210304001822/https://www.polygraph.info/a/fact-check-twitter-trumps-wall-and-the-drop-in-border-crossings/30931153.html",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Numerical Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Which border is this claim referring to?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The US-Mexico border.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "Metadata",
+                                                  "source_medium":  "Metadata",
+                                                  "cached_source_url":  "Metadata"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did the US-Mexico border have barriers before President Tump took office?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.wsj.com/articles/the-border-wall-mile-by-mile-11550152535",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "About 654 miles of the 1,991-mile border already had some kind of fabricated barrier when Mr. Trump took office. Much of the rest has natural barriers; approximately 1,295 miles of the border are river, and 696 miles are land.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324145533/https://www.wsj.com/articles/the-border-wall-mile-by-mile-11550152535"
+                                              },
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.bbc.com/news/world-us-canada-46824649",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Before he took office, there were 654 miles (just over 1,000km) of barrier along the southern border - made up of 354 miles of barricades to stop pedestrians and 300 miles of anti-vehicle fencing.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230322221316/https://www.bbc.com/news/world-us-canada-46824649"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "How much of the border has barriers as of October 2020?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Now, according to US Customs and Border Protection (CBP) in its 6 October status report, the southern border has 669 miles of \"primary barrier\" - the first structure people heading from Mexico to the US will encounter - and 65 miles of \"secondary barrier\" - which usually runs behind the primary structure as a further obstacle.\n\nThis means that in areas where no barricades existed before, they have built 15 miles of new, primary barrier or \"border wall system\", as it is called by CBP.\n\n​​About a further 350 miles of barrier has been built, according to CBP, made up of replacement structures and some new secondary barrier.\n\nMore is planned, too, with 378 miles of new and replacement barrier either under construction or in the \"pre-construction phase\". Less than half of this will be in locations where no barriers currently exist, according to CBP.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.bbc.com/news/world-us-canada-46824649",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230322221316/https://www.bbc.com/news/world-us-canada-46824649"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "How many border encounters were there in 2018-2020?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Fiscal years\n2018 - 521,090\n2019 - 977,509\n2020 - 458,088",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.cbp.gov/newsroom/stats/southwest-land-border-encounters",
+                                                  "source_medium":  "Web table",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230326225859/https://www.cbp.gov/newsroom/stats/southwest-land-border-encounters"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When did the Covid-19 pandemic emerge?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The novel coronavirus (SARS-CoV-2) that causes COVID-19 first emerged in the Chinese city of Wuhan in 2019 and was declared a pandemic by the World Health Organization (WHO)",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.nfid.org/infectious-diseases/coronaviruses/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230321143009/https://www.nfid.org/infectious-diseases/coronaviruses/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327113411/https://twitter.com/spoxdhs/status/1322031666739748864?s=21"
+    },
+    {
+        "claim":  "The plentiful evidence we have indicates that masks would not meaningfully help with aerosol transmission of COVID 19.",
+        "required_reannotation":  true,
+        "label":  "Refuted",
+        "justification":  "Evidence finds that surgical face masks could prevent transmission of human coronaviruses and influenza viruses from symptomatic individuals. The CDC and the World Health Organization (WHO), at the time of the claim, also recommended cloth masks for the general public.",
+        "claim_date":  "29-10-2020",
+        "speaker":  "Yinon Weiss",
+        "original_claim_url":  "https://thefederalist.com/2020/10/29/these-12-graphs-show-mask-mandates-do-nothing-to-stop-covid/",
+        "fact_checking_article":  "https://web.archive.org/web/20210711073635/https://healthfeedback.org/claimreview/wearing-face-masks-helps-reduce-the-spread-of-covid-19-but-it-only-confers-partial-protection-and-should-be-combined-with-additional-public-health-measures/",
+        "reporting_source":  "The Federalist",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Have any studies been done to show if masks help with Aerosol transmission ?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Surgical face masks significantly reduced detection of influenza virus RNA in respiratory droplets and coronavirus RNA in aerosols, with a trend toward reduced detection of coronavirus RNA in respiratory droplets. Our results indicate that surgical face masks could prevent transmission of human coronaviruses and influenza viruses from symptomatic individuals.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.nature.com/articles/s41591-020-0843-2?error=cookies_not_supported\u0026code=06c46169-a951-475f-84e1-3761c88a0a71",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327114027/https://www.nature.com/articles/s41591-020-0843-2"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Do any health body\u0027s recommend wearing a facemask to help slow down aerosol transmission of viruses at the time of the claim (2020)?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "At of claim yes, the (CDC) and the World Health Organization now recommended cloth masks for the general public, but earlier in the pandemic, both organizations recommended just the opposite.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.ucsf.edu/news/2020/06/417906/still-confused-about-masks-heres-science-behind-how-face-masks-prevent",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327114052/https://www.ucsf.edu/news/2020/06/417906/still-confused-about-masks-heres-science-behind-how-face-masks-prevent"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327113113/https://thefederalist.com/2020/10/29/these-12-graphs-show-mask-mandates-do-nothing-to-stop-covid/"
+    },
+    {
+        "claim":  "All USA Ballots Arriving After Election Day Will Be Thrown Out",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Two sources confirm that postal ballots received after election day can still be counted, therefore not all will be thrown out.",
+        "claim_date":  "28-10-2020",
+        "speaker":  "Eric Holder",
+        "original_claim_url":  "https://web.archive.org/web/20210216082556/https://twitter.com/EricHolder/status/1321123705200758786",
+        "fact_checking_article":  "https://web.archive.org/web/20210222051131/https://leadstories.com/hoax-alert/2020/10/fact-check-it-is-not-true-that-all-ballots-arriving-after-election-day-will-be-thrown-out.html",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What was the election day in the 2020 US presidential elections?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "November 3, 2020.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://elections.maryland.gov/elections/2020/index.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324145709/https://elections.maryland.gov/elections/2020/index.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When was the deadline to receiving votes by mail?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Your mail-in ballot must be mailed or dropped in a drop off box location location by 8 pm on Election Day, November 3. If you mail your ballot, it must be postmarked on or before November 3, 2020 to be counted.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://elections.maryland.gov/elections/2020/index.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324145709/https://elections.maryland.gov/elections/2020/index.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Was there an extension to the deadline of receipt of mail ballots in the 2020 elections?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://oag.dc.gov/sites/default/files/2020-10/Wise-v-Circosta-Amicus.pdf",
+                                                  "source_medium":  "PDF",
+                                                  "boolean_explanation":  "Numbered\nMemorandum 2020-22 (“Memo 2020-22”), the policy at issue in this case, makes two\naccommodations in light of the COVID-19 pandemic and “[d]ue to current delays with\nmail sent with the U.S. Postal Service.” Memo 2020-22, at 1. First, it extends the\ndeadline by which timely mailed ballots must be received in order to be counted from\nthree days after Election Day to nine days; and, second, it expands the mechanisms\nby which officials can determine the date on which an absentee ballot was mailed.\nMemo 2020-22, at 1.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324145741/https://oag.dc.gov/sites/default/files/2020-10/Wise-v-Circosta-Amicus.pdf"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What was the deadline for receipt of mail ballots in Alaska and Maryland in the 2020 US presidential elections?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Absentee ballots must be postmarked by Nov. 3 and received by Nov. 13.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://projects.fivethirtyeight.com/how-to-vote-2020/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230318210700/https://projects.fivethirtyeight.com/how-to-vote-2020/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20210216082556/https://twitter.com/EricHolder/status/1321123705200758786"
+    },
+    {
+        "claim":  "Even if your mail-in ballot is postmarked prior to the Election day but arrives after the Election day it will be thrown out.",
+        "required_reannotation":  false,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "The claim is cherrypicking as some states do accept the ballots and some do not.",
+        "claim_date":  "28-10-2020",
+        "speaker":  "Elizabeth Gilbert",
+        "original_claim_url":  "https://web.archive.org/web/20201029195951/https://www.facebook.com/GilbertLiz/photos/a.356148997800555/3549940058421417/",
+        "fact_checking_article":  "https://web.archive.org/web/20210721024443/https://factcheck.thedispatch.com/p/will-your-ballot-be-thrown-out-if",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Do some states accept ballots that were postmarked before election day?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "There are 22 states plus the District of Columbia",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://www.buzzfeednews.com/article/addybaird/vote-by-mail-state-deadlines",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324145811/https://www.buzzfeednews.com/article/addybaird/vote-by-mail-state-deadlines"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Are there states which do require votes to arrive by election day.",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Wisconsin is one of about 30 states that require absentee ballots be received by Election Day to be counted.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.cbsnews.com/news/wisconsin-election-supreme-court-rules-againt-absentee-ballots-after-election-day/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324145915/https://www.cbsnews.com/news/wisconsin-election-supreme-court-rules-againt-absentee-ballots-after-election-day/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Does the original posterLiz Gilbert mention the state that does not allow voting after deadline?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.facebook.com/GilbertLiz/photos/a.356148997800555/3549940058421417",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Even if your mail-in ballot is postmarked today, if it arrives after Election Day, it will be thrown out. Discounted. Ignored. (Thanks, Supreme Court. Thanks, GOP.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327114412/https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2FGilbertLiz%2Fphotos%2Fa.356148997800555%2F3549940058421417"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20201029195951/https://www.facebook.com/GilbertLiz/photos/a.356148997800555/3549940058421417/"
+    },
+    {
+        "claim":  "Video shows attack of French embassy in Sudan",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "It is the \"German\" embassy that was under attack in Sudan.",
+        "claim_date":  "28-10-2020",
+        "speaker":  "Anmol Alphonso",
+        "original_claim_url":  "https://www.boomlive.in/fake-news/2012-embassy-attacks-in-sudan-falsely-shared-as-attack-on-french-embassy-10392",
+        "fact_checking_article":  "https://web.archive.org/web/20201128024341/https://www.boomlive.in/fake-news/2012-embassy-attacks-in-sudan-falsely-shared-as-attack-on-french-embassy-10392",
+        "reporting_source":  null,
+        "location_ISO_code":  "IN",
+        "claim_types":  [
+                            "Quote Verification"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "When was the video taken",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The video was taken on 14th September 2012",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20220311134915/https://www.tagesspiegel.de/politik/proteste-gegen-anti-islam-film-demonstranten-setzen-deutsche-botschaft-im-sudan-in-brand/7132474.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20220311134915/https://www.tagesspiegel.de/politik/proteste-gegen-anti-islam-film-demonstranten-setzen-deutsche-botschaft-im-sudan-in-brand/7132474.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Which embassy was being attacked in the video",
+                              "answers":  [
+                                              {
+                                                  "answer":  "In Sudan, demonstrators stormed the German embassy and set it on fire in a bloody protest against an Islam-critical abusive video",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20220311134915/https://www.tagesspiegel.de/politik/proteste-gegen-anti-islam-film-demonstranten-setzen-deutsche-botschaft-im-sudan-in-brand/7132474.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20220311134915/https://www.tagesspiegel.de/politik/proteste-gegen-anti-islam-film-demonstranten-setzen-deutsche-botschaft-im-sudan-in-brand/7132474.html"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327114437/https://www.boomlive.in/fake-news/2012-embassy-attacks-in-sudan-falsely-shared-as-attack-on-french-embassy-10392"
+    },
+    {
+        "claim":  "Viral video purportedly shows Pakistani opposition MPs chanted ‘Modi, Modi’ (India\u0027s PM)  inside the Pakistani Parliament",
+        "required_reannotation":  true,
+        "label":  "Refuted",
+        "justification":  "They were shouting voting not modi",
+        "claim_date":  "28-10-2020",
+        "speaker":  "BJP MP Shobha Karandlaje",
+        "original_claim_url":  "https://web.archive.org/web/20201029052913/https://twitter.com/ShobhaBJP/status/1321685388029689857",
+        "fact_checking_article":  "https://web.archive.org/web/20201201094845/https://www.indiatoday.in/fact-check/story/fact-check-did-pakistan-mps-chant-modi-modi-inside-parliament-1736393-2020-10-29",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "IN",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Were there any reports of the event in the pakistani parliament?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "A detailed report of the proceedings are detailed in a report in the Dawn, there is no mention of people shouting Modi Modi. But people did shout \u0027voting, voting\u0027",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://www.dawn.com/news/1587131",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150034/https://www.dawn.com/news/1587131"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20201029052913/https://twitter.com/ShobhaBJP/status/1321685388029689857"
+    },
+    {
+        "claim":  "Taylor Zundel claimed on Instagram that she and other early voters in Utah, were unable to cast ballots in the 2020 presidential elections, as they were told they had already voted.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "She was able to vote, after a temporary problem. ",
+        "claim_date":  "27-10-2020",
+        "speaker":  "Taylor Zundel",
+        "original_claim_url":  "https://www.instagram.com/tv/CG2tF9eF-VS/?utm_source=ig_embed\u0026utm_campaign=loading",
+        "fact_checking_article":  "https://web.archive.org/web/20201130194219/https://leadstories.com/hoax-alert/2020/10/fact-check-voting-machine-message-voters-received-did-not-prevent-them-from-voting.html",
+        "reporting_source":  "Instagram",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Fact-checker Reference"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Was Utah resident  Taylor Zundel able to vote in the 2020 presidential elections?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20201119224000/https://hermancain.com/instagram-testimony-people-showing-vote-told-already-voted/",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Election officials cleared her vote after a technical problem with her voter card.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201119224000/https://hermancain.com/instagram-testimony-people-showing-vote-told-already-voted/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327114630/https://www.instagram.com/tv/CG2tF9eF-VS/"
+    },
+    {
+        "claim":  "Trash Can Plastered With \u0027Ballot Box\u0027 Sign In Philadelphia Was Intended To Get People To Toss Their Ballots In The Trash.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "From the question and answer pair it seems that the claim is refuted.",
+        "claim_date":  "27-10-2020",
+        "speaker":  null,
+        "original_claim_url":  "",
+        "fact_checking_article":  "https://web.archive.org/web/20210308132830/https://leadstories.com/hoax-alert/2020/10/fact-check-a-worker-did-not-intend-to-direct-people-to-toss-their-ballots-in-the-trash.html",
+        "reporting_source":  "Instagram",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did a worker in Philadelphia mark the trash cans so that people would throw away their ballots?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The posters proclaiming Ballot Box on sidewalk solar-powered trash compactors were created to advertise Ballot Box an exhibit and not to throw votes in the trash.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.instagram.com/p/CG2aethncKr/?utm_source=ig_embed",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327115248/https://www.instagram.com/p/CG2aethncKr/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  ""
+    },
+    {
+        "claim":  "Joe Biden wants to ban fracking",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "From the Q\u0026A it seems Joe biden has never said he wants to ban fracking. So the claim is refuted. ",
+        "claim_date":  "27-10-2020",
+        "speaker":  "The Donald Trump 2020 presidential campaign",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210710201514/https://www.factcheck.org/2020/10/trumps-misleading-attacks-on-biden-over-fracking/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Position Statement"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is Joe Bidens stance on fracking?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "hes never said he opposes it.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210710174744/https://www.rev.com/blog/transcripts/donald-trump-joe-biden-final-presidential-debate-transcript-2020",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210710174744/https://www.rev.com/blog/transcripts/donald-trump-joe-biden-final-presidential-debate-transcript-2020"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Germany’s Foreign Minister Heiko Maas said that Thailand’s King Maha Vajiralongkorn didn’t do anything illegal while at his German residence.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "This claim is refuted. According to the QA pairs, Germany\u0027s Foreign Minister Heiko Maas stated that they are \"watching what the Thai king gets up to in Germany\" as \"politics concerning Thailand should not be conducted from German soil\". The Thai King is accused of conducting politics from Germany. However, the claim states that Maas said that the King \"didn\u0027t do anything illegal\" which is not proven to be true. Therefore, this claim is refuted.",
+        "claim_date":  "27-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201107130020/https://factcheck.afp.com/german-foreign-ministers-comments-about-thailands-anti-government-protests-misrepresented-social",
+        "reporting_source":  null,
+        "location_ISO_code":  "DE",
+        "claim_types":  [
+                            "Quote Verification"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is Thailand’s King Maha Vajiralongkorn accused of doing while at his German residence?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "He is accused of conducting politics from the European country, where he spends much of his time.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.smh.com.au/world/asia/unusual-if-not-illegal-germany-says-thai-king-cannot-rule-from-there-20201009-p563kd.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150426/https://www.smh.com.au/world/asia/unusual-if-not-illegal-germany-says-thai-king-cannot-rule-from-there-20201009-p563kd.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has Germany’s Foreign Minister Heiko Maas made any comments on Thailand’s King Maha Vajiralongkorn conducting business within Germany?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Maas told parliament. \"We have made it clear that politics concerning Thailand should not be conducted from German soil,\"",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.smh.com.au/world/asia/unusual-if-not-illegal-germany-says-thai-king-cannot-rule-from-there-20201009-p563kd.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150426/https://www.smh.com.au/world/asia/unusual-if-not-illegal-germany-says-thai-king-cannot-rule-from-there-20201009-p563kd.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did Germany’s Foreign Minister Heiko Maas say that the king has done nothing illegal?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20201107142547/https://www.dw.com/en/german-foreign-minister-heiko-maas-i-am-also-watching-what-the-thai-king-gets-up-to-in-germany/av-55399648",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "German Foreign Minister Heiko Maas: \u0027I am also watching what the Thai king gets up to in Germany.\u0027",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201107142547/https://www.dw.com/en/german-foreign-minister-heiko-maas-i-am-also-watching-what-the-thai-king-gets-up-to-in-germany/av-55399648"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "McDonald’s Azerbaijan\u0027s official account was promoting the military taking of Nagorno-Karabakh.",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "Evidence is provided but question should really mention it is an instagram account.",
+        "claim_date":  "27-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210303123859/https://www.polygraph.info/a/did-mcdonald-s-in-azerbaijan-make-pro-military-posts-on-instagram-/30917916.html",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "AZ",
+        "claim_types":  [
+                            "Position Statement"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Was Mc Donald\u0027s Azerbaijan official account posting about military stuff",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210303123859mp_/https://t.co/oo9Sbfoq7U",
+                                                  "source_medium":  "Image/graphic",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210303123859mp_/https://t.co/oo9Sbfoq7U"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Ivermectin is a treatment for coronavirus.",
+        "required_reannotation":  false,
+        "label":  "Not Enough Evidence",
+        "justification":  "Ivermectin is licensed for anti parasitic used but not enough evidence yet exists for treatment against coronavirus. ",
+        "claim_date":  "26-10-2020",
+        "speaker":  "Pearson Sharp",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210703175845/https://healthfeedback.org/claimreview/strong-evidence-lacking-to-support-claim-that-ivermectin-is-a-cure-for-covid-19-there-are-only-limited-clinical-results-at-this-stage-oann/",
+        "reporting_source":  "One America News Network,",
+        "location_ISO_code":  null,
+        "claim_types":  [
+                            "Position Statement"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is ivermectin?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Ivermectin is one of the most important antibiotics discovered.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.thelancet.com/journals/langlo/article/PIIS2214-109X(19)30490-5/fulltext",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150531/https://www.thelancet.com/journals/langlo/article/PIIS2214-109X%2819%2930490-5/fulltext"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Could invermectin be used as a treatment for Covid-19?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The clinical efficacy and utility of ivermectin in SARS CoV-2 infected patients are unpredictable at this stage, as we are dealing with a completely novel virus. We await results of well-designed large scale randomized controlled clinical trials exploring treatment efficacy of ivermectin to treat SARS-CoV-2.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.ncbi.nlm.nih.gov/labs/pmc/articles/PMC7521351/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327115331/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7521351/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Sleeping under a mosquito bed net treated (or not treated) with insecticide is ineffective and harmful to human health.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Sleeping under a mosquito net is effective in preventing man-vector contact",
+        "claim_date":  "26-10-2020",
+        "speaker":  null,
+        "original_claim_url":  "https://vikaspedia.in/health/diseases/vector-borne-diseases/treatment-and-use-of-insecticide-treated-mosquito-nets",
+        "fact_checking_article":  "https://web.archive.org/web/20210212042422/https://dubawa.org/some-people-believe-sleeping-under-insecticide-treated-bed-net-is-harmful-but-how-true-is-this/",
+        "reporting_source":  "Vikaspedia",
+        "location_ISO_code":  "NG",
+        "claim_types":  [
+                            "Causal Claim",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Is sleeping under a mosquito bed net effective?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Sleeping under a bed net reduces the risk of man-vector contact as mosquitoes bite at night and is thus an effective preventive measure.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "http://vikaspedia.in/health/diseases/vector-borne-diseases/treatment-and-use-of-insecticide-treated-mosquito-nets",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150710/https://vikaspedia.in/health/diseases/vector-borne-diseases/treatment-and-use-of-insecticide-treated-mosquito-nets"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Is sleeping under a mosquito bed harmful to human health?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Insecticides used for mosquito nets are not harmful to people, if used correctly. Direct skin contact with the insecticide on a still wet net may cause a tingling sensation on the skin. This is not harmful, even for small children.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "http://vikaspedia.in/health/diseases/vector-borne-diseases/treatment-and-use-of-insecticide-treated-mosquito-nets",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150710/https://vikaspedia.in/health/diseases/vector-borne-diseases/treatment-and-use-of-insecticide-treated-mosquito-nets"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230324150710/https://vikaspedia.in/health/diseases/vector-borne-diseases/treatment-and-use-of-insecticide-treated-mosquito-nets"
+    },
+    {
+        "claim":  "Pogba Has Quit The French National Team Over Macron\u0027s Remarks on Islam.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Debunked by Pogba himself.",
+        "claim_date":  "26-10-2020",
+        "speaker":  "Troll Football Nepal",
+        "original_claim_url":  "https://www.facebook.com/OfficialTFN/photos/a.2080854138854114/2743164972623024/?type=3\u0026__xts__[0]=68.ARA0aaJdMED8IPqlzRS68cB2DSqDil_1rHOwNOhrSS5qM-nX__BYEqmUEjtfhqbWCqsHTuh_htN7RuTU3BtPF5PueggMPFouVSZ3pwJqCqYy7-__GxLGaTUKzTj5WIIKisdiBs3HBr9OO3Gn3MdFIVMUWtA7LiNUc1x6G7h_YYJ_K1oryvj8bmRaeeZ30er-3U1xZyQSdTNCQp1fWAOUpjFKzSTMl51rrAByWfasax90j2VzELEqZshfzWiWZLegCVZGjsFbdCd41icecnLYbCO75EkNiAdspkhslPCelf-qcVBtQitdCiHfWo8U_ElDhZV1B7Jq1kv782nhi2Ho_rNL6XEI",
+        "fact_checking_article":  "https://web.archive.org/web/20210712111918/https://www.boomlive.in/fake-news/no-pogba-has-not-quit-the-french-national-team-over-macrons-remarks-10373",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "FR",
+        "claim_types":  [
+                            "Causal Claim",
+                            "Quote Verification"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What do British media report to the claim that French football player Paul Pogba had quit the national team in protest against President Emmanuel Macron\u0027s recent comments on Islam?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Paul Pogba is NOT quitting international football as a retaliation to statements by French president Emmanuel Macron alleging that Islam was the source of international terrorism.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.dailymail.co.uk/sport/sportsnews/article-8879445/Paul-Pogba-QUIT-France-duty-Macron-said-Islam-source-international-terrorism.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150807/https://www.dailymail.co.uk/sport/sportsnews/article-8879445/Paul-Pogba-QUIT-France-duty-Macron-said-Islam-source-international-terrorism.html"
+                                              },
+                                              {
+                                                  "answer":  "Paul Pogba has dispelled reports from the Middle East suggesting he was quitting the France national team after recent comments from president Emmanuel Macron",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.mirror.co.uk/sport/football/news/breaking-man-utd-star-paul-22904740",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324150949/https://www.mirror.co.uk/sport/football/news/breaking-man-utd-star-paul-22904740"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327115501/https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2FOfficialTFN%2Fphotos%2Fa.2080854138854114%2F2743164972623024%2F%3Ftype%3D3%26__xts__%255B0%255D%3D68.ARA0aaJdMED8IPqlzRS68cB2DSqDil_1rHOwNOhrSS5qM-nX__BYEqmUEjtfhqbWCqsHTuh_htN7RuTU3BtPF5PueggMPFouVSZ3pwJqCqYy7-__GxLGaTUKzTj5WIIKisdiBs3HBr9OO3Gn3MdFIVMUWtA7LiNUc1x6G7h_YYJ_K1oryvj8bmRaeeZ30er-3U1xZyQSdTNCQp1fWAOUpjFKzSTMl51rrAByWfasax90j2VzELEqZshfzWiWZLegCVZGjsFbdCd41icecnLYbCO75EkNiAdspkhslPCelf-qcVBtQitdCiHfWo8U_ElDhZV1B7Jq1kv782nhi2Ho_rNL6XEI"
+    },
+    {
+        "claim":  "The Wire called Durga puja racist and the goddess Durga a sex worker",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The claim is refuted as the magazine The Wire was not calling the gods those things but it was from a pamphlet so the claim is refuted.",
+        "claim_date":  "26-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201128021609/https://www.boomlive.in/fake-news/cropped-screenshot-of-the-wire-article-on-durga-puja-is-misleading-10354",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "IN",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Who was \"The Wire\" referencing in the article from which the claim was derived",
+                              "answers":  [
+                                              {
+                                                  "answer":  "They were referencing HRD minister Smriti Irani",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201101134920/https://thewire.in/politics/mahishasura-and-the-minister",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101134920/https://thewire.in/politics/mahishasura-and-the-minister"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did HRD minister Smriti Irani make the comments herself",
+                              "answers":  [
+                                              {
+                                                  "answer":  "She read from a pamphlet allegedly brought out by the organisers of the event",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201101134920/https://thewire.in/politics/mahishasura-and-the-minister",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101134920/https://thewire.in/politics/mahishasura-and-the-minister"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    }
+]

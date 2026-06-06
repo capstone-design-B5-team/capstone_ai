@@ -11,6 +11,7 @@ from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from ai_backend.core.parsing import parse_json_with_fallback
+from ai_backend.core.search_policy import source_domain, source_quality_reasons
 from ai_backend.core.verification import message_content
 from ai_backend.graph.state import (
     Claim,
@@ -31,25 +32,52 @@ Given a claim and QA evidence, predict exactly one veracity label.
 Label definitions and decision rules:
 
 - Supported: The evidence clearly confirms the claim as stated.
+  Use this only when the QA evidence supports every material part of the claim.
+  The subject/entity, time period, location or jurisdiction, numerical value,
+  unit, comparison target, and quoted wording must match the claim when those
+  details are material.
 
 - Refuted: The evidence clearly contradicts or disproves the claim.
   Use this when the claim is factually wrong, the event did not happen,
   the person did not say it, or the number is demonstrably incorrect.
-  If the evidence consistently points in one direction against the claim, use Refuted.
+  If the evidence consistently points in one direction against the same subject,
+  scope, and time period as the claim, use Refuted.
 
 - Conflicting Evidence/Cherrypicking: Use ONLY when:
-  (a) different credible sources genuinely contradict each other (not just one source raising doubts),
+  (a) different credible sources genuinely contradict each other
+      (not just one source raising doubts),
   (b) the claim selectively uses outdated data while more recent data tells a different story,
-  (c) the claim is technically true but deliberately omits context that reverses its meaning.
+  (c) the claim is technically true but deliberately omits context that reverses its meaning,
+  (d) the claim is true in some jurisdictions, cases, groups, or time periods but
+      false or unresolved in others, and the claim presents it as generally true.
 
-- Not Enough Evidence: Use ONLY when QA answers are truly irrelevant or unanswerable.
-  Do NOT use this label if the answers contain any relevant information about the claim topic.
+- Not Enough Evidence: Use when QA answers do not directly establish or refute
+  the claim as stated. Relevant but mismatched evidence is not enough.
+  Prefer this label when evidence is about a different entity, scope, location,
+  time period, unit, or comparison target, unless that mismatch directly refutes
+  the claim.
 
 Key distinctions:
   Refuted vs CE — consistent evidence against the claim → Refuted.
                   genuinely split credible sources, or deliberate cherry-picking → CE.
-  NEE vs others — if the answer addresses the claim topic at all, pick a verdict.
-                  Reserve NEE for genuinely off-topic or empty answers.
+  NEE vs others — evidence must answer the claim as stated, not just the broad topic.
+                  If the evidence only supports one part of a compound claim, do not
+                  label Supported.
+
+Additional safeguards against overclaiming:
+  - Do not label Supported merely because one component of a multi-part claim is true.
+  - For numerical claims, value, date/timeframe, unit, scope, and comparison must match.
+  - For quote claims, the speaker/source and wording or meaning must match.
+  - For broad claims, look for exceptions. If credible evidence shows important
+    exceptions, use CE; if exceptions are not checked, use NEE rather than Supported.
+
+Source quality hints may appear on answers:
+  - fact_check_domain: useful for known fact-check/refutation context.
+  - primary_source_domain or official_domain: useful for original statements,
+    official rules, government data, and transcript-like evidence.
+  - low_quality_domain: do not rely on this alone for a final label.
+Use these hints only as evidence-quality context; the answer text still controls
+whether the claim is supported, refuted, conflicting, or not established.
 
 Return only JSON: {"label": "...", "justification": "..."}
 The justification must be a concise user-facing explanation (1-2 sentences).
@@ -218,6 +246,9 @@ def _questions_payload(questions: list[Question]) -> list[dict[str, Any]]:
                 "answer_type": answer["answer_type"],
                 "source_url": answer["source_url"],
             }
+            if answer["source_url"]:
+                a["source_domain"] = source_domain(answer["source_url"])
+                a["source_quality"] = source_quality_reasons(answer["source_url"])
             if answer.get("boolean_explanation"):
                 a["boolean_explanation"] = answer["boolean_explanation"]
             answers.append(a)

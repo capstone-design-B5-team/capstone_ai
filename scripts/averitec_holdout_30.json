@@ -1,0 +1,1541 @@
+[
+    {
+        "claim":  "Paul Pogba, who plays for Manchester United and the French national team, retired from international football in response to French President Macron’s comments on Islamist terrorism.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Denied by Pogba.",
+        "claim_date":  "26-10-2020",
+        "speaker":  null,
+        "original_claim_url":  "https://www.195sports.com/%D8%A8%D9%88%D9%84-%D8%A8%D9%88%D8%AC%D8%A8%D8%A7-%D9%8A%D8%B9%D8%AA%D8%B2%D9%84-%D8%A7%D9%84%D9%84%D8%B9%D8%A8-%D8%AF%D9%88%D9%84%D9%8A%D9%8B%D8%A7-%D8%A8%D8%B9%D8%AF-%D9%85%D8%A7-%D8%AD%D8%AF%D8%AB/?utm_campaign=nabdapp.com\u0026utm_medium=referral\u0026utm_source=nabdapp.com\u0026ocid=Nabd_App",
+        "fact_checking_article":  "https://web.archive.org/web/20201101025121/https://newsmeter.in/fact-check-paul-pogba-did-not-quit-french-football-team-after-president-macrons-remarks-on-islam/",
+        "reporting_source":  "The Sun ",
+        "location_ISO_code":  "GB",
+        "claim_types":  [
+                            "Causal Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Fact-checker Reference"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did paul Pogba comment on the claim?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "I am appalled, angry, shocked and some ‘media’ sources use me to make total fake headlines in the sensible subject of French current events and adding my religion and the French National Team to the pot,” Pogba posted on Instagram.\n\n“I am taking legal action against the publishers and spreaders of these 100% Fake News,” he added.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://punchng.com/pogba-denies-quitting-france-team-over-macrons-comment/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324151028/https://punchng.com/pogba-denies-quitting-france-team-over-macrons-comment/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327115549/https://195sports.com/%D8%A8%D9%88%D9%84-%D8%A8%D9%88%D8%AC%D8%A8%D8%A7-%D9%8A%D8%B9%D8%AA%D8%B2%D9%84-%D8%A7%D9%84%D9%84%D8%B9%D8%A8-%D8%AF%D9%88%D9%84%D9%8A%D9%8B%D8%A7-%D8%A8%D8%B9%D8%AF-%D9%85%D8%A7-%D8%AD%D8%AF%D8%AB/?ocid=Nabd_App"
+    },
+    {
+        "claim":  "Amy Coney Barrett was confirmed as US Supreme Court Justice on October 26, 2020",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "Although the date is not confirmed in the QA pair, it is stated in the source for the Answer provided.",
+        "claim_date":  "26-10-2020",
+        "speaker":  "Meena Harris @meenaharris",
+        "original_claim_url":  "https://web.archive.org/web/20210226092601im_/https://images-prod.misbar.com/articlebody/origin_biicxyi9w.jpg",
+        "fact_checking_article":  "https://web.archive.org/web/20210226092601/https://misbar.com/en/factcheck/2020/10/27/senate-confirms-amy-coney-barrett-to-supreme-court",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Is Amy Coney Barrett confirmed as supreme Court justice ?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://edition.cnn.com/politics/live-news/amy-coney-barrett-senate-confirmation-vote/index.html",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Amy Coney Barrett was sworn in by Justice Clarence Thomas as a Supreme Court justice at a White House ceremony tonight.\n\nBarrett, who is 48 years old, is likely to serve on the court for decades and will give conservatives a 6-3 majority on the Supreme Court,",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324151325/https://edition.cnn.com/politics/live-news/amy-coney-barrett-senate-confirmation-vote/index.html"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20210226092601im_/https://images-prod.misbar.com/articlebody/origin_biicxyi9w.jpg"
+    },
+    {
+        "claim":  "The New York post Endorsed Donald trumps bid for re-election.",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "Claim is correct",
+        "claim_date":  "26-10-2020",
+        "speaker":  null,
+        "original_claim_url":  "https://web.archive.org/web/20210119183455/https://nypost.com/2020/10/26/the-new-york-post-endorses-president-donald-j-trump-for-re-election/",
+        "fact_checking_article":  "https://web.archive.org/web/20210122015529/https://www.usatoday.com/story/news/factcheck/2020/12/29/fact-check-ny-post-encourages-trump-accept-bidens-victory/4075001001/",
+        "reporting_source":  "New York Post",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Was Donald Trump endorsed by the New York Post for reelection",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The New York Post endorses President Donald J. Trump for re-election.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20210119183455/https://nypost.com/2020/10/26/the-new-york-post-endorses-president-donald-j-trump-for-re-election/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210119183455/https://nypost.com/2020/10/26/the-new-york-post-endorses-president-donald-j-trump-for-re-election/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20210119183455/https://nypost.com/2020/10/26/the-new-york-post-endorses-president-donald-j-trump-for-re-election/"
+    },
+    {
+        "claim":  "America went from 75,000 flu deaths last year in 2019 to almost 0 in 2020",
+        "required_reannotation":  false,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "There were an estimated 21,909 flu deaths during the 2019-2020 flu season, not 75,000. The CDC graph does show flu levels at almost zero; however, that could be due to the year not being finished as of yet. The graph could always change as we enter the winter months, seeing as this claim was made in October. Hence, there is some conflicting evidence here.  ",
+        "claim_date":  "26-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210310020652/https://healthfeedback.org/claimreview/fewer-flu-cases-observed-in-the-start-of-this-years-flu-season-than-in-previous-years-but-donald-trump-jr-s-tweet-suggesting-data-manipulation-is-unsupported-and-cites-inaccurate-fi/",
+        "reporting_source":  null,
+        "location_ISO_code":  null,
+        "claim_types":  [
+                            "Numerical Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "How many flu deaths had the U.S recorded by the end of 2019?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The U.S. Centers for Disease Control and Prevention (CDC) estimated 21,909 flu deaths during the 2019-2020 flu season,",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://archive.ph/iA8lL",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://archive.ph/iA8lL"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When was this claim made?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "tweet was published during week 44 of the year (26 October to 1 November).",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "Metadata",
+                                                  "source_medium":  "Metadata",
+                                                  "cached_source_url":  "Metadata"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Does flu effect people all year round?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Flu season’ — as determined by elevated flu activity – also varies from season to season. During most seasons, activity begins to increase in October, most often peaks between December and February and can remain elevated into May.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20210308170503/https://www.cdc.gov/flu/weekly/overview.htm//",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210308170503/https://www.cdc.gov/flu/weekly/overview.htm//"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did the U.S record any Flu deaths in the whole year of 2020?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The cdc graph for flu death shows the line at 0 and going down, for 2020 through to  2021!",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210310020652im_/https://healthfeedback.org/wp-content/uploads/2020/10/recorded-number-flu-deaths.png",
+                                                  "source_medium":  "Image/graphic",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210310020652im_/https://healthfeedback.org/wp-content/uploads/2020/10/recorded-number-flu-deaths.png"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "The United States, New Zealand, U.K., Australia, and the EU have not included the NDF in their official list of terrorist groups.",
+        "required_reannotation":  true,
+        "label":  "Supported",
+        "justification":  "NDF is not listed on any of the official lists of terrorist groups. ",
+        "claim_date":  "26-10-2020",
+        "speaker":  "Jonathan Malaya",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210115235946/https://verafiles.org/articles/vera-files-fact-check-dilg-usec-malaya-wrongly-claims-ndf-li",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "PH",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Has the USA included the NDF in their official list of terrorist groups?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210116025723/https://www.state.gov/foreign-terrorist-organizations/",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Not on list.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210116025723/https://www.state.gov/foreign-terrorist-organizations/"
+                                              },
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210116025723/https://www.state.gov/foreign-terrorist-organizations/",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "NDF is not on the list of terrorist organisations.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210116025723/https://www.state.gov/foreign-terrorist-organizations/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has the UK  included the NDF in their official list of terrorist groups?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210124041112/https://ofsistorage.blob.core.windows.net/publishlive/ConList.pdf",
+                                                  "source_medium":  "PDF",
+                                                  "boolean_explanation":  "Not on list.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210124041112/https://ofsistorage.blob.core.windows.net/publishlive/ConList.pdf"
+                                              },
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210124041112/https://ofsistorage.blob.core.windows.net/publishlive/ConList.pdf",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "NDF is not on the list of terrorist organisations.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210124041112/https://ofsistorage.blob.core.windows.net/publishlive/ConList.pdf"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has Australia included the NDF in their official list of terrorist groups?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.legislation.gov.au/Details/C2019G00862",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Not on list.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324152751/https://www.legislation.gov.au/Details/C2019G00862"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has the EU included the NDF in their official list of terrorist groups?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210120070334/https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX:32020D1132",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Not on list.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210120070334/https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX:32020D1132"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has New Zealand included the NDF in their official list of terrorist groups?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.police.govt.nz/sites/default/files/publications/designated-entities-12-october-2020.pdf",
+                                                  "source_medium":  "PDF",
+                                                  "boolean_explanation":  "Not on list."
+                                              },
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.police.govt.nz/sites/default/files/publications/designated-entities-12-october-2020.pdf",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Not on the list"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has Australia  included the NDF in their official list of terrorist groups?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210116025723/https://www.state.gov/foreign-terrorist-organizations/",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "NDF is not on the list",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210116025723/https://www.state.gov/foreign-terrorist-organizations/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has EU included NDF on the list of terrorists?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32020D1132",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Not on the list.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324153307/https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32020D1132"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "COVID-19 pandemic pre-planned with the help from Bill Gates.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "It is clearly stated in the QA that the notion that covid is pre-planned is false, therefore the claim is refuted",
+        "claim_date":  "25-10-2020",
+        "speaker":  "Claire Edwards",
+        "original_claim_url":  "https://www.youtube.com/watch?v=xMLFiRmWSxk",
+        "fact_checking_article":  "https://web.archive.org/web/20201130202624/https://leadstories.com/hoax-alert/2020/11/fact-check-claims-in-covid-19-genocide-of-2020-video-are-not-supported-by-facts.html",
+        "reporting_source":  "Youtube",
+        "location_ISO_code":  "AT",
+        "claim_types":  [
+                            "Causal Claim",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Fact-checker Reference"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Was covid thought to be pre planned?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The suggestion that COVID-19 is a deliberately planned pandemic is false. ... Centers for Disease Control (CDC) explains the source of COVID-19 was most likely a large seafood and live animal market in Wuhan, China, COVID-19 is believed to have spread from an animal to a person much like MERS and SARS. There is no indication or publicly available evidence suggesting that the coronavirus was \"designed.\"",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201201040410/https://emergency.cdc.gov/han/han00426.asp",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201201040410/https://emergency.cdc.gov/han/han00426.asp"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327120908/https://www.youtube.com/watch?v=xMLFiRmWSxk"
+    },
+    {
+        "claim":  "Speaker Robin Vos lost a Republican-held seat in the 2018 election for the first time.",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "True",
+        "claim_date":  "25-10-2020",
+        "speaker":  "Robyn Vining",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201227070829/https://www.politifact.com/factchecks/2020/oct/29/robyn-vining/yes-because-gerrymandering-only-one-republican-ass/",
+        "reporting_source":  "WISN-TV’s \"UpFront\" episode",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Is Robin Vos a Republican?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.fox6now.com/news/boss-vos-as-walker-exits-robin-vos-ready-to-become-most-powerful-republican-in-wisconsin",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "they are a republican.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324153353/https://www.fox6now.com/news/boss-vos-as-walker-exits-robin-vos-ready-to-become-most-powerful-republican-in-wisconsin"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did Robin Vos lose a Republican-held seat in the 2018 election?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.cbs58.com/news/vos-emerges-as-wisconsin-republican-leader-as-walker-gets-ready-to-step-down",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Republicans lost just one seat in the Assembly.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324153428/https://www.cbs58.com/news/vos-emerges-as-wisconsin-republican-leader-as-walker-gets-ready-to-step-down"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Was it a first loss whilst vos was speaker?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.cbs58.com/news/vos-emerges-as-wisconsin-republican-leader-as-walker-gets-ready-to-step-down",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Democrats blamed the gerrymandered legislative maps that Vos helped create and has defended against legal challenge",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324153428/https://www.cbs58.com/news/vos-emerges-as-wisconsin-republican-leader-as-walker-gets-ready-to-step-down"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Breitbart News reports that the daughter of Delaware Democratic Senator Chris Coons and seven other underage girls were featured on Hunter Biden\u0027s laptop.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "There is no evidence of Breitbart news reporting on Hunter Biden so the claim is refuted.",
+        "claim_date":  "25-10-2020",
+        "speaker":  "Andrew Souter",
+        "original_claim_url":  "https://www.facebook.com/photo.php?fbid=10208101855580224\u0026set=a.2027887312886\u0026type=3",
+        "fact_checking_article":  "https://web.archive.org/web/20201101150534/https://leadstories.com/hoax-alert/2020/10/fact-check-breitbart-did-not-report-daughter-of-sen-coons-was-featured-on-hunters-laptop.html",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did the Breitbart News report that the daughter of Delaware Democratic Senator Chris Coons and seven other underaged girls were featured on Hunter Biden\u0027s laptop?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No evidence was found online that Breitbart News had reported on  the daughter of Delaware Democratic Senator Chris Coons and seven other underaged girls being featured on Hunter Biden\u0027s laptop.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://www.google.com/search?q=Did+the+Breitbart+News+report+that+the+daughter+of+Delaware+Democratic+Senator+Chris+Coons+and+seven+other+underaged+girls+were+featured+on+Hunter+Biden%27s+laptop%3F\u0026sourceid=chrome\u0026ie=UTF-8",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327121228/https://www.google.com/search?q=Did+the+Breitbart+News+report+that+the+daughter+of+Delaware+Democratic+Senator+Chris+Coons+and+seven+other+underaged+girls+were+featured+on+Hunter+Biden%27s+laptop%3F\u0026amp;sourceid=chrome\u0026amp;ie=UTF-8"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Has anyone stated that the daughter of Delaware Democratic Senator Chris Coons and seven other underage girls were featured on Hunter Biden\u0027s laptop?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Lauren Witzke\n@LaurenWitzkeDE\n\nBIG BREAKING NEWS:\n\n\"Sources close to and with deep knowledge of the investigation, have informed me that Chris Coons\u0027 DAUGHTER in addition to seven other underage girls are also featured on [Hunter Biden\u0027s] laptop.\"",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201127225251/https://twitter.com/LaurenWitzkeDE/status/1320053164641538048?ref_src=twsrc%5Etfw",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201127225251/https://twitter.com/LaurenWitzkeDE/status/1320053164641538048?ref_src=twsrc%5Etfw"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327121059/https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fphoto.php%3Ffbid%3D10208101855580224%26set%3Da.2027887312886%26type%3D3"
+    },
+    {
+        "claim":  "Hunter Biden, son of US President Joe Biden has died.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The second answer shows that Hunter Biden is still alive and therefore the claim is refuted.",
+        "claim_date":  "25-10-2020",
+        "speaker":  null,
+        "original_claim_url":  "https://web.archive.org/web/20210116153238/https://media.thedonald.win/post/H3A2atAb.png",
+        "fact_checking_article":  "https://web.archive.org/web/20210116153238/https://leadstories.com/hoax-alert/2020/10/fact-check-no-evidence-that-hunter-biden-is-dead.html",
+        "reporting_source":  "4chan",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "When was this claim made?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "25/10/2020",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "Metadata",
+                                                  "source_medium":  "Metadata",
+                                                  "cached_source_url":  "Metadata"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Is Hunter Biden dead?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://it.wikipedia.org/wiki/Hunter_Biden",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "He is still alive.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324154230/https://it.wikipedia.org/wiki/Hunter_Biden"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20210116153238/https://media.thedonald.win/post/H3A2atAb.png"
+    },
+    {
+        "claim":  "5G causes COVID-19.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The CDC and WHO said  you need to come into contact physically with the coronavirus to become infected by it, and as the EMFs from 5G cannot carry viruses, they cannot bring you into contact with the virus",
+        "claim_date":  "25-10-2020",
+        "speaker":  "Claire Edwards",
+        "original_claim_url":  "https://www.youtube.com/watch?v=xMLFiRmWSxk",
+        "fact_checking_article":  "https://web.archive.org/web/20201130202624/https://leadstories.com/hoax-alert/2020/11/fact-check-claims-in-covid-19-genocide-of-2020-video-are-not-supported-by-facts.html",
+        "reporting_source":  "Youtube",
+        "location_ISO_code":  "AT",
+        "claim_types":  [
+                            "Causal Claim",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Fact-checker Reference"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Is there any risk to the public from 5G?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.pcmag.com/news/no-5g-is-not-causing-coronavirus-or-anything-else",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Most of the 5G out there—including the 5G used in the UK—is just a slightly different way of encoding data on airwaves that are no higher-frequency than those used by Wi-Fi, and no lower-frequency than those used by televisions.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324154420/https://www.pcmag.com/news/no-5g-is-not-causing-coronavirus-or-anything-else"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Is there Covid-19 in areas where there is no 5G?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Many countries affected by coronavirus do not yet have 5G coverage",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.reuters.com/article/uk-factcheck-coronavirus-5g-idUSKBN22P22I",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324154525/https://www.reuters.com/article/uk-factcheck-coronavirus-5g-idUSKBN22P22I"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What does the CDC and WHO say about the claim?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "World Health Organization (WHO) and Centers for Disease Control (CDC), you need to come into contact physically with the coronavirus to become infected by it, and as the EMFs from 5G cannot carry viruses, they cannot bring you into contact with the virus.”",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.ucc.org/daily_covid_19_brief_issue_62/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324154711/https://www.ucc.org/daily_covid_19_brief_issue_62/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327120908/https://www.youtube.com/watch?v=xMLFiRmWSxk"
+    },
+    {
+        "claim":  "Rock musician Jon Bon Jovi performed for 12 people and 7 pumpkins at a campaign event for Democratic presidential nominee Joe Biden in Pennsylvania.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Claim states 12 people but QA pairs say 230 cars so if they only had the driver in them it would be a minimum of 230 people.",
+        "claim_date":  "25-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210121112428/https://checkyourfact.com/2020/10/27/fact-check-bon-jovi-dallas-pennsylvania-biden-drive-in-rally/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did Bon Jovi perform at a Biden event in Pennsylvania",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Rock star Jon Bon Jovi gave a small concert at a drive-in rally in eastern Pennsylvania for Joe Biden on Saturday, performing three songs and praising Biden\u0027s response to the coronavirus.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20210119213354/https://www.nbcphiladelphia.com/news/politics/decision-2020/bon-jovi-plays-at-biden-event-after-candidate-visits-bucks-county/2572756/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210119213354/https://www.nbcphiladelphia.com/news/politics/decision-2020/bon-jovi-plays-at-biden-event-after-candidate-visits-bucks-county/2572756/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "How many people attended the drive-in rally where Bon Jovi performed",
+                              "answers":  [
+                                              {
+                                                  "answer":  "About 230 cars with people were in attendance",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210120012518/https://www.pennlive.com/news/2020/10/joe-biden-works-pennsylvania-saturday-with-stops-in-the-vote-rich-philly-burbs-and-reddening-luzerne-county-which-broke-for-trump-in-2016.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210120012518/https://www.pennlive.com/news/2020/10/joe-biden-works-pennsylvania-saturday-with-stops-in-the-vote-rich-philly-burbs-and-reddening-luzerne-county-which-broke-for-trump-in-2016.html"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Wearing face masks can cause infections from bacteria such as staphylococcus.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Prolonged mask use can cause side effects such as acne, difficulty breathing, headaches, impaired cognition, rashes, and skin breakdown. It also interferes with vision, communication, and thermal balance. There isn\u0027t evidence it can cause staphylococcus. Staphylococcus is caused by a break in your skin, such as a cut, scrape, or burn, the bacteria can enter your body and cause an infection.",
+        "claim_date":  "24-10-2020",
+        "speaker":  "Jane Taylor",
+        "original_claim_url":  "https://archive.ph/IOnJa",
+        "fact_checking_article":  "https://web.archive.org/web/20210415121735/https://www.aap.com.au/do-face-masks-cause-staph-infections/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  null,
+        "claim_types":  [
+                            "Causal Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation",
+                                         "Fact-checker Reference"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Does wearing face mask  cause bacterial infection (staphylococcus ) on your face ?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Wearing masks for a long time causes a lot of physiological and psychological loads and can reduce work efficiency. The activity cannot be performed as much or as efficiently while wearing the mask as when the masks are not worn. In addition, when you can continue an activity, it decreases when using the mask. Prolonged use of N95 and surgical masks can cause physical side effects such as acne, difficulty breathing, headaches, impaired cognition, rashes, and skin breakdown. It also interferes with vision, communication, and thermal balance [34].",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.auctoresonline.org/article/do-face-masks-increase-the-rate-of-staphylococcus-aureus-infection-as-secondary-infection-during-covid-19",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324154821/https://www.auctoresonline.org/article/do-face-masks-increase-the-rate-of-staphylococcus-aureus-infection-as-secondary-infection-during-covid-19"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What  cause ‘staph’ infections?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "You probably come into contact with staph bacteria on a daily basis, but it doesn’t always cause an infection. If you have a break in your skin, though, such as a cut, scrape, or burn, the bacteria can enter your body and cause an infection.\n\nThere are several things that can cause a a break in the delicate skin inside your nose, including:\n\n   excessive nose blowing\n    picking your nose\n    plucking or tweezing your nose hairs\n    having a nose piercing",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.healthline.com/health/staph-infection-in-nose#causes",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324155006/https://www.healthline.com/health/staph-infection-in-nose"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://archive.ph/IOnJa"
+    },
+    {
+        "claim":  "An \u0027anti-Black Lives Matter\u0027 flag replaced the American flag behind President Trump during a Waukesha campaign rally.",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "The 2nd QA seems to support this claim.",
+        "claim_date":  "24-10-2020",
+        "speaker":  "Jeff Sharlet",
+        "original_claim_url":  "https://web.archive.org/web/20210529130838/https://twitter.com/JeffSharlet/status/1320189238214799360",
+        "fact_checking_article":  "https://web.archive.org/web/20210525130943/https://www.usatoday.com/story/news/factcheck/2020/10/28/fact-check-thin-blue-line-flag-prominent-trump-rallies/6058924002/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What flag is seen as an anti Black Lives Matter flag?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The Blue Lives Matter Flag is said to have racist symbolism which is anti Black Lives Matter.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.reformer.com/opinion/letters/letter-racist-symbolism-behind-the-blue-lives-matter-flag/article_ebf0cd26-2791-513a-8372-96edf1c48ae4.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324155124/https://www.reformer.com/opinion/letters/letter-racist-symbolism-behind-the-blue-lives-matter-flag/article_ebf0cd26-2791-513a-8372-96edf1c48ae4.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did the Blue Lives Matter Flag show at a Donald trump Rally in Waukesha campaign rally in 2020?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210525130943im_/https://www.gannett-cdn.com/-mm-/2887f5d7d58a75a6437c45e987fd994202334aff/c=0-156-3000-1844/local/-/media/2020/10/17/Rockford/ghows_gallery_ei-IR-201019800-593e424c.jpg?width=660\u0026height=372\u0026fit=crop\u0026format=pjpg\u0026auto=webp",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "A large Blue Lives Matter Flag was behind the podium on which Donald Trump spoke at during the Waukesha rally.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210525130943im_/https://www.gannett-cdn.com/-mm-/2887f5d7d58a75a6437c45e987fd994202334aff/c=0-156-3000-1844/local/-/media/2020/10/17/Rockford/ghows_gallery_ei-IR-201019800-593e424c.jpg?width=660\u0026height=372\u0026fit=crop\u0026format=pjpg\u0026auto=webp"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20210529130838/https://twitter.com/JeffSharlet/status/1320189238214799360"
+    },
+    {
+        "claim":  "Donald Trump said that $15 an hour is too much for essential workers",
+        "required_reannotation":  true,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "Even though Trump said similar to this, it was taking out of context. The claim was cherrypicking. ",
+        "claim_date":  "24-10-2020",
+        "speaker":  "Joe Biden",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210301032120/https://www.politifact.com/factchecks/2020/oct/30/joe-biden/does-donald-trump-think-15-hour-too-much-essential/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Quote Verification"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Fact-checker Reference"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did Donald Trump say that $15 an hour is too much for essential workers?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Trump Says He’d ‘Consider’ $15 Per Hour Federal Minimum Wage, But Prefers To Leave It To States",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.forbes.com/sites/nicholasreimann/2020/10/23/trump-says-hed-consider-15-per-hour-federal-minimum-wage-but-prefers-to-leave-it-to-states/?sh=4abf846e6486",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324155158/https://www.forbes.com/sites/nicholasreimann/2020/10/23/trump-says-hed-consider-15-per-hour-federal-minimum-wage-but-prefers-to-leave-it-to-states/?sh=4abf846e6486"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Deliberately infecting children to COVID-19 at “pox parties” could be a good way to help create herd immunity against COVID-19 without a vaccine.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "It is clear that Pox parties are not considered a good idea, and are not recommended by experts, so the claim is refuted. ",
+        "claim_date":  "23-10-2020",
+        "speaker":  "Professor Paul Lehner",
+        "original_claim_url":  "https://web.archive.org/web/20201201202446/https://www.dailymail.co.uk/news/article-8868269/Controversial-pox-parties-used-build-immunity-Covid-19-scientist-says.html",
+        "fact_checking_article":  "https://web.archive.org/web/20201201202446/https://www.covid19facts.ca/en/fact-checked/achieving-natural-herd-immunity-against-covid-19-cannot-be-safely-or-easily-done",
+        "reporting_source":  "Daily Mail",
+        "location_ISO_code":  "GB",
+        "claim_types":  [
+                            "Causal Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Are pox parties recommended by the CDC",
+                              "answers":  [
+                                              {
+                                                  "answer":  "CDC strongly recommends against hosting or participating in these events",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201125111456/https://www.cdc.gov/chickenpox/about/transmission.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201125111456/https://www.cdc.gov/chickenpox/about/transmission.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What are the adverse effects of infecting children with COVID-19",
+                              "answers":  [
+                                              {
+                                                  "answer":  "A complication that has more recently been observed in children can be severe and dangerous. Called multisystem inflammatory syndrome in children (MIS-C), it can lead to life-threatening problems with the heart and other organs in the body. Early reports compare it to Kawasaki disease, an inflammatory illness that can lead to heart problems",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201202080005/https://www.health.harvard.edu/diseases-and-conditions/coronavirus-outbreak-and-kids",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201202080005/https://www.health.harvard.edu/diseases-and-conditions/coronavirus-outbreak-and-kids"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Is herd immunity a risk worth taking",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Scientists refer to herd immunity as a dangerous fallacy that is unsupported by scientific evidence",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201201224234/https://secure.jbs.elsevierhealth.com/action/consumeSsoCookie?redirectUri=https%3A%2F%2Fwww.thelancet.com%2Faction%2FconsumeSharedSessionAction%3FSERVER%3DWZ6myaEXBLF%252B9vQ18y9JMw%253D%253D%26MAID%3DTSoTVMTupZ%252FD37sdGKDXfw%253D%253D%26JSESSIONID%3DaaadVfLNuRc7B8uvBTFyx%26ORIGIN%3D412177833%26RD%3DRD\u0026code=null\u0026acw=Secure;SameSite=None\u0026utt=",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201201224234/https://secure.jbs.elsevierhealth.com/action/consumeSsoCookie?redirectUri=https%3A%2F%2Fwww.thelancet.com%2Faction%2FconsumeSharedSessionAction%3FSERVER%3DWZ6myaEXBLF%252B9vQ18y9JMw%253D%253D%26MAID%3DTSoTVMTupZ%252FD37sdGKDXfw%253D%253D%26JSESSIONID%3DaaadVfLNuRc7B8uvBTFyx%26ORIGIN%3D412177833%26RD%3DRD\u0026code=null\u0026acw=Secure;SameSite=None\u0026utt="
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20201201202446/https://www.dailymail.co.uk/news/article-8868269/Controversial-pox-parties-used-build-immunity-Covid-19-scientist-says.html"
+    },
+    {
+        "claim":  "Cutting the umbilical cord straight away deliberately denies the baby natural immunity so that medical professionals have a reason to vaccinate and medicate them.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "From the 2nd answer it is evident that the umbilical cord does not have anything to do with the babies getting vaccinated. The vaccination has to happen regardless, therefore the claim is refuted",
+        "claim_date":  "23-10-2020",
+        "speaker":  "Robin L. Haywood",
+        "original_claim_url":  "https://archive.ph/ZLpUA#selection-437.0-437.16",
+        "fact_checking_article":  "https://web.archive.org/web/20201126102707/https://www.aap.com.au/experts-clamp-down-claims-linking-umbilical-cord-cutting-to-vaccines/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "FR",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Is there any benefits to waiting before cutting the umbilical cord?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "University of Auckland associate professor of maternal and perinatal health Katie Groom said there was good evidence for waiting one minute before cutting the umbilical cord, particularly in preterm babies, but there was no evidence that waiting an hour was beneficial.\n\n“There is ongoing research into the benefits of waiting longer than one minute, but that means three to five minutes and certainly not an hour,” Dr Groom told AAP FactCheck via phone.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201026050315/https://pubmed.ncbi.nlm.nih.gov/29097178/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201026050315/https://pubmed.ncbi.nlm.nih.gov/29097178/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Would staying connected to the umbilical cord mean there would not be a need for vaccinations?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Dr Polyakov said all babies needed to be vaccinated, regardless of how long they remained attached to the umbilical cord.\n\n“Vaccines are the only way to ensure the baby won’t get diseases like whooping cough or measles.”",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "Metadata",
+                                                  "source_medium":  "Metadata",
+                                                  "cached_source_url":  "Metadata"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://archive.ph/ZLpUA#selection-437.0-437.16"
+    },
+    {
+        "claim":  "The umbilical cord should not be cut until 1 hour after birth or they baby will not have enough blood right after birth.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "It seems the cord needs to be cut after a few minutes. Therefore the claim is refuted ",
+        "claim_date":  "23-10-2020",
+        "speaker":  "Robin L. Haywood",
+        "original_claim_url":  "https://archive.ph/ZLpUA",
+        "fact_checking_article":  "https://web.archive.org/web/20201126102707/https://www.aap.com.au/experts-clamp-down-claims-linking-umbilical-cord-cutting-to-vaccines/",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "FR",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What length of time do medical professionals recommend waiting before cutting a new born\u0027s umbilical cord?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Late cord clamping (performed approximately 1–3 min after birth) is recommended for all births,",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201111203457/https://www.who.int/elena/titles/full_recommendations/cord_clamping/en/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201111203457/https://www.who.int/elena/titles/full_recommendations/cord_clamping/en/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://archive.ph/ZLpUA"
+    },
+    {
+        "claim":  "Joe Biden said he wants to ban fracking in the US.",
+        "required_reannotation":  false,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "Biden has said he would ban fracking and has also said he would rule out banning fracking.",
+        "claim_date":  "23-10-2020",
+        "speaker":  "Charlie Kirk of the conservative student organization Turning Point USA",
+        "original_claim_url":  "https://web.archive.org/web/20210506043822/https://www.youtube.com/watch?v=hV8_Bunawqg",
+        "fact_checking_article":  "https://web.archive.org/web/20210506043822/https://factcheck.afp.com/it-not-joe-bidens-policy-ban-fracking",
+        "reporting_source":  "Speech, Republican National Convention",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Quote Verification",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Fact-checker Reference"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is Biden\u0027s stance on fracking?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "July 2019\nBASH: Thank you, Mr. Vice President. Just to clarify, would there be any place for fossil fuels, including coal and fracking, in a Biden administration?\n\nBIDEN: No, we would -- we would work it out. We would make sure it\u0027s eliminated and no more subsidies for either one of those, either -- any fossil fuel.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "http://transcripts.cnn.com/TRANSCRIPTS/1907/31/se.02.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327122624/https://transcripts.cnn.com/show/se/date/2019-07-31/segment/02"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Does Biden want to ban fracking in the US?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "October 2020\n“I have never said I oppose fracking.”\n\nAsked by the moderator whether he would rule out banning the practice, he said: “I do rule out banning fracking,”",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20210419040526/https://www.c-span.org/debates/",
+                                                  "source_medium":  "Video",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210419040526/https://www.c-span.org/debates/"
+                                              },
+                                              {
+                                                  "answer":  "April 2020\nOn the key issue of the Shell petrochemical cracker plant and fracking for natural gas in this region, Jon Delano asked Biden if he would shut down the industry.\n\n“No, I would not shut down this industry. I know our Republican friends are trying to say I said that. I said I would not do any new leases on federal lands. Ninety\npercent of the leases are not on federal land, to begin with. I would make sure … the water is not being contaminated. But I would not shut it down, no.”",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://pittsburgh.cbslocal.com/2020/04/20/joe-biden-talks-fracking-coronavirus-and-president-donald-trump/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230327122658/https://www.cbsnews.com/pittsburgh/news/joe-biden-talks-fracking-coronavirus-and-president-donald-trump/"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20210506043822/https://www.youtube.com/watch?v=hV8_Bunawqg"
+    },
+    {
+        "claim":  "99% of people recover from COVID-19.",
+        "required_reannotation":  true,
+        "label":  "Refuted",
+        "justification":  "Q\u0026A 1 shows that the claimed  99% recovery rate around October 2020 was actually only  67.97% around October 2020 according to the Johns Hopkins University of Medicine",
+        "claim_date":  "23-10-2020",
+        "speaker":  "Donald Trump",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201124072107/https://www.rappler.com/newsbreak/fact-check/trump-says-people-recover-from-covid-19",
+        "reporting_source":  "Final Presedential Debate",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Numerical Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What percentage of people have recovered from Covid?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "According to the Johns Hopkins University of Medicine COVID-19 dashboard, there have been 3,353,056 recoveries over 8,406,718 cases in the US as of October 23. This makes for a case recovery rate of 39.88%. Globally, there were 28,349,541 recoveries out of 41,705,699 cases as of October 23, which makes a case recovery rate of 67.97%.\n\nIn addition, 223,042 deaths out of 8,406,718 cases were reported in the US as of October 23, equivalent to a case fatality rate of 2.65%. Globally, there have been 1,137,333 deaths out of 41,705,699 recorded cases as of October 23, which makes for a 2.72% case fatality rate.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201124072107mp_/https://coronavirus.jhu.edu/map.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201124072107mp_/https://coronavirus.jhu.edu/map.html"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "The US saw the best carbon emission numbers in 35 years under President Donald Trump\u0027s administration.",
+        "required_reannotation":  true,
+        "label":  "Refuted",
+        "justification":  "It seems the emission was lowest under president Bush in 1991, therefore the claim is refuted",
+        "claim_date":  "23-10-2020",
+        "speaker":  "Donald Trump",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210126090743/https://www.rappler.com/newsbreak/fact-check/us-achieved-best-carbon-emission-numbers-under-trump",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Numerical Claim",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did US carbon emissions ever decline during Trump\u0027s administration?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The United States...  managed to cut their carbon dioxide output this year (2019)",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://www.nytimes.com/2019/12/03/climate/carbon-dioxide-emissions.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324160014/https://www.nytimes.com/2019/12/03/climate/carbon-dioxide-emissions.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When did the US have the lowest carbon emissions?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "6,373 metric tons of carbon dioxide in 1991",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210126090743/https://www.epa.gov/sites/production/files/2020-04/documents/us-ghg-inventory-2020-main-text.pdf",
+                                                  "source_medium":  "PDF",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210126090743/https://www.epa.gov/sites/production/files/2020-04/documents/us-ghg-inventory-2020-main-text.pdf"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Who was president of the United States in 1991?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "George H. W. Bush",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.metmuseum.org/toah/hd/uspr/hd_uspr.htm",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324161026/https://www.metmuseum.org/toah/hd/uspr/hd_uspr.htm"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "did the US see the lowest carbon emission under Trump",
+                              "answers":  [
+                                              {
+                                                  "answer":  "carbon emission reduced under trump but it was not the lowest seen before",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210126090743/https://www.epa.gov/sites/production/files/2020-04/documents/us-ghg-inventory-2020-main-text.pdf",
+                                                  "source_medium":  "PDF",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210126090743/https://www.epa.gov/sites/production/files/2020-04/documents/us-ghg-inventory-2020-main-text.pdf"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Twitter now putting warnings on tweets that are just unedited clips of Biden saying he would end fracking",
+        "required_reannotation":  true,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "Twitter put those warning on tweets about Biden\u0027s speech because they were misleading but the tags were not only on the Biden\u0027s tweet",
+        "claim_date":  "23-10-2020",
+        "speaker":  "Zach Parkinson",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201101032342/https://leadstories.com/hoax-alert/2020/10/fact-check-warning-not-just-for-biden-tweets-new-policy-applies-to-all-users.html",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Have Twitter started putting warnings on tweets that are just unedited clips of Biden saying he would end fracking?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Twitter automatically warns when the user has not opened and read the item to be re-tweeted. \"Headlines don\u0027t tell the whole story,\" the Twitter message says. \"You can read the article on Twitter before Retweeting.\"\n\nTwitter announced a set of changes to try to stem the spread of misinformation ahead of the November 3, 2020 presidential election. Among the most significant is a request that users add their own content before retweeting someone else\u0027s:\n\n(W)e will encourage people to add their own commentary prior to amplifying content by prompting them to Quote Tweet instead of Retweet. People who go to Retweet will be brought to the Quote Tweet composer where they\u0027ll be encouraged to comment before sending their Tweet.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201101032342/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101032342/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Had Twitter been putting warnings on un-edited tweets about Biden saying he would end fracking at the time of the claim (October 2020)?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20201101024709/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Twitter announced a set of changes to try to stem the spread of misinformation ahead of the November 3, 2020 presidential election.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101024709/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Why was Twitter putting warnings on Tweets about Biden\u0027s fracking stance?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Among the most significant reasons is a request that users add their own content before retweeting someone else\u0027s:",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://web.archive.org/web/20201101024709/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101024709/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Did it only apply to tweets about Bidens fracking stance?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20201101024709/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "The warnings would appear on any misleading retweets.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101024709/https://blog.twitter.com/en_us/topics/company/2020/2020-election-changes.html"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "People who do not vote for the Bharatiya Janata Party (BJP) in the 2020 elections will not get the COVID vaccine free of cost.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The answer shows that the claim is false and so the claim is refuted.",
+        "claim_date":  "22-10-2020",
+        "speaker":  "Firoz Khan ",
+        "original_claim_url":  "https://twitter.com/sirfirozkhan/status/1319360671729922048",
+        "fact_checking_article":  "https://web.archive.org/web/20210301174114/https://www.vishvasnews.com/english/politics/fact-check-posts-claiming-about-no-vote-no-covid-vaccine-is-misleading/",
+        "reporting_source":  "Twitter",
+        "location_ISO_code":  "IN",
+        "claim_types":  [
+                            "Causal Claim",
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What did the BJP party say concerning the claims of them giving vaccines to olny those who vote for them",
+                              "answers":  [
+                                              {
+                                                  "answer":  "A senior BJP leader denied the claims and said the party had plans according to their manifesto to vaccinate everyone",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web-archive-org.translate.goog/web/20210121222119/https://www.jagran.com/elections/bihar-vidhan-sabha-nirmala-sitharaman-said-the-promise-of-free-covid-vaccine-in-bihar-election-manifesto-is-absolutely-correct-20947267.html?_x_tr_sl=auto\u0026_x_tr_tl=en\u0026_x_tr_hl=en-US\u0026_x_tr_pto=wapp",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web-archive-org.translate.goog/web/20210121222119/https://www.jagran.com/elections/bihar-vidhan-sabha-nirmala-sitharaman-said-the-promise-of-free-covid-vaccine-in-bihar-election-manifesto-is-absolutely-correct-20947267.html?_x_tr_sl=auto\u0026_x_tr_tl=en\u0026_x_tr_hl=en-US\u0026_x_tr_pto=wapp"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327122805/https://twitter.com/sirfirozkhan/status/1319360671729922048"
+    },
+    {
+        "claim":  "President Ferdinand Marcos and Dr. Jose Rizal established and founded the WORLD BANK and International Monetary Fund.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "On the World Bank’s website and the IMF’s website, it states both entities were conceived and established in 1944, following the Bretton Woods agreement on a global economic framework post-World War II.  ",
+        "claim_date":  "22-10-2020",
+        "speaker":  "Bangon Bansang Maharlika",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210127061518/https://factcheck.afp.com/misleading-claim-circulates-world-bank-and-imf-were-established-former-dictator-ferdinand-marcos-and",
+        "reporting_source":  "Facebook",
+        "location_ISO_code":  "PH",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "When was Fredinand Marcos president of the Philippines?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Ferdinand Marcos was president of the Philippines from 1965 to 1986.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201113200103/http://www.officialgazette.gov.ph/featured/the-fall-of-the-dictatorship/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201113200103/http://www.officialgazette.gov.ph/featured/the-fall-of-the-dictatorship/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When was Jose Rizal executed?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Filipino nationalist Jose Rizal was executed in 1896. His death fueled nationalist sentiment against Spanish colonial rule.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210127061518/https://www.biography.com/political-figure/jos%C3%A9-rizal",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210127061518/https://www.biography.com/political-figure/jos%C3%A9-rizal"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When was the World bank established?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "On the World Bank’s website and the IMF’s website, it states both entities were conceived and established in 1944, following the Bretton Woods agreement on a global economic framework post-World War II.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210127061518/https://www.worldbank.org/en/about/archives/history#:~:text=Conceived%20in%201944%20at%20the,1947%20for%20post%2Dwar%20reconstruction",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210127061518/https://www.worldbank.org/en/about/archives/history#:~:text=Conceived%20in%201944%20at%20the,1947%20for%20post%2Dwar%20reconstruction"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "The FBI is in possession of the president of the US\u0027s son  Hunter Biden\u0027s laptop.",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "It seems that the FBi is indeed in the possession of the laptop, therefore the claim is supported",
+        "claim_date":  "22-10-2020",
+        "speaker":  null,
+        "original_claim_url":  "https://nypost.com/2020/10/14/email-reveals-how-hunter-biden-introduced-ukrainian-biz-man-to-dad/",
+        "fact_checking_article":  "https://web.archive.org/web/20210301201829/https://misbar.com/en/factcheck/2020/10/23/fbi-is-in-possession-of-hunter-biden%E2%80%99s-laptop",
+        "reporting_source":  "New York Post",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Is the FBI In possession of Hunter Bidens Laptop?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20210304085240mp_/https://www.foxnews.com/politics/fbi-purported-hunter-biden-laptop-sources",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "The FBI is in possession of the laptop purportedly belonging to Hunter Biden which contained emails revealing his foreign business dealings, including contacts in Ukraine and China, two senior administration officials told Fox News",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210304085240mp_/https://www.foxnews.com/politics/fbi-purported-hunter-biden-laptop-sources"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230326155045/https://nypost.com/2020/10/14/email-reveals-how-hunter-biden-introduced-ukrainian-biz-man-to-dad/"
+    },
+    {
+        "claim":  "India’s imports from China increased by 27% in April-August 2020",
+        "required_reannotation":  true,
+        "label":  "Refuted",
+        "justification":  "Q\u0026A 2 and 3 both show that there was a  decrease in the imports from China of 27.63%  between April- August 2020  no an increase as claimed.",
+        "claim_date":  "22-10-2020",
+        "speaker":  null,
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201101024850/http://newsmobile.in/articles/2020/10/22/fact-check-has-indias-imports-from-china-increased-by-27-in-april-august-heres-the-truth/",
+        "reporting_source":  "Facebook post",
+        "location_ISO_code":  "IN",
+        "claim_types":  [
+                            "Numerical Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did India\u0027s imports from China increase between April-August 2020?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20201101024850/https://www.businesstoday.in/current/economy-politics/imports-from-china-decline-by-27-63-during-april-august-2020-piyush-goyal/story/416674.html",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Imports from China decline by 27.63% during April-August 2020",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201101024850/https://www.businesstoday.in/current/economy-politics/imports-from-china-decline-by-27-63-during-april-august-2020-piyush-goyal/story/416674.html"
+                                              },
+                                              {
+                                                  "answer":  "No",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://timesofindia.indiatimes.com/business/india-business/indias-imports-from-china-dip-27-63-during-april-august-piyush-goyal/articleshow/78237856.cms",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "India\u0027s imports from China declined by 27.63 per cent during April-August this fiscal to $21.58 billion over the same period previous year, Parliament was informed on Monday.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324161454/https://timesofindia.indiatimes.com/business/india-business/indias-imports-from-china-dip-27-63-during-april-august-piyush-goyal/articleshow/78237856.cms"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Was there an increase in India\u0027s imports from China",
+                              "answers":  [
+                                              {
+                                                  "answer":  "There was no increase, rather there was a decrease in the imports from China of 27.63% between April to August",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20201108092805/https://timesofindia.indiatimes.com/business/india-business/indias-imports-from-china-dip-27-63-during-april-august-piyush-goyal/articleshow/78237856.cms",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20201108092805/https://timesofindia.indiatimes.com/business/india-business/indias-imports-from-china-dip-27-63-during-april-august-piyush-goyal/articleshow/78237856.cms"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Generally the deaths from Covid-19 are still pretty flat because we\u0027ve flattened the curve.",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "The answer and credible source show that the amount of deaths increased so the claim is refuted.",
+        "claim_date":  "21-10-2020",
+        "speaker":  "Ron Johnson",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210301041755/https://www.politifact.com/factchecks/2020/oct/23/ron-johnson/us-sen-ron-johnson-confuses-and-misses-claim-about/",
+        "reporting_source":  null,
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Numerical Comparison"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is the death rate graph of COVID-19 in Wisconsin",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The graph shows there is an increase in death rate",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210301024135/https://www.dhs.wisconsin.gov/covid-19/deaths.htm",
+                                                  "source_medium":  "Image/graphic",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210301024135/https://www.dhs.wisconsin.gov/covid-19/deaths.htm"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "How many deaths were recorded between September and  November",
+                              "answers":  [
+                                              {
+                                                  "answer":  "There was an increase of 917 from the 1st of September and the 1st of November",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210301024135/https://www.dhs.wisconsin.gov/covid-19/deaths.htm",
+                                                  "source_medium":  "Image/graphic",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210301024135/https://www.dhs.wisconsin.gov/covid-19/deaths.htm"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Previous flu vaccines may have made President Donald Trump susceptible to COVID-19",
+        "required_reannotation":  false,
+        "label":  "Refuted",
+        "justification":  "Studys show the flu vaccine does not affect how susceptible some one is to covid-19 so based on this it would mean Donald Trump was not more susceptible.",
+        "claim_date":  "21-10-2020",
+        "speaker":  "Miriam Fauzia",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20201203123750/https://www.usatoday.com/story/news/factcheck/2020/10/21/fact-check-donald-trumps-flu-shots-covid-risk-arent-linked/3623699001/",
+        "reporting_source":  "USA TODAY",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Causal Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What is the difference between Flu and Covid-19?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "COVID-19 and influenza (flu) are both infectious respiratory illnesses. Though the symptoms of these two diseases seem similar, they are caused by different viruses. While many people often compare COVID-19 to the flu, there are many differences between them.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://www.news-medical.net/health/What-is-the-Difference-Between-COVID-19-and-the-Flu.aspx",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324161549/https://www.news-medical.net/health/What-is-the-Difference-Between-COVID-19-and-the-Flu.aspx"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Have any studies been done to show if having the Flu vaccine makes you more susceptible  to getting Covid-19?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://www.cambridge.org/core/journals/journal-of-clinical-and-translational-science/article/safety-of-influenza-vaccine-during-covid19/C26A417046677E65D421AD33B3E6281F",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Journal of Clinical and Translational Science, Cleveland Clinic pulmonologist Dr. Joe Zein and colleagues found that the influenza vaccine did not increase one\u0027s susceptibility to COVID-19 nor worsen associated morbidity or mortality.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324161635/https://www.cambridge.org/core/journals/journal-of-clinical-and-translational-science/article/safety-of-influenza-vaccine-during-covid19/C26A417046677E65D421AD33B3E6281F"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "While serving as Town Supervisor on Grand Island, Nebraska, US Nate McMurray voted to raise taxes on homeowners.",
+        "required_reannotation":  false,
+        "label":  "Supported",
+        "justification":  "Confirmed in QA Pairs with Vote date and the vote he cast.",
+        "claim_date":  "21-10-2020",
+        "speaker":  "US Rep. Chris Jacobs",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210504185208/https://www.politifact.com/factchecks/2020/oct/28/chris-jacobs/jacobs-charge-mcmurray-raised-taxes-grand-island-c/",
+        "reporting_source":  " NY-27 debate ",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Did  Nate McMurray voted to raise taxes on U.S homeowners?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://web.archive.org/web/20220322021746/https://buffalonews.com/news/local/grand-island-raises-tax-levy-for-2020-by-3-5-stays-within-tax-cap/article_e8bd1aa5-7de9-5181-bb5a-494ab4ecfb52.html",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "Grand Island raised its  tax levy on November 8th 2018",
+                                                  "cached_source_url":  "https://web.archive.org/web/20220322021746/https://buffalonews.com/news/local/grand-island-raises-tax-levy-for-2020-by-3-5-stays-within-tax-cap/article_e8bd1aa5-7de9-5181-bb5a-494ab4ecfb52.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "When did Nate McMurray vote for this increase?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "The 8th of November, 2018.",
+                                                  "answer_type":  "Extractive",
+                                                  "source_url":  "https://ecode360.com/documents/GR0053/public/466406368.pdf",
+                                                  "source_medium":  "PDF",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324161702/https://ecode360.com/documents/GR0053/public/466406368.pdf"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "was Nate McMurray the  Town Supervisor on Grand Island in November 2018?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://ecode360.com/documents/GR0053/public/466406368.pdf",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "A Public Hearing was held on Thursday, November 8, 2018 at 7:00p.m. for the purpose\nof hearing anyone who wants to comment on the proposed 2019 Town of Grand Island\nbudget.\nSupervisor Nate McMurray closed the Public Hearing.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324161702/https://ecode360.com/documents/GR0053/public/466406368.pdf"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "Russia sent medical aid to the US, in the form of medical equipment to help coronavirus patients.",
+        "required_reannotation":  false,
+        "label":  "Conflicting Evidence/Cherrypicking",
+        "justification":  "Evidence finds that Russia did send medical equipment to the United States; however, the U.S. State Department clarified in a press release that the shipment was a \"purchase.\" Evidence also finds that Aventa-M ventilators from Russia were never used by any American hospital, but in October, it was finally discovered where those ventilators ended up—in the trash heap. Hence, a conflicting/cherry-picking claim. ",
+        "claim_date":  "21-10-2020",
+        "speaker":  "Dmitry Peskov",
+        "original_claim_url":  null,
+        "fact_checking_article":  "https://web.archive.org/web/20210718091632/https://www.polygraph.info/a/kremlin-touts-covid-19-aid-to-us-even-when-it-ended-in-the-trash-/30909040.html",
+        "reporting_source":  "RIA Novosti",
+        "location_ISO_code":  "US",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "What did Russia send to the US during the covid-19 outbreak?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "On April 1, a Russian military plane arrived at New York’s JFK Airport loaded with 60 tons of medical equipment, including 45 Russian-produced Aventa-M ventilators meant to help coronavirus patients in intensive care keep breathing.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210718091632/https://www.nytimes.com/2020/04/02/world/europe/coronavirus-us-russia-aid.html",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210718091632/https://www.nytimes.com/2020/04/02/world/europe/coronavirus-us-russia-aid.html"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Was this aid, or was this a purchase from the US?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Initially, there was confusion over whether the planeload of equipment was aid, as Russia portrayed it, or if the American side had paid for it. The U.S. State Department clarified this in a press release that referred to the shipment as a “purchase.”",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210718091632/https://www.state.gov/u-s-purchase-of-needed-supplies-from-russia/",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210718091632/https://www.state.gov/u-s-purchase-of-needed-supplies-from-russia/"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What happened to this equipment?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Within about one week, Aventa-M ventilators had been found responsible for fires at two Russian hospitals in Moscow and St. Petersburg; six people were killed. Russian investigators blamed the ventilators’ faulty circuitry.\n\nUltimately the Aventa-M ventilators from Russia were never used by any American hospital, but in October it was finally discovered where those ventilators ended up – in the trash heap. This week, Christopher Miller, writing for Buzzfeed, revealed that the Federal Emergency Management Agency (FEMA) disposed of the Aventa-M ventilators.",
+                                                  "answer_type":  "Abstractive",
+                                                  "source_url":  "https://web.archive.org/web/20210718091632/https://www.buzzfeednews.com/article/christopherm51/fema-russia-ventilators-coronavirus?fbclid=IwAR0NDhdqILPthpTHGNnmK_-8yH7CjmyDtbo81pzlHEVVKI9loXMnfI9uVas",
+                                                  "source_medium":  "Web text",
+                                                  "cached_source_url":  "https://web.archive.org/web/20210718091632/https://www.buzzfeednews.com/article/christopherm51/fema-russia-ventilators-coronavirus?fbclid=IwAR0NDhdqILPthpTHGNnmK_-8yH7CjmyDtbo81pzlHEVVKI9loXMnfI9uVas"
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  null
+    },
+    {
+        "claim":  "There is a scam involving Santander customers being sent fake bank cards.",
+        "required_reannotation":  true,
+        "label":  "Not Enough Evidence",
+        "justification":  "Q\u0026A 1 says that Santander was issuing new bank cards but makes no reference to the claim about a scam being linked to fake issued bank cards,  Q\u0026A 2 and 3 give no answer for their questions so needs more evidence overall for the claim points.",
+        "claim_date":  "21-10-2020",
+        "speaker":  "Nigel Howard Berry",
+        "original_claim_url":  "https://www.facebook.com/groups/719779154837578/permalink/1864476120367870/",
+        "fact_checking_article":  "https://web.archive.org/web/20210228033931/https://fullfact.org/online/santander-card-scam/",
+        "reporting_source":  "facebook",
+        "location_ISO_code":  "GB",
+        "claim_types":  [
+                            "Event/Property Claim"
+                        ],
+        "fact_checking_strategies":  [
+                                         "Written Evidence",
+                                         "Consultation"
+                                     ],
+        "questions":  [
+                          {
+                              "question":  "Was Santander issuing new debit cards early?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "Yes",
+                                                  "answer_type":  "Boolean",
+                                                  "source_url":  "https://twitter.com/santanderukhelp/status/1359776098544988160",
+                                                  "source_medium":  "Web text",
+                                                  "boolean_explanation":  "We are currently in the process of changing all of our customers from a Visa Debit card to a Debit MasterCard.",
+                                                  "cached_source_url":  "https://web.archive.org/web/20230324161756/https://twitter.com/santanderukhelp/status/1359776098544988160"
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "Is there any evidence of a scam involving Santader debit cards in Oct 2020?",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No answer could be found.",
+                                                  "answer_type":  "Unanswerable",
+                                                  "source_url":  "",
+                                                  "source_medium":  ""
+                                              }
+                                          ]
+                          },
+                          {
+                              "question":  "What did Santander say about the claim there\u0027s a scam running in their name",
+                              "answers":  [
+                                              {
+                                                  "answer":  "No answer could be found.",
+                                                  "answer_type":  "Unanswerable",
+                                                  "source_url":  "",
+                                                  "source_medium":  ""
+                                              }
+                                          ]
+                          }
+                      ],
+        "cached_original_claim_url":  "https://web.archive.org/web/20230327123258/https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fgroups%2F719779154837578%2Fpermalink%2F1864476120367870%2F"
+    }
+]

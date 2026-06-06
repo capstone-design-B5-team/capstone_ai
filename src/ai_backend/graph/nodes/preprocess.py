@@ -49,7 +49,7 @@ _PRESENT_IMPLICATION_TERMS = (
 VALID_CITATION_TYPES: frozenset[str] = frozenset(get_args(CitationType))
 
 _AVERITEC_TYPE_MAP: dict[str, list[ClaimType]] = {
-    "Event/Property Claim": ["FACT"],
+    "Event/Property Claim": ["FACT", "SOURCE"],
     "Causal Claim":         ["FACT"],
     "Numerical Claim":      ["FACT", "NUMERIC"],
     "Position Statement":   ["SOURCE"],

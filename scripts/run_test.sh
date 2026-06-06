@@ -6,10 +6,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 # ---- AVeriTeC test settings ----
-INPUT_JSON="scripts/averitec_dev_gold.json"
-OUTPUT_JSON="scripts/predictions.json"
+INPUT_JSON="scripts/averitec_dev_30.json"
+OUTPUT_JSON="scripts/experiments/local_dev_30_v2.json"
 START=0
-LIMIT=5
+LIMIT=30
 
 # Set LIMIT="" to process every item from START.
 # Example:
