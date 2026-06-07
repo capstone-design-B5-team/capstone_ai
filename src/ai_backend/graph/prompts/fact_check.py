@@ -47,6 +47,50 @@ Claim date:
   {{"question": "...", "search_queries": ["쿼리8"]}}
 ]}}"""
 
+FACT_QUESTION_USER_AVERITEC = """Generate 5-8 natural-language verification questions and per-question search queries for the Claim below.
+These questions must follow the style of human fact-checkers in the AVeriTeC dataset.
+
+[Type classification]
+- EPC (Empirical/Process/Causal): claims about whether an event/process/causal relation occurred or exists.
+- CC (Conceptual/Categorical): claims about definitions, concepts, or categories.
+
+[Question style — REQUIRED]
+- Write short, concrete, factual questions. Each question asks about exactly ONE verifiable fact
+  (a specific event, date, number, person, organization, or source).
+- Prioritize these question types:
+  * Provenance / source — where the claim originally came from and what kind of source that is
+    (e.g., "Where was this claim first published/reported?", "What kind of website or organization is X?").
+  * Concrete fact — a specific date, number, procedure, or party involved
+    (e.g., "When did X happen?", "How much was the amount in X?", "Who did X?").
+  * Authority / evidence — whether a relevant official body, study, or statement supports or refutes it
+    (e.g., "Did X agency confirm this?", "Are there any studies or official records showing X?").
+  * Time validity — whether the fact held as of the Claim date ({claim_date}).
+- Use direct yes/no-answerable questions liberally.
+- AVOID abstract, analytical, or meta questions such as "What was the impact of X?",
+  "What alternative interpretations exist?", "What is the broader context?", "Why is this significant?".
+  Such questions do not help fact verification.
+- Write the questions in the same language as the Claim.
+
+[Search queries]
+- For each question, write 1-2 search queries containing specific proper nouns, organizations, dates, or source names. Include the claim-period year.
+
+Claim:
+{claim}
+
+Context:
+{context}
+
+Claim date:
+{claim_date}
+
+Output ONLY in the following JSON format:
+{{"claim_type": "EPC|CC", "questions": [
+  {{"question": "...", "search_queries": ["query1", "query2"]}},
+  {{"question": "...", "search_queries": ["query3"]}},
+  {{"question": "...", "search_queries": ["query4"]}},
+  {{"question": "...", "search_queries": ["query5"]}}
+]}}"""
+
 FACT_ANSWER_USER = """다음 질문에 대해 Evidence를 바탕으로 사실에 근거한 답변을 생성하십시오.
 
 Claim Type: {claim_type}

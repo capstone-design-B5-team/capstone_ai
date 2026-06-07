@@ -24,6 +24,7 @@ from ai_backend.graph.state import Claim, Question, VerificationResult, Verifier
 logger = logging.getLogger(__name__)
 
 _KOREAN_RE = _re.compile(r"[가-힣]")
+_TOKEN_RE = _re.compile(r"[A-Za-z0-9가-힣]+")
 
 _QUESTION_STARTERS = frozenset((
     "what", "who", "when", "where", "why", "how",
@@ -140,10 +141,11 @@ def search_verification_evidence(
     *,
     search_client: SearchClient,
     max_results_per_query: int,
+    verifier: VerifierName | None = None,
     days: int | None = None,
 ) -> SearchEvidenceBundle:
     """Search and rerank evidence."""
-    profile = build_search_profile(claim)
+    profile = build_search_profile(claim, intent=verifier or "generic")
     base_results = search_evidence(
         queries,
         search_client=search_client,
@@ -188,6 +190,62 @@ def format_evidence(results: list[SearchResult]) -> str:
             f"snippet={item.content}"
         )
     return "\n\n".join(lines)
+
+
+def select_answer_source_url(
+    answer: str,
+    results: list[SearchResult],
+    *,
+    question: str = "",
+    boolean_explanation: str = "",
+) -> str:
+    """Choose the evidence URL that best matches a generated QA answer."""
+    if not results:
+        return ""
+    if len(results) == 1:
+        return results[0].url
+
+    answer_text = " ".join(
+        part.strip()
+        for part in (answer, boolean_explanation, question)
+        if part and part.strip()
+    )
+    answer_tokens = _tokens(answer_text)
+    if not answer_tokens:
+        return results[0].url
+
+    best_result = results[0]
+    best_score = -1.0
+    normalized_answer = _normalize_for_match(answer_text)
+    for idx, item in enumerate(results):
+        source_text = f"{item.title} {item.content}"
+        source_tokens = _tokens(source_text)
+        if not source_tokens:
+            continue
+
+        overlap = len(answer_tokens & source_tokens)
+        precision = overlap / len(answer_tokens)
+        recall = overlap / len(source_tokens)
+        score = (2 * precision * recall / (precision + recall)) if precision + recall else 0.0
+
+        normalized_source = _normalize_for_match(source_text)
+        if len(normalized_answer) >= 24 and normalized_answer in normalized_source:
+            score += 1.0
+        if item.url:
+            score += 0.001 * (len(results) - idx)
+
+        if score > best_score:
+            best_score = score
+            best_result = item
+    return best_result.url
+
+
+def _tokens(text: str) -> set[str]:
+    return {token.lower() for token in _TOKEN_RE.findall(text)}
+
+
+def _normalize_for_match(text: str) -> str:
+    return " ".join(_TOKEN_RE.findall(text.lower()))
 
 
 def evidence_summary(item: SearchResult) -> str:

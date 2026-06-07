@@ -44,7 +44,8 @@ class Settings(BaseSettings):
     """4개 검증 노드용 모델."""
 
     llm_model_aggregation: str = "gpt-4o-mini"
-    """종합판정 노드용 모델. 정확도 이슈 시 상위 모델로 업그레이드 가능."""
+    """종합판정 노드용 모델. gpt-4o 업그레이드는 라이브에서 CE 과예측으로 역효과(2회 0.467 vs mini 0.500~0.567)라 mini 유지.
+    (격리 측정의 +1은 하니스가 claim type/context를 비워 돌린 낙관적 결과였음 — 라이브 미반영.)"""
 
     llm_temperature: float = 0.0
     """검증 작업은 일관성이 핵심이므로 0 고정. 필요 시 노드별 override."""
