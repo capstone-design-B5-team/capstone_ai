@@ -55,4 +55,5 @@ Untitled-1.md
 tests/
 scripts/test_*.py
 scripts/eval.py
+scripts/experiments
 tests/fixtures/

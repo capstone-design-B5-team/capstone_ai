@@ -23,6 +23,16 @@ RECENCY_CHECK_SYSTEM = """당신은 AI 자료 검증 플랫폼의 'Node 3: 데�
 RECENCY_QUERY_USER = """다음 Claim에서 시점 지표를 추출하고, 현재 함의 여부를 판단한 후 최신 데이터 검색 쿼리를 설계하십시오.
 트리거 조건(과거 시점 명시 + 현재 함의) 중 하나라도 충족하지 않으면 cherry_pick_direction은 "해당없음", search_queries는 기본 검색 쿼리로 두십시오.
 
+AVeriTeC recency/cherrypicking probe requirements:
+- Include a question that verifies the claim at the claim date and another that
+  checks whether newer or broader context changes the meaning.
+- Include a question that asks whether the claim uses a selective time window,
+  outdated statistic, partial trend, or cherry-picked comparison.
+- Include a question that searches for official updated data, later correction,
+  caveat, or competing interpretation when the claim is temporal or comparative.
+- Search queries should include updated, latest, trend, context, correction,
+  time series, official, or misleading when natural for the claim.
+
 Claim:
 {claim}
 
@@ -49,6 +59,15 @@ RECENCY_QUESTION_USER = """다음 Claim에서 시점 지표를 추출하고, che
 - Q3: 현재 추세·비교 데이터를 찾을 검색어
 - Q4: Claim date 시점 데이터를 찾을 검색어 (Claim date 연도 포함)
 - Q5: 최근 3년 추세를 파악할 검색어
+
+AVeriTeC recency QA requirements:
+- Generate at least one question for the claim date and one question for newer
+  or broader context when the claim is temporal, comparative, or trend-based.
+- Generate one question that can reveal selective time windows, outdated data,
+  partial trends, or cherry-picked comparisons.
+- Prefer search queries with updated, latest, trend, official, correction,
+  context, time series, misleading, or fact check when natural.
+- AVeriTeC QA처럼 한 질문은 하나의 시점 사실만 묻도록 하십시오. claim date의 사실, 최신 사실, 추세, 선택적 기간 여부를 각각 분리해서 묻습니다.
 
 Claim:
 {claim}
@@ -86,6 +105,22 @@ Question:
 Evidence:
 {evidence}
 
+AVeriTeC recency answer calibration:
+- Distinguish "true at the claim date" from "still meaningful in the broader or
+  current context". Include the timing limitation explicitly.
+- If evidence shows the claim is based on a selective window, outdated number,
+  or partial trend, state that limitation rather than answering simple Yes.
+- If the exact date or trend cannot be established, return Unanswerable.
+- Keep the answer as one short sentence when possible. Prefer the exact date,
+  number, trend, or timing limitation from the evidence; do not add general
+  background unless the question asks for it.
+- Also output support_type, directness, and mismatch_type:
+  support_type must be one of direct_support, partial_support, contradiction,
+  insufficient_evidence, related_only, unknown.
+  directness must be one of direct, indirect, unknown.
+  mismatch_type must be one of none, scope, time, number, attribution, context,
+  methodology, source, unknown.
+
 반드시 아래 JSON 형식으로만 출력하십시오 (answer_type은 Boolean, Extractive, Abstractive, Unanswerable 중 하나):
-Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...상세 근거..."}}
-Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Abstractive|Unanswerable"}}"""
+Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...상세 근거...", "support_type": "direct_support", "directness": "direct", "mismatch_type": "none"}}
+Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Abstractive|Unanswerable", "support_type": "partial_support", "directness": "direct", "mismatch_type": "time"}}"""

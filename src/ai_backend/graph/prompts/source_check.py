@@ -26,10 +26,36 @@ SOURCE_QUESTION_USER = """다음 Claim과 인용 출처를 분석하여 인용 �
 - Q5(선택): 추가 관점 (예: "이에 대한 다른 기관이나 전문가의 입장은 무엇인가요?")
 - Q6(선택): 공식 반박 또는 수정 (예: "이 주장에 대한 공식 반박이나 수정 발표가 있었나요?")
 - 질문은 Claim과 동일한 언어로 자연어 질문 형태로 작성하십시오.
+- AVeriTeC QA처럼 한 질문은 하나의 출처/발언 사실만 묻도록 하십시오. 직접 발언 여부, 인용문 존재 여부, 맥락, 반박 여부를 한 질문에 합치지 마십시오.
+- named speaker/source, quoted words, date, document, institution을 가능한 한 질문에 직접 포함하십시오.
+
+PS/QV gold-style QA atom policy:
+- PS path: prioritize whether the named person, organization, or cited source
+  stated/supported the material claim; what the source's position was; and
+  where the original statement or report appeared.
+- QV path: prioritize whether the named speaker/source actually said the quoted
+  words; the closest original quote/transcript fragment; and where/when the
+  quoted statement appeared.
+- For false source or quote claims, ask for the direct correction, denial,
+  true source, or evidence that the quote was fake/misattributed/not found.
+- Broad context, other perspectives, and later corrections should be lower
+  priority unless the claim itself is about those atoms.
 
 [search_queries 생성 지침]
 - PS: Claim의 핵심 주장을 검증할 수 있는 웹 검색 쿼리 2~3개를 생성하십시오.
 - QV: 인용구가 실제로 존재하는지 확인할 수 있는 검색 쿼리 2~3개를 생성하십시오. (예: "화자명 인용구 핵심 키워드", "기관명 해당 발언 원문")
+
+AVeriTeC source/attribution QA coverage requirements:
+- For QV, ask for the exact words or close transcript fragment from the named
+  speaker/source, not just a third-party characterization.
+- Ask separate direct questions for speaker/source, quoted words, document,
+  publication place, and date when those atoms appear in the claim.
+- For PS, ask whether the cited source supports the material claim or only a
+  narrower/qualified version, but avoid generic context questions.
+- Ask about correction, denial, fake quote, or misattribution only when evidence
+  or claim wording makes that atom material.
+- Search queries should include transcript, exact quote, original statement,
+  correction, fact check, disputed, or official only when natural.
 
 Claim:
 {claim}
@@ -73,6 +99,26 @@ Question:
 Evidence:
 {evidence}
 
+AVeriTeC source answer calibration:
+- Optimize for the source/quote answer fragment, not for a final verdict
+  sentence. Prefer the direct quote, transcript fragment, statement title,
+  speaker, source, date, denial, or misattribution correction.
+- For QV, answer Yes only when the named speaker/source directly said or wrote
+  the claim with matching meaning. A third-party summary is not direct evidence.
+- For PS, explain whether the source supports the whole claim or only a narrower
+  or qualified version.
+- If the evidence is about a related policy, position, or event but not the
+  exact attribution/source claim, return Unanswerable or state the limitation.
+- Keep the answer as one short sentence when possible. Prefer exact quoted
+  words or the closest transcript fragment; do not add background or analysis
+  unless the question asks for it.
+- Also output support_type, directness, and mismatch_type:
+  support_type must be one of direct_support, partial_support, contradiction,
+  insufficient_evidence, related_only, unknown.
+  directness must be one of direct, indirect, unknown.
+  mismatch_type must be one of none, scope, time, number, attribution, context,
+  methodology, source, unknown.
+
 반드시 아래 JSON 형식으로만 출력하십시오 (answer_type은 Boolean, Extractive, Abstractive, Unanswerable 중 하나):
-Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...상세 근거..."}}
-Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Abstractive|Unanswerable"}}"""
+Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...상세 근거...", "support_type": "direct_support", "directness": "direct", "mismatch_type": "none"}}
+Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Abstractive|Unanswerable", "support_type": "related_only", "directness": "indirect", "mismatch_type": "attribution"}}"""

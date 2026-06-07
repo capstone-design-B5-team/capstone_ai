@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from ai_backend.graph.builder import verification_graph
+from ai_backend.graph.nodes.scoring_ranker import rank_scoring_questions
 
 
 def parse_args() -> argparse.Namespace:
@@ -50,6 +51,7 @@ def initial_state(item: dict[str, Any], index: int) -> dict[str, Any]:
         "document_citations": [],
         "claims": [],
         "questions": [],
+        "calibrated_questions": [],
         "fact_results": [],
         "source_results": [],
         "recency_results": [],
@@ -88,11 +90,18 @@ def prediction_from_state(
         label = "Not Enough Evidence"
         justification = ""
 
+    questions = state.get("calibrated_questions") or state.get("questions", [])
+    ranked_questions = rank_scoring_questions(
+        questions,
+        claim=str(item.get("claim", "")),
+        label=label,
+    )
+
     return {
         "eval_id": f"AVT-DEV-{index:04d}",
         "claim": item.get("claim", ""),
         "label": label,
-        "questions": state.get("questions", []),
+        "questions": ranked_questions,
         "justification": justification,
         "claim_labels": claim_labels,
         "node_results": node_results,
@@ -140,7 +149,11 @@ async def run_predictions(
             raise TypeError(f"item[{index}] must be an object")
         eid = f"AVT-DEV-{index:04d}"
         if eid in done_ids:
-            print(f"[{offset + 1}/{total}] skip index={index} (already done)", file=sys.stderr, flush=True)
+            print(
+                f"[{offset + 1}/{total}] skip index={index} (already done)",
+                file=sys.stderr,
+                flush=True,
+            )
             continue
         print(f"[{offset + 1}/{total}] claim index={index}", file=sys.stderr, flush=True)
         result = await verification_graph.ainvoke(initial_state(item, index))

@@ -74,6 +74,9 @@ class Answer(TypedDict):
     answer_type: AnswerType
     source_url: str
     boolean_explanation: NotRequired[str]  # Boolean일 때 판단 근거; 나머지는 생략
+    support_type: NotRequired[str]
+    directness: NotRequired[str]
+    mismatch_type: NotRequired[str]
 
 
 class Question(TypedDict):
@@ -104,6 +107,7 @@ class GraphState(TypedDict):
     claims: list[Claim]
 
     questions: Annotated[list[Question], add]
+    calibrated_questions: NotRequired[list[Question]]
 
     fact_results: Annotated[list[VerificationResult], add]
     source_results: Annotated[list[VerificationResult], add]

@@ -16,6 +16,9 @@ from ai_backend.core.parsing import parse_json_with_fallback
 from ai_backend.core.search import SearchClient, get_search_client
 from ai_backend.core.verification import (
     SearchEvidenceBundle,
+    answer_support_metadata,
+    compact_averitec_answer,
+    compact_boolean_explanation,
     evidence_summary,
     first_result,
     format_evidence,
@@ -150,6 +153,13 @@ def _verify_source_claim(
         llm=llm,
         claim_date=claim_date,
     )
+    q_items = _augment_source_questions(
+        claim,
+        citation_type=citation_type,
+        q_items=q_items,
+        citation_text=citation_text,
+        claim_date=claim_date,
+    )
     if not q_items:
         q_items = [
             {
@@ -197,6 +207,17 @@ def _verify_source_claim(
         answer_type = a_result.get("answer_type", "Abstractive")
         boolean_explanation = a_result.get("boolean_explanation", "")
         if answer:
+            compact_answer = compact_averitec_answer(
+                answer,
+                question=q_text,
+                claim=claim["text"],
+                answer_type=answer_type,
+            )
+            compact_explanation = compact_boolean_explanation(
+                boolean_explanation,
+                question=q_text,
+                claim=claim["text"],
+            )
             source_url = "" if answer_type == "Unanswerable" else select_answer_source_url(
                 answer,
                 evidence_results,
@@ -204,12 +225,21 @@ def _verify_source_claim(
                 boolean_explanation=boolean_explanation,
             )
             answer_dict: dict = {
-                "answer": answer,
+                "answer": compact_answer,
                 "answer_type": answer_type,
                 "source_url": source_url,
             }
+            answer_dict.update(answer_support_metadata(
+                a_result,
+                claim=claim["text"],
+                question=q_text,
+                answer=answer,
+                answer_type=answer_type,
+                boolean_explanation=boolean_explanation,
+                source_url=source_url,
+            ))
             if answer_type == "Boolean":
-                answer_dict["boolean_explanation"] = boolean_explanation
+                answer_dict["boolean_explanation"] = compact_explanation
             questions.append(Question(question=q_text, answers=[answer_dict], claim_id=claim["id"]))
 
     if not questions:
@@ -244,6 +274,218 @@ def _request_source_questions(
         if question:
             return citation_type, [{"question": question, "search_queries": search_queries}]
     return "PS", []
+
+
+def _augment_source_questions(
+    claim: Claim,
+    *,
+    citation_type: str,
+    q_items: list[dict],
+    citation_text: str = "",
+    claim_date: str = "",
+    max_questions: int = 6,
+) -> list[dict]:
+    """Add PS/QV source atoms before broader generated questions."""
+    normalized_type = str(citation_type or "PS").upper()
+    if normalized_type not in {"PS", "QV"}:
+        normalized_type = "QV" if _looks_like_quote_claim(claim["text"], citation_text) else "PS"
+    seeds = (
+        _quote_question_seeds(claim["text"], citation_text=citation_text, claim_date=claim_date)
+        if normalized_type == "QV"
+        else _position_question_seeds(claim["text"], citation_text=citation_text, claim_date=claim_date)
+    )
+    return _merge_question_items(q_items, seeds, max_questions=max_questions)
+
+
+def _position_question_seeds(
+    claim_text: str,
+    *,
+    citation_text: str = "",
+    claim_date: str = "",
+) -> list[dict]:
+    source_text = citation_text or claim_text
+    seeds = [
+        {
+            "atom": "statement_support",
+            "question": f"Did the named person, organization, or cited source state or support this claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(source_text, "statement position support original source"),
+        },
+        {
+            "atom": "position",
+            "question": f"What was the named source's position on this claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(source_text, "position statement"),
+        },
+        {
+            "atom": "original_source",
+            "question": f"Where did the original statement or report for this claim appear: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(source_text, "original statement report source"),
+        },
+    ]
+    if claim_date:
+        seeds.append(
+            {
+                "atom": "claim_date",
+                "question": "Was the source statement available as of the claim date?",
+                "search_queries": _claim_queries(source_text, claim_date),
+            }
+        )
+    return seeds
+
+
+def _quote_question_seeds(
+    claim_text: str,
+    *,
+    citation_text: str = "",
+    claim_date: str = "",
+) -> list[dict]:
+    source_text = citation_text or claim_text
+    seeds = [
+        {
+            "atom": "quote_truth",
+            "question": f"Did the named speaker or source actually say the quoted words in this claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(source_text, "exact quote transcript original"),
+        },
+        {
+            "atom": "quote_fragment",
+            "question": f"What is the closest original quote or transcript fragment for this claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(source_text, "transcript quote original statement"),
+        },
+        {
+            "atom": "quote_source_date",
+            "question": f"Where and when did the quoted statement in this claim appear: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(source_text, "where when quote source"),
+        },
+    ]
+    if claim_date:
+        seeds.append(
+            {
+                "atom": "claim_date",
+                "question": "Was the quoted statement verified as of the claim date?",
+                "search_queries": _claim_queries(source_text, claim_date),
+            }
+        )
+    return seeds
+
+
+def _looks_like_quote_claim(claim_text: str, citation_text: str = "") -> bool:
+    text = f"{claim_text} {citation_text}"
+    return any(marker in text for marker in ('"', "'", "“", "”", "‘", "’"))
+
+
+def _merge_question_items(
+    generated_items: list[dict],
+    seed_items: list[dict],
+    *,
+    max_questions: int,
+) -> list[dict]:
+    merged: list[dict] = []
+    seen: set[str] = set()
+    covered_atoms = _covered_source_atoms(generated_items)
+    candidates = [
+        *(_normalize_question_item(item, generated=True) for item in generated_items),
+        *(
+            _normalize_question_item(item, generated=False)
+            for item in seed_items
+            if item.get("atom") not in covered_atoms
+        ),
+    ]
+    candidates = [item for item in candidates if item]
+    candidates.sort(key=_question_priority)
+    for item in candidates:
+        question = item["question"]
+        key = question.lower()
+        if key in seen:
+            continue
+        merged.append({"question": question, "search_queries": item["search_queries"]})
+        seen.add(key)
+        if len(merged) >= max_questions:
+            break
+    return merged
+
+
+def _normalize_question_item(item: dict, *, generated: bool) -> dict:
+    question = str(item.get("question", "")).strip()
+    if not question:
+        return {}
+    search_queries = item.get("search_queries", [])
+    if not isinstance(search_queries, list):
+        search_queries = []
+    return {
+        "question": question,
+        "search_queries": search_queries or [question],
+        "generated": generated,
+        "atom": item.get("atom", ""),
+    }
+
+
+def _covered_source_atoms(items: list[dict]) -> set[str]:
+    text = " ".join(
+        str(item.get("question", ""))
+        for item in items
+        if not _is_generic_question(str(item.get("question", "")))
+    ).lower()
+    covered: set[str] = set()
+    if any(marker in text for marker in ("state", "stated", "support", "said", "say", "position")):
+        covered.add("statement_support")
+        covered.add("position")
+        covered.add("quote_truth")
+    if any(marker in text for marker in ("quote", "quoted", "transcript", "exact words", "actually say")):
+        covered.add("quote_truth")
+        covered.add("quote_fragment")
+    if any(marker in text for marker in ("where", "source", "original", "report", "appear", "published")):
+        covered.add("original_source")
+        covered.add("quote_source_date")
+    if any(marker in text for marker in ("when", "date", "claim date", "available")):
+        covered.add("claim_date")
+        covered.add("quote_source_date")
+    return covered
+
+
+def _question_priority(item: dict) -> tuple[int, int, str]:
+    question = str(item.get("question", "")).lower()
+    generated_rank = 0 if item.get("generated") else 1
+    broad_penalty = 2 if _is_generic_question(question) else 0
+    return (broad_penalty, generated_rank, question)
+
+
+def _is_generic_question(question: str) -> bool:
+    lower = question.lower()
+    return any(
+        marker in lower
+        for marker in (
+            "valid as of",
+            "context",
+            "background",
+            "other perspective",
+            "additional perspective",
+            "later correction",
+            "correction question",
+            "rebuttal",
+            "broad",
+            "what evidence supports",
+        )
+    )
+
+
+def _question_claim_fragment(claim_text: str, max_chars: int = 180) -> str:
+    fragment = " ".join(claim_text.split())
+    if len(fragment) <= max_chars:
+        return fragment
+    return fragment[:max_chars].rsplit(" ", 1)[0]
+
+
+def _claim_queries(text: str, suffix: str = "") -> list[str]:
+    base = _truncate_query(" ".join(text.split()))
+    if suffix:
+        return [_truncate_query(f"{base} {suffix}"), base]
+    return [base, _truncate_query(f"{base} original source")]
+
+
+def _truncate_query(query: str, max_chars: int = 360) -> str:
+    query = " ".join(query.split())
+    if len(query) <= max_chars:
+        return query
+    return query[:max_chars].rsplit(" ", 1)[0] or query[:max_chars]
 
 
 def _request_source_answer(

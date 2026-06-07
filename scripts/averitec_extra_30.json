@@ -1,0 +1,1610 @@
+[
+  {
+    "claim": "Shah Rukh Khan's Kolkata Knight Riders (KKR) is acquiring a 1.28 per cent stake in Reliance Retail at Rs 5,500 crore",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "A company called the KKR has proposed to invest Rs 5,550 crore in Reliance Retail; however, it is not the Kolkata Knight Riders (KKR), but a company called Kohlberg Kravis Roberts & Co. L.P.",
+    "claim_date": "23-9-2020",
+    "speaker": "Shortpedia",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210628072212/https://www.indiatoday.in/fact-check/story/viral-ipl-shah-rukh-khan-kkr-investing-reliance-digital-us-firm-1725188-2020-09-25",
+    "reporting_source": "Facebook Users Posts",
+    "location_ISO_code": "IN",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Who is investing in Reliance Retail?",
+        "answers": [
+          {
+            "answer": "Global investment firm KKR has proposed to invest Rs 5,550 crore in Reliance Retail Ventures Ltd (RRVL), a subsidiary of Reliance Industries",
+            "answer_type": "Extractive",
+            "source_url": "https://indianexpress.com/article/business/reliance-retail-kkr-investment-6607072/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403144755/https://indianexpress.com/article/business/reliance-retail-kkr-investment-6607072/"
+          }
+        ]
+      },
+      {
+        "question": "What does KKR stand for?",
+        "answers": [
+          {
+            "answer": "Kohlberg Kravis Roberts & Co. L.P",
+            "answer_type": "Extractive",
+            "source_url": "http://www.kkr.com/our-firm/firm-history",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230328170353/https://www.kkr.com/our-firm/firm-history"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "MPs are not following workplace Covid guidance by wearing masks.",
+    "required_reannotation": true,
+    "label": "Refuted",
+    "justification": "The evidence shows that workplace guidance doesn't mandate wearing masks.",
+    "claim_date": "20-9-2020",
+    "speaker": "Various",
+    "original_claim_url": "https://twitter.com/ordinaryish/status/1306903507568594944",
+    "fact_checking_article": "https://web.archive.org/web/20201021110859/https://fullfact.org/health/parliament-distancing-covid/",
+    "reporting_source": "Twitter",
+    "location_ISO_code": "GB",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Is wearing face masks mandatory for MP's?",
+        "answers": [
+          {
+            "answer": "No, Face coverings are not mandatory in\noffices, though are required for customers and staff in some\nbusinesses that are customer facing such as banks, building\nsocieties, post offices, premises providing professional, legal or\nfinancial services, estate agents and auction houses. Staff in\nthese settings must wear face coverings when in areas that are\nopen to the public",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20201101035947/https://assets.publishing.service.gov.uk/media/5eb97e7686650c278d4496ea/working-safely-during-covid-19-offices-contact-centres-151020.pdf",
+            "source_medium": "PDF",
+            "cached_source_url": "https://web.archive.org/web/20201101035947/https://assets.publishing.service.gov.uk/media/5eb97e7686650c278d4496ea/working-safely-during-covid-19-offices-contact-centres-151020.pdf"
+          }
+        ]
+      },
+      {
+        "question": "Does Covid guidance for MPs attending parliament involve wearing masks ?",
+        "answers": [
+          {
+            "answer": "Amid Coronavirus fears, many MPs arrived at the Parliament wearing protective masks and were seen using sanitisers before shaking hands.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.gonewsindia.com/latest-news/news-and-politic/mps-wear-masks-use-sanitisers-as-coronavirus-fear-enters-parliament1-10071",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403153127/https://www.gonewsindia.com/latest-news/news-and-politic/mps-wear-masks-use-sanitisers-as-coronavirus-fear-enters-parliament1-10071"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20230403153048/https://twitter.com/ordinaryish/status/1306903507568594944"
+  },
+  {
+    "claim": "All India Institute of Medical Sciences Nursing Officer Recruitment Common Eligibility Test 2020 was postponed.",
+    "required_reannotation": false,
+    "label": "Supported",
+    "justification": "The Q&A does not give much information on the situation but it does state that is was postponed so can be supported. ",
+    "claim_date": "31-8-2020",
+    "speaker": "AIIMS",
+    "original_claim_url": "https://web.archive.org/web/20210128080554im_/https://newsmeter.in/wp-content/uploads/2020/08/AIIMS-1.jpg",
+    "fact_checking_article": "https://web.archive.org/web/20210128080554/https://newsmeter.in/aiims-nursing-officer-recruitment-common-eligibility-test-2020-postponed-is-true/",
+    "reporting_source": "WhatsApp",
+    "location_ISO_code": "IN",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Fact-checker Reference"
+    ],
+    "questions": [
+      {
+        "question": "Was the All India Institute of Medical Sciences Nursing Officer Recruitment Common Eligibility Test 2020 postponed?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.aiimsexams.org/pdf/Notice%20Postponed%2028.08.20.pdf",
+            "source_medium": "PDF",
+            "boolean_explanation": "All India Institute of Medical Sciences Nursing Officer Recruitment Common Eligibility Test 2020 was postponed.",
+            "cached_source_url": "https://web.archive.org/web/20230406162708/https://aiimsexams.org/"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20210128080554im_/https://newsmeter.in/wp-content/uploads/2020/08/AIIMS-1.jpg"
+  },
+  {
+    "claim": "US president Joe Biden (candidate at the time of claim) supports the new green deal (The Green New Deal is a nonbinding resolution, introduced by Rep. Alexandria Ocasio-Cortez and Sen. Ed Markey last year, to tackle climate change.)",
+    "required_reannotation": true,
+    "label": "Conflicting Evidence/Cherrypicking",
+    "justification": "Biden did not openly say that he supports the new green deal but his plans aligns with the new green deal",
+    "claim_date": "14-10-2020",
+    "speaker": "Common Sense Voters Of America LLC",
+    "original_claim_url": "https://www.facebook.com/CommonSenseVotersOfAmericaLLC/photos/p.139373114577545/139373114577545/?type=3",
+    "fact_checking_article": "https://web.archive.org/web/20210120091947/https://leadstories.com/hoax-alert/2020/10/fact-check-joe-biden-does-not-support-the-green-new-deal.html",
+    "reporting_source": "Facebook",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Consultation"
+    ],
+    "questions": [
+      {
+        "question": "Does U.S Presidential candidate  Joe Biden support the Green New Deal resolution introduced by Rep. Alexandria Ocasio-Cortez and Sen. Ed Markey in 2019",
+        "answers": [
+          {
+            "answer": "If you set aside the most left-wing programs included in New York Representative Alexandria Ocasio-Cortez’s 2019 Green New Deal resolution, like Medicare for All and a federal job guarantee, Biden’s plans broadly align with an approach advocated by the green new deal.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.theguardian.com/commentisfree/2020/jul/20/joe-biden-has-endorsed-the-green-new-deal-in-all-but-name",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230324191647/https://www.theguardian.com/commentisfree/2020/jul/20/joe-biden-has-endorsed-the-green-new-deal-in-all-but-name"
+          }
+        ]
+      },
+      {
+        "question": "What are Joe Biden's environmental policies?",
+        "answers": [
+          {
+            "answer": "Part of Biden’s “Build Back Better” agenda, these plans are a Green New Deal in all but name. If you set aside the most attention-grabbing left-wing programs included in New York Representative Alexandria Ocasio-Cortez’s 2019 Green New Deal resolution, like Medicare for All and a federal job guarantee, Biden’s plans broadly align with an approach advocated by the left-wing of the Democratic party. Firstly, like the Green New Deal, Biden’s plans reframe climate action as a jobs, infrastructure and clean energy stimulus.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.theguardian.com/commentisfree/2020/jul/20/joe-biden-has-endorsed-the-green-new-deal-in-all-but-name",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230324191647/https://www.theguardian.com/commentisfree/2020/jul/20/joe-biden-has-endorsed-the-green-new-deal-in-all-but-name"
+          }
+        ]
+      },
+      {
+        "question": "Is Medicare for all included in the green new deal?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.theguardian.com/commentisfree/2020/jul/20/joe-biden-has-endorsed-the-green-new-deal-in-all-but-name",
+            "source_medium": "Web text",
+            "boolean_explanation": "Medicare for all was in the Green New Deal.",
+            "cached_source_url": "https://web.archive.org/web/20230324191647/https://www.theguardian.com/commentisfree/2020/jul/20/joe-biden-has-endorsed-the-green-new-deal-in-all-but-name"
+          }
+        ]
+      },
+      {
+        "question": "Does Biden support Medicare for All?",
+        "answers": [
+          {
+            "answer": "Biden railed against the Trump administration's countless attacks on the Affordable Care Act. As president, he promised to protect and build on the ACA. Although he wants to ensure healthcare is a right and not a privilege, he does not support Medicare-for-all or eliminating private insurance because it would mean getting rid of Obamacare and starting over on political negotiations.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.investopedia.com/joe-biden-s-economic-plan-save-the-middle-class-4769869",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230326134031/https://www.investopedia.com/joe-biden-s-economic-plan-save-the-middle-class-4769869"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20230327134645/https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2FCommonSenseVotersOfAmericaLLC%2Fphotos%2Fp.139373114577545%2F139373114577545%2F%3Ftype%3D3"
+  },
+  {
+    "claim": "Indian Railways has been completely privatized, and as a result, scores of people working in the Railways would lose their jobs.",
+    "required_reannotation": true,
+    "label": "Conflicting Evidence/Cherrypicking",
+    "justification": "Q.1 and 2 find that only parts of the Indian railway would be privatized. However, no jobs are to be lost, but profiles may change.",
+    "claim_date": "6-9-2020",
+    "speaker": "@ColTekpal",
+    "original_claim_url": "https://web.archive.org/web/20210720091240/https://twitter.com/ColTekpal/status/1302630595177005056",
+    "fact_checking_article": "https://web.archive.org/web/20210720091240/https://newsmobile.in/articles/2020/09/07/fact-check-indian-railways-is-not-being-fully-privatized-heres-the-truth/",
+    "reporting_source": "Twitter",
+    "location_ISO_code": "IN",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Consultation",
+      "Fact-checker Reference"
+    ],
+    "questions": [
+      {
+        "question": "Has the government-owned Indian Railways been fully privatised?",
+        "answers": [
+          {
+            "answer": "There are certain areas where public-private partnership is being worked upon but the control will still vest with @RailMinIndia. \nNo jobs are being lost.",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20200909075240im_/https://pbs.twimg.com/profile_banners/1207634475254865921/1598874762/1500x500",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20200909075240im_/https://pbs.twimg.com/profile_banners/1207634475254865921/1598874762/1500x500"
+          }
+        ]
+      },
+      {
+        "question": "Will there be Job losses due to the partial privatization?",
+        "answers": [
+          {
+            "answer": "No job cuts, but profiles may change says Indian Railways.",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20211206134459/https://www.livemint.com/news/india/no-job-cuts-but-profiles-may-change-says-indian-railways-11593790324156.html",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20211206134459/https://www.livemint.com/news/india/no-job-cuts-but-profiles-may-change-says-indian-railways-11593790324156.html"
+          }
+        ]
+      },
+      {
+        "question": "What kind of privatisation is taking place?",
+        "answers": [
+          {
+            "answer": "Another article from March 2020 mentioned that parts of Railways would be privatized, which includes 151 modern trains or rakes to be introduced and 109 pairs of routes to be planned out for private train operations by 2022.",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20211206134459/https://www.livemint.com/news/india/no-job-cuts-but-profiles-may-change-says-indian-railways-11593790324156.html",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20211206134459/https://www.livemint.com/news/india/no-job-cuts-but-profiles-may-change-says-indian-railways-11593790324156.html"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20210720091240/https://twitter.com/ColTekpal/status/1302630595177005056"
+  },
+  {
+    "claim": "Potential voter fraud in the 2020 U.S Presidential Election is caused by mail-in ballots being sent in error to previous tenants in Washington DC.",
+    "required_reannotation": true,
+    "label": "Refuted",
+    "justification": "there is no evidence that voter fraud is a problem with mail in ballots being send in error. ",
+    "claim_date": "1-10-2020",
+    "speaker": "Nathan Brand",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20201030014600/https://factcheck.afp.com/mail-ballot-errors-spark-voter-fraud-claims-us",
+    "reporting_source": "Twitter",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Causal Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Consultation"
+    ],
+    "questions": [
+      {
+        "question": "Are ballots being sent to the wrong addresses in Washington?",
+        "answers": [
+          {
+            "answer": "The photograph from the original claim seems to show this. The ballots are sent out based on e.g. who was registered as a tenant on a certain cut off date. In this case it was the first week of October. This does mean it can change by the time the ballots reach the residents. After providing acceptable proof of residence, you will be asked to complete a Registration Update Form which will be returned to DCBOE. Once you have completed the Registration Update form, you will be issued a live (regular) ballot. Voters who have moved are urged to register the change of address on the website -'After providing acceptable proof of residence, you will be asked to complete a Registration Update Form which will be returned to DCBOE. Once you have completed the Registration Update form, you will be issued a live (regular) ballot.'",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20201101001131/https://www.dcboe.org/FAQS/Special-Ballot-Voting",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20201101001131/https://www.dcboe.org/FAQS/Special-Ballot-Voting"
+          },
+          {
+            "answer": "No answer could be found.",
+            "answer_type": "Unanswerable",
+            "source_url": "",
+            "source_medium": ""
+          }
+        ]
+      },
+      {
+        "question": "Could posting ballots to the wrong address result in voter fraud?",
+        "answers": [
+          {
+            "answer": "Possibly. 'More than half of states rely on signature matching to verify the identities of people who vote by mail. These states compare signatures they have on file (from voter registrations, ballot applications or the D.M.V.) with the ones voters put on their ballot envelopes.\n\nBut the practice is not implemented consistently across states, or even within them.'",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.nytimes.com/interactive/2020/10/07/upshot/mail-voting-ballots-signature-matching.html",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230318123649/https://www.nytimes.com/interactive/2020/10/07/upshot/mail-voting-ballots-signature-matching.html"
+          },
+          {
+            "answer": "There are multiple layers of security in place for mail-in ballots, which are also known as “absentee” ballots in many states.\n\nAll 50 states and the District of Columbia require a voter to sign a statement or affidavit when voting by mail, and some also require personal information such as birth dates, addresses and driver’s license numbers. The signature can then be compared with the voter’s signature on file, usually from a voter registration form.\n\nEight states also require a witness signature, while three states require notarization, according to the National Conference of State Legislatures (NCSL). Alabama has perhaps the strictest rules, directing voters to submit copies of their IDs as well as signatures from either a notary or two witnesses.\n\nThe return envelopes are typically opened by a different group of workers from those who scan the ballots. Outside observers, often appointed by a political party or campaign, are allowed to monitor post-election procedures, such as ballot counting. All but four states - North Carolina, Kansas, Maine and Florida - explicitly permit partisan observers to watch some post-election processes, according to the NCSL.\n\nIn addition, ballots vary widely in appearance - not just from state to state but also from county to county and even from town to town, because most voters are not just making a choice for U.S. president but also for local offices. Any ballot that does not match the proper form will be rejected by election officials.\n\nMany jurisdictions use bar codes on ballot envelopes that can be used to help with ballot processing, according to the Brennan Center for Justice at New York University, a public policy institute. The bar codes also allow voters to track their ballots to ensure they have been received.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.reuters.com/article/us-usa-election-voter-fraud-facts-explai/explainer-despite-trump-claims-voter-fraud-is-extremely-rare-here-is-how-u-s-states-keep-it-that-way-idUSKBN2601HG",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230307150045/https://www.reuters.com/article/us-usa-election-voter-fraud-facts-explai/explainer-despite-trump-claims-voter-fraud-is-extremely-rare-here-is-how-u-s-states-keep-it-that-way-idUSKBN2601HG"
+          }
+        ]
+      },
+      {
+        "question": "How are mail ballots processed and checked for voter fraud in Washington DC?",
+        "answers": [
+          {
+            "answer": "Envelopes are scanned and marked\nas “Received” in the VoteWA system,\nthen sorted by precinct and district.\nSignatures are checked against voter registration records.\nVoters are contacted before processing if signature is missing\nor doesn’t match voter registration record.\nEnvelopes are opened and security envelope/\nsleeve removed.\nSecond staffer removes ballot from security\nenvelope/sleeve for processing.\nBallots are reviewed for potential scanning issues\nlike torn corners, then scanned and securely stored.\nScanners are not connected to any form of network\nor internet.\nBallots continue to be processed,\ncured, and tabulated until certification.",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20201029025321/https://www.sos.wa.gov/_assets/elections/wa_vbm.pdf",
+            "source_medium": "PDF",
+            "cached_source_url": "https://web.archive.org/web/20201029025321/https://www.sos.wa.gov/_assets/elections/wa_vbm.pdf"
+          }
+        ]
+      },
+      {
+        "question": "Is voter fraud via mail ballots a widespread problem accross America?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.brennancenter.org/our-work/analysis-opinion/false-narrative-vote-mail-fraud",
+            "source_medium": "Web text",
+            "boolean_explanation": "Since 2000 more than 250 million votes have been cast via mailed-out ballots, in all 50 states, according to the Vote at Home Institute. In 2018, more than 31 million Americans cast their ballots by mail, about 25.8 percent of election participants.\n\nDespite this dramatic increase in mail voting over time, fraud rates remain infinitesimally small. None of the five states that hold their elections primarily by mail has had any voter fraud scandals since making that change.",
+            "cached_source_url": "https://web.archive.org/web/20230402124859/https://www.brennancenter.org/our-work/analysis-opinion/false-narrative-vote-mail-fraud"
+          },
+          {
+            "answer": "As election law professor Richard L. Hasen notes, during that period “literally billions of votes were cast.” While mail ballots are more susceptible to fraud than in-person voting, it is still more likely for an American to be struck by lightning than to commit mail voting fraud.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.brennancenter.org/our-work/analysis-opinion/false-narrative-vote-mail-fraud",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230402124859/https://www.brennancenter.org/our-work/analysis-opinion/false-narrative-vote-mail-fraud"
+          }
+        ]
+      },
+      {
+        "question": "Who won the 2020 Presidential election in Washington DC?",
+        "answers": [
+          {
+            "answer": "Joe Biden won with 317,323 to Donald Trumps 18,586.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.nbcnews.com/politics/2020-elections/district-of-columbia-results",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230220090323/https://www.nbcnews.com/politics/2020-elections/district-of-columbia-results"
+          }
+        ]
+      },
+      {
+        "question": "Who is one of the main claimants around the subject of voter fraud in the USA during the 2020 Presidential election?",
+        "answers": [
+          {
+            "answer": "Donald Trump has been one of the main proponents of spreading disinformation about voter fraud accross the US in the Presidential elections, particularly on those involving mail ballots.",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.theatlantic.com/ideas/archive/2020/06/election-confidence-fraud/612358/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230314232017/https://www.theatlantic.com/ideas/archive/2020/06/election-confidence-fraud/612358/"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "Fuel in Nigeria in 2020 was not cheaper than that in Saudi Arabia.",
+    "required_reannotation": false,
+    "label": "Not Enough Evidence",
+    "justification": "No price is offered for saudi arabia to make comparison.",
+    "claim_date": "1-10-2020",
+    "speaker": "President of Nigeria Muhammadu Buhari",
+    "original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/",
+    "fact_checking_article": "https://web.archive.org/web/20210526202243/https://africacheck.org/fact-checks/reports/nigerias-population-economy-and-history-fact-checking-buharis-independence-day",
+    "reporting_source": "Independence Anniversary Speech",
+    "location_ISO_code": "NG",
+    "claim_types": [
+      "Causal Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Consultation"
+    ],
+    "questions": [
+      {
+        "question": "What was the average for fuel prices in Nigeria in 2020?",
+        "answers": [
+          {
+            "answer": "N162 per litre",
+            "answer_type": "Extractive",
+            "source_url": "https://punchng.com/petrol-price-in-nigeria-one-of-the-cheapest-in-africa-says-fg/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403131304/https://punchng.com/petrol-price-in-nigeria-one-of-the-cheapest-in-africa-says-fg/"
+          }
+        ]
+      },
+      {
+        "question": "What was the average for fuel prices in Saudi Arabia in 2020?",
+        "answers": [
+          {
+            "answer": "No answer could be found.",
+            "answer_type": "Unanswerable",
+            "source_url": "",
+            "source_medium": ""
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/"
+  },
+  {
+    "claim": "Nigeria’s urban population at independence was approximately 7 million.",
+    "required_reannotation": true,
+    "label": "Supported",
+    "justification": "this is true, the population was 6.96 million which is close enough to 7 million. ",
+    "claim_date": "1-10-2020",
+    "speaker": "Muhammadu Buhari",
+    "original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/",
+    "fact_checking_article": "https://web.archive.org/web/20210526202243/https://africacheck.org/fact-checks/reports/nigerias-population-economy-and-history-fact-checking-buharis-independence-day",
+    "reporting_source": null,
+    "location_ISO_code": "NG",
+    "claim_types": [
+      "Numerical Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Was Nigeria’s urban population at independence approximately 7 million?",
+        "answers": [
+          {
+            "answer": "Data from the World Bank and the UN’s department of economic and social affairs shows Nigeria’s population was 45.1 million in 1960.\nThat estimate was specifically for 1 July 1960, three months before independence day, the UN department told Africa Check.",
+            "answer_type": "Extractive",
+            "source_url": "Metadata",
+            "source_medium": "Metadata",
+            "cached_source_url": "Metadata"
+          }
+        ]
+      },
+      {
+        "question": "Was Nigeria’s urban population at independence was approximately 7 million ?",
+        "answers": [
+          {
+            "answer": "The report estimates Nigeria’s 1960 urban population at 6.96 million.\nIts nearly 7 million. Countries define urban in different ways, the UN’s population division says. Most – “nearly two thirds” – use an administrative definition “but almost all of them add an element such as population size, density, economic occupation or urban functions” to characterise urban areas.",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20210526202243/https://population.un.org/wup/Download/Files/WUP2018-F03-Urban_Population.xls",
+            "source_medium": "Image/graphic",
+            "cached_source_url": "https://web.archive.org/web/20210526202243/https://population.un.org/wup/Download/Files/WUP2018-F03-Urban_Population.xls"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/"
+  },
+  {
+    "claim": "Tax avoidance costs £90 billion per year.",
+    "required_reannotation": true,
+    "label": "Refuted",
+    "justification": "From the Q&As it seems the claim is from an unofficial source. HMRC show that the actual figure is much less, as Murphy gives a figure for more than just tax avoidance figures. So the claim is refuted. ",
+    "claim_date": "4-10-2020",
+    "speaker": "Very Brexit Problems",
+    "original_claim_url": "https://www.facebook.com/veryBrexitproblems/posts/1892003977608779",
+    "fact_checking_article": "https://web.archive.org/web/20210116032458/https://fullfact.org/online/asylum-benefit-fraud-tax-avoidance/",
+    "reporting_source": "Facebook",
+    "location_ISO_code": "GB",
+    "claim_types": [
+      "Numerical Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Numerical Comparison"
+    ],
+    "questions": [
+      {
+        "question": "Where did this figure come from?",
+        "answers": [
+          {
+            "answer": "This appears to refer to an unofficial estimate of the total “tax gap” calculated by Richard Murphy who runs the website Tax Research UK.",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20210118195200/https://www.taxresearch.org.uk/Blog/2019/06/19/the-uk-tax-gap-is-90-billion-a-year/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20210118195200/https://www.taxresearch.org.uk/Blog/2019/06/19/the-uk-tax-gap-is-90-billion-a-year/"
+          }
+        ]
+      },
+      {
+        "question": "What does the HMRC say?",
+        "answers": [
+          {
+            "answer": "HMRC says: “The tax gap is the difference between the amount of tax that should, in theory, be paid to HMRC, and what is actually paid.”",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20201126152413/https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/907122/Measuring_tax_gaps_2020_edition.pdf#page=3",
+            "source_medium": "PDF",
+            "cached_source_url": "https://web.archive.org/web/20201126152413/https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/907122/Measuring_tax_gaps_2020_edition.pdf#page=3"
+          }
+        ]
+      },
+      {
+        "question": "Does this figure of £90 billion refer only to tax avoidance?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20200702053749im_/https://fullfact.org/media/uploads/cash_tax_gap.png",
+            "source_medium": "Image/graphic",
+            "boolean_explanation": "Mr Murphy’s £90 billion estimate does not just refer to tax avoidance, but all things that contribute to the tax gap, including things like errors.  \n\nBy contrast HMRC estimates that the tax gap is around £31 billion, of which around £4.6 billion is evasion, which is illegally omitting concealing or misrepresenting information to reduce tax, and £1.7 billion is avoidance, which is reducing your tax liability by acting within the letter but not the spirit of the law.",
+            "cached_source_url": "https://web.archive.org/web/20200702053749im_/https://fullfact.org/media/uploads/cash_tax_gap.png"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20230403115612/https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2FveryBrexitproblems%2Fposts%2F1892003977608779"
+  },
+  {
+    "claim": "The Tanishq jewellery store in Gandhidham,  Gujarat, India was attacked following a negative reaction to an advertisement.",
+    "required_reannotation": true,
+    "label": "Conflicting Evidence/Cherrypicking",
+    "justification": "they weren't attacker, per se, but were threatened and forced to make an apology",
+    "claim_date": "14-10-2020",
+    "speaker": "Swati Bhasin",
+    "original_claim_url": "https://web.archive.org/web/20201014140944/https://c.ndtvimg.com/2020-10/hia6h2t_tanishq-ad_625x300_13_October_20.jpg",
+    "fact_checking_article": "https://web.archive.org/web/20210708085205/https://www.altnews.in/tanishq-gandhidham-store-wasnt-attacked-staff-threatened-to-put-an-apology/",
+    "reporting_source": "NDTV",
+    "location_ISO_code": "IN",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "What was in the advertisement that people werent happy with?",
+        "answers": [
+          {
+            "answer": "The advert showed an interfaith couple.",
+            "answer_type": "Abstractive",
+            "source_url": "Metadata",
+            "source_medium": "Metadata",
+            "cached_source_url": "Metadata"
+          }
+        ]
+      },
+      {
+        "question": "Was the store attacked?",
+        "answers": [
+          {
+            "answer": "No \"attack\" as such took place however staff members were threatened and requested to apologise for the advertisement resulting in an apology note being displayed at the store.",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20210524224630/https://www.ndtv.com/india-news/threats-made-at-tanishq-store-in-gujarat-police-patrolling-area-cops-2309886",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20210524224630/https://www.ndtv.com/india-news/threats-made-at-tanishq-store-in-gujarat-police-patrolling-area-cops-2309886"
+          }
+        ]
+      },
+      {
+        "question": "How many people entered the store?",
+        "answers": [
+          {
+            "answer": "2 people, and they forced the staff to put out an apology",
+            "answer_type": "Extractive",
+            "source_url": "https://twitter.com/vimoh/status/1316447085210734592",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230324192531/https://twitter.com/vimoh/status/1316447085210734592"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20201014140944/https://c.ndtvimg.com/2020-10/hia6h2t_tanishq-ad_625x300_13_October_20.jpg"
+  },
+  {
+    "claim": "A 6 year old boy begged God to save his mother's life after she was ambushed. Today the NFL honored the organization that yelled \"hope they die\" outside the mothers hospital.",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "No evidence found to suggest the NFL honored 'The Africa Town Coalition' organisation. ",
+    "claim_date": "15-9-2020",
+    "speaker": "Officer Daniels",
+    "original_claim_url": "https://web.archive.org/web/20200916173232/https://www.facebook.com/Officerdaniels/posts/1336909176649899",
+    "fact_checking_article": "https://web.archive.org/web/20210119203544/https://leadstories.com/hoax-alert/2020/09/fact-check-NFL-did-not-honor-an-organization-that-yelled-hope-they-die-outside-a-hospital-where-wounded-deputies-were-being-treated.html",
+    "reporting_source": "Facebook",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Position Statement"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Which Organisation is thought to have yelled \"hope they die\" ?",
+        "answers": [
+          {
+            "answer": "The Africa Town Coalition",
+            "answer_type": "Extractive",
+            "source_url": "Metadata",
+            "source_medium": "Metadata",
+            "cached_source_url": "Metadata"
+          }
+        ]
+      },
+      {
+        "question": "Has the NFL Shown support to the Africa Town Coalition?",
+        "answers": [
+          {
+            "answer": "There is no evidence to show the NFL have supported the Africa Town Coalition. \nThey have supported the Black Lives Matter movement however the Africa Town Coalition are a separate movement and people have linked them as being the same.",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20210115074528/https://t.co/ENWQP8A0sv",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20210115074528/https://t.co/ENWQP8A0sv"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20200916173232/https://www.facebook.com/Officerdaniels/posts/1336909176649899"
+  },
+  {
+    "claim": "Netflix CEO Reed Hastings was arrested by the FBI on child porn charges.",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "Claim looks to be a rumour from a fringe website according to Q&A pair, which also indicate law enforcement confirmed the claim false.",
+    "claim_date": "12-9-2020",
+    "speaker": "",
+    "original_claim_url": "",
+    "fact_checking_article": "https://web.archive.org/web/20210516221659/https://leadstories.com/hoax-alert/2020/09/fact-check-netflix-ceo-not-busted-with-13000-files-of-child-pornography.html",
+    "reporting_source": "TorontoToday.net",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Has Netflix CEO Reed Hastings been arrested on child porn charges?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.boomlive.in/world/posts-claiming-netflix-ceo-was-arrested-for-child-pornography-are-false-9919",
+            "source_medium": "Web text",
+            "boolean_explanation": "Law enforcement officials said that there was no arrest and the rumour was published by a fringe news site, where it has since been removed.",
+            "cached_source_url": "https://web.archive.org/web/20230406130558/https://www.boomlive.in/world/posts-claiming-netflix-ceo-was-arrested-for-child-pornography-are-false-9919"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": ""
+  },
+  {
+    "claim": "OPCW scenario of the Navalny case is a fantastic story and a planned conspiracy scenario",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "OPCW is the implementing body for the Chemical Weapons Convention.It is not chemical weapons .",
+    "claim_date": "6-10-2020",
+    "speaker": "Russian Foreign Ministry",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210118062548/https://www.polygraph.info/a/30883007.html",
+    "reporting_source": "Russian Foreign Ministry",
+    "location_ISO_code": null,
+    "claim_types": [
+      "Position Statement"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Who are the OPCW?",
+        "answers": [
+          {
+            "answer": "OPCW is the implementing body for the Chemical Weapons Convention. Our mission is to achieve a world free of chemical weapons.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.opcw.org/about-us/opcw-basics",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230331231738/https://www.opcw.org/about-us/opcw-basics"
+          }
+        ]
+      },
+      {
+        "question": "What is the OPWC version of the Navalny case?",
+        "answers": [
+          {
+            "answer": "OPCW confirms nerve agent used in Navalny poisoning",
+            "answer_type": "Extractive",
+            "source_url": "https://www.startribune.com/germany-opcw-says-nerve-agent-used-in-navalny-poisoning/572650552/",
+            "source_medium": "Web text"
+          }
+        ]
+      },
+      {
+        "question": "Is there any other evidence for the poisoning?",
+        "answers": [
+          {
+            "answer": "Apart from a specialized laboratory in Germany, two independent facilities in France and Sweden tested Navalny’s samples and reported the presence of Novichok, a class of military grade nerve agents that were developed by the Soviet Union.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.polygraph.info/a/fact-check-schroeder-navalny-poisoning/30871063.html",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403112830/https://www.polygraph.info/a/fact-check-schroeder-navalny-poisoning/6742608.html"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "There was a 40% drop in oil prices in Nigeria in 2020.",
+    "required_reannotation": true,
+    "label": "Not Enough Evidence",
+    "justification": "There isn't enough evidence in the answer provided to support the claim",
+    "claim_date": "1-10-2020",
+    "speaker": "Muhammadu Buhari",
+    "original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/",
+    "fact_checking_article": "https://web.archive.org/web/20210526202243/https://africacheck.org/fact-checks/reports/nigerias-population-economy-and-history-fact-checking-buharis-independence-day",
+    "reporting_source": "Channels Television",
+    "location_ISO_code": "NG",
+    "claim_types": [
+      "Numerical Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Numerical Comparison"
+    ],
+    "questions": [
+      {
+        "question": "How much did oil prices drop by in Nigeria in 2020?",
+        "answers": [
+          {
+            "answer": "In July 2020, Group operating revenue as compared to June 2020, increased by 11.00%\nor N34.62Billion to stand at N349.35Billion. Likewise, expenditure for the month\nincreased by 5.24% or N16.39Billion, at N328.99Billion.",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20210526202243/https://www.nnpcgroup.com/NNPCDocuments/Performance%20Data/FullReports/NNPC%20Monthly%20Financial%20and%20Operations%20Report%20for%20the%20Month%20of%20July%202020.pdf",
+            "source_medium": "PDF",
+            "cached_source_url": "https://web.archive.org/web/20210526202243/https://www.nnpcgroup.com/NNPCDocuments/Performance%20Data/FullReports/NNPC%20Monthly%20Financial%20and%20Operations%20Report%20for%20the%20Month%20of%20July%202020.pdf"
+          }
+        ]
+      },
+      {
+        "question": "Did the president make it clear in his speech when the oil prices dropped?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/",
+            "source_medium": "Web text",
+            "boolean_explanation": "He doesn't state a date or time.",
+            "cached_source_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/"
+  },
+  {
+    "claim": "Chinese Diplomats Assault Taiwan Counterparts in Fiji",
+    "required_reannotation": true,
+    "label": "Conflicting Evidence/Cherrypicking",
+    "justification": "It seems both attacked each other based on the QA pairs.",
+    "claim_date": "19-10-2020",
+    "speaker": null,
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210304000957/https://www.polygraph.info/a/did-chinese-diplomats-assault-taiwan-counterparts-in-fiji-/30905265.html",
+    "reporting_source": "media outlets",
+    "location_ISO_code": "CN",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Was there an altercation between Chinese and Taiwanese diplomats",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5",
+            "source_medium": "Web text",
+            "boolean_explanation": "They both traded accusations about the incident on October 8, 2020",
+            "cached_source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5"
+          },
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5",
+            "source_medium": "Web text",
+            "boolean_explanation": "Both sides traded accusations about an incident on October 8, 2020",
+            "cached_source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5"
+          }
+        ]
+      },
+      {
+        "question": "Was the assault done only by the Chinese on the Taiwanese",
+        "answers": [
+          {
+            "answer": "They both attacked themselves according to the reports",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5"
+          },
+          {
+            "answer": "They both attacked each other according to the reports",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20201129014717/https://apnews.com/article/international-news-china-taiwan-fiji-taipei-51b64b361844fee75db0d1922c2480e5"
+          }
+        ]
+      },
+      {
+        "question": "Who was blamed for the altercation overall?",
+        "answers": [
+          {
+            "answer": "- Taiwan accused the Chinese officials, \n- Chinese foreign ministry spokesman Zhao Lijian said Taiwan was attempting to cover up its misdeeds by blaming others",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20210302115404/https://www.theguardian.com/world/2020/oct/19/taiwan-official-in-hospital-after-alleged-violent-attack-by-chinese-diplomats-in-fiji",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20210302115404/https://www.theguardian.com/world/2020/oct/19/taiwan-official-in-hospital-after-alleged-violent-attack-by-chinese-diplomats-in-fiji"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "Taiwan Shot down a Chinese SU-35 Jet.",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "The Taiwanese Ministry of National Defense claimed the statement to be \"Fake News\"",
+    "claim_date": "4-9-2020",
+    "speaker": "Indian Defence News",
+    "original_claim_url": "https://web.archive.org/web/20200904152333/https://www.facebook.com/IDN24/videos/741782339716819",
+    "fact_checking_article": "https://web.archive.org/web/20210126095155/https://newsmeter.in/fact-check-viral-claims-that-taiwan-shot-down-chinese-su-35-jet-are-false/",
+    "reporting_source": "facebook",
+    "location_ISO_code": "IN",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Which news agencies condemned the claim that Taiwan shot down Chinese fighter aircraft SU-35?",
+        "answers": [
+          {
+            "answer": "Times Now",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20211021062253/https://www.timesnownews.com/international/article/malicious-act-chinese-defence-ministry-dismisses-reports-of-taiwan-shooting-down-its-su-35-jet/647717",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20211021062253/https://www.timesnownews.com/international/article/malicious-act-chinese-defence-ministry-dismisses-reports-of-taiwan-shooting-down-its-su-35-jet/647717"
+          }
+        ]
+      },
+      {
+        "question": "What was the Taiwan's Ministry of National Defense's statement on the claim that Taiwan shot down a Chinese SU-35 fighter jet?",
+        "answers": [
+          {
+            "answer": "Taiwan's Ministry of National Defense on Friday dismissed the reports that claimed country's air defence system shot down a Chinese fighter jet.",
+            "answer_type": "Extractive",
+            "source_url": "https://web.archive.org/web/20211021062253/https://www.timesnownews.com/international/article/malicious-act-chinese-defence-ministry-dismisses-reports-of-taiwan-shooting-down-its-su-35-jet/647717",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20211021062253/https://www.timesnownews.com/international/article/malicious-act-chinese-defence-ministry-dismisses-reports-of-taiwan-shooting-down-its-su-35-jet/647717"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20200904152333/https://www.facebook.com/IDN24/videos/741782339716819"
+  },
+  {
+    "claim": "Mark Zuckerberg and Facebook declared Richard Jewell to be a Mass Murderer in 1996",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "Evidence finds that Mark Zuckerberg would have been 12 years old in 1996; more specifically, Facebook was founded in 2004. Therefore, this claim is refuted.",
+    "claim_date": "4-9-2020",
+    "speaker": "Lin Wood",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20200906180833/https://leadstories.com/hoax-alert/2020/09/fact-check-mark-zuckerberg-did-not-declare-richard-jewell-to-be-a-mass-murderer-or-ban-him-from-raising-money-on-facebook.html",
+    "reporting_source": "Twitter",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "When was Facebook founded?",
+        "answers": [
+          {
+            "answer": "He founded Facebook on February 4, 2004, together with a few Harvard classmates.",
+            "answer_type": "Extractive",
+            "source_url": "https://hotinsocialmedia.com/the-first-10-people-who-have-made-a-facebook-account/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230406144910/https://hotinsocialmedia.com/the-first-10-people-who-have-made-a-facebook-account/"
+          }
+        ]
+      },
+      {
+        "question": "How old was Mark Zuckerberg in 1996?",
+        "answers": [
+          {
+            "answer": "12",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.fastcompany.com/3030612/mark-zuckerberg-is-officially-an-old-loser-according-to-mark-zuckerberg",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230406144946/https://www.fastcompany.com/3030612/mark-zuckerberg-is-officially-an-old-loser-according-to-mark-zuckerberg"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "The content of the conspiracy network, Radio Quebec, hosted by Alexis Cossette-Trudel is banned by Facebook.",
+    "required_reannotation": true,
+    "label": "Supported",
+    "justification": "Radio Quebec, hosted by Alexis Cossette-Trudel was banned by facebook.",
+    "claim_date": "7-10-2020",
+    "speaker": "Radio Canada",
+    "original_claim_url": "https://web.archive.org/web/20201201201402/https://ici.radio-canada.ca/nouvelle/1739379/facebook-radio-quebec-qanon-conspiration",
+    "fact_checking_article": "https://web.archive.org/web/20201201201402/https://www.covid19facts.ca/en/fact-checked/yes-facebook-has-banned-alexis-cossette-trudel-s-radio-quebec-conspiracy-network",
+    "reporting_source": "Radio Canada",
+    "location_ISO_code": "CA",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Has Facebook Banned Alexis Cossette-Trudel's Radio-Québec conspiracy network?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20201203012201/https://ici.radio-canada.ca/nouvelle/1739379/facebook-radio-quebec-qanon-conspiration",
+            "source_medium": "Web text",
+            "boolean_explanation": "Confirmed via news site when translated.",
+            "cached_source_url": "https://web.archive.org/web/20201203012201/https://ici.radio-canada.ca/nouvelle/1739379/facebook-radio-quebec-qanon-conspiration"
+          }
+        ]
+      },
+      {
+        "question": "Are Facebook's policies banning content from conspiracy organizations?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20201201153611/https://about.fb.com/news/2020/08/addressing-movements-and-organizations-tied-to-violence/",
+            "source_medium": "Web text",
+            "boolean_explanation": "In August, we expanded our Dangerous Individuals and Organizations policy to address militarized social movements and violence-inducing conspiracy networks, such as QAnon. Since then, we’ve identified over 600 militarized social movements, removing about 2,400 Pages, 14,200 Groups and about 1,300 Instagram accounts they maintained, and in addition, we’ve removed about 1,700 Pages, 5,600 Groups and about 18,700 Instagram accounts representing QAnon.",
+            "cached_source_url": "https://web.archive.org/web/20201201153611/https://about.fb.com/news/2020/08/addressing-movements-and-organizations-tied-to-violence/"
+          }
+        ]
+      },
+      {
+        "question": "Is Alexis Cossette-Trudel's Radio-Québec conspiracy network connected to QAnon?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://thelogic.co/news/quebec-ink/quebec-ink-a-distinct-misinformation-problem-for-facebook-and-youtube/",
+            "source_medium": "Web text",
+            "boolean_explanation": "He uses it to rail against Quebec’s mask law, plugging videos from the conspiracy group QAnon and compelling his followers to “stand up” against what he calls the governmental “coup d’état” taking place under the guise of COVID-19 prevention.",
+            "cached_source_url": "https://web.archive.org/web/20230403112314/https://thelogic.co/news/quebec-ink/quebec-ink-a-distinct-misinformation-problem-for-facebook-and-youtube/"
+          }
+        ]
+      },
+      {
+        "question": "What is QAnon?",
+        "answers": [
+          {
+            "answer": "QAnon is a nonsensical and evidence-free mega-conspiracy theory that claimed Donald Trump was appointed president by the military to save the nation from a pedophilia ring. The hysteria around it has recently placed people in real danger.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.buzzfeednews.com/article/ellievhall/qanon-trump-rally-conspiracy-theory",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230330185731/https://www.buzzfeednews.com/article/ellievhall/qanon-trump-rally-conspiracy-theory"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20201201201402/https://ici.radio-canada.ca/nouvelle/1739379/facebook-radio-quebec-qanon-conspiration"
+  },
+  {
+    "claim": "The White House blocked a plan to send facemasks to every household in April 2020.",
+    "required_reannotation": false,
+    "label": "Supported",
+    "justification": "Seems from the QA it seems that the plan was indeed blocked. Therefore the claim is supported ",
+    "claim_date": "17-9-2020",
+    "speaker": "Don Moynihan",
+    "original_claim_url": "https://twitter.com/donmoyn/status/1306614873502224385?s=19",
+    "fact_checking_article": "https://web.archive.org/web/20210615063029/https://www.poynter.org/tfcn/2020/fact-check-did-the-white-house-block-access-to-face-masks-in-april-2020/",
+    "reporting_source": "Twitter",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Did the White House block the plan to send face masks to every household in April 2020 ?",
+        "answers": [
+          {
+            "answer": "The only thing about Moynihan’s claim that is incorrect is the typo “facemarks.” It is terrifyingly clear that the federal government had a plan to ship face masks to every household in the U.S to battle a pandemic that would eventually kill more than 200,000 people. But cautious optimism caused the plan to be sidelined. For better or worse, this claim is legit.",
+            "answer_type": "Extractive",
+            "source_url": "https://twitter.com/donmoyn/status/1306614873502224385",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230118085158/http://twitter.com/donmoyn/status/1306614873502224385"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20230403160015/https://twitter.com/donmoyn/status/1306614873502224385?s=19"
+  },
+  {
+    "claim": "The South African Police Service kills three times more people per capita than the United States police force",
+    "required_reannotation": false,
+    "label": "Not Enough Evidence",
+    "justification": "There is not enough evidence to confirm or deny this as the US numbers have not been released to the public",
+    "claim_date": "31-8-2020",
+    "speaker": null,
+    "original_claim_url": "https://africacheck.org/sites/default/files/screenshot-www.instagram.com-2020.08.31-10_07_31-2.png",
+    "fact_checking_article": "https://web.archive.org/web/20210425200940/https://africacheck.org/fact-checks/reports/police-violence-south-africa-what-do-numbers-show",
+    "reporting_source": "Instagram",
+    "location_ISO_code": "ZA",
+    "claim_types": [
+      "Numerical Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Numerical Comparison",
+      "Consultation"
+    ],
+    "questions": [
+      {
+        "question": "How many people have been killed by police in the USA?",
+        "answers": [
+          {
+            "answer": "These numbers have not been gathered or released to the public yet. Congress passed the Death in Custody Reporting Act of 2013, which went into effect in December 2014, but federal officials have not yet gathered the data and made it public.",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20210506185434/https://journalistsresource.org/politics-and-government/deaths-police-custody-united-states/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20210506185434/https://journalistsresource.org/politics-and-government/deaths-police-custody-united-states/"
+          }
+        ]
+      },
+      {
+        "question": "How many people have been killed by police in South Africa?",
+        "answers": [
+          {
+            "answer": "in 2017-18 there were 436 deaths as a result of police action.",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20210506185434/https://journalistsresource.org/politics-and-government/deaths-police-custody-united-states/",
+            "source_medium": "PDF",
+            "cached_source_url": "https://web.archive.org/web/20210506185434/https://journalistsresource.org/politics-and-government/deaths-police-custody-united-states/"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20230406162606/https://africacheck.org/sites/default/files/screenshot-www.instagram.com-2020.08.31-10_07_31-2.png"
+  },
+  {
+    "claim": "At independence, Nigeria had a population of 45 million.",
+    "required_reannotation": false,
+    "label": "Supported",
+    "justification": "The answers and sources show that at independence the population was just over 45 million so the claim is supported.",
+    "claim_date": "1-10-2020",
+    "speaker": "President Muhammadu Buhari ",
+    "original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/",
+    "fact_checking_article": "https://web.archive.org/web/20210526202243/https://africacheck.org/fact-checks/reports/nigerias-population-economy-and-history-fact-checking-buharis-independence-day",
+    "reporting_source": "ChannelsTV",
+    "location_ISO_code": "NG",
+    "claim_types": [
+      "Numerical Claim"
+    ],
+    "fact_checking_strategies": [
+      "Numerical Comparison"
+    ],
+    "questions": [
+      {
+        "question": "When was Nigeria's Independence?",
+        "answers": [
+          {
+            "answer": "1st October 1960",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.theguardian.com/global-development/poverty-matters/2010/oct/01/nigeria-50th-anniversary-development-progress",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403122746/https://www.theguardian.com/global-development/poverty-matters/2010/oct/01/nigeria-50th-anniversary-development-progress"
+          }
+        ]
+      },
+      {
+        "question": "What was the Nigerian Population in October 1960?",
+        "answers": [
+          {
+            "answer": "Data from the World Bank and the UN’s department of economic and social affairs shows Nigeria’s population was 45.1 million in 1960.\n\nThat estimate was specifically for 1 July 1960, three months before independence day",
+            "answer_type": "Abstractive",
+            "source_url": "https://africacheck.org//sites/default/files/Copy-of-WUP2018-F03-Urban_Population.pdf",
+            "source_medium": "PDF",
+            "cached_source_url": "https://web.archive.org/web/20230403124944/https://africacheck.org//sites/default/files/Copy-of-WUP2018-F03-Urban_Population.pdf"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20210118154309/https://www.channelstv.com/2020/10/01/nigeria-at-60-president-buharis-independence-anniversary-speech-full-text/"
+  },
+  {
+    "claim": "The Iowa Farm Bureau, US says that it would no longer be endorsing US Republican Iowa Sen. Joni Ernst for her re-election",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "From the 3rd question and answer pair it seems the the Iowa Farm Bureau is still endorsing republican senator joni ernst. Therefore the cliam is refuted",
+    "claim_date": "18-10-2020",
+    "speaker": null,
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20201130142958/https://checkyourfact.com/2020/10/22/fact-check-iowa-farm-bureau-pull-endorsement-joni-ernst/",
+    "reporting_source": "Facebook",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Consultation"
+    ],
+    "questions": [
+      {
+        "question": "What is Iowa Farm bureau?",
+        "answers": [
+          {
+            "answer": "In 1918, a group of farmers wanted to better themselves, their families, their industry and their state. So they joined forces with a diverse group of community leaders, including teachers, bankers and merchants, and formed a general farm organization called the Iowa Farm Bureau Federation (IFBF).",
+            "answer_type": "Extractive",
+            "source_url": "https://www.iowafarmbureau.com/About",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230324165634/https://www.iowafarmbureau.com/About"
+          }
+        ]
+      },
+      {
+        "question": "Who is Joni Ernst?",
+        "answers": [
+          {
+            "answer": "In November 2014, Ernst was elected as the first woman to serve in federal elected office from the State of Iowa and also became the first female combat veteran elected to serve in the United States Senate. In Washington, she serves on four Senate committees: Armed Services; Agriculture, Nutrition and Forestry; Environment and Public Works; and Small Business and Entrepreneurship.",
+            "answer_type": "Extractive",
+            "source_url": "http://caucus.militarytimes.com/speaker/joni-ernst/#.YzQU13bMK5c",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230324165925/http://caucus.militarytimes.com/speaker/joni-ernst/"
+          }
+        ]
+      },
+      {
+        "question": "What reportage is available in the media?",
+        "answers": [
+          {
+            "answer": "Although behind a pay wall, \na headline on an article in the Quad City Times dated 09/09/2020 can been seen as verifying that The Iowa Farm Bureau endorses Joni Ernst for re-election.",
+            "answer_type": "Abstractive",
+            "source_url": "https://qctimes.com/news/state-and-regional/govt-and-politics/campaign-almanac-for-wednesday-september-9-2020/article_78f6dbc5-6272-547c-9de9-e2a78cefb8cf.html",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230324170316/https://qctimes.com/news/state-and-regional/govt-and-politics/campaign-almanac-for-wednesday-september-9-2020/article_78f6dbc5-6272-547c-9de9-e2a78cefb8cf.html"
+          }
+        ]
+      },
+      {
+        "question": "What statement was posted on the Iowa Farm Bureau website on 18 October, 2020?",
+        "answers": [
+          {
+            "answer": "Recently, a fake email has been circulating through social media that Senator Ernst no longer has the support of Iowa Farm Bureau or our members. This email is fake, and any news reports that speak to its validity are false. Iowa farmers know Senator Joni Ernst understands agriculture and works tirelessly to increase the economic opportunities for Iowa farmers and rural America, and that is why the Iowa Farm Bureau was proud to designate her as a Friend of Agriculture. She continues to have our full support.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.iowafarmbureau.com/Article/Statement-by-Iowa-Farm-Bureau-Federation",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230324170620/https://www.iowafarmbureau.com/Article/Statement-by-Iowa-Farm-Bureau-Federation"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "unemployment rate in the state of Edo, Nigeria reduced from 25% to 19% during Godwin Obaseki's tenure.",
+    "required_reannotation": false,
+    "label": "Not Enough Evidence",
+    "justification": "Unable to confirm the 25% from the Question &  Answer pairs.",
+    "claim_date": "13-9-2020",
+    "speaker": "Edo State governor, Godwin Obaseki",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210125113120/https://dubawa.org/is-edo-unemployment-rate-19-percent-as-claimed-by-obaseki/",
+    "reporting_source": "Tv election debate on 'Channels Television'",
+    "location_ISO_code": "NG",
+    "claim_types": [
+      "Numerical Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Was the unemployment rate 25% at any point?",
+        "answers": [
+          {
+            "answer": "No answer could be found.",
+            "answer_type": "Unanswerable",
+            "source_url": "",
+            "source_medium": ""
+          }
+        ]
+      },
+      {
+        "question": "Was the figure 19%?",
+        "answers": [
+          {
+            "answer": "Under the statistics for states, the unemployment rate for Edo State was recorded at  19%",
+            "answer_type": "Extractive",
+            "source_url": "https://nigerianstat.gov.ng/pdfuploads/Q2_2020_Unemployment_Report.pdf",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230406124746/https://nigerianstat.gov.ng/pdfuploads/Q2_2020_Unemployment_Report.pdf"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "There is a double standard in how Senate Republicans handled the confirmations for Obama's and Trump's high court picks.",
+    "required_reannotation": false,
+    "label": "Conflicting Evidence/Cherrypicking",
+    "justification": "There was a time difference in when Obama and Trump picked their high court nominee - however although Trump only had 100 days left in office - his nomination was approved. Whilst , Obama had 10 months and his high court nominee was blocked due to how close it was to the 2016 presidential elections. Trumps nominee was confirmed only 8 days before the election, Whilst Obama's was 1 month after he picked his nominee. ",
+    "claim_date": "19-9-2020",
+    "speaker": "Phyllis Leslie Dichter Forbes",
+    "original_claim_url": "https://www.facebook.com/phyllis.dichterforbes/posts/3361745183861309",
+    "fact_checking_article": "https://web.archive.org/web/20210615044526/https://www.usatoday.com/story/news/factcheck/2020/10/20/fact-check-gop-senators-blocked-nomination-merrick-garland-2016/5916555002/",
+    "reporting_source": "Facebook",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Consultation"
+    ],
+    "questions": [
+      {
+        "question": "When did Trump pick his high court nominee?",
+        "answers": [
+          {
+            "answer": "Trump had over 100 days left in office when he nominated Amy Coney Barrett",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20211021070000/https://www.usatoday.com/story/news/politics/2020/10/15/amy-coney-barrett-senators-hear-experts-character-witnesses/3654473001/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20211021070000/https://www.usatoday.com/story/news/politics/2020/10/15/amy-coney-barrett-senators-hear-experts-character-witnesses/3654473001/"
+          }
+        ]
+      },
+      {
+        "question": "Was his nomination confirmed?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20210615044526/https://www.usatoday.com/story/news/politics/2020/10/15/amy-coney-barrett-senators-hear-experts-character-witnesses/3654473001/",
+            "source_medium": "Web text",
+            "boolean_explanation": "There was a hearing but it was confirmed eight days before the election.",
+            "cached_source_url": "https://web.archive.org/web/20210615044526/https://www.usatoday.com/story/news/politics/2020/10/15/amy-coney-barrett-senators-hear-experts-character-witnesses/3654473001/"
+          },
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20210615044526/https://www.usatoday.com/story/news/2016/03/16/gop-senators-vow-not-consider-garland-fill-supreme-court-vacancy/81856428/",
+            "source_medium": "Web text",
+            "boolean_explanation": "When Obama chose Garland, of the U. S. Court of Appeals for the District of Columbia Circuit, as his nominee a month later, Republicans vowed to block the nomination on the basis that it was too close to the 2016 presidential election approximately eight months later, USA TODAY reported. Obama had roughly 10 months left in his term.",
+            "cached_source_url": "https://web.archive.org/web/20210615044526/https://www.usatoday.com/story/news/2016/03/16/gop-senators-vow-not-consider-garland-fill-supreme-court-vacancy/81856428/"
+          }
+        ]
+      },
+      {
+        "question": "When did Obama  pick his high court nominee?",
+        "answers": [
+          {
+            "answer": "Obama had 10 months left in his term when he announced Merrick Garland as his Supreme Court nominee",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20210615044526/https://www.usatoday.com/story/news/2016/03/16/gop-senators-vow-not-consider-garland-fill-supreme-court-vacancy/81856428/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20210615044526/https://www.usatoday.com/story/news/2016/03/16/gop-senators-vow-not-consider-garland-fill-supreme-court-vacancy/81856428/"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20230403153753/https://www.facebook.com/login/?next=https%3A%2F%2Fwww.facebook.com%2Fphyllis.dichterforbes%2Fposts%2F3361745183861309"
+  },
+  {
+    "claim": "Premier Daniel Andrews of the state of Victoria in Australia borrowed money from the IMF and now is in default.",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "Not supported by IMF data",
+    "claim_date": "22-9-2020",
+    "speaker": "Pete Evans",
+    "original_claim_url": "https://web.archive.org/web/20210515234346/https://archive.vn/zYFgz",
+    "fact_checking_article": "https://web.archive.org/web/20210515234346/https://www.aap.com.au/victoria-did-not-take-an-imf-bribe-in-return-for-lockdown/",
+    "reporting_source": "Facebook",
+    "location_ISO_code": "AU",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "Did PM Andrews, Victoria state, Australia borrow money from the IMF?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20210516171847/https://www.imf.org/en/About/Factsheets/IMF-Lending",
+            "source_medium": "Web text",
+            "boolean_explanation": "The IMF assists countries hit by crises by providing them financial support to create breathing room as they implement adjustment policies to restore economic stability and growth. It also provides precautionary financing to help prevent and insure against crises. The IMF’s lending toolkit is continuously refined to meet countries’ changing needs.",
+            "cached_source_url": "https://web.archive.org/web/20210516171847/https://www.imf.org/en/About/Factsheets/IMF-Lending"
+          }
+        ]
+      },
+      {
+        "question": "Did Australia or the state of Victoria owe any money to the IMF in  2020?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://www.imf.org/external/np/fin/tad/extcred2.aspx?date1key=2020-08-31&reportdate=2020-08-31",
+            "source_medium": "Web table",
+            "boolean_explanation": "Neither are on the list of outstanding credit at 31/08/2020"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20210515234346/https://archive.vn/zYFgz"
+  },
+  {
+    "claim": "Nigeria’s Ngozi Okonjo-Iweala has been appointed the new and first female Director-General of the World Trade Organisation (WTO).",
+    "required_reannotation": true,
+    "label": "Supported",
+    "justification": "Confirmed in multiple QA Pairs.",
+    "claim_date": "8-10-2020",
+    "speaker": null,
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210116015951/https://www.icirnigeria.org/claim-that-nigerias-okonjo-iweala-has-been-appointed-wto-director-general-is-false/",
+    "reporting_source": "Sahel Standard",
+    "location_ISO_code": "NG",
+    "claim_types": [
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "What country is the 2nd candidate for the WTO Director General from?",
+        "answers": [
+          {
+            "answer": "The Republic of Korea",
+            "answer_type": "Abstractive",
+            "source_url": "https://web.archive.org/web/20201231022650/https://factcheck.afp.com/",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20201231022650/https://factcheck.afp.com/"
+          }
+        ]
+      },
+      {
+        "question": "Who did the members of World Trade Organization (WTO) voted for as their new director-general",
+        "answers": [
+          {
+            "answer": "Members of the World Trade Organization selected Ngozi Okonjo-Iweala as their director-general, making the 66-year-old Nigerian developmental economist the first woman and the first African to lead the WTO.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.bloomberg.com/news/articles/2020-05-21/how-the-wto-picks-a-new-leader-and-avoids-a-collapse-quicktake",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403104042/https://www.bloomberg.com/tosv2.html?vid=&amp;uuid=fbb2174d-d20b-11ed-99e4-43765850754c&amp;url=L25ld3MvYXJ0aWNsZXMvMjAyMC0wNS0yMS9ob3ctdGhlLXd0by1waWNrcy1hLW5ldy1sZWFkZXItYW5kLWF2b2lkcy1hLWNvbGxhcHNlLXF1aWNrdGFrZQ=="
+          }
+        ]
+      },
+      {
+        "question": "Did Okonjo-Iweala made it to the final round of the  World Trade Organization  selection process ?",
+        "answers": [
+          {
+            "answer": "Yes Okonjo-Iweala made it to the final round of the  World Trade Organization  selection process, and Okonjo-Iweala tweeted about it.",
+            "answer_type": "Abstractive",
+            "source_url": "https://twitter.com/NOIweala/status/1314189379594842118",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403104321/https://twitter.com/NOIweala/status/1314189379594842118"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "New Zealand spends less on pensions than most wealthy countries, spending 4.4 per cent of GDP",
+    "required_reannotation": false,
+    "label": "Conflicting Evidence/Cherrypicking",
+    "justification": "The country spends 4.8% of GDP on pensions, not 4.4%, but yes it does spend less on pensions than most \"Wealthy Countries\" but not specifically lined out in the evidence source",
+    "claim_date": "8-10-2020",
+    "speaker": "Winston Peters",
+    "original_claim_url": "https://www.youtube.com/watch?v=mgtfLP39FYw&t=2135s&ab_channel=1News",
+    "fact_checking_article": "https://web.archive.org/web/20210512064309/https://www.aap.com.au/does-nz-spend-less-on-pensions-than-most-wealthy-countries/",
+    "reporting_source": "Youtube",
+    "location_ISO_code": "NZ",
+    "claim_types": [
+      "Numerical Claim"
+    ],
+    "fact_checking_strategies": [
+      "Numerical Comparison"
+    ],
+    "questions": [
+      {
+        "question": "What does New Zealand currently spend on pensions?",
+        "answers": [
+          {
+            "answer": "4.8% of GDP",
+            "answer_type": "Abstractive",
+            "source_url": "https://www.treasury.govt.nz/sites/default/files/2020-05/nzsf-model-changes-befu20.pdf",
+            "source_medium": "PDF",
+            "cached_source_url": "https://web.archive.org/web/20230403103847/https://www.treasury.govt.nz/sites/default/files/2020-05/nzsf-model-changes-befu20.pdf"
+          }
+        ]
+      },
+      {
+        "question": "Does New Zealand spend less on pensions than most wealthy countries?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "answer_type": "Boolean",
+            "source_url": "https://www.oecd-ilibrary.org/sites/d6831cac-en/index.html?itemId=/content/component/d6831cac-en",
+            "source_medium": "Web table",
+            "boolean_explanation": "Most wealthy countries spend well over 10% of their GDP on pensions.",
+            "cached_source_url": "https://web.archive.org/web/20230125234431/https://www.oecd-ilibrary.org/sites/d6831cac-en/index.html?itemId=/content/component/d6831cac-en"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": "https://web.archive.org/web/20230403103813/https://accounts.google.com/v3/signin/identifier?dsh=S319518386%3A1680518293790604&amp;continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Den%26next%3D%252Fsignin_passive%26feature%3Dpassive&amp;hl=en&amp;ifkv=AQMjQ7SvMXoaZik5P3KLKZfyAUFRFqlR0iVKHPY-VuE5emls3YsWQ2-dIjp3Pv0e-l5CORKEXh-ClA&amp;passive=true&amp;service=youtube&amp;uilel=3&amp;flowName=GlifWebSignIn&amp;flowEntry=ServiceLogin"
+  },
+  {
+    "claim": "Nigeria is the leading producer of cassava in Africa and the world.",
+    "required_reannotation": false,
+    "label": "Supported",
+    "justification": "The 2nd answer and source clearly shows that Nigeria is the leading producer of the crop and is therefore the claim is supported.",
+    "claim_date": "17-9-2020",
+    "speaker": "Prof Clement Kolawole, a professor of language education at the University of Ibadan (UI), Nigeria",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210411004740/https://dubawa.org/how-true-are-claims-by-ui-professors-vying-to-become-next-vc-of-the-premier-university/",
+    "reporting_source": "transmitted via Facebook and Zoom, University of Ibadan, Nigeria's UI Community Forum's Voice of Next Vice-Chancellor 2020",
+    "location_ISO_code": "NG",
+    "claim_types": [
+      "Numerical Claim",
+      "Event/Property Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Numerical Comparison"
+    ],
+    "questions": [
+      {
+        "question": "What is cassava?",
+        "answers": [
+          {
+            "answer": "A crop of subsistence agriculture which ‘farmers grow to feed themselves and their families’",
+            "answer_type": "Extractive",
+            "source_url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/cassava",
+            "source_medium": "Web text"
+          }
+        ]
+      },
+      {
+        "question": "Which country produces the most cassava",
+        "answers": [
+          {
+            "answer": "Nigeria is the largest cassava producer globally, accounting for about one-fifth (21%) of total production worldwide.",
+            "answer_type": "Extractive",
+            "source_url": "https://www.pwc.com/ng/en/publications/economic-potential-of-cassava-production-in-nigeria.html",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230403155947/https://www.pwc.com/ng/en/publications/economic-potential-of-cassava-production-in-nigeria.html"
+          }
+        ]
+      },
+      {
+        "question": "Where is Nigeria?",
+        "answers": [
+          {
+            "answer": "In the south east of West Africa,",
+            "answer_type": "Extractive",
+            "source_url": "https://www.nationsonline.org/oneworld/nigeria.htm",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230321061007/https://www.nationsonline.org/oneworld/nigeria.htm"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "Tweet shows Maharashtra Navnirman Sena (MNS) president Raj Thackeray showing their support of Bollywood actress Kangana Ranaut.",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "It seems that the tweets was from a fake account, therefore the claim is refuted",
+    "claim_date": "5-9-2020",
+    "speaker": "Twitter user @RealThackeray",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210719192533/https://newsmobile.in/articles/2020/09/07/fact-check-fake-tweet-of-mns-chief-raj-thackeray-supporting-kangana-ranaut-goes-viral/",
+    "reporting_source": "Twitter ",
+    "location_ISO_code": "IN",
+    "claim_types": [
+      "Quote Verification"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence"
+    ],
+    "questions": [
+      {
+        "question": "What is the official verified twitter handle of Raj Thackeray, President of Maharashtra Navnirman Sena (MNS)?",
+        "answers": [
+          {
+            "answer": "@RajThackeray",
+            "answer_type": "Extractive",
+            "source_url": "https://twitter.com/RajThackeray?s=09",
+            "source_medium": "Web text",
+            "cached_source_url": "https://web.archive.org/web/20230301075138/https://twitter.com/RajThackeray?s=09"
+          }
+        ]
+      },
+      {
+        "question": "Is there a tweet supporting Bollywood actor Kangana Ranaut on Raj Thackeray‘s official verified twitter account?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://twitter.com/search?q=Kangana%20Ranaut%20(from%3ARajThackeray)&src=typed_query",
+            "source_medium": "Other",
+            "boolean_explanation": "Advanced search on Twitter for mentions of Kangana Ranaut on @RajThackeray found no results."
+          }
+        ]
+      },
+      {
+        "question": "What is the twitter handle of the account from which Raj Thackeray allegedly tweeted support for Kangana Ranaut?",
+        "answers": [
+          {
+            "answer": "@RealThackeray",
+            "answer_type": "Extractive",
+            "source_url": "Metadata",
+            "source_medium": "Metadata",
+            "cached_source_url": "Metadata"
+          }
+        ]
+      },
+      {
+        "question": "Is the twitter account from which Raj Thackeray allegedly tweeted support for Kangana Ranaut -  @RealThackeray - a verified twitter account?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://twitter.com/search?f=top&q=(from%3ARealThackeray)&src=typed_query",
+            "source_medium": "Other",
+            "boolean_explanation": "A search on twitter found that the handle @RealThackeray no longer exists."
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  },
+  {
+    "claim": "PTFE Sprayed On Blue Masks Causes Symptoms Similar To COVID-19",
+    "required_reannotation": false,
+    "label": "Refuted",
+    "justification": "the masks are not made with  Polytetrafluoroethylene (PTFE)",
+    "claim_date": "10-10-2020",
+    "speaker": "Dr Chad Hawk",
+    "original_claim_url": null,
+    "fact_checking_article": "https://web.archive.org/web/20210608095131/https://leadstories.com/hoax-alert/2020/10/fact-check-ptfe-sprayed-on-blue-masks-does-not-cause-symptoms-similar-to-covid19.html",
+    "reporting_source": "Facebook",
+    "location_ISO_code": "US",
+    "claim_types": [
+      "Causal Claim"
+    ],
+    "fact_checking_strategies": [
+      "Written Evidence",
+      "Consultation"
+    ],
+    "questions": [
+      {
+        "question": "Are the common types of  face masks people wear to protect from Covid 19  sprayed with PTFE?",
+        "answers": [
+          {
+            "answer": "No",
+            "answer_type": "Boolean",
+            "source_url": "https://web.archive.org/web/20220411022706/https://www.amazon.com/Disposable-3-Ply-Polypropylene-Elastic-Loops/dp/B08972H6RL",
+            "source_medium": "Web text",
+            "boolean_explanation": "The common ear to ear face masks are made using Polypropylene not Polytetrafluoroethylene (PTFE)",
+            "cached_source_url": "https://web.archive.org/web/20220411022706/https://www.amazon.com/Disposable-3-Ply-Polypropylene-Elastic-Loops/dp/B08972H6RL"
+          }
+        ]
+      }
+    ],
+    "cached_original_claim_url": null
+  }
+]

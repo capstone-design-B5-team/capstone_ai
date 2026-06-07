@@ -6,6 +6,7 @@ from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 
 from ai_backend.graph.nodes.aggregate import aggregate_node
+from ai_backend.graph.nodes.evidence_calibration import evidence_calibration_node
 from ai_backend.graph.nodes.fact_check import fact_check_node
 from ai_backend.graph.nodes.numeric_check import numeric_check_node
 from ai_backend.graph.nodes.preprocess import preprocess_node
@@ -27,7 +28,7 @@ def build_graph() -> CompiledStateGraph[GraphState, None, GraphState, GraphState
     Flow:
         START -> preprocess
         preprocess -> fact/source/recency/numeric checks in parallel
-        all check nodes -> aggregate
+        all check nodes -> evidence_calibration -> aggregate
         aggregate -> END
     """
     graph = StateGraph(GraphState)
@@ -37,6 +38,7 @@ def build_graph() -> CompiledStateGraph[GraphState, None, GraphState, GraphState
     graph.add_node("source_check", source_check_node)
     graph.add_node("recency_check", recency_check_node)
     graph.add_node("numeric_check", numeric_check_node)
+    graph.add_node("evidence_calibration", evidence_calibration_node)
     graph.add_node("aggregate", _lazy_aggregate_node)
 
     graph.add_edge(START, "preprocess")
@@ -46,8 +48,9 @@ def build_graph() -> CompiledStateGraph[GraphState, None, GraphState, GraphState
     graph.add_edge("preprocess", "numeric_check")
     graph.add_edge(
         ["fact_check", "source_check", "recency_check", "numeric_check"],
-        "aggregate",
+        "evidence_calibration",
     )
+    graph.add_edge("evidence_calibration", "aggregate")
     graph.add_edge("aggregate", END)
 
     return graph.compile()

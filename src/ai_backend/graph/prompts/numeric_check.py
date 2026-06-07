@@ -18,6 +18,28 @@ NUMERIC_QUESTION_USER = """다음 수치 Claim을 분석하여 검증용 자연�
 - Q5(선택): 공식 출처·발표 날짜 확인 (예: "이 수치를 공식 발표한 기관과 발표 날짜는 언제인가요?")
 - Q6(선택): 인접 연도와의 비교 (예: "전년도 및 다음 해의 해당 지표 수치는 얼마였나요?")
 - 질문은 Claim과 동일한 언어로 자연어 질문 형태로 작성하십시오.
+- AVeriTeC QA처럼 한 질문은 하나의 수치 사실만 묻도록 하십시오. 수치, 단위, 기간, 대상, 비교 기준을 분리해서 묻고 한 질문에 여러 검증 목표를 합치지 마십시오.
+
+NC gold-style QA atom policy:
+- First ask for the exact value/number/percentage in the claim.
+- Then ask separate questions for unit, period, geography, comparison basis,
+  source/institution, and corrected figure if the claim is wrong.
+- Prefer extractive answers containing the exact number and unit.
+- Do not turn a numeric claim into a broad background or policy question unless
+  the number cannot be interpreted without that basis.
+
+AVeriTeC numeric QA coverage requirements:
+- Ask the exact number together with its unit, denominator, measurement method,
+  timeframe, geography, and comparison target when those atoms appear in the
+  claim.
+- Ask separate direct questions for a different unit, period, baseline,
+  annualization, per-capita basis, nominal/real basis, or source methodology
+  only when the claim's number depends on that basis.
+- Do not force broad context or caveat questions. If context matters, ask the
+  concrete missing numeric basis directly.
+- Search queries should preserve the claimed number and named entities; add
+  official, methodology, annualized, per capita, baseline, fact check, or
+  misleading only when useful for finding the direct numeric fragment.
 
 Claim:
 {claim}
@@ -57,7 +79,28 @@ Question:
 Evidence:
 {evidence}
 
+AVeriTeC numeric answer calibration:
+- Optimize for the numeric answer fragment, not for a final verdict sentence.
+- If the evidence refutes the claim, answer with the corrected figure, unit,
+  period, source, or numeric mismatch when available. Avoid answers that only
+  say "the claim is false".
+- Do not answer Yes only because a nearby number appears. The unit, denominator,
+  timeframe, geography, source, and comparison target must match the question.
+- If the evidence gives a related number using a different measurement method,
+  report the mismatch explicitly instead of treating it as support.
+- If the exact numeric basis cannot be established from the evidence, return
+  Unanswerable rather than inferring support.
+- Keep the answer as one short sentence when possible. Prefer the exact number,
+  unit, date, denominator, and comparison target from the evidence; do not add
+  general background unless the question asks for it.
+- Also output support_type, directness, and mismatch_type:
+  support_type must be one of direct_support, partial_support, contradiction,
+  insufficient_evidence, related_only, unknown.
+  directness must be one of direct, indirect, unknown.
+  mismatch_type must be one of none, scope, time, number, attribution, context,
+  methodology, source, unknown.
+
 반드시 아래 JSON 형식으로만 출력하십시오 (answer_type은 Boolean, Extractive, Unanswerable 중 하나):
-Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...수치 근거..."}}
-Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Unanswerable"}}"""
+Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...수치 근거...", "support_type": "direct_support", "directness": "direct", "mismatch_type": "none"}}
+Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Unanswerable", "support_type": "partial_support", "directness": "direct", "mismatch_type": "methodology"}}"""
 

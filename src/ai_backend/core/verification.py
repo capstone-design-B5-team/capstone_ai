@@ -51,6 +51,27 @@ _NUMERIC_ANSWER_PROMPT = (
 PASSING_JUDGMENTS = {"PASS", "WARNING", "FAIL"}
 ALL_VERDICTS = {"PASS", "WARNING", "FAIL", "UNVERIFIABLE"}
 
+SUPPORT_TYPES = {
+    "direct_support",
+    "partial_support",
+    "contradiction",
+    "insufficient_evidence",
+    "related_only",
+    "unknown",
+}
+DIRECTNESS_TYPES = {"direct", "indirect", "unknown"}
+MISMATCH_TYPES = {
+    "none",
+    "scope",
+    "time",
+    "number",
+    "attribution",
+    "context",
+    "methodology",
+    "source",
+    "unknown",
+}
+
 JUDGMENT_CONFIDENCE: dict[str, float] = {
     "PASS": 0.85,
     "WARNING": 0.55,
@@ -238,8 +259,373 @@ def select_answer_source_url(
     return best_result.url
 
 
+def answer_support_metadata(
+    parsed: dict[str, Any],
+    *,
+    claim: str,
+    question: str,
+    answer: str,
+    answer_type: str,
+    boolean_explanation: str = "",
+    source_url: str = "",
+) -> dict[str, str]:
+    """Normalize structured evidence-support signals for aggregate."""
+    text = " ".join(part for part in (claim, question, answer, boolean_explanation) if part)
+    lower = text.lower()
+
+    support_type = _normalize_choice(parsed.get("support_type"), SUPPORT_TYPES, "unknown")
+    directness = _normalize_choice(parsed.get("directness"), DIRECTNESS_TYPES, "unknown")
+    mismatch_type = _normalize_choice(parsed.get("mismatch_type"), MISMATCH_TYPES, "none")
+
+    if support_type == "unknown":
+        support_type = _infer_support_type(answer, answer_type, boolean_explanation, lower)
+    if directness == "unknown":
+        directness = _infer_directness(lower)
+    if mismatch_type == "none":
+        mismatch_type = _infer_mismatch_type(lower)
+
+    support_type, directness, mismatch_type = _refine_support_metadata(
+        claim=claim,
+        question=question,
+        answer=answer,
+        source_url=source_url,
+        support_type=support_type,
+        directness=directness,
+        mismatch_type=mismatch_type,
+        lower=lower,
+    )
+
+    return {
+        "support_type": support_type,
+        "directness": directness,
+        "mismatch_type": mismatch_type,
+    }
+
+
+def compact_averitec_answer(
+    answer: str,
+    *,
+    question: str,
+    claim: str,
+    answer_type: str,
+    max_words: int = 55,
+) -> str:
+    """Keep QA answers short and close to the exact AVeriTeC question."""
+    text = " ".join(str(answer or "").split())
+    if not text or answer_type == "Unanswerable":
+        return text
+    if answer_type == "Boolean":
+        return text if text in {"Yes", "No"} else text.split(".", 1)[0].strip()
+    if _word_count(text) <= max_words:
+        return text
+
+    sentences = _split_sentences(text)
+    if not sentences:
+        return _truncate_words(text, max_words)
+
+    query_tokens = _content_tokens(f"{question} {claim}")
+    best = max(
+        sentences,
+        key=lambda sentence: _sentence_relevance(sentence, query_tokens),
+    )
+    if _word_count(best) <= max_words:
+        return best
+    return _truncate_words(best, max_words)
+
+
+def compact_boolean_explanation(
+    explanation: str,
+    *,
+    question: str,
+    claim: str,
+    max_words: int = 45,
+) -> str:
+    """Shorten Boolean explanations because scorer appends them to Yes/No."""
+    text = " ".join(str(explanation or "").split())
+    if not text:
+        return ""
+    if _word_count(text) <= max_words:
+        return text
+    sentences = _split_sentences(text)
+    if not sentences:
+        return _truncate_words(text, max_words)
+    query_tokens = _content_tokens(f"{question} {claim}")
+    best = max(sentences, key=lambda sentence: _sentence_relevance(sentence, query_tokens))
+    return best if _word_count(best) <= max_words else _truncate_words(best, max_words)
+
+
+def _normalize_choice(value: Any, allowed: set[str], fallback: str) -> str:
+    normalized = str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+    return normalized if normalized in allowed else fallback
+
+
+def _infer_support_type(
+    answer: str,
+    answer_type: str,
+    boolean_explanation: str,
+    lower: str,
+) -> str:
+    answer_l = answer.strip().lower()
+    if answer_type == "Unanswerable" or answer_l == "unanswerable":
+        return "insufficient_evidence"
+    insufficient_markers = (
+        "not enough evidence",
+        "no sufficient evidence",
+        "not aware of any reports",
+        "inconclusive",
+        "cannot be established",
+        "could not verify",
+        "not officially confirmed",
+    )
+    if any(marker in lower for marker in insufficient_markers):
+        return "insufficient_evidence"
+    partial_markers = (
+        "partial",
+        "partially",
+        "caveat",
+        "exception",
+        "however",
+        "but",
+        "although",
+        "misleading",
+        "context",
+        "not humanitarian aid",
+        "characterized",
+        "third-party",
+        "broader",
+        "narrower",
+    )
+    if any(marker in lower for marker in partial_markers):
+        return "partial_support"
+    related_markers = ("related", "broad topic", "does not directly", "not direct")
+    if any(marker in lower for marker in related_markers):
+        return "related_only"
+    if answer_type == "Boolean":
+        if answer_l == "yes":
+            return "direct_support"
+        if answer_l == "no":
+            return "contradiction"
+        explanation_l = boolean_explanation.lower()
+        if explanation_l.startswith("yes"):
+            return "direct_support"
+        if explanation_l.startswith("no"):
+            return "contradiction"
+    contradiction_markers = ("false", "incorrect", "did not", "does not", "no evidence that")
+    if any(marker in lower for marker in contradiction_markers):
+        return "contradiction"
+    return "direct_support"
+
+
+def _infer_directness(lower: str) -> str:
+    indirect_markers = (
+        "third-party",
+        "characterized",
+        "suggests",
+        "related policy",
+        "interpretation",
+        "broad topic",
+        "does not directly",
+        "not direct",
+    )
+    if any(marker in lower for marker in indirect_markers):
+        return "indirect"
+    direct_markers = (
+        "directly",
+        "exact",
+        "official",
+        "transcript",
+        "source states",
+        "evidence states",
+    )
+    if any(marker in lower for marker in direct_markers):
+        return "direct"
+    return "unknown"
+
+
+def _infer_mismatch_type(lower: str) -> str:
+    if any(marker in lower for marker in ("speaker", "said", "quote", "attribution")):
+        if any(marker in lower for marker in ("third-party", "characterized", "not direct")):
+            return "attribution"
+    if any(marker in lower for marker in ("annualized", "per capita", "methodology", "baseline")):
+        return "methodology"
+    if any(marker in lower for marker in ("number", "percent", "%", "unit", "denominator")):
+        if any(marker in lower for marker in ("different", "mismatch", "not match")):
+            return "number"
+    if any(marker in lower for marker in ("timeframe", "claim date", "outdated", "latest")):
+        return "time"
+    if any(marker in lower for marker in ("scope", "geography", "jurisdiction", "population")):
+        return "scope"
+    if any(marker in lower for marker in ("context", "caveat", "misleading", "exception")):
+        return "context"
+    return "none"
+
+
+def _refine_support_metadata(
+    *,
+    claim: str,
+    question: str,
+    answer: str,
+    source_url: str,
+    support_type: str,
+    directness: str,
+    mismatch_type: str,
+    lower: str,
+) -> tuple[str, str, str]:
+    """Downgrade brittle direct-support signals before aggregation."""
+    claim_l = claim.lower()
+    question_l = question.lower()
+    answer_l = answer.lower()
+    numeric_claim = _is_numeric_or_comparative_claim(claim_l)
+
+    if support_type == "direct_support" and _is_context_probe(question_l):
+        support_type = "partial_support"
+        if mismatch_type == "none":
+            mismatch_type = "context"
+
+    if support_type == "direct_support" and "fraud" in claim_l and "no evidence" in answer_l:
+        support_type = "contradiction"
+
+    if support_type == "direct_support" and numeric_claim and mismatch_type == "methodology":
+        support_type = "partial_support"
+
+    if support_type == "direct_support" and numeric_claim and _has_missing_basis_signal(lower):
+        support_type = "insufficient_evidence"
+        if mismatch_type == "none":
+            mismatch_type = "methodology"
+
+    return support_type, directness, mismatch_type
+
+
+def _is_context_probe(question: str) -> bool:
+    return question.startswith(
+        (
+            "what factors",
+            "what was the context",
+            "were there any exceptions",
+            "are there any exceptions",
+            "what policies",
+            "what sources",
+            "which sources",
+            "what is the source",
+        )
+    )
+
+
+def _is_numeric_or_comparative_claim(claim: str) -> bool:
+    return bool(
+        _has_non_year_number(claim)
+        or _re.search(r"%|percent|per cent", claim)
+        or any(
+            marker in claim
+            for marker in (
+                "more than",
+                "less than",
+                "cheaper than",
+                "higher than",
+                "lower than",
+                "three times",
+                "per capita",
+                "reduced from",
+                "drop",
+                "increase",
+                "decrease",
+            )
+        )
+    )
+
+
+def _has_non_year_number(text: str) -> bool:
+    for match in _re.finditer(r"\b\d+(?:\.\d+)?\b", text):
+        value = match.group(0)
+        if len(value) == 4 and value.startswith(("19", "20")):
+            continue
+        return True
+    return False
+
+
+def _has_missing_basis_signal(lower: str) -> bool:
+    return any(
+        marker in lower
+        for marker in (
+            "did not make reference",
+            "does not make reference",
+            "not make reference",
+            "unable to confirm",
+            "cannot confirm",
+            "not released to the public",
+            "not been released to the public",
+            "no price is offered",
+            "no specific price",
+            "no official data",
+            "not available",
+            "could not be verified",
+        )
+    )
+
+
 def _tokens(text: str) -> set[str]:
     return {token.lower() for token in _TOKEN_RE.findall(text)}
+
+
+def _content_tokens(text: str) -> set[str]:
+    stopwords = {
+        "a",
+        "an",
+        "and",
+        "are",
+        "as",
+        "at",
+        "be",
+        "by",
+        "did",
+        "does",
+        "for",
+        "from",
+        "has",
+        "have",
+        "in",
+        "is",
+        "it",
+        "of",
+        "on",
+        "or",
+        "that",
+        "the",
+        "there",
+        "to",
+        "was",
+        "were",
+        "what",
+        "when",
+        "where",
+        "which",
+        "who",
+        "with",
+    }
+    return {token for token in _tokens(text) if token not in stopwords and len(token) > 1}
+
+
+def _split_sentences(text: str) -> list[str]:
+    parts = _re.split(r"(?<=[.!?])\s+|\n+", text)
+    return [part.strip(" \t\r\n-") for part in parts if part.strip(" \t\r\n-")]
+
+
+def _sentence_relevance(sentence: str, query_tokens: set[str]) -> tuple[int, int, int]:
+    sentence_tokens = _content_tokens(sentence)
+    overlap = len(sentence_tokens & query_tokens)
+    numbers = len(_re.findall(r"\d+(?:\.\d+)?|%|percent|per cent", sentence.lower()))
+    return overlap, numbers, -_word_count(sentence)
+
+
+def _word_count(text: str) -> int:
+    return len(_TOKEN_RE.findall(text))
+
+
+def _truncate_words(text: str, max_words: int) -> str:
+    words = text.split()
+    if len(words) <= max_words:
+        return text
+    return " ".join(words[:max_words]).rstrip(" ,;:") + "."
 
 
 def _normalize_for_match(text: str) -> str:

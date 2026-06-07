@@ -19,6 +19,9 @@ from ai_backend.core.search import (
 )
 from ai_backend.core.verification import (
     SearchEvidenceBundle,
+    answer_support_metadata,
+    compact_averitec_answer,
+    compact_boolean_explanation,
     evidence_summary,
     first_result,
     format_evidence,
@@ -207,6 +210,17 @@ def _verify_recency_claim(
         answer_type = a_result.get("answer_type", "Abstractive")
         boolean_explanation = a_result.get("boolean_explanation", "")
         if answer:
+            compact_answer = compact_averitec_answer(
+                answer,
+                question=q_text,
+                claim=claim["text"],
+                answer_type=answer_type,
+            )
+            compact_explanation = compact_boolean_explanation(
+                boolean_explanation,
+                question=q_text,
+                claim=claim["text"],
+            )
             source_url = "" if answer_type == "Unanswerable" else select_answer_source_url(
                 answer,
                 evidence_results,
@@ -214,12 +228,21 @@ def _verify_recency_claim(
                 boolean_explanation=boolean_explanation,
             )
             answer_dict: dict = {
-                "answer": answer,
+                "answer": compact_answer,
                 "answer_type": answer_type,
                 "source_url": source_url,
             }
+            answer_dict.update(answer_support_metadata(
+                a_result,
+                claim=claim["text"],
+                question=q_text,
+                answer=answer,
+                answer_type=answer_type,
+                boolean_explanation=boolean_explanation,
+                source_url=source_url,
+            ))
             if answer_type == "Boolean":
-                answer_dict["boolean_explanation"] = boolean_explanation
+                answer_dict["boolean_explanation"] = compact_explanation
             questions.append(Question(question=q_text, answers=[answer_dict], claim_id=claim["id"]))
 
     if not questions:

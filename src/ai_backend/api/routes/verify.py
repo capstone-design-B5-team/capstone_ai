@@ -12,7 +12,12 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException, status
 from ai_backend.api.schemas import VerifyAcceptedResponse, VerifyRequest, VerifyResponse
 from ai_backend.graph.builder import verification_graph
 from ai_backend.graph.state import GraphState
-from ai_backend.models.claim import ClaimLabelModel, ClaimModel, QuestionModel, VerificationResultModel
+from ai_backend.models.claim import (
+    ClaimLabelModel,
+    ClaimModel,
+    QuestionModel,
+    VerificationResultModel,
+)
 from ai_backend.storage import (
     get_verify_job_result,
     get_verify_job_status,
@@ -39,6 +44,7 @@ def _initial_state(request: VerifyRequest) -> GraphState:
         document_citations=[citation.to_typed_dict() for citation in request.document_citations],
         claims=[],
         questions=[],
+        calibrated_questions=[],
         fact_results=[],
         source_results=[],
         recency_results=[],
@@ -59,7 +65,10 @@ def _response_from_state(state: GraphState, request: VerifyRequest) -> VerifyRes
         document_id=state["document_id"],
         claims=[ClaimModel.from_typed_dict(claim) for claim in state["claims"]],
         results=[VerificationResultModel.from_typed_dict(result) for result in results],
-        questions=[QuestionModel.from_typed_dict(q) for q in state.get("questions", [])],
+        questions=[
+            QuestionModel.from_typed_dict(q)
+            for q in (state.get("calibrated_questions") or state.get("questions", []))
+        ],
         claim_labels=[
             ClaimLabelModel.from_typed_dict(cl) for cl in state.get("claim_labels", [])
         ],

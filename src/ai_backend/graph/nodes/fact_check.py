@@ -19,6 +19,9 @@ from ai_backend.core.search import (
 )
 from ai_backend.core.verification import (
     SearchEvidenceBundle,
+    answer_support_metadata,
+    compact_averitec_answer,
+    compact_boolean_explanation,
     evidence_summary,
     first_result,
     format_evidence,
@@ -144,6 +147,12 @@ def _verify_fact_claim(
 ) -> tuple[VerificationResult, list[Question]]:
     # Step 1: EPC/CC classification + multi NL questions + search queries
     claim_type, q_items = _request_fact_questions(claim, llm=llm, claim_date=claim_date)
+    q_items = _augment_fact_questions(
+        claim,
+        claim_type=claim_type,
+        q_items=q_items,
+        claim_date=claim_date,
+    )
     if not q_items:
         q_items = [
             {
@@ -191,6 +200,17 @@ def _verify_fact_claim(
         answer_type = a_result.get("answer_type", "Abstractive")
         boolean_explanation = a_result.get("boolean_explanation", "")
         if answer:
+            compact_answer = compact_averitec_answer(
+                answer,
+                question=q_text,
+                claim=claim["text"],
+                answer_type=answer_type,
+            )
+            compact_explanation = compact_boolean_explanation(
+                boolean_explanation,
+                question=q_text,
+                claim=claim["text"],
+            )
             source_url = "" if answer_type == "Unanswerable" else select_answer_source_url(
                 answer,
                 evidence_results,
@@ -198,12 +218,21 @@ def _verify_fact_claim(
                 boolean_explanation=boolean_explanation,
             )
             answer_dict: dict = {
-                "answer": answer,
+                "answer": compact_answer,
                 "answer_type": answer_type,
                 "source_url": source_url,
             }
+            answer_dict.update(answer_support_metadata(
+                a_result,
+                claim=claim["text"],
+                question=q_text,
+                answer=answer,
+                answer_type=answer_type,
+                boolean_explanation=boolean_explanation,
+                source_url=source_url,
+            ))
             if answer_type == "Boolean":
-                answer_dict["boolean_explanation"] = boolean_explanation
+                answer_dict["boolean_explanation"] = compact_explanation
             questions.append(Question(question=q_text, answers=[answer_dict], claim_id=claim["id"]))
 
     if not questions:
@@ -241,6 +270,217 @@ def _request_fact_questions(
         if question:
             return claim_type, [{"question": question, "search_queries": search_queries}]
     return "EPC", []
+
+
+def _augment_fact_questions(
+    claim: Claim,
+    *,
+    claim_type: str,
+    q_items: list[dict],
+    claim_date: str = "",
+    max_questions: int = 7,
+) -> list[dict]:
+    """Add type-specific AVeriTeC QA atoms without sample-specific wording."""
+    claim_text = claim["text"]
+    normalized_type = str(claim_type or "EPC").upper()
+    if normalized_type not in {"EPC", "CC"}:
+        normalized_type = "CC" if _looks_causal(claim_text) else "EPC"
+
+    seeds = _causal_question_seeds(claim_text) if normalized_type == "CC" else _event_question_seeds(
+        claim_text,
+        claim_date=claim_date,
+    )
+    return _merge_question_items(q_items, seeds, max_questions=max_questions)
+
+
+def _event_question_seeds(claim_text: str, *, claim_date: str = "") -> list[dict]:
+    queries = _claim_queries(claim_text)
+    seeds = [
+        {
+            "atom": "claim_truth",
+            "question": f"What evidence confirms or refutes this claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": queries,
+        },
+        {
+            "atom": "direct_statement",
+            "question": f"What did the named person, organization, or official source say about this claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(claim_text, "denied OR statement OR official"),
+        },
+        {
+            "atom": "correct_fact",
+            "question": f"What is the correct fact if this claim is false: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(claim_text, "fact check OR false OR debunked"),
+        },
+    ]
+    if claim_date:
+        seeds.append(
+            {
+                "atom": "claim_date",
+                "question": "When was this claim made or when did the event in the claim occur?",
+                "search_queries": _claim_queries(claim_text, claim_date),
+            }
+        )
+    return seeds
+
+
+def _causal_question_seeds(claim_text: str) -> list[dict]:
+    return [
+        {
+            "atom": "causal_truth",
+            "question": f"Is the causal relation in this claim established: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(claim_text, "cause effect evidence"),
+        },
+        {
+            "atom": "causal_evidence",
+            "question": f"What direct evidence links the cause and effect in this claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(claim_text, "evidence causal relationship"),
+        },
+        {
+            "atom": "authority",
+            "question": f"What do reliable sources say about this causal claim: {_question_claim_fragment(claim_text)}",
+            "search_queries": _claim_queries(claim_text, "official scientific evidence fact check"),
+        },
+    ]
+
+
+def _looks_causal(text: str) -> bool:
+    lower = text.lower()
+    return any(
+        marker in lower
+        for marker in (
+            "cause",
+            "caused",
+            "causes",
+            "lead to",
+            "leads to",
+            "led to",
+            "because",
+            "due to",
+            "resulted in",
+            "responsible for",
+        )
+    )
+
+
+def _merge_question_items(
+    generated_items: list[dict],
+    seed_items: list[dict],
+    *,
+    max_questions: int,
+) -> list[dict]:
+    merged: list[dict] = []
+    seen: set[str] = set()
+    covered_atoms = _covered_fact_atoms(generated_items)
+    candidates = [
+        *(_normalize_question_item(item, generated=True) for item in generated_items),
+        *(
+            _normalize_question_item(item, generated=False)
+            for item in seed_items
+            if item.get("atom") not in covered_atoms
+        ),
+    ]
+    candidates = [item for item in candidates if item]
+    candidates.sort(key=_question_priority)
+    for item in candidates:
+        question = item["question"]
+        key = question.lower()
+        if key in seen:
+            continue
+        merged.append({"question": question, "search_queries": item["search_queries"]})
+        seen.add(key)
+        if len(merged) >= max_questions:
+            break
+    return merged
+
+
+def _normalize_question_item(item: dict, *, generated: bool) -> dict:
+    question = str(item.get("question", "")).strip()
+    if not question:
+        return {}
+    search_queries = item.get("search_queries", [])
+    if not isinstance(search_queries, list):
+        search_queries = []
+    return {
+        "question": question,
+        "search_queries": search_queries or [question],
+        "generated": generated,
+        "atom": item.get("atom", ""),
+    }
+
+
+def _covered_fact_atoms(items: list[dict]) -> set[str]:
+    text = " ".join(
+        str(item.get("question", ""))
+        for item in items
+        if not _is_generic_question(str(item.get("question", "")))
+    ).lower()
+    covered: set[str] = set()
+    if any(marker in text for marker in ("did ", "does ", "is it true", "confirm", "refute", "happen", "occur")):
+        covered.add("claim_truth")
+        covered.add("causal_truth")
+    if any(marker in text for marker in ("said", "say", "statement", "quote", "comment", "denied", "official")):
+        covered.add("direct_statement")
+        covered.add("authority")
+    if any(marker in text for marker in ("correct", "actual", "true fact", "false", "debunk")):
+        covered.add("correct_fact")
+    if any(marker in text for marker in ("when", "date", "claim date", "occur", "year")):
+        covered.add("claim_date")
+    if any(marker in text for marker in ("cause", "causal", "lead to", "leads to", "effect", "link")):
+        covered.add("causal_truth")
+        covered.add("causal_evidence")
+    return covered
+
+
+def _question_priority(item: dict) -> tuple[int, int, str]:
+    question = str(item.get("question", "")).lower()
+    generated_rank = 0 if item.get("generated") else 1
+    broad_penalty = 2 if _is_generic_question(question) else 0
+    return (broad_penalty, generated_rank, question)
+
+
+def _is_generic_question(question: str) -> bool:
+    lower = question.lower()
+    return any(
+        marker in lower
+        for marker in (
+            "valid as of",
+            "alternative view",
+            "alternative perspective",
+            "counterargument",
+            "context",
+            "background",
+            "circumstances",
+            "impact",
+            "reason",
+            "other view",
+            "exception",
+            "what evidence supports",
+            "what evidence links",
+            "authoritative sources say",
+            "reliable sources say",
+        )
+    )
+
+
+def _question_claim_fragment(claim_text: str, max_chars: int = 180) -> str:
+    fragment = " ".join(claim_text.split())
+    if len(fragment) <= max_chars:
+        return fragment
+    return fragment[:max_chars].rsplit(" ", 1)[0]
+
+
+def _claim_queries(claim_text: str, suffix: str = "") -> list[str]:
+    base = _truncate_query(" ".join(claim_text.split()))
+    if suffix:
+        return [_truncate_query(f"{base} {suffix}"), base]
+    return [base, _truncate_query(f"{base} fact check")]
+
+
+def _truncate_query(query: str, max_chars: int = 360) -> str:
+    query = " ".join(query.split())
+    if len(query) <= max_chars:
+        return query
+    return query[:max_chars].rsplit(" ", 1)[0] or query[:max_chars]
 
 
 def _request_fact_answer(

@@ -129,6 +129,9 @@ class AnswerModel(BaseModel):
     answer_type: AnswerType
     source_url: str = ""
     boolean_explanation: str = ""
+    support_type: str = ""
+    directness: str = ""
+    mismatch_type: str = ""
 
     @classmethod
     def from_typed_dict(cls, answer: AnswerDict) -> AnswerModel:
@@ -142,6 +145,12 @@ class AnswerModel(BaseModel):
         )
         if self.boolean_explanation:
             result["boolean_explanation"] = self.boolean_explanation
+        if self.support_type:
+            result["support_type"] = self.support_type
+        if self.directness:
+            result["directness"] = self.directness
+        if self.mismatch_type:
+            result["mismatch_type"] = self.mismatch_type
         return result
 
 
