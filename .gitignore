@@ -57,3 +57,4 @@ scripts/test_*.py
 scripts/eval.py
 scripts/experiments
 tests/fixtures/
+.claude

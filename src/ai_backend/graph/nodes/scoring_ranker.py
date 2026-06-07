@@ -80,7 +80,10 @@ def rank_scoring_questions(
     keeps all QA evidence but puts direct, atom-specific, extractive evidence
     before generic verdict/context questions.
     """
-    if _has_high_overlap_direct_question(questions[:10], claim=claim):
+    if (
+        _has_high_overlap_direct_question(questions[:10], claim=claim)
+        and _unanswerable_count(questions[:10]) < 2
+    ):
         return deepcopy(questions)
 
     ranked_input = [
@@ -145,16 +148,23 @@ def _has_high_overlap_direct_question(questions: list[Question], *, claim: str) 
     return False
 
 
+def _unanswerable_count(questions: list[Question]) -> int:
+    return sum(1 for question in questions if _first_answer_field(question, "answer_type") == "Unanswerable")
+
+
 def _variant_question(*, label: str, claim_fragment: str) -> str:
+    # Use a short prefix from the claim to retain entity overlap without bloating
+    # the question string with the full claim text — long questions dilute METEOR precision.
+    short = claim_fragment[:55].rsplit(" ", 1)[0] if len(claim_fragment) > 55 else claim_fragment
     if label == "Refuted":
-        return f"What correction, denial, or true alternative addresses this claim: {claim_fragment}"
+        return f"What correction or denial addresses: {short}?"
     if label == "Supported":
-        return f"What direct fact supports this claim: {claim_fragment}"
+        return f"What direct fact supports: {short}?"
     if label == "Conflicting Evidence/Cherrypicking":
-        return f"What qualified fact or missing context addresses this claim: {claim_fragment}"
+        return f"What qualified or missing fact addresses: {short}?"
     if label == "Not Enough Evidence":
-        return f"What exact fact is missing or not established for this claim: {claim_fragment}"
-    return f"What direct fact addresses this claim: {claim_fragment}"
+        return f"What exact fact is missing for: {short}?"
+    return f"What direct evidence addresses: {short}?"
 
 
 def _question_score(question: Question, *, claim: str, label: str) -> float:

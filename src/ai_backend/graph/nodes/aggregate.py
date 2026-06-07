@@ -306,28 +306,6 @@ def _calibrate_averitec_label(
                     "settled well enough to verify the numeric claim.",
                 ),
             )
-        if weak >= 2 and direct <= 4:
-            return (
-                "Not Enough Evidence",
-                _calibration_message(
-                    claim_text,
-                    "답변들은 관련 주제를 다루지만 주장 그대로를 직접 입증하지 못하므로 "
-                    "증거 부족에 가깝습니다.",
-                    "The answers discuss related evidence but do not directly establish the "
-                    "claim as stated, so the evidence is insufficient.",
-                ),
-            )
-        if partial >= 2 and indirect >= 2 and direct <= 8:
-            return (
-                "Conflicting Evidence/Cherrypicking",
-                _calibration_message(
-                    claim_text,
-                    "답변들이 부분적 지지나 범위·맥락 불일치를 보여 주므로 "
-                    "단순 지지보다는 맥락 누락에 가깝습니다.",
-                    "The answers show partial support or scope/context mismatches, so the "
-                    "claim is better treated as qualified or cherry-picked.",
-                ),
-            )
         if _has_explicit_ce_signal(evidence_l, support_counts) and partial >= 2:
             return (
                 "Conflicting Evidence/Cherrypicking",
@@ -367,17 +345,6 @@ def _calibrate_averitec_label(
                     "반박으로 단정하기 어렵습니다.",
                     "The answers indicate insufficient or merely related evidence rather "
                     "than a direct contradiction, so refutation is not established.",
-                ),
-            )
-        if partial >= 2 and indirect >= 2 and direct <= 8:
-            return (
-                "Conflicting Evidence/Cherrypicking",
-                _calibration_message(
-                    claim_text,
-                    "답변들이 부분적 지지와 간접 근거를 함께 보여 주므로 "
-                    "단순 반박보다는 맥락이 갈리는 주장에 가깝습니다.",
-                    "The answers combine partial support with indirect evidence, so the "
-                    "claim is better treated as qualified or cherry-picked than refuted.",
                 ),
             )
         if (
@@ -421,18 +388,6 @@ def _calibrate_averitec_label(
                     "contradictory or partial-support signals.",
                 ),
             )
-
-    if label in {"Supported", "Conflicting Evidence/Cherrypicking"} and _has_annualized_numeric_mismatch(claim_l, evidence_l):
-        return (
-            "Not Enough Evidence",
-            _calibration_message(
-                claim_text,
-                "증거는 관련 수치를 언급하지만, 연율·실제 증가율·GDP 수준이 섞여 있어 "
-                "주장 그대로를 확정하기에는 부족합니다.",
-                "The evidence mentions related figures, but it mixes annualized rates, "
-                "actual growth, and GDP levels, so it does not establish the claim as stated.",
-            ),
-        )
 
     if (
         label == "Refuted"
@@ -483,31 +438,6 @@ def _calibrate_averitec_label(
             ),
         )
 
-    if label == "Refuted" and _is_unconfirmed_scam_claim(claim_l, evidence_l):
-        return (
-            "Not Enough Evidence",
-            _calibration_message(
-                claim_text,
-                "증거는 관련 신고나 확인된 사례가 부족하다고 설명하므로, "
-                "사기가 존재하지 않는다고 단정하기보다는 증거 부족에 가깝습니다.",
-                "The evidence reports a lack of confirmed reports or cases, which is "
-                "better treated as insufficient evidence than a conclusive disproof.",
-            ),
-        )
-
-    if label in {"Supported", "Conflicting Evidence/Cherrypicking", "Not Enough Evidence"}:
-        if _has_exact_timing_contradiction(claim_l, evidence_l):
-            return (
-                "Refuted",
-                _calibration_message(
-                    claim_text,
-                    "증거의 권고 시간은 주장한 시간과 명확히 다르므로, "
-                    "핵심 수치가 일치하지 않습니다.",
-                    "The recommended timing in the evidence clearly differs from the claimed "
-                    "timing, so a material numeric detail does not match.",
-                ),
-            )
-
     if label == "Supported" and _has_indirect_attribution(claim_l, evidence_l):
         return (
             "Conflicting Evidence/Cherrypicking",
@@ -520,18 +450,6 @@ def _calibrate_averitec_label(
             ),
         )
 
-    if label == "Supported" and _has_loaded_framing_omission(claim_l, evidence_l):
-        return (
-            "Conflicting Evidence/Cherrypicking",
-            _calibration_message(
-                claim_text,
-                "증거는 사건의 일부를 뒷받침하지만, 주장에 포함된 표현이나 동기는 "
-                "중요한 맥락을 생략해 의미가 달라질 수 있습니다.",
-                "The evidence supports part of the event, but the claim's wording or "
-                "framing omits context that materially changes the meaning.",
-            ),
-        )
-
     if label == "Supported" and _has_groundless_accusation_refutation(claim_l, evidence_l):
         return (
             "Refuted",
@@ -541,18 +459,6 @@ def _calibrate_averitec_label(
                 "than independently establishing it.",
                 "The evidence identifies the accusation as groundless or false rather "
                 "than independently establishing it.",
-            ),
-        )
-
-    if label == "Refuted" and _has_non_quote_factual_support(claim_l, evidence_l):
-        return (
-            "Supported",
-            _calibration_message(
-                claim_text,
-                "직접적인 사실 확인 증거가 주장한 사건이나 상태를 뒷받침하며, "
-                "출처 발언 여부만으로 이를 반박하기는 어렵습니다.",
-                "The direct factual evidence supports the event or condition in the claim; "
-                "the lack of a direct source statement does not refute it.",
             ),
         )
 
@@ -616,15 +522,6 @@ def _calibration_message(claim: str, korean: str, english: str) -> str:
     if re.search(r"[가-힣]", claim):
         return korean
     return english
-
-
-def _has_annualized_numeric_mismatch(claim: str, evidence: str) -> bool:
-    return (
-        "33.1" in claim
-        and "gdp" in claim
-        and ("annual rate" in evidence or "annualized" in evidence)
-        and ("7.4 percent" in evidence or "quarter" in evidence or "in reality" in evidence)
-    )
 
 
 def _is_numeric_or_comparative_claim(claim: str) -> bool:
@@ -767,49 +664,15 @@ def _is_unproven_treatment_claim(claim: str, evidence: str) -> bool:
     return uncertainty and not explicit_false
 
 
-def _is_unconfirmed_scam_claim(claim: str, evidence: str) -> bool:
-    if "scam" not in claim:
-        return False
-    return any(
-        phrase in evidence
-        for phrase in (
-            "not aware of any reports",
-            "doesn't seem to be real",
-            "does not seem to be real",
-            "probably doesn't exist",
-            "likely not real",
-        )
-    )
-
-
-def _has_exact_timing_contradiction(claim: str, evidence: str) -> bool:
-    return (
-        re.search(r"\b1\s*hour\b", claim) is not None
-        and ("not earlier than 1 min" in evidence or "not earlier than 1 minute" in evidence)
-    )
-
-
 def _has_indirect_attribution(claim: str, evidence: str) -> bool:
+    """Detect indirect attribution: claim asserts a direct quote but evidence only shows third-party characterization."""
     if not any(marker in claim for marker in (" said ", " says ", " stated ")):
         return False
     return (
         "characterized by" in evidence
-        or "biden stated" in evidence
-        or "biden said" in evidence
         or "thinks that" in evidence
+        or ("third-party" in evidence and "direct" not in evidence)
     )
-
-
-def _has_loaded_framing_omission(claim: str, evidence: str) -> bool:
-    if " just " in f" {claim} " and any(
-        phrase in evidence for phrase in ("misleading", "doctored", "manipulated media")
-    ):
-        return True
-    if any(word in claim for word in ("aid", "help")) and any(
-        phrase in evidence for phrase in ("not humanitarian aid", "purchased", "positive pr")
-    ):
-        return True
-    return False
 
 
 def _has_groundless_accusation_refutation(claim: str, evidence: str) -> bool:
@@ -855,21 +718,6 @@ def _is_compound_or_rhetorical_claim(claim: str) -> bool:
                 "but also",
             )
         )
-    )
-
-
-def _has_non_quote_factual_support(claim: str, evidence: str) -> bool:
-    if any(marker in claim for marker in (" said ", " says ", " stated ", " claimed ")):
-        return False
-    if "lost a republican-held seat" in claim and (
-        "first time speaker robin vos has lost a republican-held seat" in evidence
-        or "one assembly seat has flipped" in evidence
-    ):
-        return True
-    return (
-        "anti-black lives matter" in claim
-        and "thin blue line" in evidence
-        and ("anti-black" in evidence or "black lives matter movement" in evidence)
     )
 
 

@@ -308,7 +308,7 @@ def compact_averitec_answer(
     question: str,
     claim: str,
     answer_type: str,
-    max_words: int = 55,
+    max_words: int = 70,
 ) -> str:
     """Keep QA answers short and close to the exact AVeriTeC question."""
     text = " ".join(str(answer or "").split())
@@ -338,7 +338,7 @@ def compact_boolean_explanation(
     *,
     question: str,
     claim: str,
-    max_words: int = 45,
+    max_words: int = 55,
 ) -> str:
     """Shorten Boolean explanations because scorer appends them to Yes/No."""
     text = " ".join(str(explanation or "").split())
