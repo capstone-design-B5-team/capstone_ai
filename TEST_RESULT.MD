@@ -6,13 +6,21 @@
 
 | 항목 | 값 |
 | --- | ---: |
-| 평가 파일 | `scripts/averitec_dev_holdout_mix_30.json` |
-| 예측 결과 | `scripts/experiments/local_dev_holdout_mix_30_v36.json` |
-| 리포트 | `scripts/experiments/local_dev_holdout_mix_30_v36_meteor_report.md` |
 | 평가 건수 | 30/30 |
 | QA HU-METEOR | 0.3288 |
 | Label Accuracy | 0.7000 |
 | **Meteor @ 0.25** | **0.5000** |
+
+
+Veracity F1 scores:
+ * Supported:                       0.6154
+ * Refuted:                         0.8421
+ * Not Enough Evidence:             0.0000
+ * Conflicting Evidence/Cherry:     0.2857
+ * macro F1:                        0.4358
+ * accuracy:                        0.7000  (21/30 정답)
+Justification score (meteor):       0.3288
+AVeriTeC score (meteor @ 0.25):     0.5000
 
 ---
 
