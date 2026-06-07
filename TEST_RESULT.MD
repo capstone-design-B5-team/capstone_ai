@@ -19,7 +19,8 @@ Veracity F1 scores:
  * Conflicting Evidence/Cherry:     0.2857
  * macro F1:                        0.4358
  * accuracy:                        0.7000  (21/30 정답)
-Justification score (meteor):       0.3288
+ * Justification score (meteor):       0.3288
+
 AVeriTeC score (meteor @ 0.25):     0.5000
 
 ---
