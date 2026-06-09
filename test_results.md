@@ -137,36 +137,3 @@
    검색하면 어휘 겹침이 근본적으로 상승. 단 라이브 웹검색 → store retrieval은 검색 클라이언트·증거 수집
    경로 전반을 바꾸는 **아키텍처 교체급 작업**.
 
----
-
-## 8. 재현 방법 & 측정 주의
-
-```bash
-# 1) 예측 생성 (N=30)
-cd /Users/siyoung/capstone/capstone_ai
-rm -f scripts/predictions.json          # ⚠️ 이어쓰기 방지(안 지우면 전부 skip)
-bash scripts/run_test.sh                # START=0, LIMIT=30
-
-# 2) 공식 채점
-cd /Users/siyoung/capstone
-PY=capstone_ai/.venv/bin/python
-$PY -c "import json;g=json.load(open('capstone_ai/scripts/averitec_dev_gold.json'));json.dump(g[:30],open('/tmp/gold30.json','w'),ensure_ascii=False)"
-$PY adapter.py --system_output capstone_ai/scripts/predictions.json --gold /tmp/gold30.json --out /tmp/pred30_eval.json
-$PY eval.py --predictions /tmp/pred30_eval.json --references /tmp/gold30.json
-# 주 지표: "Veracity scores (meteor @ 0.25)"
-```
-
-- `eval.py` · `adapter.py` · `utils.py` · `run_eval.sh`는 리포 루트(`/Users/siyoung/capstone/`)에 위치.
-- ⚠️ **부분 실행(N건) 시 gold도 반드시 N건으로 자를 것** — 안 그러면 나머지가 NEE로 패딩돼 가짜 저점(@0.25=0.034 류).
-- **LLM 비결정성 노이즈:** 같은 코드 30건 3회 = 0.467 / 0.533 / 0.500 (평균 ~0.50, ±~2건). 게이트 통과는 21~22로 안정.
-  회차마다 라벨이 뒤집히는 idx가 있음(예: idx 5/13/17). 대표값 log_4와 재현본 predictions.json도
-  텍스트는 거의 전부 다르지만(완전동일 0/30) @0.25·Q-A는 동일 → **둘은 동일 설정의 리런, 우열 없음.**
-- **효과 인정 기준:** 단일 측정 +1~2는 노이즈와 구분 불가. **2~3회 평균이 노이즈 밴드를 넘을 때만 채택.**
-
----
-
-## 9. 비용 메모
-
-- `max_results=5`: Tavily 요청 수 불변, LLM 입력 토큰만 소폭 증가 → 거의 무비용.
-- EP 라우팅(FACT+SOURCE): 해당 claim 노드 비용 ~2배(검색·LLM 한 세트 추가).
-- 증거 풀 확대는 답변 호출 7~13회에 곱해지므로, 추후 모델 업그레이드 시 입력 토큰 비용 동반 상승.
