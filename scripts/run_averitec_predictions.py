@@ -46,6 +46,7 @@ def initial_state(item: dict[str, Any], index: int) -> dict[str, Any]:
         "raw_text": claim,
         "document_id": str(item.get("id") or item.get("claim_id") or index),
         "averitec_claim_types": item.get("claim_types", []),
+        "averitec_mode": True,
         "claim_date": item.get("claim_date", ""),
         "document_citations": [],
         "claims": [],

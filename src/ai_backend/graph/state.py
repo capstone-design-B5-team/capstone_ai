@@ -98,6 +98,7 @@ class GraphState(TypedDict):
     raw_text: str
     document_id: str
     averitec_claim_types: NotRequired[list[str]]
+    averitec_mode: NotRequired[bool]  # AVeriTeC 평가 경로 전용. True면 gold 스타일 질문 프롬프트 사용(production 미설정)
     claim_date: NotRequired[str]  # DD-MM-YYYY (AVeriTeC)
     document_citations: list[Citation]
 

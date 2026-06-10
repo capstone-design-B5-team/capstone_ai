@@ -11,6 +11,7 @@ from ai_backend.core.search import SearchResult
 from ai_backend.graph.state import Claim
 
 SearchLanguage = Literal["ko", "en"]
+SearchIntent = Literal["fact", "numeric", "source", "recency", "generic"]
 
 _KOREAN_RE = re.compile(r"[가-힣]")
 _YEAR_RE = re.compile(r"(?:19|20)\d{2}년?|올해|내년|최근|현재|장기|중기")
@@ -73,6 +74,52 @@ _GLOBAL_OFFICIAL_DOMAINS = (
     "imf.org",
     "un.org",
 )
+_FACT_CHECK_DOMAINS = (
+    "factcheck.org",
+    "politifact.com",
+    "snopes.com",
+    "reuters.com",
+    "apnews.com",
+    "leadstories.com",
+    "checkyourfact.com",
+    "boomlive.in",
+    "fullfact.org",
+)
+_FACT_CHECK_TERMS = (
+    "fact check",
+    "fact-check",
+    "false",
+    "misleading",
+    "refuted",
+    "debunk",
+    "hoax",
+)
+_PRIMARY_SOURCE_DOMAINS = (
+    "web.archive.org",
+    "c-span.org",
+    "whitehouse.gov",
+    "congress.gov",
+    "senate.gov",
+    "house.gov",
+    "state.gov",
+    "justice.gov",
+    "supremecourt.gov",
+    "un.org",
+    "who.int",
+)
+_PRIMARY_SOURCE_TERMS = (
+    "transcript",
+    "full transcript",
+    "remarks",
+    "statement",
+    "press release",
+    "official statement",
+    "speech",
+    "interview",
+    "hearing",
+    "briefing",
+    "archived",
+)
 _LOW_QUALITY_DOMAINS = (
     "youtube.com",
     "youtu.be",
@@ -80,6 +127,8 @@ _LOW_QUALITY_DOMAINS = (
     "wikipedia.org",
     "blog.naver.com",
     "tistory.com",
+    "facebook.com",
+    "reddit.com",
 )
 
 
@@ -87,6 +136,7 @@ _LOW_QUALITY_DOMAINS = (
 class SearchProfile:
     """Lightweight search intent extracted from a claim."""
 
+    intent: SearchIntent
     language: SearchLanguage
     country_hint: str | None
     region_terms: list[str]
@@ -105,7 +155,11 @@ class RankedSearchResult:
     reasons: list[str]
 
 
-def build_search_profile(claim: Claim) -> SearchProfile:
+def build_search_profile(
+    claim: Claim,
+    *,
+    intent: SearchIntent = "generic",
+) -> SearchProfile:
     """Extract general search policy from claim text and context."""
     text = f"{claim['text']} {claim.get('context', '')}"
     is_korean = bool(_KOREAN_RE.search(text))
@@ -115,6 +169,7 @@ def build_search_profile(claim: Claim) -> SearchProfile:
     country_hint = "KR" if is_korean and (region_terms or institution_terms) else None
     official_domains = _KR_OFFICIAL_DOMAINS if country_hint == "KR" else _GLOBAL_OFFICIAL_DOMAINS
     return SearchProfile(
+        intent=intent,
         language="ko" if is_korean else "en",
         country_hint=country_hint,
         region_terms=region_terms,
@@ -207,6 +262,7 @@ def search_policy_metadata(
     """Build compact metadata for debugging search-policy decisions."""
     return {
         "search_profile": {
+            "intent": profile.intent,
             "language": profile.language,
             "country_hint": profile.country_hint,
             "region_terms": profile.region_terms,
@@ -244,9 +300,21 @@ def _rank_one(profile: SearchProfile, result: SearchResult) -> RankedSearchResul
     if _domain_matches(domain, profile.official_domains):
         score += 3.0
         reasons.append("official_domain")
+    if _domain_matches(domain, _PRIMARY_SOURCE_DOMAINS):
+        score += 2.0 if profile.intent == "source" else 0.75
+        reasons.append("primary_source_domain")
+    if _domain_matches(domain, _FACT_CHECK_DOMAINS):
+        score += 2.25 if profile.intent in {"fact", "numeric", "recency", "generic"} else 0.5
+        reasons.append("fact_check_domain")
     if _domain_matches(domain, profile.blocked_domains):
         score -= 4.0
         reasons.append("low_quality_domain")
+    if any(term in text for term in _FACT_CHECK_TERMS):
+        score += 0.9 if profile.intent in {"fact", "numeric", "recency", "generic"} else 0.15
+        reasons.append("fact_check_signal")
+    if any(term in text for term in _PRIMARY_SOURCE_TERMS):
+        score += 1.4 if profile.intent == "source" else 0.35
+        reasons.append("primary_source_signal")
 
     if profile.language == "ko":
         if _KOREAN_RE.search(raw_text):

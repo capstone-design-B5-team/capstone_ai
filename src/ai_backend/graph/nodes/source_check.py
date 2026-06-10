@@ -19,9 +19,11 @@ from ai_backend.core.verification import (
     evidence_summary,
     first_result,
     format_evidence,
+    lang_instruction,
     message_content,
     rule_based_question,
     search_verification_evidence,
+    select_answer_source_url,
 )
 from ai_backend.core.verification import (
     make_unverifiable_result as build_unverifiable_result,
@@ -41,7 +43,7 @@ def source_check_node(
     *,
     llm: BaseChatModel | None = None,
     search_client: SearchClient | None = None,
-    max_results_per_query: int = 3,
+    max_results_per_query: int = 5,
     max_workers: int = 4,
 ) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify SOURCE claims and return a LangGraph partial update."""
@@ -169,7 +171,6 @@ def _verify_source_claim(
     )
 
     # Step 3: Per-question answer generation
-    source_url = evidence_results[0].url if evidence_results else ""
     questions: list[Question] = []
     for qi in q_items:
         q_text = qi.get("question", "") or rule_based_question(claim, all_queries)
@@ -180,6 +181,12 @@ def _verify_source_claim(
         answer_type = a_result.get("answer_type", "Abstractive")
         boolean_explanation = a_result.get("boolean_explanation", "")
         if answer:
+            source_url = "" if answer_type == "Unanswerable" else select_answer_source_url(
+                answer,
+                evidence_results,
+                question=q_text,
+                boolean_explanation=boolean_explanation,
+            )
             answer_dict: dict = {"answer": answer, "answer_type": answer_type, "source_url": source_url}
             if answer_type == "Boolean":
                 answer_dict["boolean_explanation"] = boolean_explanation
@@ -201,7 +208,7 @@ def _request_source_questions(
                     claim=claim["text"],
                     citation=citation_text or claim["text"],
                     claim_date=claim_date or "(정보 없음)",
-                )
+                ) + lang_instruction(claim)
             ),
         ]
     )
@@ -236,7 +243,7 @@ def _request_source_answer(
                     question=question,
                     evidence=evidence_text or "(검색 증거 없음)",
                     citation_type=citation_type,
-                )
+                ) + lang_instruction(claim)
             ),
         ]
     )
@@ -253,7 +260,11 @@ def _search_evidence(
 ) -> SearchEvidenceBundle:
     try:
         return search_verification_evidence(
-            claim, queries, search_client=search_client, max_results_per_query=max_results_per_query
+            claim,
+            queries,
+            search_client=search_client,
+            max_results_per_query=max_results_per_query,
+            verifier="source",
         )
     except Exception:
         logger.exception("source_check_node: search failed")
