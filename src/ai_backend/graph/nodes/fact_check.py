@@ -48,7 +48,7 @@ def fact_check_node(
     llm: BaseChatModel | None = None,
     search_client: SearchClient | None = None,
     max_results_per_query: int = 5,
-    max_workers: int = 4,
+    max_workers: int = 2,
 ) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify FACT claims and return a LangGraph partial update."""
     started = perf_counter()

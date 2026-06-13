@@ -37,3 +37,5 @@ aiomysql>=0.2.0
 # Database (storage.py - MySQL async connection)
 sqlalchemy>=2.0.0
 aiomysql>=0.2.0
+# Required by aiomysql for MySQL 8 caching_sha2_password auth
+cryptography>=42.0.0

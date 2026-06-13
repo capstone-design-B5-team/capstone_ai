@@ -9,7 +9,7 @@ cd "$(dirname "$0")/.."
 INPUT_JSON="scripts/averitec_dev_gold.json"
 OUTPUT_JSON="scripts/predictions.json"
 START=0
-LIMIT=5
+LIMIT=30
 
 # Set LIMIT="" to process every item from START.
 # Example:

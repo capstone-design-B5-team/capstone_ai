@@ -33,6 +33,8 @@ from ai_backend.core.verification import (
 )
 from ai_backend.graph.prompts.numeric_check import (
     NUMERIC_ANSWER_USER,
+    NUMERIC_CALC_SYSTEM,
+    NUMERIC_CALC_USER,
     NUMERIC_CHECK_SYSTEM,
     NUMERIC_QUESTION_USER,
 )
@@ -47,7 +49,7 @@ def numeric_check_node(
     llm: BaseChatModel | None = None,
     search_client: SearchClient | None = None,
     max_results_per_query: int = 5,
-    max_workers: int = 4,
+    max_workers: int = 2,
 ) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify NUMERIC claims and return a LangGraph partial update."""
     started = perf_counter()
@@ -62,6 +64,9 @@ def numeric_check_node(
         return {"numeric_results": []}
 
     claim_date = state.get("claim_date", "")
+    # 서비스 경로(문서 검증)에서만 내부 수치 자기일관성 검증을 추가로 수행한다.
+    # AVeriTeC 평가 경로(averitec_claim_types가 주입됨)는 스코어 보존을 위해 건드리지 않는다.
+    service_mode = not state.get("averitec_claim_types")
     llm = llm if llm is not None else get_llm("verification")
 
     try:
@@ -95,6 +100,7 @@ def numeric_check_node(
                 search_client=search_client,
                 max_results_per_query=max_results_per_query,
                 claim_date=claim_date,
+                service_mode=service_mode,
             )
             logger.info(
                 "numeric_check_node claim finished %d/%d claim_id=%s elapsed=%.2fs",
@@ -141,7 +147,12 @@ def _verify_numeric_claim(
     search_client: SearchClient,
     max_results_per_query: int,
     claim_date: str = "",
+    service_mode: bool = False,
 ) -> tuple[VerificationResult, list[Question]]:
+    # Step 0 (service only): 주장 내부 수치 계산의 자기일관성 검증.
+    # 웹 검색 없이 주장에 적힌 숫자만으로 증감률·배수·평균을 직접 계산해 모순을 잡는다.
+    calc = _request_numeric_calc(claim, llm=llm) if service_mode else {}
+
     # Step 1: Multi NL questions + search queries
     q_items = _request_numeric_questions(claim, llm=llm, claim_date=claim_date)
     if not q_items:
@@ -170,12 +181,18 @@ def _verify_numeric_claim(
         sources=[item.url for item in evidence_results if item.url],
         metadata={
             "search_queries": all_queries,
+            "internal_calc": calc or None,
             **evidence_bundle.metadata,
         },
     )
 
     # Step 3: Per-question answer generation
     questions: list[Question] = []
+    # 내부 계산이 명백히 모순(FAIL)이면, aggregate가 Refuted로 판정하도록
+    # 계산식을 담은 Boolean "No" 증거를 가장 앞에 추가한다.
+    calc_question = _calc_consistency_question(claim, calc)
+    if calc_question is not None:
+        questions.append(calc_question)
     for qi in q_items:
         q_text = qi.get("question", "") or _question_text(claim, all_queries)
         a_result = _request_numeric_answer(
@@ -248,6 +265,60 @@ def _request_numeric_answer(
     )
     parsed = parse_json_with_fallback(message_content(response.content))
     return first_result(parsed, marker_keys={"answer", "answer_type"}) or {}
+
+
+def _request_numeric_calc(claim: Claim, *, llm: BaseChatModel) -> dict[str, Any]:
+    """주장 내부 숫자만으로 산술 자기일관성을 판정한다 (웹 검색 미사용)."""
+    try:
+        response = llm.invoke(
+            [
+                SystemMessage(content=NUMERIC_CALC_SYSTEM),
+                HumanMessage(
+                    content=NUMERIC_CALC_USER.format(
+                        claim=claim["text"],
+                        context=claim.get("context", ""),
+                    )
+                ),
+            ]
+        )
+    except Exception:
+        logger.exception("numeric_check_node: internal calc check failed (%s)", claim["id"])
+        return {}
+    parsed = parse_json_with_fallback(message_content(response.content))
+    return first_result(parsed, marker_keys={"has_calc", "judgment"}) or {}
+
+
+def _calc_consistency_question(claim: Claim, calc: dict[str, Any]) -> Question | None:
+    """내부 계산이 FAIL이면 Refuted를 유도할 Boolean "No" 증거 질문을 만든다."""
+    if not calc or not calc.get("has_calc"):
+        return None
+    if str(calc.get("judgment", "")).strip().upper() != "FAIL":
+        return None
+
+    stated = str(calc.get("stated_value", "")).strip()
+    computed = str(calc.get("computed_value", "")).strip()
+    reason = str(calc.get("reason", "")).strip()
+    explanation = reason or (
+        f"주장이 명시한 값({stated})이 실제 계산값({computed})과 일치하지 않습니다."
+    )
+    logger.info(
+        "numeric_check_node internal calc FAIL claim_id=%s stated=%r computed=%r",
+        claim["id"],
+        stated,
+        computed,
+    )
+    return Question(
+        question="주장에 적힌 수치들의 내부 계산(증감률·배수·평균 등)이 서로 일관적입니까?",
+        answers=[
+            {
+                "answer": "No",
+                "answer_type": "Boolean",
+                "source_url": "",
+                "boolean_explanation": explanation,
+            }
+        ],
+        claim_id=claim["id"],
+    )
 
 
 def _search_evidence(

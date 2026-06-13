@@ -53,6 +53,12 @@ class Settings(BaseSettings):
     llm_request_timeout: float = 60.0
     """LLM 호출 타임아웃 (초)."""
 
+    llm_max_retries: int = 8
+    """LLM 호출 재시도 횟수. 검증 노드들이 ThreadPool로 동시에 호출하면
+    순간 TPM(분당 토큰) 한도를 넘어 429가 날 수 있는데, OpenAI SDK는
+    응답의 retry-after를 존중해 지수 백오프 재시도하므로 기본 2보다 넉넉히 둔다.
+    6으로도 혼잡이 1분 이상 지속될 때 백오프가 소진돼 429가 떠서 8로 상향."""
+
     # --- 검색 ---
     search_provider: Literal["tavily", "openai"] = "tavily"
     """FACT/NUMERIC/RECENCY 검증 노드에서 사용할 웹검색 provider."""
