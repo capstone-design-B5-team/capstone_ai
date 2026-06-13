@@ -48,7 +48,7 @@ def recency_check_node(
     search_client: SearchClient | None = None,
     max_results_per_query: int = 3,
     recent_days: int = 730,
-    max_workers: int = 4,
+    max_workers: int = 2,
 ) -> dict[str, list[VerificationResult] | list[Question]]:
     """Verify RECENCY claims and return a LangGraph partial update."""
     started = perf_counter()
