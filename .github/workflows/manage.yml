@@ -11,10 +11,6 @@ on:
         options:
           - wake
           - sleep
-  schedule:
-    # 매일 02:00 KST (17:00 UTC) 자동 sleep
-    - cron: '0 17 * * *'
-
 jobs:
   manage:
     runs-on: ubuntu-latest
@@ -27,12 +23,8 @@ jobs:
       - name: Determine action
         id: act
         run: |
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "action=sleep" >> "$GITHUB_OUTPUT"
-          else
-            echo "action=${{ inputs.action }}" >> "$GITHUB_OUTPUT"
-          fi
-          echo "Resolved action: ${{ github.event_name == 'schedule' && 'sleep' || inputs.action }}"
+          echo "action=${{ inputs.action }}" >> "$GITHUB_OUTPUT"
+          echo "Resolved action: ${{ inputs.action }}"
 
       - name: Wake
         if: steps.act.outputs.action == 'wake'
@@ -69,7 +61,7 @@ jobs:
             echo "- 비번: \`test1234\`"
             echo "- 프로젝트 코드: \`247813\`"
             echo ""
-            echo "> 매일 02:00 KST 자동 sleep. 필요시 다시 wake."
+            echo "> 필요시 다시 sleep 또는 wake."
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Sleep
