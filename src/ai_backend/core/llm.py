@@ -48,16 +48,19 @@ def _build_llm_cached(
     temperature: float,
     timeout: float,
     api_key: str,
+    max_retries: int,
 ) -> BaseChatModel:
     """순수 함수로 캐싱 가능한 LLM 빌더.
 
-    같은 (model, temperature, timeout, api_key) 조합이면 동일 인스턴스를 재사용한다.
+    같은 (model, temperature, timeout, api_key, max_retries) 조합이면 동일
+    인스턴스를 재사용한다.
     ``ChatOpenAI`` 객체 생성 비용은 작지만, 노드마다 새로 만들 이유가 없다.
     """
     return ChatOpenAI(
         model=model,
         temperature=temperature,
         timeout=timeout,
+        max_retries=max_retries,
         api_key=api_key,  # type: ignore[arg-type]  # SecretStr 변환은 langchain이 처리
     )
 
@@ -91,4 +94,5 @@ def get_llm(
         temperature=temperature if temperature is not None else settings.llm_temperature,
         timeout=settings.llm_request_timeout,
         api_key=settings.openai_api_key,
+        max_retries=settings.llm_max_retries,
     )

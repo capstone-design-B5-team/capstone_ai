@@ -2,8 +2,13 @@
 
 from __future__ import annotations
 
+import logging
+import re as _re
 from dataclasses import dataclass
-from typing import Any, cast
+from typing import Any
+
+from langchain_core.language_models import BaseChatModel
+from langchain_core.messages import HumanMessage
 
 from ai_backend.core.ids import make_verification_result
 from ai_backend.core.search import SearchClient, SearchResult
@@ -14,7 +19,36 @@ from ai_backend.core.search_policy import (
     rank_search_results,
     search_policy_metadata,
 )
-from ai_backend.graph.state import Claim, Question, Verdict, VerificationResult, VerifierName
+from ai_backend.graph.state import Claim, Question, VerificationResult, VerifierName
+
+logger = logging.getLogger(__name__)
+
+_KOREAN_RE = _re.compile(r"[가-힣]")
+_TOKEN_RE = _re.compile(r"[A-Za-z0-9가-힣]+")
+
+_QUESTION_STARTERS = frozenset((
+    "what", "who", "when", "where", "why", "how",
+    "did", "does", "is", "are", "was", "were",
+    "has", "have", "had", "can", "could", "would",
+))
+
+_QUESTION_GEN_PROMPT = (
+    "Given a fact-checking claim and the evidence found, "
+    "generate one concise question (in English) that this evidence answers. "
+    'The question should be in natural language like "Did X happen?" or "What is Y?".\n\n'
+    "Claim: {claim}\n"
+    "Evidence summary: {evidence}\n\n"
+    "Return only the question, no explanation."
+)
+
+_NUMERIC_ANSWER_PROMPT = (
+    "From the evidence below, extract ONE concise sentence (under 30 words) "
+    "that directly states the key number or statistic relevant to the claim.\n"
+    "If no specific number is found, write 'No specific number found in evidence.'\n\n"
+    "Claim: {claim}\n"
+    "Evidence: {evidence}\n\n"
+    "Return only the sentence, no explanation."
+)
 
 PASSING_JUDGMENTS = {"PASS", "WARNING", "FAIL"}
 ALL_VERDICTS = {"PASS", "WARNING", "FAIL", "UNVERIFIABLE"}
@@ -34,16 +68,10 @@ class SearchEvidenceBundle:
     metadata: dict[str, object]
 
 
-def normalize_judgment(value: Any) -> Verdict:
+def normalize_judgment(value: Any) -> str:
     """Normalize an LLM judgment to the verifier verdict set."""
     judgment = str(value or "").strip().upper()
-    return cast(Verdict, judgment) if judgment in PASSING_JUDGMENTS else "WARNING"
-
-
-def normalize_issue_judgment(value: Any) -> Verdict:
-    """Normalize a final report issue judgment."""
-    judgment = str(value or "").strip().upper()
-    return cast(Verdict, judgment) if judgment in ALL_VERDICTS else "WARNING"
+    return judgment if judgment in PASSING_JUDGMENTS else "WARNING"
 
 
 def judgment_confidence(judgment: str) -> float:
@@ -113,11 +141,11 @@ def search_verification_evidence(
     *,
     search_client: SearchClient,
     max_results_per_query: int,
+    verifier: VerifierName | None = None,
     days: int | None = None,
-    prefer_official: bool = True,
 ) -> SearchEvidenceBundle:
-    """Search, optionally retry official-domain queries, then rerank evidence."""
-    profile = build_search_profile(claim)
+    """Search and rerank evidence."""
+    profile = build_search_profile(claim, intent=verifier or "generic")
     base_results = search_evidence(
         queries,
         search_client=search_client,
@@ -125,30 +153,13 @@ def search_verification_evidence(
         days=days,
     )
     ranked = rank_search_results(profile, base_results)
-    official_retry = False
-    expanded_queries: list[str] = []
-
-    if prefer_official and needs_official_retry(profile, ranked):
-        expanded_queries = expand_official_queries(queries, profile, claim["text"])
-        if expanded_queries:
-            official_retry = True
-            official_results = search_evidence(
-                expanded_queries,
-                search_client=search_client,
-                max_results_per_query=max_results_per_query,
-                days=days,
-            )
-            ranked = rank_search_results(
-                profile,
-                _dedupe_search_results([*base_results, *official_results]),
-            )
 
     return SearchEvidenceBundle(
         results=[item.result for item in ranked],
         metadata=search_policy_metadata(
             profile,
-            expanded_queries=expanded_queries,
-            official_retry=official_retry,
+            expanded_queries=[],
+            official_retry=False,
             ranked=ranked,
         ),
     )
@@ -179,6 +190,62 @@ def format_evidence(results: list[SearchResult]) -> str:
             f"snippet={item.content}"
         )
     return "\n\n".join(lines)
+
+
+def select_answer_source_url(
+    answer: str,
+    results: list[SearchResult],
+    *,
+    question: str = "",
+    boolean_explanation: str = "",
+) -> str:
+    """Choose the evidence URL that best matches a generated QA answer."""
+    if not results:
+        return ""
+    if len(results) == 1:
+        return results[0].url
+
+    answer_text = " ".join(
+        part.strip()
+        for part in (answer, boolean_explanation, question)
+        if part and part.strip()
+    )
+    answer_tokens = _tokens(answer_text)
+    if not answer_tokens:
+        return results[0].url
+
+    best_result = results[0]
+    best_score = -1.0
+    normalized_answer = _normalize_for_match(answer_text)
+    for idx, item in enumerate(results):
+        source_text = f"{item.title} {item.content}"
+        source_tokens = _tokens(source_text)
+        if not source_tokens:
+            continue
+
+        overlap = len(answer_tokens & source_tokens)
+        precision = overlap / len(answer_tokens)
+        recall = overlap / len(source_tokens)
+        score = (2 * precision * recall / (precision + recall)) if precision + recall else 0.0
+
+        normalized_source = _normalize_for_match(source_text)
+        if len(normalized_answer) >= 24 and normalized_answer in normalized_source:
+            score += 1.0
+        if item.url:
+            score += 0.001 * (len(results) - idx)
+
+        if score > best_score:
+            best_score = score
+            best_result = item
+    return best_result.url
+
+
+def _tokens(text: str) -> set[str]:
+    return {token.lower() for token in _TOKEN_RE.findall(text)}
+
+
+def _normalize_for_match(text: str) -> str:
+    return " ".join(_TOKEN_RE.findall(text.lower()))
 
 
 def evidence_summary(item: SearchResult) -> str:
@@ -234,10 +301,81 @@ def make_unverifiable_result(
     return make_verification_result(
         claim_id=claim["id"],
         verifier=verifier,
-        verdict="UNVERIFIABLE",
-        confidence=0.0,
         evidence=[],
         reasoning=reason,
         sources=[],
         metadata={"error": reason},
     )
+
+
+def lang_instruction(claim: Claim) -> str:
+    """Return an English-query instruction appended to prompts for non-Korean claims."""
+    text = f"{claim['text']} {claim.get('context', '')}"
+    if _KOREAN_RE.search(text):
+        return ""
+    return "\n\nIMPORTANT: This claim is in English. You MUST generate all search_queries in English."
+
+
+def rule_based_question(claim: Claim, queries: list[str]) -> str:
+    """Convert the first search query into a natural-language question.
+
+    If the query starts with a question word it gets a "?" appended;
+    otherwise it is wrapped as "What does the evidence say about ...?".
+    Falls back to a generic claim-based question when queries is empty.
+    """
+    if not queries:
+        return f"What evidence verifies this claim: {claim['text']}?"
+    q = queries[0].strip().rstrip("?")
+    if not q:
+        return f"What evidence verifies this claim: {claim['text']}?"
+    if q.lower().split()[0] in _QUESTION_STARTERS:
+        return q + "?"
+    return f"What does the evidence say about {q}?"
+
+
+def generate_question(
+    claim: Claim,
+    evidence_results: list[SearchResult],
+    queries: list[str],
+    *,
+    llm: BaseChatModel,
+) -> str:
+    """LLM-based natural-language question generation with rule-based fallback.
+
+    Used in averitec mode only, so the extra LLM call does not affect service latency.
+    """
+    evidence_text = " ".join(r.content[:200] for r in evidence_results[:2])
+    try:
+        response = llm.invoke(
+            [HumanMessage(content=_QUESTION_GEN_PROMPT.format(
+                claim=claim["text"],
+                evidence=evidence_text or "No evidence found.",
+            ))]
+        )
+        result = message_content(response.content).strip().strip('"')
+        if result:
+            return result
+    except Exception:
+        logger.warning("generate_question LLM call failed; falling back to rule_based_question")
+    return rule_based_question(claim, queries)
+
+
+def extract_numeric_answer(
+    claim: Claim,
+    evidence_results: list[SearchResult],
+    *,
+    llm: BaseChatModel,
+) -> str:
+    """Extract a single concise numeric sentence from evidence for AVeriTeC NC scoring."""
+    evidence_text = " ".join(r.content[:300] for r in evidence_results[:3])
+    try:
+        response = llm.invoke([HumanMessage(content=_NUMERIC_ANSWER_PROMPT.format(
+            claim=claim["text"],
+            evidence=evidence_text or "No evidence found.",
+        ))])
+        result = message_content(response.content).strip()
+        if result:
+            return result
+    except Exception:
+        logger.warning("extract_numeric_answer LLM call failed; falling back to evidence content")
+    return evidence_results[0].content if evidence_results else "No evidence found."

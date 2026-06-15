@@ -17,41 +17,14 @@ RECENCY_CHECK_SYSTEM = """당신은 AI 자료 검증 플랫폼의 'Node 3: 데�
    - **현재적 평가 표현**: "OECD 최고 수준", "가장 높은", "심각한", "최악" 등 현재 상태에 대한 평가가 동반되거나
    - Context에서 현재형·지속형 주장의 근거로 해당 수치를 인용하는 경우
 
-두 조건 중 하나라도 충족하지 않으면 PASS를 반환하십시오.
-반례 (트리거 X): "2019년 비정규직 비율은 36.4%였다" (현재·지속 함의 없는 순수 역사적 서술)
+★ [본문이 맨숭한 수치여도 트리거 — 중요] Claim 본문 자체에는 현재형 표현이 없어도, **Context(서술부)가 과거 시점의 수치를 '현재를 대표하는/지금도 유효한' 근거로 제시**하면 조건 ②를 충족한 것으로 보고 반드시 트리거하십시오. cherry-picking의 현재 함의는 주로 Claim 본문이 아니라 Context에 담깁니다.
+  - 트리거 O 예: 본문 "아마존 전체 매출의 약 35%가 추천 엔진에서 발생한다" + Context "맥킨지의 2013년 분석 수치는 10년이 지난 지금도 여전히 아마존의 현재 추천 의존도를 변함없이 그대로 대표하는 근거로 인용된다" → 본문엔 현재형 단어가 없지만 Context가 2013년 수치를 현재 대표 근거로 제시 → cherry_pick_direction을 "과장" 또는 "축소"로 판정.
 
-[검증 프로세스]
-1. 시점 지표 추출 및 현재 함의 판단: 주장에서 과거 시점 키워드를 찾고, 해당 데이터가 현재 상황의 근거로 쓰이는지 판단합니다.
-2. 탐지 방향 분류:
-   - 과장 탐지: 과거의 높은 수치를 사용했으나 현재는 낮아졌을 가능성 (예: 2019년 36.4% 인용 → 현재 33%로 개선됨)
-   - 축소 탐지: 과거의 낮은 수치를 사용했으나 현재는 높아졌을 가능성 (예: 과거 낮은 수치 인용 → 현재 악화됨)
-3. 최신 데이터 검색: 해당 지표의 2024~2026년 최신 수치를 수집하여 방향·규모를 비교합니다.
-
-[판정 기준]
-- PASS: 최신 데이터와 방향·규모가 일치하거나, 과거 시점 명시가 순수 역사적 서술임 (트리거 조건 불충족)
-- WARNING: 최신 데이터와 다소 차이나지만 방향은 같음, 또는 현재 함의 여부가 모호함
-- FAIL: 최신 데이터와 방향이 반대이거나 규모 차이가 커서 현재 맥락 왜곡이 명백함
-
-[출력 형식 JSON]
-반드시 아래 JSON 형식으로만 깔끔하게 출력하십시오.
-{
-  "results": [
-    {
-      "claim": "원문 문장",
-      "time_indicators": ["추출된 시점 키워드 1", "키워드 2"],
-      "current_implication": "현재 함의 여부 및 근거 (트리거 판단 근거)",
-      "search_queries": ["해당 지표 최신(2024~2026) 데이터 검색 쿼리 1", "검색 쿼리 2"],
-      "cherry_pick_direction": "과장 | 축소 | 해당없음",
-      "judgment": "PASS | WARNING | FAIL",
-      "reason": "최신 데이터와의 비교 및 cherry-picking 여부 판단 근거",
-      "suggestion": "PASS면 빈 문자열, 그 외엔 최신 수치를 포함한 원문 수정 제안"
-    }
-  ]
-}"""
+두 조건 중 하나라도 충족하지 않으면 cherry_pick_direction은 "해당없음"으로 반환하십시오.
+반례 (트리거 X): "2019년 비정규직 비율은 36.4%였다" (현재·지속 함의 없는 순수 역사적 서술)"""
 
 RECENCY_QUERY_USER = """다음 Claim에서 시점 지표를 추출하고, 현재 함의 여부를 판단한 후 최신 데이터 검색 쿼리를 설계하십시오.
-트리거 조건(과거 시점 명시 + 현재 함의) 중 하나라도 충족하지 않으면 cherry_pick_direction은 "해당없음", judgment는 "PASS", reason은 "트리거 조건 불충족"으로 두십시오.
-트리거 조건을 충족한다면, judgment는 "WARNING", reason은 "검색 전 최신 데이터 수집 쿼리 설계"로 두십시오.
+트리거 조건(과거 시점 명시 + 현재 함의) 중 하나라도 충족하지 않으면 cherry_pick_direction은 "해당없음", search_queries는 기본 검색 쿼리로 두십시오.
 
 Claim:
 {claim}
@@ -60,16 +33,69 @@ Context:
 {context}
 """
 
-RECENCY_JUDGMENT_USER = """다음 Claim이 과거 데이터를 현재 맥락의 근거로 선택적으로 사용(cherry-picking)하고 있는지 주어진 Evidence로 검증하십시오.
-트리거 조건(과거 시점 명시 + 현재 함의)이 충족되지 않으면 PASS를 반환하십시오.
-트리거 조건이 충족된다면, 최신 데이터와 방향·규모를 비교하여 judgment를 PASS/WARNING/FAIL 중 하나로 내리십시오.
+RECENCY_QUESTION_USER = """다음 Claim에서 시점 지표를 추출하고, cherry-picking 탐지를 위한 검증 질문 3~5개와 각 질문별 검색 쿼리를 생성하십시오. 트리거 조건 충족 시 5개, 미충족 시 3개를 생성하십시오.
+
+[Cherry-picking 탐지 기준]
+- 과거 시점 명시 + 현재 함의가 동시에 존재할 때만 cherry-picking 탐지 대상입니다.
+- ★ 현재 함의는 Claim 본문이 아니라 Context(서술부)에 있을 수 있습니다. Context가 과거 수치를 '지금도 여전히 현재를 대표하는' 근거로 제시하면 본문에 현재형 단어가 없어도 트리거하여 cherry_pick_direction을 과장/축소로 판정하고 Q1~Q5를 생성하십시오.
+- 조건이 충족되지 않으면 Q1~Q3만 생성하십시오.
+
+[질문 생성 지침 (트리거 조건 충족 시)]
+- Q1: 과거 수치 검증 (예: "{{연도}} {{주체}}의 {{지표}}는 실제로 {{수치}}였나요?")
+- Q2: 최신 수치 조회 (예: "현재(최신) {{주체}}의 {{지표}}는 얼마인가요?")
+- Q3: 현재 맥락 유효성 (예: "과거 수치가 현재 {{주제}} 상황을 대표할 수 있나요?")
+- Q4: Claim date ({claim_date}) 당시 수치 (예: "Claim date 기준으로 해당 지표는 어떤 상태였나요?")
+- Q5(선택): 추세 방향 (예: "해당 지표의 최근 3년간 추세는 어떻게 되나요?")
+
+[search_queries 생성 지침]
+- Q1: 과거 시점의 정확한 수치를 확인할 검색어 (연도 포함 필수)
+- Q2: 최신(2024~2026) 수치를 찾을 검색어
+- Q3: 현재 추세·비교 데이터를 찾을 검색어
+- Q4: Claim date 시점 데이터를 찾을 검색어 (Claim date 연도 포함)
+- Q5: 최근 3년 추세를 파악할 검색어
 
 Claim:
 {claim}
 
 Context:
 {context}
+
+Claim date:
+{claim_date}
+
+반드시 아래 JSON 형식으로만 출력하십시오:
+{{"time_indicators": ["시점 키워드1", "키워드2"], "cherry_pick_direction": "과장|축소|해당없음", "questions": [
+  {{"question": "...", "search_queries": ["쿼리1", "쿼리2"]}},
+  {{"question": "...", "search_queries": ["쿼리3"]}},
+  {{"question": "...", "search_queries": ["쿼리4"]}},
+  {{"question": "...", "search_queries": ["쿼리5"]}},
+  {{"question": "...", "search_queries": ["쿼리6"]}}
+]}}"""
+
+RECENCY_ANSWER_USER = """다음 질문에 대해 Evidence를 바탕으로 답변을 생성하십시오.
+
+[답변 원칙]
+- 수치 관련 질문이면 Evidence에서 수치를 직접 추출(Extractive)하십시오. 수치·날짜 관련 답변은 Evidence에서 직접 인용(Extractive)하십시오.
+- Yes/No로 명확히 답할 수 있으면 Boolean으로 답하고 boolean_explanation에 근거를 서술하십시오.
+- Evidence에서 답을 찾을 수 없으면 answer_type을 "Unanswerable"로 하십시오.
+
+[최신성 비교 판정 지침 (cherry-picking)]
+- 질문이 '최신 수치' 또는 '현재 대표성'에 관한 것이면, Evidence에서 최신(2024~2026) 수치를 찾아 Claim의 과거 수치와 **방향(상승/하락)과 규모 차이**를 명시적으로 비교하십시오.
+- 최신 수치가 과거 수치와 방향이 반대이거나 규모 차이가 크면, 과거 수치가 현재 상황을 왜곡 대표한다고 판단하고 Boolean "Yes"로 답하십시오. boolean_explanation에는 "[과장|축소] — 과거 {{연도}} {{수치}} vs 최신 {{수치}}, 따라서 현재를 대표하지 못함" 형태로 근거를 명시하십시오.
+- 최신 수치가 과거와 비슷하면 Boolean "No"로 답하고 과거 수치가 여전히 유효함을 근거로 서술하십시오.
+- 최신 수치를 Evidence에서 찾을 수 없으면 answer_type을 "Unanswerable"로 하십시오.
+
+답변은 Claim과 동일한 언어로 작성하십시오.
+
+Claim:
+{claim}
+
+Question:
+{question}
 
 Evidence:
 {evidence}
-"""
+
+반드시 아래 JSON 형식으로만 출력하십시오 (answer_type은 Boolean, Extractive, Abstractive, Unanswerable 중 하나):
+Boolean인 경우: {{"answer": "Yes", "answer_type": "Boolean", "boolean_explanation": "...상세 근거..."}}
+Non-Boolean인 경우: {{"answer": "...", "answer_type": "Extractive|Abstractive|Unanswerable"}}"""

@@ -56,3 +56,4 @@ tests/
 scripts/test_*.py
 scripts/eval.py
 tests/fixtures/
+scripts/predictions_*.json

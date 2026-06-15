@@ -5,16 +5,24 @@
 """
 
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_ENV_FILE = Path(__file__).resolve().parent.parent.parent / ".env"
+
+# pydantic-settings보다 먼저 환경변수에 주입
+if _ENV_FILE.exists():
+    load_dotenv(_ENV_FILE, override=False)
 
 
 class Settings(BaseSettings):
     """앱 설정. 환경변수 또는 .env 파일에서 로드."""
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=str(_ENV_FILE),
         env_file_encoding="utf-8",
         case_sensitive=False,
         extra="ignore",
@@ -28,7 +36,6 @@ class Settings(BaseSettings):
     # provider는 OpenAI로 결정. 노드별로 다른 모델을 쓸 수 있게 분리.
     # 비용 실험 시 환경변수만 바꿔서 조정 가능.
     openai_api_key: str | None = None
-    anthropic_api_key: str | None = None  # 보존: 나중에 변경 가능성
 
     llm_model_extraction: str = "gpt-4o-mini"
     """전처리 노드(Claim 추출)용 모델."""
@@ -37,13 +44,20 @@ class Settings(BaseSettings):
     """4개 검증 노드용 모델."""
 
     llm_model_aggregation: str = "gpt-4o-mini"
-    """종합판정 노드용 모델. 정확도 이슈 시 상위 모델로 업그레이드 가능."""
+    """종합판정 노드용 모델. gpt-4o 업그레이드는 라이브에서 CE 과예측으로 역효과(2회 0.467 vs mini 0.500~0.567)라 mini 유지.
+    (격리 측정의 +1은 하니스가 claim type/context를 비워 돌린 낙관적 결과였음 — 라이브 미반영.)"""
 
     llm_temperature: float = 0.0
     """검증 작업은 일관성이 핵심이므로 0 고정. 필요 시 노드별 override."""
 
     llm_request_timeout: float = 60.0
     """LLM 호출 타임아웃 (초)."""
+
+    llm_max_retries: int = 8
+    """LLM 호출 재시도 횟수. 검증 노드들이 ThreadPool로 동시에 호출하면
+    순간 TPM(분당 토큰) 한도를 넘어 429가 날 수 있는데, OpenAI SDK는
+    응답의 retry-after를 존중해 지수 백오프 재시도하므로 기본 2보다 넉넉히 둔다.
+    6으로도 혼잡이 1분 이상 지속될 때 백오프가 소진돼 429가 떠서 8로 상향."""
 
     # --- 검색 ---
     search_provider: Literal["tavily", "openai"] = "tavily"

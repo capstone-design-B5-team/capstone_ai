@@ -11,8 +11,8 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException, status
 
 from ai_backend.api.schemas import VerifyAcceptedResponse, VerifyRequest, VerifyResponse
 from ai_backend.graph.builder import verification_graph
-from ai_backend.graph.state import FinalReport, GraphState
-from ai_backend.models.claim import ClaimModel, FinalReportModel, VerificationResultModel
+from ai_backend.graph.state import GraphState
+from ai_backend.models.claim import ClaimLabelModel, ClaimModel, QuestionModel, VerificationResultModel
 from ai_backend.storage import (
     get_verify_job_result,
     get_verify_job_status,
@@ -36,7 +36,6 @@ def _initial_state(request: VerifyRequest) -> GraphState:
     return GraphState(
         raw_text=request.text,
         document_id=_document_id(request),
-        run_mode="service",
         document_citations=[citation.to_typed_dict() for citation in request.document_citations],
         claims=[],
         questions=[],
@@ -44,10 +43,7 @@ def _initial_state(request: VerifyRequest) -> GraphState:
         source_results=[],
         recency_results=[],
         numeric_results=[],
-        label="Not Enough Evidence",
-        justification="",
-        final_grade="확인 필요",
-        final_report=FinalReport(final_grade="확인 필요", summary="", issues=[]),
+        claim_labels=[],
     )
 
 
@@ -63,8 +59,10 @@ def _response_from_state(state: GraphState, request: VerifyRequest) -> VerifyRes
         document_id=state["document_id"],
         claims=[ClaimModel.from_typed_dict(claim) for claim in state["claims"]],
         results=[VerificationResultModel.from_typed_dict(result) for result in results],
-        final_grade=state["final_grade"],
-        final_report=FinalReportModel.from_typed_dict(state["final_report"]),
+        questions=[QuestionModel.from_typed_dict(q) for q in state.get("questions", [])],
+        claim_labels=[
+            ClaimLabelModel.from_typed_dict(cl) for cl in state.get("claim_labels", [])
+        ],
     )
 
 
@@ -102,11 +100,10 @@ async def run_verify_job(job_id: str, request: VerifyRequest) -> None:
         result = _response_from_state(result_state, request)
         await save_verify_job_result(job_id, result)
         logger.info(
-            "verify job completed job_id=%s elapsed=%.2fs final_grade=%s issues=%d",
+            "verify job completed job_id=%s elapsed=%.2fs claim_labels=%d",
             job_id,
             perf_counter() - started,
-            result.final_grade,
-            len(result.final_report.issues),
+            len(result.claim_labels),
         )
     except Exception as exc:
         logger.exception(

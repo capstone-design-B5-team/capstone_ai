@@ -13,7 +13,6 @@ from ai_backend.graph.state import (
     CitationType,
     Claim,
     ClaimType,
-    Verdict,
     VerificationResult,
     VerifierName,
 )
@@ -75,8 +74,6 @@ def make_claim(
 def make_verification_result(
     claim_id: str,
     verifier: VerifierName,
-    verdict: Verdict,
-    confidence: float,
     evidence: list[str],
     reasoning: str,
     sources: list[str],
@@ -89,8 +86,6 @@ def make_verification_result(
         id=new_id(),
         claim_id=claim_id,
         verifier=verifier,
-        verdict=verdict,
-        confidence=confidence,
         evidence=evidence,
         reasoning=reasoning,
         sources=sources,

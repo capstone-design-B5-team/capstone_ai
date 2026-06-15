@@ -3,16 +3,10 @@
 from __future__ import annotations
 
 from operator import add
-from typing import Annotated, Any, Literal, TypedDict
+from typing import Annotated, Any, Literal, NotRequired, TypedDict
 
 ClaimType = Literal["FACT", "NUMERIC", "SOURCE", "RECENCY"]
 """Claim classification. A claim can have multiple types."""
-
-RunMode = Literal["service", "averitec"]
-"""Pipeline mode. Service mode skips AVeriTeC-only QA outputs."""
-
-Verdict = Literal["PASS", "WARNING", "FAIL", "UNVERIFIABLE"]
-"""Verifier judgment, aligned with all node prompts."""
 
 VerifierName = Literal["fact", "source", "recency", "numeric"]
 """Verifier node name."""
@@ -30,10 +24,6 @@ Label = Literal[
     "Conflicting Evidence/Cherrypicking",
 ]
 """AVeriTeC veracity label."""
-
-FinalGrade = Literal["통과", "주의", "확인 필요"]
-"""Final aggregate grade exposed to users."""
-
 
 class Citation(TypedDict):
     """Citation attached to a document or claim."""
@@ -65,8 +55,6 @@ class VerificationResult(TypedDict):
     claim_id: str
     verifier: VerifierName
 
-    verdict: Verdict
-    confidence: float
     evidence: list[str]
     reasoning: str
     sources: list[str]
@@ -85,6 +73,7 @@ class Answer(TypedDict):
     answer: str
     answer_type: AnswerType
     source_url: str
+    boolean_explanation: NotRequired[str]  # Boolean일 때 판단 근거; 나머지는 생략
 
 
 class Question(TypedDict):
@@ -92,24 +81,15 @@ class Question(TypedDict):
 
     question: str
     answers: list[Answer]
+    claim_id: NotRequired[str]  # 어떤 claim의 QA인지 추적
 
 
-class FinalIssue(TypedDict):
-    """Issue item in the final report."""
+class ClaimLabel(TypedDict):
+    """Per-claim aggregate label."""
 
-    node: str
-    highlighted_text: str
-    judgment: Verdict
-    problem: str
-    suggestion: str
-
-
-class FinalReport(TypedDict):
-    """Structured final report from aggregate node."""
-
-    final_grade: FinalGrade
-    summary: str
-    issues: list[FinalIssue]
+    claim_id: str
+    label: Label
+    justification: str
 
 
 class GraphState(TypedDict):
@@ -117,7 +97,9 @@ class GraphState(TypedDict):
 
     raw_text: str
     document_id: str
-    run_mode: RunMode
+    averitec_claim_types: NotRequired[list[str]]
+    averitec_mode: NotRequired[bool]  # AVeriTeC 평가 경로 전용. True면 gold 스타일 질문 프롬프트 사용(production 미설정)
+    claim_date: NotRequired[str]  # DD-MM-YYYY (AVeriTeC)
     document_citations: list[Citation]
 
     claims: list[Claim]
@@ -129,8 +111,4 @@ class GraphState(TypedDict):
     recency_results: Annotated[list[VerificationResult], add]
     numeric_results: Annotated[list[VerificationResult], add]
 
-    label: Label
-    justification: str
-
-    final_grade: FinalGrade
-    final_report: FinalReport
+    claim_labels: Annotated[list[ClaimLabel], add]
